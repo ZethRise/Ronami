@@ -75,6 +75,7 @@ macro_rules! define_message_ext {
 define_message_ext! {
     // MessageCommon
     (filter_from, Message::from),
+    (filter_sender_tag, Message::sender_tag),
     // MediaKind variants of the MessageKind::Common
     (filter_animation, Message::animation),
     (filter_audio, Message::audio),

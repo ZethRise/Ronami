@@ -150,6 +150,7 @@ mod set_business_account_profile_photo;
 mod set_business_account_username;
 mod set_chat_administrator_custom_title;
 mod set_chat_description;
+mod set_chat_member_tag;
 mod set_chat_menu_button;
 mod set_chat_permissions;
 mod set_chat_photo;
@@ -352,6 +353,7 @@ pub use set_chat_administrator_custom_title::{
     SetChatAdministratorCustomTitle, SetChatAdministratorCustomTitleSetters,
 };
 pub use set_chat_description::{SetChatDescription, SetChatDescriptionSetters};
+pub use set_chat_member_tag::{SetChatMemberTag, SetChatMemberTagSetters};
 pub use set_chat_menu_button::{SetChatMenuButton, SetChatMenuButtonSetters};
 pub use set_chat_permissions::{SetChatPermissions, SetChatPermissionsSetters};
 pub use set_chat_photo::{SetChatPhoto, SetChatPhotoSetters};

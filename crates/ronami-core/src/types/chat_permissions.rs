@@ -67,6 +67,9 @@ bitflags::bitflags! {
         /// Set if the user is allowed to create, rename, close, and reopen forum topics.
         const MANAGE_TOPICS = 1 << 7;
 
+        /// Set if the user is allowed to edit their own tag.
+        const EDIT_TAG = 1 << 14;
+
         /// Set if the user is allowed to send audios.
         const SEND_AUDIOS = 1 << 8;
 
@@ -206,6 +209,13 @@ impl ChatPermissions {
     pub fn can_manage_topics(&self) -> bool {
         self.contains(ChatPermissions::MANAGE_TOPICS)
     }
+
+    /// Checks for [`EDIT_TAG`] permission.
+    ///
+    /// [`EDIT_TAG`]: ChatPermissions::EDIT_TAG
+    pub fn can_edit_tag(&self) -> bool {
+        self.contains(ChatPermissions::EDIT_TAG)
+    }
 }
 
 /// Helper for (de)serialization
@@ -257,6 +267,9 @@ struct ChatPermissionsRaw {
     //       or did they mean that `can_pin_messages` implies `can_manage_topics`?..
     #[serde(default)]
     can_manage_topics: bool,
+
+    #[serde(default)]
+    can_edit_tag: bool,
 }
 
 impl From<ChatPermissions> for ChatPermissionsRaw {
@@ -276,6 +289,7 @@ impl From<ChatPermissions> for ChatPermissionsRaw {
             can_invite_users: this.can_invite_users(),
             can_pin_messages: this.can_pin_messages(),
             can_manage_topics: this.can_manage_topics(),
+            can_edit_tag: this.can_edit_tag(),
         }
     }
 }
@@ -297,6 +311,7 @@ impl From<ChatPermissionsRaw> for ChatPermissions {
             can_invite_users,
             can_pin_messages,
             can_manage_topics,
+            can_edit_tag,
         }: ChatPermissionsRaw,
     ) -> Self {
         let mut this = Self::empty();
@@ -342,7 +357,10 @@ impl From<ChatPermissionsRaw> for ChatPermissions {
         }
         // FIXME: should we do `|| can_pin_messages` here? (the same tg doc weirdness)
         if can_manage_topics {
-            this |= Self::MANAGE_TOPICS
+            this |= Self::MANAGE_TOPICS;
+        }
+        if can_edit_tag {
+            this |= Self::EDIT_TAG;
         }
 
         this
@@ -358,7 +376,7 @@ mod tests {
         let permissions = ChatPermissions::SEND_MESSAGES
             | ChatPermissions::SEND_AUDIOS
             | ChatPermissions::PIN_MESSAGES;
-        let expected = r#"{"can_send_messages":true,"can_send_audios":true,"can_pin_messages":true,"can_manage_topics":false}"#;
+        let expected = r#"{"can_send_messages":true,"can_send_audios":true,"can_pin_messages":true,"can_manage_topics":false,"can_edit_tag":false}"#;
         let actual = serde_json::to_string(&permissions).unwrap();
         assert_eq!(expected, actual);
     }

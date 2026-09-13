@@ -175,6 +175,9 @@ pub struct MessageCommon {
     /// title of an anonymous group administrator.
     pub author_signature: Option<String>,
 
+    /// Tag of the sender of the message in a supergroup.
+    pub sender_tag: Option<String>,
+
     /// The number of Telegram Stars that were paid by the sender of the message
     /// to send it
     pub paid_star_count: Option<u32>,
@@ -1058,6 +1061,14 @@ mod getters {
         pub fn author_signature(&self) -> Option<&str> {
             match &self.kind {
                 Common(MessageCommon { author_signature, .. }) => author_signature.as_deref(),
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn sender_tag(&self) -> Option<&str> {
+            match &self.kind {
+                Common(MessageCommon { sender_tag, .. }) => sender_tag.as_deref(),
                 _ => None,
             }
         }

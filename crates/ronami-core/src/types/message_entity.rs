@@ -1,5 +1,6 @@
 use std::{cmp, ops::Range};
 
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 use crate::types::{CustomEmojiId, User, UserId};
@@ -126,6 +127,17 @@ impl MessageEntity {
         length: usize,
     ) -> Self {
         Self { kind: MessageEntityKind::CustomEmoji { custom_emoji_id }, offset, length }
+    }
+
+    /// Create a message entity representing a date and time.
+    #[must_use]
+    pub fn date_time(
+        date_time: DateTime<Utc>,
+        date_time_format: Option<String>,
+        offset: usize,
+        length: usize,
+    ) -> Self {
+        Self { kind: MessageEntityKind::DateTime { date_time, date_time_format }, offset, length }
     }
 
     #[must_use]
@@ -264,10 +276,24 @@ pub enum MessageEntityKind {
     Strikethrough,
     Spoiler,
     Code,
-    Pre { language: Option<String> },
-    TextLink { url: reqwest::Url },
-    TextMention { user: User },
-    CustomEmoji { custom_emoji_id: CustomEmojiId },
+    Pre {
+        language: Option<String>,
+    },
+    TextLink {
+        url: reqwest::Url,
+    },
+    TextMention {
+        user: User,
+    },
+    CustomEmoji {
+        custom_emoji_id: CustomEmojiId,
+    },
+    DateTime {
+        #[serde(rename = "unix_time", with = "crate::types::serde_date_from_unix_timestamp")]
+        #[cfg_attr(test, schemars(with = "i64"))]
+        date_time: DateTime<Utc>,
+        date_time_format: Option<String>,
+    },
 }
 
 #[cfg(test)]
@@ -322,6 +348,24 @@ mod tests {
             )
             .unwrap()
         );
+    }
+
+    #[test]
+    fn date_time() {
+        use serde_json::{from_str, to_string};
+
+        let entity = MessageEntity {
+            kind: MessageEntityKind::DateTime {
+                date_time: chrono::DateTime::from_timestamp(1772345678, 0).unwrap(),
+                date_time_format: Some("w".to_string()),
+            },
+            offset: 0,
+            length: 10,
+        };
+
+        let json = r#"{"type":"date_time","unix_time":1772345678,"date_time_format":"w","offset":0,"length":10}"#;
+        assert_eq!(entity, from_str::<MessageEntity>(json).unwrap());
+        assert_eq!(to_string(&entity).unwrap(), json);
     }
 
     #[test]

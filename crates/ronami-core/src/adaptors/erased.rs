@@ -233,6 +233,7 @@ where
         restrict_chat_member,
         promote_chat_member,
         set_chat_administrator_custom_title,
+        set_chat_member_tag,
         ban_chat_sender_chat,
         unban_chat_sender_chat,
         set_chat_permissions,
@@ -621,6 +622,12 @@ trait ErasableRequester<'a> {
         user_id: UserId,
         custom_title: String,
     ) -> ErasedRequest<'a, SetChatAdministratorCustomTitle, Self::Err>;
+
+    fn set_chat_member_tag(
+        &self,
+        chat_id: Recipient,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, SetChatMemberTag, Self::Err>;
 
     fn ban_chat_sender_chat(
         &self,
@@ -1657,6 +1664,14 @@ where
         custom_title: String,
     ) -> ErasedRequest<'a, SetChatAdministratorCustomTitle, Self::Err> {
         Requester::set_chat_administrator_custom_title(self, chat_id, user_id, custom_title).erase()
+    }
+
+    fn set_chat_member_tag(
+        &self,
+        chat_id: Recipient,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, SetChatMemberTag, Self::Err> {
+        Requester::set_chat_member_tag(self, chat_id, user_id).erase()
     }
 
     fn ban_chat_sender_chat(

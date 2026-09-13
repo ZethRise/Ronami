@@ -119,6 +119,11 @@ pub struct Administrator {
     #[serde(default)]
     pub can_manage_direct_messages: bool,
 
+    /// `true`, if the administrator can edit the tags of regular members; for
+    /// groups and supergroups only
+    #[serde(default)]
+    pub can_manage_tags: bool,
+
     /// `true` if the administrator can add new administrators with a subset of
     /// his own privileges or demote administrators that he has promoted,
     /// directly or indirectly (promoted by administrators that were appointed
@@ -132,6 +137,9 @@ pub struct Administrator {
 #[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct Member {
+    /// Tag of the member
+    pub tag: Option<String>,
+
     /// Date when the user's subscription will expire
     pub until_date: Option<UntilDate>,
 }
@@ -142,6 +150,9 @@ pub struct Member {
 #[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct Restricted {
+    /// Tag of the member
+    pub tag: Option<String>,
+
     /// Date when restrictions will be lifted for this user.
     pub until_date: UntilDate,
 
@@ -194,6 +205,10 @@ pub struct Restricted {
 
     /// `true` if the user is allowed to send polls.
     pub can_send_polls: bool,
+
+    /// `true` if the user is allowed to edit their own tag.
+    #[serde(default)]
+    pub can_edit_tag: bool,
 }
 
 /// User that was banned in the chat and can't return to it or view chat
@@ -371,6 +386,17 @@ impl ChatMemberKind {
             Self::Restricted(Restricted { until_date, .. })
             | Self::Member(Member { until_date: Some(until_date), .. })
             | Self::Banned(Banned { until_date, .. }) => Some(*until_date),
+        }
+    }
+
+    /// Getter for [`Member::tag`] and [`Restricted::tag`] fields.
+    #[must_use]
+    pub fn tag(&self) -> Option<&str> {
+        match &self {
+            Self::Member(Member { tag, .. }) | Self::Restricted(Restricted { tag, .. }) => {
+                tag.as_deref()
+            }
+            _ => None,
         }
     }
 }
@@ -594,6 +620,27 @@ impl ChatMemberKind {
             Self::Member(_) | Self::Restricted(_) | Self::Left | Self::Banned(_) => false,
         }
     }
+
+    /// Returns `true` if the administrator can edit the tags of regular
+    /// members; for groups and supergroups only.
+    #[must_use]
+    pub fn can_manage_tags(&self) -> bool {
+        match self {
+            Self::Owner(_) => true,
+            Self::Administrator(Administrator { can_manage_tags, .. }) => *can_manage_tags,
+            Self::Member(_) | Self::Restricted(_) | Self::Left | Self::Banned(_) => false,
+        }
+    }
+
+    /// Returns `true` if the user is allowed to edit their own tag.
+    #[must_use]
+    pub fn can_edit_tag(&self) -> bool {
+        match self {
+            Self::Owner(_) | Self::Administrator(_) => true,
+            Self::Restricted(Restricted { can_edit_tag, .. }) => *can_edit_tag,
+            Self::Member(_) | Self::Left | Self::Banned(_) => false,
+        }
+    }
 }
 
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
@@ -749,6 +796,7 @@ mod tests {
                 can_promote_members: true,
                 can_manage_direct_messages: true,
                 can_manage_topics: false,
+                can_manage_tags: false,
             }),
         };
         let actual = serde_json::from_str::<ChatMember>(json).unwrap();
@@ -797,6 +845,7 @@ mod tests {
                 added_to_attachment_menu: false,
             },
             kind: ChatMemberKind::Restricted(Restricted {
+                tag: None,
                 is_member: true,
                 can_send_messages: true,
                 can_send_audios: false,
@@ -812,6 +861,7 @@ mod tests {
                 can_change_info: true,
                 can_invite_users: true,
                 can_pin_messages: true,
+                can_edit_tag: false,
                 until_date: UntilDate::Date(
                     chrono::DateTime::from_timestamp(1620000000, 0).unwrap(),
                 ),

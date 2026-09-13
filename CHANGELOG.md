@@ -17,6 +17,7 @@ and issue links in older entries point at the upstream repository.
 - Crate versions set to `1.0.0`
 - Support for TBA 9.3 (sendMessageDraft, getUserGifts, getChatGifts, repostStory, gift/topic fields) [**BC**]
 - Support for TBA 9.4 (setMyProfilePhoto, removeMyProfilePhoto, getUserProfileAudios, button custom emoji & styles, ChatOwnerLeft/Changed, VideoQuality, first_profile_audio, UniqueGift updates)
+- Support for TBA 9.5 (setChatMemberTag, sender_tag, date_time entity, tag on Member/Restricted, can_edit_tag on ChatPermissions/Restricted, can_manage_tags on ChatMemberAdministrator/ChatAdministratorRights/promoteChatMember)
 
 ## History (upstream teloxide)
 

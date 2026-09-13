@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for TBA 9.5
+  - Add `set_chat_member_tag` method and `SetChatMemberTag` payload
+  - Add `sender_tag` field to `Message`
+  - Add `DateTime` variant to `MessageEntityKind` and `date_time` constructor on `MessageEntity`
+  - Add `tag` field to `Member` and `Restricted` structs
+  - Add `can_edit_tag` field to `Restricted` struct and `ChatPermissions` bitflags
+  - Add `can_manage_tags` field to `Administrator` and `ChatAdministratorRights` structs and `promoteChatMember` method
+
 - Support for TBA 9.4
   - Add `ButtonStyle` enum and `icon_custom_emoji_id` and `style` fields to `KeyboardButton` and `InlineKeyboardButton`
   - Add `allows_users_to_create_topics` field to `Me` struct

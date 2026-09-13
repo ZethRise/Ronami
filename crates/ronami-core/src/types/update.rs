@@ -631,6 +631,7 @@ mod test {
                     }),
                     reply_markup: None,
                     author_signature: None,
+                    sender_tag: None,
                     paid_star_count: None,
                     effect_id: None,
                     is_automatic_forward: false,

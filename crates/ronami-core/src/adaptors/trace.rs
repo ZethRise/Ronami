@@ -161,6 +161,7 @@ where
         restrict_chat_member,
         promote_chat_member,
         set_chat_administrator_custom_title,
+        set_chat_member_tag,
         ban_chat_sender_chat,
         unban_chat_sender_chat,
         set_chat_permissions,
