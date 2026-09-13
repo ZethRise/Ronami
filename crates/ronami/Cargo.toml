@@ -85,8 +85,8 @@ full = [
 
 [dependencies]
 # replace me by the actual version when release, and return path when it's time to make 0-day fixes
-ronami-core = { path = "../ronami-core", default-features = false }
-ronami-macros = { path = "../ronami-macros", optional = true }
+ronami-core = { version = "1.0.0", path = "../ronami-core", default-features = false }
+ronami-macros = { version = "1.0.0", path = "../ronami-macros", optional = true }
 
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
