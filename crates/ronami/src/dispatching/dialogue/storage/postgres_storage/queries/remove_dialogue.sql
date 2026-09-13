@@ -1,0 +1,1 @@
+DELETE FROM ronami_dialogues WHERE chat_id = $1

@@ -1,0 +1,251 @@
+[package]
+name = "ronami"
+version = "1.0.0"
+description = "A full-featured Telegram bots framework for Rust"
+
+rust-version.workspace = true
+
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+documentation = "https://docs.rs/ronami/"
+readme = "../../README.md"
+
+keywords = ["ronami", "telegram", "telegram-bot", "telegram-bot-api", "bot"]
+categories = ["web-programming", "api-bindings", "asynchronous"]
+
+
+[features]
+default = ["native-tls", "ctrlc_handler", "ronami-core/default"]
+
+webhooks = ["rand"]
+webhooks-axum = ["webhooks", "axum", "tower", "tower-http"]
+
+sqlite-storage-nativetls = [
+    "sqlx",
+    "sqlx/runtime-tokio-native-tls",
+    "native-tls",
+]
+sqlite-storage-rustls = ["sqlx", "sqlx/runtime-tokio-rustls", "rustls"]
+postgres-storage-nativetls = [
+    "sqlx",
+    "sqlx/runtime-tokio-native-tls",
+    "native-tls",
+]
+postgres-storage-rustls = ["sqlx", "sqlx/runtime-tokio-rustls", "rustls"]
+redis-storage = ["deadpool-redis"]
+
+cbor-serializer = ["serde_cbor"]
+bincode-serializer = ["bincode"]
+
+macros = ["ronami-macros"]
+
+ctrlc_handler = ["tokio/signal"]
+
+tracing = ["dep:tracing"]
+
+native-tls = ["ronami-core/native-tls"]
+rustls = ["ronami-core/rustls"]
+rustls-native-roots = ["ronami-core/rustls-native-roots"]
+throttle = ["ronami-core/throttle"]
+cache-me = [
+    "ronami-core/cache_me",
+] # FIXME: why ronami and core use - _ differently?
+trace-adaptor = ["ronami-core/trace_adaptor"]
+erased = ["ronami-core/erased"]
+
+# currently used for `README.md` tests, building docs for `docsrs` to add `This is supported on feature="..." only.`,
+# and for ronami-core.
+nightly = ["ronami-core/nightly"]
+
+full = [
+    "webhooks",
+    "webhooks-axum",
+    "sqlite-storage-nativetls",
+    # "sqlite-storage-rustls" is explicitly ommited here,
+    # since it conflicts with "sqlite-storage-nativetls"
+    "redis-storage",
+    "postgres-storage-nativetls",
+    "cbor-serializer",
+    "bincode-serializer",
+    "macros",
+    "ctrlc_handler",
+    "ronami-core/full",
+    "native-tls",
+    "rustls",
+    "throttle",
+    "cache-me",
+    "trace-adaptor",
+    "erased",
+    "tracing",
+]
+
+
+[dependencies]
+# replace me by the actual version when release, and return path when it's time to make 0-day fixes
+ronami-core = { path = "../ronami-core", default-features = false }
+ronami-macros = { path = "../ronami-macros", optional = true }
+
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+
+dptree = "0.5.1"
+
+tokio = { version = "1.39", features = ["fs", "rt-multi-thread"] }
+tokio-util = "0.7"
+tokio-stream = "0.1.8"
+
+url = "2.2.2"
+log = "0.4"
+bytes = "1.0"
+mime = "0.3"
+
+derive_more = { version = "2.0.1", features = ["display", "from", "deref"] }
+thiserror = "2.0.11"
+futures = "0.3.15"
+pin-project = "1.0"
+aquamarine = "0.6.0"
+either = "1.9.0"
+
+sqlx = { version = "0.8.1", optional = true, default-features = false, features = [
+    "macros",
+    "sqlite",
+    "postgres",
+] }
+deadpool-redis = { version = "0.22", features = [
+    "rt_tokio_1",
+], optional = true }
+serde_cbor = { version = "0.11", optional = true }
+bincode = { version = "1.3", optional = true }
+axum = { version = "0.8.0", optional = true }
+tower = { version = "0.5.0", optional = true }
+tower-http = { version = "0.6.2", features = ["trace"], optional = true }
+rand = { version = "0.9.2", default-features = false, features = [
+    "thread_rng",
+], optional = true }
+tracing = { version = "0.1", optional = true }
+
+[dev-dependencies]
+rand = { version = "0.9.2", default-features = false, features = [
+    "thread_rng",
+] }
+pretty_env_logger = "0.5.0"
+serde = "1"
+serde_json = "1"
+tokio = { version = "1.39", features = ["fs", "rt-multi-thread", "macros"] }
+reqwest = "0.13.3"
+chrono = "0.4"
+tokio-stream = "0.1"
+
+
+[package.metadata.docs.rs]
+# NB: can't use `all-features = true`, because `sqlite-storage-nativetls` conflicts with `sqlite-storage-rustls`
+features = ["full", "nightly"]
+rustdoc-args = ["--cfg", "docsrs"]
+rustc-args = ["--cfg", "dep_docsrs"]
+cargo-args = ["-Zunstable-options", "-Zrustdoc-scrape-examples"]
+
+[package.metadata.release]
+tag-prefix = ""
+enable-features = ["full"]
+pre-release-replacements = [
+    { file = "../../README.md", search = "ronami = \\{ version = \"[^\"]+\"", replace = "ronami = { version = \"{{version}}\"" },
+    { file = "../../CHANGELOG.md", search = "## unreleased", replace = "## unreleased\n\n## {{version}} - {{date}}", exactly = 1 },
+]
+
+[[test]]
+name = "redis"
+path = "tests/redis.rs"
+required-features = ["redis-storage", "cbor-serializer", "bincode-serializer"]
+
+[[test]]
+name = "sqlite"
+path = "tests/sqlite.rs"
+required-features = [
+    "sqlite-storage-nativetls",
+    "cbor-serializer",
+    "bincode-serializer",
+]
+
+[[test]]
+name = "postgres"
+path = "tests/postgres.rs"
+required-features = [
+    "postgres-storage-nativetls",
+    "cbor-serializer",
+    "bincode-serializer",
+]
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = [
+    'cfg(CI_POSTGRES)',
+    'cfg(CI_REDIS)',
+] }
+
+[[example]]
+name = "admin"
+required-features = ["macros", "ctrlc_handler"]
+
+# This is required due to some stuff with dev-dependencies,
+# backwards compatability and cargo:
+# https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#scrape-examples
+doc-scrape-examples = true
+
+[[example]]
+name = "buttons"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "command"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "db_remember"
+required-features = [
+    "sqlite-storage-nativetls",
+    "redis-storage",
+    "bincode-serializer",
+    "macros",
+]
+
+[[example]]
+name = "deep_linking"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "dialogue"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "dispatching_features"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "heroku_ping_pong"
+required-features = ["webhooks-axum", "ctrlc_handler"]
+
+[[example]]
+name = "inline"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "ngrok_ping_pong"
+required-features = ["webhooks-axum", "ctrlc_handler"]
+
+[[example]]
+name = "purchase"
+required-features = ["macros", "ctrlc_handler"]
+
+[[example]]
+name = "shared_state"
+required-features = ["ctrlc_handler"]
+
+[[example]]
+name = "throw_dice"
+required-features = ["ctrlc_handler"]
+
+[[example]]
+name = "middlewares"
+required-features = ["ctrlc_handler"]

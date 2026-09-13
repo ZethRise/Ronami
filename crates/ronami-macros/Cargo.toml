@@ -1,0 +1,29 @@
+[package]
+name = "ronami-macros"
+version = "1.0.0"
+description = "Procedural macros for the ronami Telegram bots framework"
+
+rust-version.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+documentation = "https://docs.rs/ronami-macros/"
+# FIXME: add a simple readme for ronami-macros
+#readme = "README.md"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0.7"
+proc-macro2 = "1.0.67"
+syn = { version = "2.0.96", features = ["full", "extra-traits"] }
+heck = "0.5.0"
+
+[package.metadata.release]
+tag-prefix = "macros-"
+pre-release-replacements = [
+    { file = "CHANGELOG.md", search = "## unreleased", replace = "## unreleased\n\n## {{version}} - {{date}}", exactly = 1 },
+]
