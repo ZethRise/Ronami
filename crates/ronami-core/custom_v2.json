@@ -1,7 +1,7 @@
 {
   "version": {
     "major": 9,
-    "minor": 5,
+    "minor": 6,
     "patch": 0
   },
   "recent_changes": {
@@ -3335,7 +3335,7 @@
         },
         {
           "name": "chat_id",
-          "description": "Unique identifier for the target chat or username of the target channel (in the format `@channelusername`). Polls can't be sent to channel direct messages chats.",
+          "description": "Unique identifier for the target chat or username of the target bot, supergroup or channel in the format `@username`. Polls can't be sent to channel direct messages chats.",
           "required": true,
           "type_info": {
             "type": "any_of",
@@ -3353,7 +3353,7 @@
         },
         {
           "name": "message_thread_id",
-          "description": "Unique identifier for the target message thread (topic) of the forum; for forum supergroups only",
+          "description": "Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only",
           "required": false,
           "type_info": {
             "type": "integer",
@@ -3373,7 +3373,7 @@
         },
         {
           "name": "question_parse_mode",
-          "description": "Mode for parsing entities in the question. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details. Currently, only custom emoji entities are allowed",
+          "description": "Mode for parsing entities in the question. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details. Currently, only custom emoji entities are allowed.",
           "required": false,
           "type_info": {
             "type": "string",
@@ -3382,7 +3382,7 @@
         },
         {
           "name": "question_entities",
-          "description": "A JSON-serialized list of special entities that appear in the poll question. It can be specified instead of *question\\_parse\\_mode*",
+          "description": "A JSON-serialized list of special entities that appear in the poll question. It can be specified instead of *question\\_parse\\_mode*.",
           "required": false,
           "type_info": {
             "type": "array",
@@ -3394,7 +3394,7 @@
         },
         {
           "name": "options",
-          "description": "A JSON-serialized list of 2-12 answer options",
+          "description": "A JSON-serialized list of 1-12 answer options",
           "required": true,
           "type_info": {
             "type": "array",
@@ -3426,19 +3426,54 @@
         },
         {
           "name": "allows_multiple_answers",
-          "description": "*True*, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to *False*",
+          "description": "Pass *True* if the poll allows multiple answers, defaults to *False*",
           "required": false,
           "type_info": {
             "type": "bool"
           }
         },
         {
-          "name": "correct_option_id",
-          "description": "0-based identifier of the correct answer option, required for polls in quiz mode",
+          "name": "allows_revoting",
+          "description": "Pass *True* if the poll allows to change chosen answer options, defaults to *False* for quizzes and to *True* for regular polls",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
+            "type": "bool"
+          }
+        },
+        {
+          "name": "shuffle_options",
+          "description": "Pass *True* if the poll options must be shown in random order",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "allow_adding_options",
+          "description": "Pass *True* if answer options can be added to the poll after creation; not supported for anonymous polls and quizzes",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "hide_results_until_closes",
+          "description": "Pass *True* if poll results must be shown only after the poll closes",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "correct_option_ids",
+          "description": "A JSON-serialized list of monotonically increasing 0-based identifiers of the correct answer options, required for polls in quiz mode",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "integer",
+              "enumeration": []
+            }
           }
         },
         {
@@ -3463,7 +3498,7 @@
         },
         {
           "name": "explanation_entities",
-          "description": "A JSON-serialized list of special entities that appear in the poll explanation. It can be specified instead of *explanation\\_parse\\_mode*",
+          "description": "A JSON-serialized list of special entities that appear in the poll explanation. It can be specified instead of *explanation\\_parse\\_mode*.",
           "required": false,
           "type_info": {
             "type": "array",
@@ -3475,7 +3510,7 @@
         },
         {
           "name": "open_period",
-          "description": "Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with *close\\_date*.",
+          "description": "Amount of time in seconds the poll will be active after creation, 5-2628000. Can't be used together with *close\\_date*.",
           "required": false,
           "type_info": {
             "type": "integer",
@@ -3484,7 +3519,7 @@
         },
         {
           "name": "close_date",
-          "description": "Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with *open\\_period*.",
+          "description": "Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 2628000 seconds in the future. Can't be used together with *open\\_period*.",
           "required": false,
           "type_info": {
             "type": "integer",
@@ -3500,8 +3535,40 @@
           }
         },
         {
+          "name": "description",
+          "description": "Description of the poll to be sent, 0-1024 characters after entities parsing",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "min_len": 0,
+            "max_len": 1024,
+            "enumeration": []
+          }
+        },
+        {
+          "name": "description_parse_mode",
+          "description": "Mode for parsing entities in the poll description. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "description_entities",
+          "description": "A JSON-serialized list of special entities that appear in the poll description, which can be specified instead of *description\\_parse\\_mode*",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        },
+        {
           "name": "disable_notification",
-          "description": "Sends the message [silently](https://web.archive.org/web/20250817052931/https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.",
+          "description": "Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.",
           "required": false,
           "type_info": {
             "type": "bool"
@@ -3517,7 +3584,7 @@
         },
         {
           "name": "allow_paid_broadcast",
-          "description": "Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://web.archive.org/web/20250817052931/https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance",
+          "description": "Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.",
           "required": false,
           "type_info": {
             "type": "bool"
@@ -3543,7 +3610,7 @@
         },
         {
           "name": "reply_markup",
-          "description": "Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/web/20250817052931/https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/web/20250817052931/https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user",
+          "description": "Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user.",
           "required": false,
           "type_info": {
             "type": "any_of",
@@ -10336,6 +10403,78 @@
         "default": true
       },
       "documentation_link": "https://core.telegram.org/bots/api#setchatmembertag"
+    },
+    {
+      "name": "getManagedBotToken",
+      "description": "Use this method to get the token of a managed bot. Returns the token as *String* on success.",
+      "arguments": [
+        {
+          "name": "user_id",
+          "description": "User identifier of the managed bot whose token will be returned",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        }
+      ],
+      "maybe_multipart": false,
+      "return_type": {
+        "type": "string",
+        "enumeration": []
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#getmanagedbottoken"
+    },
+    {
+      "name": "replaceManagedBotToken",
+      "description": "Use this method to revoke the current token of a managed bot and generate a new one. Returns the new token as *String* on success.",
+      "arguments": [
+        {
+          "name": "user_id",
+          "description": "User identifier of the managed bot whose token will be replaced",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        }
+      ],
+      "maybe_multipart": false,
+      "return_type": {
+        "type": "string",
+        "enumeration": []
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#replacemanagedbottoken"
+    },
+    {
+      "name": "savePreparedKeyboardButton",
+      "description": "Stores a keyboard button that can be used by a user within a Mini App. Returns a [PreparedKeyboardButton](https://core.telegram.org/bots/api#preparedkeyboardbutton) object.",
+      "arguments": [
+        {
+          "name": "user_id",
+          "description": "Unique identifier of the target user that can use the button",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "button",
+          "description": "A JSON-serialized object describing the button to be saved. The button must be of the type *request\\_users*, *request\\_chat*, or *request\\_managed\\_bot*.",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "KeyboardButton"
+          }
+        }
+      ],
+      "maybe_multipart": false,
+      "return_type": {
+        "type": "reference",
+        "reference": "PreparedKeyboardButton"
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#savepreparedkeyboardbutton"
     }
   ],
   "objects": [
@@ -10559,6 +10698,15 @@
             "type": "reference",
             "reference": "ChatBoostRemoved"
           }
+        },
+        {
+          "name": "managed_bot",
+          "description": "*Optional*. A new bot was created to be managed by the bot, or token or owner of a managed bot was changed",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "ManagedBotUpdated"
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#update"
@@ -10773,6 +10921,14 @@
         {
           "name": "allows_users_to_create_topics",
           "description": "*Optional*. *True*, if the bot allows users to create and delete topics in private chats. Returned only in [getMe](https://core.telegram.org/bots/api#getme).",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "can_manage_bots",
+          "description": "*Optional*. *True*, if other bots can be created to be controlled by the bot. Returned only in [getMe](https://core.telegram.org/bots/api#getme).",
           "required": false,
           "type_info": {
             "type": "bool"
@@ -12281,6 +12437,42 @@
             "type": "string",
             "enumeration": []
           }
+        },
+        {
+          "name": "reply_to_poll_option_id",
+          "description": "*Optional*. Persistent identifier of the specific poll option that is being replied to",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "managed_bot_created",
+          "description": "*Optional*. Service message: user created a bot that will be managed by the current bot",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "ManagedBotCreated"
+          }
+        },
+        {
+          "name": "poll_option_added",
+          "description": "*Optional*. Service message: answer option was added to a poll",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "PollOptionAdded"
+          }
+        },
+        {
+          "name": "poll_option_deleted",
+          "description": "*Optional*. Service message: answer option was deleted from a poll",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "PollOptionDeleted"
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#message"
@@ -12833,6 +13025,15 @@
           "required": false,
           "type_info": {
             "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "poll_option_id",
+          "description": "*Optional*. Persistent identifier of the specific poll option to be replied to",
+          "required": false,
+          "type_info": {
+            "type": "string",
             "enumeration": []
           }
         }
@@ -13856,6 +14057,42 @@
             "type": "integer",
             "enumeration": []
           }
+        },
+        {
+          "name": "persistent_id",
+          "description": "Unique identifier of the option, persistent on option addition and deletion",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "added_by_user",
+          "description": "*Optional*. User who added the option; omitted if the option wasn't added by a user after poll creation",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "User"
+          }
+        },
+        {
+          "name": "added_by_chat",
+          "description": "*Optional*. Chat that added the option; omitted if the option wasn't added by a chat after poll creation",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "Chat"
+          }
+        },
+        {
+          "name": "addition_date",
+          "description": "*Optional*. Point in time (Unix timestamp) when the option was added; omitted if the option existed in the original poll",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#polloption"
@@ -13940,6 +14177,18 @@
             "type": "array",
             "array": {
               "type": "integer",
+              "enumeration": []
+            }
+          }
+        },
+        {
+          "name": "option_persistent_ids",
+          "description": "Persistent identifiers of the chosen answer options. May be empty if the vote was retracted.",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "string",
               "enumeration": []
             }
           }
@@ -14042,15 +14291,6 @@
           }
         },
         {
-          "name": "correct_option_id",
-          "description": "*Optional*. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot.",
-          "required": false,
-          "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
           "name": "explanation",
           "description": "*Optional*. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters",
           "required": false,
@@ -14089,6 +14329,47 @@
           "type_info": {
             "type": "integer",
             "enumeration": []
+          }
+        },
+        {
+          "name": "allows_revoting",
+          "description": "*True*, if the poll allows to change the chosen answer options",
+          "required": true,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "correct_option_ids",
+          "description": "*Optional*. Array of 0-based identifiers of the correct answer options. Available only for polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the private chat with the bot.",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "integer",
+              "enumeration": []
+            }
+          }
+        },
+        {
+          "name": "description",
+          "description": "*Optional*. Description of the poll; for polls inside the [Message](https://core.telegram.org/bots/api#message) object only",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "description_entities",
+          "description": "*Optional*. Special entities like usernames, URLs, bot commands, etc. that appear in the description",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
           }
         }
       ],
@@ -16181,6 +16462,15 @@
               "success",
               "primary"
             ]
+          }
+        },
+        {
+          "name": "request_managed_bot",
+          "description": "*Optional*. If specified, pressing the button will ask the user to create and share a bot that will be managed by the current bot. Available for bots that enabled management of other bots in the [@BotFather](https://t.me/BotFather) Mini App. Available in private chats only.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "KeyboardButtonRequestManagedBot"
           }
         }
       ],
@@ -26652,6 +26942,195 @@
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#chatownerchanged"
+    },
+    {
+      "name": "ManagedBotCreated",
+      "description": "This object contains information about the bot that was created to be managed by the current bot.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "bot",
+          "description": "Information about the bot. The bot's token can be fetched using the method [getManagedBotToken](https://core.telegram.org/bots/api#getmanagedbottoken).",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "User"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#managedbotcreated"
+    },
+    {
+      "name": "ManagedBotUpdated",
+      "description": "This object contains information about the creation, token update, or owner update of a bot that is managed by the current bot.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "user",
+          "description": "User that created the bot",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "User"
+          }
+        },
+        {
+          "name": "bot",
+          "description": "Information about the bot. Token of the bot can be fetched using the method [getManagedBotToken](https://core.telegram.org/bots/api#getmanagedbottoken).",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "User"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#managedbotupdated"
+    },
+    {
+      "name": "PollOptionAdded",
+      "description": "Describes a service message about an option added to a poll.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "poll_message",
+          "description": "*Optional*. Message containing the poll to which the option was added, if known. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\\_to\\_message* field even if it itself is a reply.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "MaybeInaccessibleMessage"
+          }
+        },
+        {
+          "name": "option_persistent_id",
+          "description": "Unique identifier of the added option",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "option_text",
+          "description": "Option text",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "option_text_entities",
+          "description": "*Optional*. Special entities that appear in the *option\\_text*",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#polloptionadded"
+    },
+    {
+      "name": "PollOptionDeleted",
+      "description": "Describes a service message about an option deleted from a poll.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "poll_message",
+          "description": "*Optional*. Message containing the poll from which the option was deleted, if known. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\\_to\\_message* field even if it itself is a reply.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "MaybeInaccessibleMessage"
+          }
+        },
+        {
+          "name": "option_persistent_id",
+          "description": "Unique identifier of the deleted option",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "option_text",
+          "description": "Option text",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "option_text_entities",
+          "description": "*Optional*. Special entities that appear in the *option\\_text*",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#polloptiondeleted"
+    },
+    {
+      "name": "KeyboardButtonRequestManagedBot",
+      "description": "This object defines the parameters for the creation of a managed bot. Information about the created bot will be shared with the bot using the update *managed\\_bot* and a [Message](https://core.telegram.org/bots/api#message) with the field *managed\\_bot\\_created*.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "request_id",
+          "description": "Signed 32-bit identifier of the request. Must be unique within the message.",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "suggested_name",
+          "description": "*Optional*. Suggested name for the bot",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "suggested_username",
+          "description": "*Optional*. Suggested username for the bot",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#keyboardbuttonrequestmanagedbot"
+    },
+    {
+      "name": "PreparedKeyboardButton",
+      "description": "Describes a keyboard button to be used by a user of a Mini App.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "id",
+          "description": "Unique identifier of the keyboard button",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#preparedkeyboardbutton"
     }
   ]
 }

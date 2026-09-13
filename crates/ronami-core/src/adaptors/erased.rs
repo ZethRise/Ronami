@@ -284,6 +284,9 @@ where
         get_my_short_description,
         set_my_profile_photo,
         remove_my_profile_photo,
+        get_managed_bot_token,
+        replace_managed_bot_token,
+        save_prepared_keyboard_button,
         set_chat_menu_button,
         get_chat_menu_button,
         set_my_default_administrator_rights,
@@ -882,6 +885,22 @@ trait ErasableRequester<'a> {
     ) -> ErasedRequest<'a, SetMyProfilePhoto, Self::Err>;
 
     fn remove_my_profile_photo(&self) -> ErasedRequest<'a, RemoveMyProfilePhoto, Self::Err>;
+
+    fn get_managed_bot_token(
+        &self,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, GetManagedBotToken, Self::Err>;
+
+    fn replace_managed_bot_token(
+        &self,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, ReplaceManagedBotToken, Self::Err>;
+
+    fn save_prepared_keyboard_button(
+        &self,
+        user_id: UserId,
+        button: KeyboardButton,
+    ) -> ErasedRequest<'a, SavePreparedKeyboardButton, Self::Err>;
 
     fn set_chat_menu_button(&self) -> ErasedRequest<'a, SetChatMenuButton, Self::Err>;
 
@@ -2036,6 +2055,28 @@ where
 
     fn remove_my_profile_photo(&self) -> ErasedRequest<'a, RemoveMyProfilePhoto, Self::Err> {
         Requester::remove_my_profile_photo(self).erase()
+    }
+
+    fn get_managed_bot_token(
+        &self,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, GetManagedBotToken, Self::Err> {
+        Requester::get_managed_bot_token(self, user_id).erase()
+    }
+
+    fn replace_managed_bot_token(
+        &self,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, ReplaceManagedBotToken, Self::Err> {
+        Requester::replace_managed_bot_token(self, user_id).erase()
+    }
+
+    fn save_prepared_keyboard_button(
+        &self,
+        user_id: UserId,
+        button: KeyboardButton,
+    ) -> ErasedRequest<'a, SavePreparedKeyboardButton, Self::Err> {
+        Requester::save_prepared_keyboard_button(self, user_id, button).erase()
     }
 
     fn set_chat_menu_button(&self) -> ErasedRequest<'a, SetChatMenuButton, Self::Err> {

@@ -281,6 +281,9 @@ where
         get_my_short_description,
         set_my_profile_photo,
         remove_my_profile_photo,
+        get_managed_bot_token,
+        replace_managed_bot_token,
+        save_prepared_keyboard_button,
         set_chat_menu_button,
         get_chat_menu_button,
         set_my_default_administrator_rights,
@@ -406,7 +409,7 @@ impl_visit_parse_modes! {
     CopyMessage => [parse_mode],
     PostStory => [parse_mode],
     EditStory => [parse_mode],
-    SendPoll => [explanation_parse_mode],
+    SendPoll => [explanation_parse_mode, description_parse_mode],
 }
 
 impl VisitParseModes for AnswerInlineQuery {

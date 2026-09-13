@@ -969,6 +969,25 @@ pub trait Requester {
     /// For Telegram documentation see [`RemoveMyProfilePhoto`].
     fn remove_my_profile_photo(&self) -> Self::RemoveMyProfilePhoto;
 
+    type GetManagedBotToken: Request<Payload = GetManagedBotToken, Err = Self::Err>;
+
+    /// For Telegram documentation see [`GetManagedBotToken`].
+    fn get_managed_bot_token(&self, user_id: UserId) -> Self::GetManagedBotToken;
+
+    type ReplaceManagedBotToken: Request<Payload = ReplaceManagedBotToken, Err = Self::Err>;
+
+    /// For Telegram documentation see [`ReplaceManagedBotToken`].
+    fn replace_managed_bot_token(&self, user_id: UserId) -> Self::ReplaceManagedBotToken;
+
+    type SavePreparedKeyboardButton: Request<Payload = SavePreparedKeyboardButton, Err = Self::Err>;
+
+    /// For Telegram documentation see [`SavePreparedKeyboardButton`].
+    fn save_prepared_keyboard_button(
+        &self,
+        user_id: UserId,
+        button: KeyboardButton,
+    ) -> Self::SavePreparedKeyboardButton;
+
     type SetChatMenuButton: Request<Payload = SetChatMenuButton, Err = Self::Err>;
 
     /// For Telegram documentation see [`SetChatMenuButton`].
@@ -1819,6 +1838,9 @@ macro_rules! forward_all {
             get_my_short_description,
             set_my_profile_photo,
             remove_my_profile_photo,
+            get_managed_bot_token,
+            replace_managed_bot_token,
+            save_prepared_keyboard_button,
             set_chat_menu_button,
             get_chat_menu_button,
             set_my_default_administrator_rights,

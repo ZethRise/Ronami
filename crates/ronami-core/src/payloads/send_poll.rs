@@ -40,8 +40,16 @@ impl_payload! {
             pub type_: PollType,
             /// True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
             pub allows_multiple_answers: bool,
-            /// 0-based identifier of the correct answer option, required for polls in quiz mode
-            pub correct_option_id: u8,
+            /// True, if the poll allows to change the chosen answer options, defaults to False
+            pub allows_revoting: bool,
+            /// Pass True, if the options should be shuffled, defaults to False
+            pub shuffle_options: bool,
+            /// Pass True, if other users should be allowed to add options to the poll, defaults to False
+            pub allow_adding_options: bool,
+            /// Pass True, if the poll results should be hidden until the poll is closed, defaults to False
+            pub hide_results_until_closes: bool,
+            /// 0-based identifiers of the correct answer options, required for polls in quiz mode
+            pub correct_option_ids: Vec<u8> [collect],
             /// Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing
             pub explanation: String [into],
             /// Mode for parsing entities in the message text. See [formatting options] for more details.
@@ -57,6 +65,14 @@ impl_payload! {
             pub close_date: DateTime<Utc> [into],
             /// Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.
             pub is_closed: bool,
+            /// Description of the poll, 0-1024 characters after entities parsing
+            pub description: String [into],
+            /// Mode for parsing entities in the poll description. See [formatting options] for more details.
+            ///
+            /// [formatting options]: https://core.telegram.org/bots/api#formatting-options
+            pub description_parse_mode: ParseMode,
+            /// List of special entities that appear in the poll description, which can be specified instead of _description\_parse\_mode_
+            pub description_entities: Vec<MessageEntity> [collect],
             /// Sends the message [silently]. Users will receive a notification with no sound.
             ///
             /// [silently]: https://telegram.org/blog/channels-2-0#silent-messages

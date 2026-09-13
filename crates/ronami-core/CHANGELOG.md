@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for TBA 9.6
+  - Add `get_managed_bot_token`, `replace_managed_bot_token`, and `save_prepared_keyboard_button` methods and payloads
+  - Add `can_manage_bots` field to `User` struct
+  - Add `KeyboardButtonRequestManagedBot` struct and `RequestManagedBot` variant to `ButtonRequest`
+  - Add `ManagedBotCreated` and `ManagedBotUpdated` structs, `ManagedBotCreated` service message, and `UpdateKind::ManagedBot`
+  - Add `PreparedKeyboardButton` struct
+  - Add `PollOptionAdded` and `PollOptionDeleted` structs and service messages to `Message`
+  - Add `poll_option_id` to `ReplyParameters` and `reply_to_poll_option_id` to `Message`
+  - Add `correct_option_ids`, `allows_revoting`, `description`, `description_entities` to `Poll`
+  - Add `shuffle_options`, `allow_adding_options`, `hide_results_until_closes`, `correct_option_ids`, `description`, `description_parse_mode`, `description_entities` to `sendPoll`
+  - Add `persistent_id`, `added_by_user`, `added_by_chat`, `addition_date` to `PollOption`
+  - Add `option_persistent_ids` to `PollAnswer`
+
 - Support for TBA 9.5
   - Add `set_chat_member_tag` method and `SetChatMemberTag` payload
   - Add `sender_tag` field to `Message`

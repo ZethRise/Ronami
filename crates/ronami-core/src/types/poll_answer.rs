@@ -21,6 +21,12 @@ pub struct PollAnswer {
     ///
     /// May be empty if the user retracted their vote.
     pub option_ids: Vec<u8>,
+
+    /// Persistent identifiers of answer options, chosen by the user.
+    ///
+    /// May be empty if the user retracted their vote.
+    #[serde(default)]
+    pub option_persistent_ids: Vec<String>,
 }
 
 /// These fields `chat` and `user` from the original [`PollAnswer`] should be

@@ -18,6 +18,7 @@ and issue links in older entries point at the upstream repository.
 - Support for TBA 9.3 (sendMessageDraft, getUserGifts, getChatGifts, repostStory, gift/topic fields) [**BC**]
 - Support for TBA 9.4 (setMyProfilePhoto, removeMyProfilePhoto, getUserProfileAudios, button custom emoji & styles, ChatOwnerLeft/Changed, VideoQuality, first_profile_audio, UniqueGift updates)
 - Support for TBA 9.5 (setChatMemberTag, sender_tag, date_time entity, tag on Member/Restricted, can_edit_tag on ChatPermissions/Restricted, can_manage_tags on ChatMemberAdministrator/ChatAdministratorRights/promoteChatMember)
+- Support for TBA 9.6 (Managed bots: getManagedBotToken, replaceManagedBotToken, savePreparedKeyboardButton, can_manage_bots, KeyboardButtonRequestManagedBot, ManagedBotCreated, ManagedBotUpdated, PreparedKeyboardButton; Polls expansion: multi-answer quizzes with correct_option_ids, allows_revoting, shuffle_options, allow_adding_options, hide_results_until_closes, poll description & entities, PollOption persistent_id/added_by/addition_date, PollAnswer option_persistent_ids, PollOptionAdded/Deleted service messages, ReplyParameters poll_option_id, Message reply_to_poll_option_id)
 
 ## History (upstream teloxide)
 

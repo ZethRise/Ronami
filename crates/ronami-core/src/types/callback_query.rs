@@ -123,6 +123,7 @@ mod tests {
                 language_code: None,
                 is_premium: false,
                 added_to_attachment_menu: false,
+                can_manage_bots: false,
             },
             chat_instance: "123456".to_string(),
             message: None,

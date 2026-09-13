@@ -1,4 +1,4 @@
-use crate::types::{MessageEntity, PollType, Seconds, User};
+use crate::types::{Chat, MessageEntity, PollType, Seconds, User};
 
 use chrono::{DateTime, Utc};
 use derive_more::derive::From;
@@ -58,10 +58,14 @@ pub struct Poll {
     /// True, if the poll allows multiple answers
     pub allows_multiple_answers: bool,
 
-    /// 0-based identifier of the correct answer option. Available only for
+    /// True, if the poll allows to change the chosen answer options
+    #[serde(default)]
+    pub allows_revoting: bool,
+
+    /// 0-based identifiers of the correct answer options. Available only for
     /// polls in the quiz mode, which are closed, or was sent (not
     /// forwarded) by the bot or to the private chat with the bot.
-    pub correct_option_id: Option<u8>,
+    pub correct_option_ids: Option<Vec<u8>>,
 
     /// Text that is shown when a user chooses an incorrect answer or taps on
     /// the lamp icon in a quiz-style poll, 0-200 characters.
@@ -78,14 +82,26 @@ pub struct Poll {
     #[serde(default, with = "crate::types::serde_opt_date_from_unix_timestamp")]
     #[cfg_attr(test, schemars(with = "Option<i64>"))]
     pub close_date: Option<DateTime<Utc>>,
+
+    /// Description of the poll; for polls inside the Message object only
+    pub description: Option<String>,
+
+    /// Special entities like usernames, URLs, bot commands, etc. that appear in
+    /// the description
+    pub description_entities: Option<Vec<MessageEntity>>,
 }
 
 /// This object contains information about one answer option in a poll.
 ///
 /// [The official docs](https://core.telegram.org/bots/api#polloption).
+#[serde_with::skip_serializing_none]
 #[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct PollOption {
+    /// Persistent identifier for the option.
+    #[serde(default)]
+    pub persistent_id: String,
+
     /// Option text, 1-100 characters.
     pub text: String,
 
@@ -95,9 +111,26 @@ pub struct PollOption {
 
     /// Number of users that voted for this option.
     pub voter_count: u32,
+
+    /// User who added this option
+    pub added_by_user: Option<User>,
+
+    /// Chat that added this option
+    pub added_by_chat: Option<Chat>,
+
+    /// Point in time when the option was added
+    #[serde(default, with = "crate::types::serde_opt_date_from_unix_timestamp")]
+    #[cfg_attr(test, schemars(with = "Option<i64>"))]
+    pub addition_date: Option<DateTime<Utc>>,
 }
 
 impl Poll {
+    /// Returns the first correct option id if available.
+    #[must_use]
+    pub fn correct_option_id(&self) -> Option<u8> {
+        self.correct_option_ids.as_ref().and_then(|ids| ids.first().copied())
+    }
+
     /// Returns all users that are "contained" in this `Poll`
     /// structure.
     ///
@@ -108,6 +141,7 @@ impl Poll {
         use crate::util::{flatten, mentioned_users_from_entities};
 
         flatten(self.explanation_entities.as_deref().map(mentioned_users_from_entities))
+            .chain(flatten(self.description_entities.as_deref().map(mentioned_users_from_entities)))
     }
 }
 

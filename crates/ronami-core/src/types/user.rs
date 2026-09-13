@@ -36,6 +36,11 @@ pub struct User {
     /// `true`, if this user added the bot to the attachment menu.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub added_to_attachment_menu: bool,
+
+    /// `true`, if the bot that was returned in the response can be managed by
+    /// the current bot.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub can_manage_bots: bool,
 }
 
 impl User {
@@ -152,6 +157,7 @@ mod tests {
             language_code: Some(String::from("ru")),
             is_premium: false,
             added_to_attachment_menu: false,
+            can_manage_bots: false,
         };
         let actual = serde_json::from_str::<User>(json).unwrap();
         assert_eq!(actual, expected)
@@ -168,6 +174,7 @@ mod tests {
             language_code: None,
             is_premium: false,
             added_to_attachment_menu: false,
+            can_manage_bots: false,
         };
 
         let user_b = User {
@@ -179,6 +186,7 @@ mod tests {
             language_code: None,
             is_premium: false,
             added_to_attachment_menu: false,
+            can_manage_bots: false,
         };
 
         assert_eq!(user_a.full_name(), "First Last");

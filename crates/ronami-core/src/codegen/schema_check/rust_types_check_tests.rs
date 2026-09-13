@@ -1824,6 +1824,48 @@ fn test_rust_objects() {
         &mut errors,
         &exceptions,
     );
+    check_object(
+        api_schema.clone(),
+        schema_for!(ManagedBotCreated),
+        "ManagedBotCreated".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(ManagedBotUpdated),
+        "ManagedBotUpdated".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(PollOptionAdded),
+        "PollOptionAdded".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(PollOptionDeleted),
+        "PollOptionDeleted".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(KeyboardButtonRequestManagedBot),
+        "KeyboardButtonRequestManagedBot".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(PreparedKeyboardButton),
+        "PreparedKeyboardButton".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
 
     if !errors.is_empty() {
         let mut errors_string = String::new();

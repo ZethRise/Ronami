@@ -254,6 +254,7 @@ mod tests {
                 language_code: Some(String::from("en")),
                 is_premium: false,
                 added_to_attachment_menu: false,
+                can_manage_bots: false,
             },
             kind: TransactionPartnerUserKind::PremiumPurchase(
                 TransactionPartnerUserPremiumPurchase { premium_subscription_duration: Some(1) },

@@ -8,9 +8,9 @@ use crate::{
         AcceptedGiftTypes, BotCommand, BusinessConnectionId, CallbackQueryId, ChatId,
         ChatPermissions, CustomEmojiId, DraftId, FileId, GiftId, InlineQueryId, InlineQueryResult,
         InputChecklist, InputFile, InputMedia, InputPaidMedia, InputPollOption, InputProfilePhoto,
-        InputSticker, InputStoryContent, LabeledPrice, MessageId, OwnedGiftId, PreCheckoutQueryId,
-        Recipient, Seconds, ShippingQueryId, StickerFormat, StoryId, TelegramTransactionId,
-        ThreadId, UserId,
+        InputSticker, InputStoryContent, KeyboardButton, LabeledPrice, MessageId, OwnedGiftId,
+        PreCheckoutQueryId, Recipient, Seconds, ShippingQueryId, StickerFormat, StoryId,
+        TelegramTransactionId, ThreadId, UserId,
     },
     Bot,
 };
@@ -1065,6 +1065,34 @@ impl Requester for Bot {
 
     fn remove_my_profile_photo(&self) -> Self::RemoveMyProfilePhoto {
         Self::RemoveMyProfilePhoto::new(self.clone(), payloads::RemoveMyProfilePhoto::new())
+    }
+
+    type GetManagedBotToken = JsonRequest<payloads::GetManagedBotToken>;
+
+    fn get_managed_bot_token(&self, user_id: UserId) -> Self::GetManagedBotToken {
+        Self::GetManagedBotToken::new(self.clone(), payloads::GetManagedBotToken::new(user_id))
+    }
+
+    type ReplaceManagedBotToken = JsonRequest<payloads::ReplaceManagedBotToken>;
+
+    fn replace_managed_bot_token(&self, user_id: UserId) -> Self::ReplaceManagedBotToken {
+        Self::ReplaceManagedBotToken::new(
+            self.clone(),
+            payloads::ReplaceManagedBotToken::new(user_id),
+        )
+    }
+
+    type SavePreparedKeyboardButton = JsonRequest<payloads::SavePreparedKeyboardButton>;
+
+    fn save_prepared_keyboard_button(
+        &self,
+        user_id: UserId,
+        button: KeyboardButton,
+    ) -> Self::SavePreparedKeyboardButton {
+        Self::SavePreparedKeyboardButton::new(
+            self.clone(),
+            payloads::SavePreparedKeyboardButton::new(user_id, button),
+        )
     }
 
     type SetChatMenuButton = JsonRequest<payloads::SetChatMenuButton>;

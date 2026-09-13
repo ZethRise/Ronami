@@ -4,9 +4,9 @@ use serde_json::Value;
 
 use crate::types::{
     BusinessConnection, BusinessMessagesDeleted, CallbackQuery, Chat, ChatBoostRemoved,
-    ChatBoostUpdated, ChatJoinRequest, ChatMemberUpdated, ChosenInlineResult, InlineQuery, Message,
-    MessageReactionCountUpdated, MessageReactionUpdated, PaidMediaPurchased, Poll, PollAnswer,
-    PreCheckoutQuery, ShippingQuery, User,
+    ChatBoostUpdated, ChatJoinRequest, ChatMemberUpdated, ChosenInlineResult, InlineQuery,
+    ManagedBotUpdated, Message, MessageReactionCountUpdated, MessageReactionUpdated,
+    PaidMediaPurchased, Poll, PollAnswer, PreCheckoutQuery, ShippingQuery, User,
 };
 
 /// This [object] represents an incoming update.
@@ -153,6 +153,10 @@ pub enum UpdateKind {
     /// chat to receive these updates.
     RemovedChatBoost(ChatBoostRemoved),
 
+    /// Information about the creation, token update, or owner update of a bot
+    /// that is managed by the current bot.
+    ManagedBot(ManagedBotUpdated),
+
     /// An error that happened during deserialization.
     ///
     /// This allows `ronami` to continue working even if telegram adds a new
@@ -196,6 +200,7 @@ impl Update {
             ChatJoinRequest(r) => &r.from,
             ChatBoost(b) => return b.boost.source.user(),
             RemovedChatBoost(b) => return b.source.user(),
+            ManagedBot(b) => &b.user,
 
             MessageReactionCount(_) | DeletedBusinessMessages(_) | Poll(_) | Error(_) => {
                 return None
@@ -287,6 +292,7 @@ impl Update {
                 }
                 i5(empty())
             }
+            UpdateKind::ManagedBot(b) => i1(once(&b.user)),
 
             UpdateKind::ChatJoinRequest(_)
             | UpdateKind::MessageReactionCount(_)
@@ -326,6 +332,7 @@ impl Update {
             | PurchasedPaidMedia(_)
             | Poll(_)
             | PollAnswer(_)
+            | ManagedBot(_)
             | Error(_) => return None,
         };
 
@@ -452,6 +459,9 @@ impl<'de> Deserialize<'de> for UpdateKind {
                             .next_value::<ChatBoostRemoved>()
                             .ok()
                             .map(UpdateKind::RemovedChatBoost),
+                        "managed_bot" => {
+                            map.next_value::<ManagedBotUpdated>().ok().map(UpdateKind::ManagedBot)
+                        }
                         _ => Some(empty_error()),
                     })
                     .unwrap_or_else(empty_error);
@@ -526,6 +536,7 @@ impl Serialize for UpdateKind {
             UpdateKind::RemovedChatBoost(v) => {
                 s.serialize_newtype_variant(name, 22, "removed_chat_boost", v)
             }
+            UpdateKind::ManagedBot(v) => s.serialize_newtype_variant(name, 23, "managed_bot", v),
             UpdateKind::Error(v) => v.serialize(s),
         }
     }
@@ -593,6 +604,7 @@ mod test {
                     language_code: Some(String::from("en")),
                     is_premium: false,
                     added_to_attachment_menu: false,
+                    can_manage_bots: false,
                 }),
                 sender_chat: None,
                 is_topic_message: false,
@@ -615,6 +627,7 @@ mod test {
                     external_reply: None,
                     quote: None,
                     reply_to_checklist_task_id: None,
+                    reply_to_poll_option_id: None,
                     reply_to_story: None,
                     sender_boost_count: None,
                     edit_date: None,
@@ -953,6 +966,7 @@ mod test {
                     language_code: Some("en".to_owned()),
                     is_premium: true,
                     added_to_attachment_menu: false,
+                    can_manage_bots: false,
                 }),
                 date: DateTime::from_timestamp(1721306082, 0).unwrap(),
                 old_reaction: vec![],
@@ -1133,6 +1147,7 @@ mod test {
                             language_code: Some("en".to_owned()),
                             is_premium: true,
                             added_to_attachment_menu: false,
+                            can_manage_bots: false,
                         },
                     }),
                 },
@@ -1193,6 +1208,7 @@ mod test {
                         language_code: Some("en".to_owned()),
                         is_premium: true,
                         added_to_attachment_menu: false,
+                        can_manage_bots: false,
                     },
                 }),
             }),

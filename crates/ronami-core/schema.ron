@@ -40,7 +40,7 @@
 //! [github]: https://github.com/WaffleLapkin/tg-methods-schema
 
 Schema(
-    api_version: ApiVersion(ver: "9.5", date: "March 1, 2026"),
+    api_version: ApiVersion(ver: "9.6", date: "April 3, 2026"),
     methods: [
         Method(
             names: ("getUpdates", "GetUpdates", "get_updates"),
@@ -2315,9 +2315,29 @@ Schema(
                     descr: Doc(md: "True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False")
                 ),
                 Param(
-                    name: "correct_option_id",
-                    ty: Option(u8),
-                    descr: Doc(md: "0-based identifier of the correct answer option, required for polls in quiz mode")
+                    name: "allows_revoting",
+                    ty: Option(bool),
+                    descr: Doc(md: "True, if the poll allows to change the chosen answer options, defaults to False")
+                ),
+                Param(
+                    name: "shuffle_options",
+                    ty: Option(bool),
+                    descr: Doc(md: "Pass True, if the options should be shuffled, defaults to False")
+                ),
+                Param(
+                    name: "allow_adding_options",
+                    ty: Option(bool),
+                    descr: Doc(md: "Pass True, if other users should be allowed to add options to the poll, defaults to False")
+                ),
+                Param(
+                    name: "hide_results_until_closes",
+                    ty: Option(bool),
+                    descr: Doc(md: "Pass True, if the poll results should be hidden until the poll is closed, defaults to False")
+                ),
+                Param(
+                    name: "correct_option_ids",
+                    ty: Option(ArrayOf(u8)),
+                    descr: Doc(md: "0-based identifiers of the correct answer options, required for polls in quiz mode")
                 ),
                 Param(
                     name: "explanation",
@@ -2351,6 +2371,24 @@ Schema(
                     name: "is_closed",
                     ty: Option(bool),
                     descr: Doc(md: "Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.")
+                ),
+                Param(
+                    name: "description",
+                    ty: Option(String),
+                    descr: Doc(md: "Description of the poll, 0-1024 characters after entities parsing")
+                ),
+                Param(
+                    name: "description_parse_mode",
+                    ty: Option(RawTy("ParseMode")),
+                    descr: Doc(
+                        md: "Mode for parsing entities in the poll description. See [formatting options] for more details.",
+                        md_links: {"formatting options": "https://core.telegram.org/bots/api#formatting-options"}
+                    )
+                ),
+                Param(
+                    name: "description_entities",
+                    ty: Option(ArrayOf(RawTy("MessageEntity"))),
+                    descr: Doc(md: "List of special entities that appear in the poll description, which can be specified instead of _description\\_parse\\_mode_")
                 ),
                 Param(
                     name: "disable_notification",
@@ -4030,6 +4068,60 @@ Schema(
             tg_doc: "https://core.telegram.org/bots/api#removemyprofilephoto",
             tg_category: "Available methods",
             params: [],
+        ),
+        Method(
+            names: ("getManagedBotToken", "GetManagedBotToken", "get_managed_bot_token"),
+            return_ty: String,
+            doc: Doc(
+                md: "Use this method to get the token of a managed bot. Returns the token as String on success.",
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#getmanagedbottoken",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Unique identifier of the target user")
+                ),
+            ],
+        ),
+        Method(
+            names: ("replaceManagedBotToken", "ReplaceManagedBotToken", "replace_managed_bot_token"),
+            return_ty: String,
+            doc: Doc(
+                md: "Use this method to revoke the current token of a managed bot and generate a new one. Returns the new token as String on success.",
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#replacemanagedbottoken",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Unique identifier of the target user")
+                ),
+            ],
+        ),
+        Method(
+            names: ("savePreparedKeyboardButton", "SavePreparedKeyboardButton", "save_prepared_keyboard_button"),
+            return_ty: RawTy("PreparedKeyboardButton"),
+            doc: Doc(
+                md: "Use this method to store a keyboard button to be used by the user of a Mini App. Returns a [PreparedKeyboardButton] on success.",
+                md_links: {"PreparedKeyboardButton": "https://core.telegram.org/bots/api#preparedkeyboardbutton"},
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#savepreparedkeyboardbutton",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Unique identifier of the target user")
+                ),
+                Param(
+                    name: "button",
+                    ty: RawTy("KeyboardButton"),
+                    descr: Doc(md: "A JSON-serialized object with the description of the button")
+                ),
+            ],
         ),
         Method(
             names: ("setChatMenuButton", "SetChatMenuButton", "set_chat_menu_button"),
