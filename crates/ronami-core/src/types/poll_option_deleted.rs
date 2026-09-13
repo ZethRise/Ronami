@@ -6,7 +6,7 @@ use crate::types::{MaybeInaccessibleMessage, MessageEntity};
 ///
 /// [The official docs](https://core.telegram.org/bots/api#polloptiondeleted).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct PollOptionDeleted {
     /// Message containing the poll from which the option was deleted, if known.
@@ -20,4 +20,20 @@ pub struct PollOptionDeleted {
 
     /// Special entities that appear in the option_text.
     pub option_text_entities: Option<Vec<MessageEntity>>,
+}
+
+impl PollOptionDeleted {
+    /// Creates a new `PollOptionDeleted`.
+    pub fn new<P, T>(option_persistent_id: P, option_text: T) -> Self
+    where
+        P: Into<String>,
+        T: Into<String>,
+    {
+        Self {
+            poll_message: None,
+            option_persistent_id: option_persistent_id.into(),
+            option_text: option_text.into(),
+            option_text_entities: None,
+        }
+    }
 }

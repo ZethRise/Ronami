@@ -244,7 +244,8 @@ impl Update {
         let i2 = |x| L(R(R(x)));
         let i3 = |x| R(L(L(x)));
         let i4 = |x| R(L(R(x)));
-        let i5 = |x| R(R(x));
+        let i5 = |x| R(R(L(x)));
+        let i6 = |x| R(R(R(x)));
 
         match &self.kind {
             UpdateKind::Message(message)
@@ -292,7 +293,7 @@ impl Update {
                 }
                 i5(empty())
             }
-            UpdateKind::ManagedBot(b) => i1(once(&b.user)),
+            UpdateKind::ManagedBot(b) => i6([&b.user, &b.bot].into_iter()),
 
             UpdateKind::ChatJoinRequest(_)
             | UpdateKind::MessageReactionCount(_)
@@ -1244,5 +1245,29 @@ mod test {
             }
             _ => panic!("Expected `PurchasedPaidMedia`"),
         }
+    }
+
+    #[test]
+    fn managed_bot_de_and_mentioned_users() {
+        let json = r#"
+        {
+            "update_id": 12345,
+            "managed_bot": {
+                "user": {
+                    "id": 1,
+                    "is_bot": false,
+                    "first_name": "Owner"
+                },
+                "bot": {
+                    "id": 2,
+                    "is_bot": true,
+                    "first_name": "ManagedBot"
+                }
+            }
+        }
+        "#;
+        let update: Update = serde_json::from_str(json).unwrap();
+        let users: Vec<_> = update.mentioned_users().map(|u| u.id.0).collect();
+        assert_eq!(users, vec![1, 2]);
     }
 }

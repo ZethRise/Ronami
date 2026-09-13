@@ -11,3 +11,20 @@ pub enum ButtonStyle {
     Success,
     Primary,
 }
+
+impl ButtonStyle {
+    #[must_use]
+    pub const fn is_danger(self) -> bool {
+        matches!(self, Self::Danger)
+    }
+
+    #[must_use]
+    pub const fn is_success(self) -> bool {
+        matches!(self, Self::Success)
+    }
+
+    #[must_use]
+    pub const fn is_primary(self) -> bool {
+        matches!(self, Self::Primary)
+    }
+}

@@ -27,6 +27,7 @@ impl KeyboardButtonRequestManagedBot {
     }
 
     /// Sets `suggested_name`.
+    #[must_use]
     pub fn suggested_name<T>(mut self, val: T) -> Self
     where
         T: Into<String>,
@@ -36,6 +37,7 @@ impl KeyboardButtonRequestManagedBot {
     }
 
     /// Sets `suggested_username`.
+    #[must_use]
     pub fn suggested_username<T>(mut self, val: T) -> Self
     where
         T: Into<String>,

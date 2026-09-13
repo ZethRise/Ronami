@@ -179,6 +179,17 @@ pub fn user_mention_or_link(user: &User) -> String {
     }
 }
 
+/// Formats text as a date-time entity for MarkdownV2.
+#[must_use = "This function returns a new string, rather than mutating the argument, so calling it \
+              without using its output does nothing useful"]
+pub fn date_time(text: &str, unix_time: i64, format: Option<&str>) -> String {
+    let escaped_text = escape(text);
+    match format {
+        Some(fmt) => format!("![{escaped_text}](tg://time?unix={unix_time}&format={fmt})"),
+        None => format!("![{escaped_text}](tg://time?unix={unix_time})"),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

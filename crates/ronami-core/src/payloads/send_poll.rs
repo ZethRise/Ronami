@@ -58,9 +58,9 @@ impl_payload! {
             pub explanation_parse_mode: ParseMode,
             /// List of special entities that appear in the poll explanation, which can be specified instead of _parse\_mode_
             pub explanation_entities: Vec<MessageEntity> [collect],
-            /// Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with close_date.
-            pub open_period: u16,
-            /// Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with open_period.
+            /// Amount of time in seconds the poll will be active after creation, 5-2628000. Can't be used together with close_date.
+            pub open_period: u32,
+            /// Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 2628000 seconds in the future. Can't be used together with open_period.
             #[serde(with = "crate::types::serde_opt_date_from_unix_timestamp")]
             pub close_date: DateTime<Utc> [into],
             /// Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.

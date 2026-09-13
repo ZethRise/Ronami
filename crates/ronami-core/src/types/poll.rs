@@ -65,6 +65,11 @@ pub struct Poll {
     /// 0-based identifiers of the correct answer options. Available only for
     /// polls in the quiz mode, which are closed, or was sent (not
     /// forwarded) by the bot or to the private chat with the bot.
+    #[serde(
+        default,
+        alias = "correct_option_id",
+        deserialize_with = "deserialize_correct_option_ids"
+    )]
     pub correct_option_ids: Option<Vec<u8>>,
 
     /// Text that is shown when a user chooses an incorrect answer or taps on
@@ -125,6 +130,13 @@ pub struct PollOption {
 }
 
 impl Poll {
+    /// Returns `true` if this poll is a quiz with multiple correct answers.
+    #[must_use]
+    pub fn is_multi_quiz(&self) -> bool {
+        self.poll_type == PollType::Quiz
+            && self.correct_option_ids.as_ref().is_some_and(|ids| ids.len() > 1)
+    }
+
     /// Returns the first correct option id if available.
     #[must_use]
     pub fn correct_option_id(&self) -> Option<u8> {
@@ -143,6 +155,23 @@ impl Poll {
         flatten(self.explanation_entities.as_deref().map(mentioned_users_from_entities))
             .chain(flatten(self.description_entities.as_deref().map(mentioned_users_from_entities)))
     }
+}
+
+fn deserialize_correct_option_ids<'de, D>(deserializer: D) -> Result<Option<Vec<u8>>, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    #[derive(Deserialize)]
+    #[serde(untagged)]
+    enum Helper {
+        List(Vec<u8>),
+        Single(u8),
+    }
+
+    Ok(Option::<Helper>::deserialize(deserializer)?.map(|h| match h {
+        Helper::List(list) => list,
+        Helper::Single(s) => vec![s],
+    }))
 }
 
 #[cfg(test)]
@@ -185,5 +214,44 @@ mod tests {
         }
         "#;
         serde_json::from_str::<Poll>(data).unwrap();
+    }
+
+    #[test]
+    fn deserialize_legacy_and_multi_quiz() {
+        let legacy = r#"
+        {
+            "id": "1",
+            "question": "Q",
+            "options": [],
+            "total_voter_count": 0,
+            "is_closed": true,
+            "is_anonymous": true,
+            "type": "quiz",
+            "allows_multiple_answers": false,
+            "correct_option_id": 2
+        }
+        "#;
+        let poll: Poll = serde_json::from_str(legacy).unwrap();
+        assert_eq!(poll.correct_option_ids, Some(vec![2]));
+        assert_eq!(poll.correct_option_id(), Some(2));
+        assert!(!poll.is_multi_quiz());
+
+        let multi = r#"
+        {
+            "id": "2",
+            "question": "Q",
+            "options": [],
+            "total_voter_count": 0,
+            "is_closed": true,
+            "is_anonymous": true,
+            "type": "quiz",
+            "allows_multiple_answers": true,
+            "correct_option_ids": [0, 1]
+        }
+        "#;
+        let poll_multi: Poll = serde_json::from_str(multi).unwrap();
+        assert_eq!(poll_multi.correct_option_ids, Some(vec![0, 1]));
+        assert_eq!(poll_multi.correct_option_id(), Some(0));
+        assert!(poll_multi.is_multi_quiz());
     }
 }

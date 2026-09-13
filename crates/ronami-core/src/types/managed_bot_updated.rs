@@ -19,3 +19,16 @@ pub struct ManagedBotUpdated {
     /// [`get_managed_bot_token`]: crate::requests::Requester::get_managed_bot_token
     pub bot: User,
 }
+
+impl ManagedBotUpdated {
+    /// Creates a new `ManagedBotUpdated`.
+    pub const fn new(user: User, bot: User) -> Self {
+        Self { user, bot }
+    }
+
+    /// Returns an iterator yielding all users in this update (`user` and
+    /// `bot`).
+    pub fn mentioned_users(&self) -> impl Iterator<Item = &User> {
+        [&self.user, &self.bot].into_iter()
+    }
+}

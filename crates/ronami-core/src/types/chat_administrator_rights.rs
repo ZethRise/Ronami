@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// Represents the rights of an administrator in a chat.
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct ChatAdministratorRights {
     /// `true`, if the user's presence in the chat is hidden
@@ -68,4 +68,33 @@ pub struct ChatAdministratorRights {
     /// `true`, if the administrator can edit the tags of regular members; for
     /// groups and supergroups only
     pub can_manage_tags: Option<bool>,
+}
+
+impl ChatAdministratorRights {
+    /// Creates a new `ChatAdministratorRights` with all privileges disabled.
+    #[must_use]
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    /// Sets `is_anonymous`.
+    #[must_use]
+    pub fn is_anonymous(mut self, val: bool) -> Self {
+        self.is_anonymous = val;
+        self
+    }
+
+    /// Sets `can_manage_chat`.
+    #[must_use]
+    pub fn can_manage_chat(mut self, val: bool) -> Self {
+        self.can_manage_chat = val;
+        self
+    }
+
+    /// Sets `can_manage_tags`.
+    #[must_use]
+    pub fn can_manage_tags(mut self, val: bool) -> Self {
+        self.can_manage_tags = Some(val);
+        self
+    }
 }

@@ -13,3 +13,10 @@ pub struct ManagedBotCreated {
     /// Information about the bot.
     pub bot: User,
 }
+
+impl ManagedBotCreated {
+    /// Creates a new `ManagedBotCreated`.
+    pub const fn new(bot: User) -> Self {
+        Self { bot }
+    }
+}

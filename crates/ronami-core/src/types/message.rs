@@ -2420,6 +2420,9 @@ impl Message {
             .chain(flatten(self.poll().map(Poll::mentioned_users)))
             .chain(flatten(self.proximity_alert_triggered().map(|a| [&a.traveler, &a.watcher])))
             .chain(flatten(self.video_chat_participants_invited().map(|i| &i.users)))
+            .chain(self.chat_owner_changed().map(|c| &c.new_owner))
+            .chain(self.chat_owner_left().and_then(|c| c.new_owner.as_ref()))
+            .chain(self.managed_bot_created().map(|m| &m.bot))
     }
 
     /// `Message::mentioned_users` is recursive (due to replies), as such we

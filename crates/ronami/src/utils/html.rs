@@ -141,6 +141,19 @@ pub fn user_mention_or_link(user: &User) -> String {
     }
 }
 
+/// Formats text as a date-time entity for HTML.
+#[must_use = "This function returns a new string, rather than mutating the argument, so calling it \
+              without using its output does nothing useful"]
+pub fn date_time(text: &str, unix_time: i64, format: Option<&str>) -> String {
+    let escaped_text = escape(text);
+    match format {
+        Some(fmt) => {
+            format!("<tg-time unix=\"{unix_time}\" format=\"{fmt}\">{escaped_text}</tg-time>")
+        }
+        None => format!("<tg-time unix=\"{unix_time}\">{escaped_text}</tg-time>"),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

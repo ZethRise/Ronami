@@ -29,6 +29,21 @@ pub struct PollAnswer {
     pub option_persistent_ids: Vec<String>,
 }
 
+impl PollAnswer {
+    /// Returns `true` if the user retracted their vote (i.e. both `option_ids`
+    /// and `option_persistent_ids` are empty).
+    #[must_use]
+    pub fn is_retracted(&self) -> bool {
+        self.option_ids.is_empty() && self.option_persistent_ids.is_empty()
+    }
+
+    /// Checks if a specific persistent option ID was chosen.
+    #[must_use]
+    pub fn has_option_persistent_id(&self, persistent_id: &str) -> bool {
+        self.option_persistent_ids.iter().any(|id| id == persistent_id)
+    }
+}
+
 /// These fields `chat` and `user` from the original [`PollAnswer`] should be
 /// exclusive, but in cases when the `voter_chat` is presented the `user` isn't
 /// `None`, but rather actual value for backward compatibility, the field `user`

@@ -10,3 +10,13 @@ pub struct PreparedKeyboardButton {
     /// Unique identifier of the keyboard button.
     pub id: String,
 }
+
+impl PreparedKeyboardButton {
+    /// Creates a new `PreparedKeyboardButton`.
+    pub fn new<T>(id: T) -> Self
+    where
+        T: Into<String>,
+    {
+        Self { id: id.into() }
+    }
+}

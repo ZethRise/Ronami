@@ -37,7 +37,7 @@ bitflags::bitflags! {
     #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
     #[serde(from = "ChatPermissionsRaw", into = "ChatPermissionsRaw")]
     #[cfg_attr(test, derive(schemars::JsonSchema))]
-    pub struct ChatPermissions: u16 {
+    pub struct ChatPermissions: u32 {
         /// Set if the user is allowed to send text messages, contacts,
         /// giveaways, giveaway winners, invoices, locations and venues
         const SEND_MESSAGES = 1;
@@ -261,15 +261,13 @@ struct ChatPermissionsRaw {
     #[serde(default, skip_serializing_if = "Not::not")]
     can_pin_messages: bool,
 
-    // HACK: do not `skip_serializing_if = "Not::not"`, from tg docs:
+    // HACK: from tg docs:
     //       > If omitted defaults to the value of `can_pin_messages`
-    //       but we don't have two different values for "absent" and "false"...
-    //       or did they mean that `can_pin_messages` implies `can_manage_topics`?..
-    #[serde(default)]
-    can_manage_topics: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    can_manage_topics: Option<bool>,
 
-    #[serde(default)]
-    can_edit_tag: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    can_edit_tag: Option<bool>,
 }
 
 impl From<ChatPermissions> for ChatPermissionsRaw {
@@ -288,8 +286,8 @@ impl From<ChatPermissions> for ChatPermissionsRaw {
             can_change_info: this.can_change_info(),
             can_invite_users: this.can_invite_users(),
             can_pin_messages: this.can_pin_messages(),
-            can_manage_topics: this.can_manage_topics(),
-            can_edit_tag: this.can_edit_tag(),
+            can_manage_topics: Some(this.can_manage_topics()),
+            can_edit_tag: Some(this.can_edit_tag()),
         }
     }
 }
@@ -355,7 +353,9 @@ impl From<ChatPermissionsRaw> for ChatPermissions {
         if can_pin_messages {
             this |= Self::PIN_MESSAGES;
         }
-        // FIXME: should we do `|| can_pin_messages` here? (the same tg doc weirdness)
+        let can_manage_topics = can_manage_topics.unwrap_or(can_pin_messages);
+        let can_edit_tag = can_edit_tag.unwrap_or(can_pin_messages);
+
         if can_manage_topics {
             this |= Self::MANAGE_TOPICS;
         }
@@ -386,7 +386,9 @@ mod tests {
         let json = r#"{"can_send_messages":true,"can_send_photos":true,"can_pin_messages":true}"#;
         let expected = ChatPermissions::SEND_MESSAGES
             | ChatPermissions::SEND_PHOTOS
-            | ChatPermissions::PIN_MESSAGES;
+            | ChatPermissions::PIN_MESSAGES
+            | ChatPermissions::MANAGE_TOPICS
+            | ChatPermissions::EDIT_TAG;
         let actual = serde_json::from_str(json).unwrap();
         assert_eq!(expected, actual);
     }
