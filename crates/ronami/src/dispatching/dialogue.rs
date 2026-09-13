@@ -250,8 +250,7 @@ where
                 }
                 Ok(_) => {
                     panic!(
-                        "`RONAMI_DIALOGUE_BEHAVIOUR` env variable should be one of: \
-                         default/panic"
+                        "`RONAMI_DIALOGUE_BEHAVIOUR` env variable should be one of: default/panic"
                     )
                 }
             },

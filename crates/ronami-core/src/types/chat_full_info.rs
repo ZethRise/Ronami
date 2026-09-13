@@ -3,9 +3,9 @@ use derive_more::derive::From;
 use serde::{Deserialize, Serialize};
 
 use crate::types::{
-    AcceptedGiftTypes, Birthdate, BusinessIntro, BusinessLocation, BusinessOpeningHours, Chat,
-    ChatId, ChatLocation, ChatPermissions, ChatPhoto, Message, ReactionType, Seconds, UniqueGiftColors,
-    User, UserRating,
+    AcceptedGiftTypes, Audio, Birthdate, BusinessIntro, BusinessLocation, BusinessOpeningHours,
+    Chat, ChatId, ChatLocation, ChatPermissions, ChatPhoto, Message, ReactionType, Seconds,
+    UniqueGiftColors, User, UserRating,
 };
 
 /// Custom emoji identifier.
@@ -198,6 +198,9 @@ pub struct ChatFullInfoPrivate {
     /// For private chats with business accounts, the opening hours of the
     /// business.
     pub business_opening_hours: Option<BusinessOpeningHours>,
+
+    /// For private chats, the first audio added to the profile of the user.
+    pub first_profile_audio: Option<Audio>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -602,6 +605,15 @@ impl ChatFullInfo {
         }
     }
 
+    /// For private chats, the first audio added to the profile of the user.
+    #[must_use]
+    pub fn first_profile_audio(&self) -> Option<&Audio> {
+        match &self.kind {
+            ChatFullInfoKind::Private(this) => this.first_profile_audio.as_ref(),
+            _ => None,
+        }
+    }
+
     /// `true`, if privacy settings of the other party in the private chat
     /// allows to use tg://user?id=<user_id> links only in chats with the
     /// user.
@@ -625,7 +637,9 @@ impl ChatFullInfo {
 }
 
 mod serde_helper {
-    use crate::types::{Birthdate, BusinessIntro, BusinessLocation, BusinessOpeningHours, Chat};
+    use crate::types::{
+        Audio, Birthdate, BusinessIntro, BusinessLocation, BusinessOpeningHours, Chat,
+    };
     use serde::{Deserialize, Serialize};
 
     #[derive(Serialize, Deserialize)]
@@ -656,6 +670,7 @@ mod serde_helper {
         business_intro: Option<BusinessIntro>,
         business_location: Option<BusinessLocation>,
         business_opening_hours: Option<BusinessOpeningHours>,
+        first_profile_audio: Option<Audio>,
     }
 
     impl From<ChatPrivateFullInfo> for super::ChatFullInfoPrivate {
@@ -673,6 +688,7 @@ mod serde_helper {
                 business_intro,
                 business_location,
                 business_opening_hours,
+                first_profile_audio,
             }: ChatPrivateFullInfo,
         ) -> Self {
             Self {
@@ -687,6 +703,7 @@ mod serde_helper {
                 business_intro,
                 business_location,
                 business_opening_hours,
+                first_profile_audio,
             }
         }
     }
@@ -705,6 +722,7 @@ mod serde_helper {
                 business_intro,
                 business_location,
                 business_opening_hours,
+                first_profile_audio,
             }: super::ChatFullInfoPrivate,
         ) -> Self {
             Self {
@@ -720,6 +738,7 @@ mod serde_helper {
                 business_intro,
                 business_location,
                 business_opening_hours,
+                first_profile_audio,
             }
         }
     }
@@ -812,6 +831,7 @@ mod tests {
                 business_intro: None,
                 business_location: None,
                 business_opening_hours: None,
+                first_profile_audio: None,
             })),
             photo: None,
             pinned_message: None,
@@ -876,6 +896,7 @@ mod tests {
                 business_intro: None,
                 business_location: None,
                 business_opening_hours: None,
+                first_profile_audio: None,
             })),
             photo: None,
             pinned_message: None,

@@ -64,6 +64,7 @@ fn codegen_payloads() {
                 "SendPaidMedia"
                     | "SendMediaGroup"
                     | "SetBusinessAccountProfilePhoto"
+                    | "SetMyProfilePhoto"
                     | "PostStory"
                     | "EditStory"
                     | "EditMessageMedia"
@@ -198,7 +199,10 @@ fn eq_hash_suitable(method: &Method) -> bool {
             Type::Url | Type::DateTime => true,
 
             Type::RawTy(raw) => {
-                raw != "InputSticker" && raw != "MaskPosition" && raw != "InlineQueryResult"
+                raw != "InputSticker"
+                    && raw != "MaskPosition"
+                    && raw != "InlineQueryResult"
+                    && raw != "InputProfilePhoto"
             }
         }
     }

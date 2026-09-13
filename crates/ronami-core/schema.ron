@@ -40,7 +40,7 @@
 //! [github]: https://github.com/WaffleLapkin/tg-methods-schema
 
 Schema(
-    api_version: ApiVersion(ver: "9.3", date: "December 31, 2025"),
+    api_version: ApiVersion(ver: "9.4", date: "February 9, 2026"),
     methods: [
         Method(
             names: ("getUpdates", "GetUpdates", "get_updates"),
@@ -2629,6 +2629,33 @@ Schema(
             ],
         ),
         Method(
+            names: ("getUserProfileAudios", "GetUserProfileAudios", "get_user_profile_audios"),
+            return_ty: RawTy("UserProfileAudios"),
+            doc: Doc(
+                md: "Use this method to get a list of profile audios for a user. Returns a [UserProfileAudios] object.",
+                md_links: {"UserProfileAudios": "https://core.telegram.org/bots/api#userprofileaudios"},
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#getuserprofileaudios",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Unique identifier of the target user")
+                ),
+                Param(
+                    name: "offset",
+                    ty: Option(u32),
+                    descr: Doc(md: "Sequential number of the first audio to be returned. By default, all audios are returned.")
+                ),
+                Param(
+                    name: "limit",
+                    ty: Option(u8),
+                    descr: Doc(md: "Limits the number of audios to be retrieved. Values between 1-100 are accepted. Defaults to 100.")
+                ),
+            ],
+        ),
+        Method(
             names: ("setUserEmojiStatus", "SetUserEmojiStatus", "set_user_emoji_status"),
             return_ty: True,
             doc: Doc(
@@ -3948,6 +3975,32 @@ Schema(
                     descr: Doc(md: "A two-letter ISO 639-1 language code")
                 ),
             ]
+        ),
+        Method(
+            names: ("setMyProfilePhoto", "SetMyProfilePhoto", "set_my_profile_photo"),
+            return_ty: True,
+            doc: Doc(
+                md: "Changes the profile photo of the bot. Returns _True_ on success.",
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#setmyprofilephoto",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "photo",
+                    ty: RawTy("InputProfilePhoto"),
+                    descr: Doc(md: "The new profile photo to set")
+                ),
+            ],
+        ),
+        Method(
+            names: ("removeMyProfilePhoto", "RemoveMyProfilePhoto", "remove_my_profile_photo"),
+            return_ty: True,
+            doc: Doc(
+                md: "Removes the profile photo of the bot. Requires no parameters. Returns _True_ on success.",
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#removemyprofilephoto",
+            tg_category: "Available methods",
+            params: [],
         ),
         Method(
             names: ("setChatMenuButton", "SetChatMenuButton", "set_chat_menu_button"),

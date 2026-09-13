@@ -146,6 +146,8 @@ define_message_ext! {
     (filter_video_chat_ended, Message::video_chat_ended),
     (filter_video_chat_participants_invited, Message::video_chat_participants_invited),
     (filter_web_app_data, Message::web_app_data),
+    (filter_chat_owner_left, Message::chat_owner_left),
+    (filter_chat_owner_changed, Message::chat_owner_changed),
 }
 
 macro_rules! define_update_ext {

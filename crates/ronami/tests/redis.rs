@@ -1,10 +1,10 @@
-use std::{
-    fmt::{Debug, Display},
-    sync::Arc,
-};
 use ronami::{
     dispatching::dialogue::{RedisStorage, RedisStorageError, Serializer, Storage},
     types::ChatId,
+};
+use std::{
+    fmt::{Debug, Display},
+    sync::Arc,
 };
 
 #[tokio::test]

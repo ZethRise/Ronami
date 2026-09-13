@@ -198,9 +198,8 @@ pub fn axum_no_setup(
             }
             Err(error) => {
                 log::error!(
-                    "Cannot parse an update.\nError: {error:?}\nValue: {input}\n\
-                     This is a bug in ronami-core, please open an issue in the \
-                     Ronami repository."
+                    "Cannot parse an update.\nError: {error:?}\nValue: {input}\nThis is a bug in \
+                     ronami-core, please open an issue in the Ronami repository."
                 );
             }
         };

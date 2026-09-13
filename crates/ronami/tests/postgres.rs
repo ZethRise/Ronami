@@ -1,10 +1,10 @@
-use std::{
-    fmt::{Debug, Display},
-    sync::Arc,
-};
 use ronami::{
     dispatching::dialogue::{PostgresStorage, PostgresStorageError, Serializer, Storage},
     types::ChatId,
+};
+use std::{
+    fmt::{Debug, Display},
+    sync::Arc,
 };
 
 // These examples are meant to run under the CI with the postgres service

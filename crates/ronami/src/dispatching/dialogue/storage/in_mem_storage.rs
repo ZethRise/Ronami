@@ -1,7 +1,7 @@
 use super::Storage;
 use futures::future::BoxFuture;
-use std::{collections::HashMap, sync::Arc};
 use ronami_core::types::ChatId;
+use std::{collections::HashMap, sync::Arc};
 use thiserror::Error;
 use tokio::sync::Mutex;
 

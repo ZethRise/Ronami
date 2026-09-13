@@ -5,8 +5,8 @@ use crate::{
     prelude::Requester,
     requests::{JsonRequest, MultipartRequest},
     types::{
-        AcceptedGiftTypes, BotCommand, BusinessConnectionId, CallbackQueryId, ChatId, DraftId,
-        ChatPermissions, CustomEmojiId, FileId, GiftId, InlineQueryId, InlineQueryResult,
+        AcceptedGiftTypes, BotCommand, BusinessConnectionId, CallbackQueryId, ChatId,
+        ChatPermissions, CustomEmojiId, DraftId, FileId, GiftId, InlineQueryId, InlineQueryResult,
         InputChecklist, InputFile, InputMedia, InputPaidMedia, InputPollOption, InputProfilePhoto,
         InputSticker, InputStoryContent, LabeledPrice, MessageId, OwnedGiftId, PreCheckoutQueryId,
         Recipient, Seconds, ShippingQueryId, StickerFormat, StoryId, TelegramTransactionId,
@@ -400,6 +400,12 @@ impl Requester for Bot {
 
     fn get_user_profile_photos(&self, user_id: UserId) -> Self::GetUserProfilePhotos {
         Self::GetUserProfilePhotos::new(self.clone(), payloads::GetUserProfilePhotos::new(user_id))
+    }
+
+    type GetUserProfileAudios = JsonRequest<payloads::GetUserProfileAudios>;
+
+    fn get_user_profile_audios(&self, user_id: UserId) -> Self::GetUserProfileAudios {
+        Self::GetUserProfileAudios::new(self.clone(), payloads::GetUserProfileAudios::new(user_id))
     }
 
     type SetUserEmojiStatus = JsonRequest<payloads::SetUserEmojiStatus>;
@@ -1038,6 +1044,18 @@ impl Requester for Bot {
     type GetMyShortDescription = JsonRequest<payloads::GetMyShortDescription>;
     fn get_my_short_description(&self) -> Self::GetMyShortDescription {
         Self::GetMyShortDescription::new(self.clone(), payloads::GetMyShortDescription::new())
+    }
+
+    type SetMyProfilePhoto = JsonRequest<payloads::SetMyProfilePhoto>;
+
+    fn set_my_profile_photo(&self, photo: InputProfilePhoto) -> Self::SetMyProfilePhoto {
+        Self::SetMyProfilePhoto::new(self.clone(), payloads::SetMyProfilePhoto::new(photo))
+    }
+
+    type RemoveMyProfilePhoto = JsonRequest<payloads::RemoveMyProfilePhoto>;
+
+    fn remove_my_profile_photo(&self) -> Self::RemoveMyProfilePhoto {
+        Self::RemoveMyProfilePhoto::new(self.clone(), payloads::RemoveMyProfilePhoto::new())
     }
 
     type SetChatMenuButton = JsonRequest<payloads::SetChatMenuButton>;

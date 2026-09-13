@@ -16,6 +16,7 @@ and issue links in older entries point at the upstream repository.
 - Dialogue SQL table renamed from `teloxide_dialogues` to `ronami_dialogues` [**BC**]
 - Crate versions set to `1.0.0`
 - Support for TBA 9.3 (sendMessageDraft, getUserGifts, getChatGifts, repostStory, gift/topic fields) [**BC**]
+- Support for TBA 9.4 (setMyProfilePhoto, removeMyProfilePhoto, getUserProfileAudios, button custom emoji & styles, ChatOwnerLeft/Changed, VideoQuality, first_profile_audio, UniqueGift updates)
 
 ## History (upstream teloxide)
 

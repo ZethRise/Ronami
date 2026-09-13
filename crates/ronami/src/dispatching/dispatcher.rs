@@ -481,9 +481,8 @@ where
             Ok(upd) => {
                 if let UpdateKind::Error(err) = upd.kind {
                     log::error!(
-                        "Cannot parse an update.\nError: {err:?}\n\
-                            This is a bug in ronami-core, please open an issue in the \
-                            Ronami repository.",
+                        "Cannot parse an update.\nError: {err:?}\nThis is a bug in ronami-core, \
+                         please open an issue in the Ronami repository.",
                     );
                     return;
                 }

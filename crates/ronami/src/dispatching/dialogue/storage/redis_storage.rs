@@ -2,13 +2,13 @@ use super::{serializer::Serializer, Storage};
 use deadpool_redis::{redis, CreatePoolError, PoolError, Runtime};
 use futures::future::BoxFuture;
 use redis::AsyncCommands;
+use ronami_core::types::ChatId;
 use serde::{de::DeserializeOwned, Serialize};
 use std::{
     convert::Infallible,
     fmt::{Debug, Display},
     sync::Arc,
 };
-use ronami_core::types::ChatId;
 use thiserror::Error;
 
 /// An error returned from [`RedisStorage`].

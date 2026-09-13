@@ -6,9 +6,9 @@ use std::{
 };
 
 use futures::future::BoxFuture;
+use ronami_core::types::ChatId;
 use serde::{de::DeserializeOwned, Serialize};
 use sqlx::postgres::{PgPool, PgPoolOptions};
-use ronami_core::types::ChatId;
 use thiserror::Error;
 
 use super::{serializer::Serializer, Storage};

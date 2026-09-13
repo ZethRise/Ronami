@@ -1,4 +1,3 @@
-use std::error::Error;
 use ronami::{
     payloads::SendMessageSetters,
     prelude::*,
@@ -9,6 +8,7 @@ use ronami::{
     },
     utils::command::BotCommands,
 };
+use std::error::Error;
 
 /// These commands are supported:
 #[derive(BotCommands)]

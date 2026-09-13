@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for TBA 9.4
+  - Add `ButtonStyle` enum and `icon_custom_emoji_id` and `style` fields to `KeyboardButton` and `InlineKeyboardButton`
+  - Add `allows_users_to_create_topics` field to `Me` struct
+  - Add `ChatOwnerLeft` and `ChatOwnerChanged` structs and `chat_owner_left` and `chat_owner_changed` service messages to `Message`
+  - Add `VideoQuality` struct and `qualities` field to `Video` struct
+  - Add `first_profile_audio` field to `ChatFullInfo` and `ChatFullInfoPrivate` structs
+  - Add `UserProfileAudios` struct and `get_user_profile_audios` method
+  - Add `set_my_profile_photo` and `remove_my_profile_photo` methods
+  - Add `rarity` field to `UniqueGiftModel` struct
+  - Add `is_burned` field to `UniqueGift` struct
+
 - Support for TBA 9.2 ([#1403](https://github.com/teloxide/teloxide/pull/1403))
   - Add `checklist_task_id` field to `ReplyParameters` struct
   - Add `reply_to_checklist_task_id` field to `Message` struct

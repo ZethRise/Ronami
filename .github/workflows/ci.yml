@@ -1,9 +1,5 @@
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  merge_group:
+  workflow_dispatch:
 
 name: Continuous integration
 

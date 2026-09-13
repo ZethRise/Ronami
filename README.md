@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/crates/v/ronami.svg">
   </a>
   <a href="https://core.telegram.org/bots/api">
-    <img src="https://img.shields.io/badge/API%20coverage-Up%20to%209.3%20(inclusively)-green.svg">
+    <img src="https://img.shields.io/badge/API%20coverage-Up%20to%209.4%20(inclusively)-green.svg">
   </a>
 
   A full-featured framework for building [Telegram bots](https://telegram.org/blog/bot-revolution) in [Rust](https://www.rust-lang.org/). It handles the difficult stuff so you can focus on business logic.

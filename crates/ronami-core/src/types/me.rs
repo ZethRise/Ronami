@@ -35,6 +35,11 @@ pub struct Me {
     /// `true`, if the bot has forum topic mode enabled in private chats.
     #[serde(default)]
     pub has_topics_enabled: bool,
+
+    /// `true`, if the bot allows users to create and delete topics in private
+    /// chats.
+    #[serde(default)]
+    pub allows_users_to_create_topics: bool,
 }
 
 impl Me {
@@ -88,6 +93,7 @@ mod tests {
             can_connect_to_business: false,
             has_main_web_app: false,
             has_topics_enabled: false,
+            allows_users_to_create_topics: false,
         };
 
         assert_eq!(me.username(), "SomethingSomethingBot");

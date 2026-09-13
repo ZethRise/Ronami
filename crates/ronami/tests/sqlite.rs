@@ -1,11 +1,11 @@
+use ronami::{
+    dispatching::dialogue::{Serializer, SqliteStorage, SqliteStorageError, Storage},
+    types::ChatId,
+};
 use std::{
     fmt::{Debug, Display},
     fs,
     sync::Arc,
-};
-use ronami::{
-    dispatching::dialogue::{Serializer, SqliteStorage, SqliteStorageError, Storage},
-    types::ChatId,
 };
 
 #[tokio::test(flavor = "multi_thread")]

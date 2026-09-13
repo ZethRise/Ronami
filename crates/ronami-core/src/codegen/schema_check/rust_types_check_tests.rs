@@ -62,6 +62,10 @@ fn test_rust_objects() {
         },
         Exception::IgnoreObjectField {
             object: "User".to_owned(),
+            field_name: "allows_users_to_create_topics".to_owned(),
+        },
+        Exception::IgnoreObjectField {
+            object: "User".to_owned(),
             field_name: "can_join_groups".to_owned(),
         },
         Exception::IgnoreFieldRequiredObjectName {
@@ -1789,6 +1793,34 @@ fn test_rust_objects() {
         api_schema.clone(),
         schema_for!(GameHighScore),
         "GameHighScore".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(VideoQuality),
+        "VideoQuality".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(UserProfileAudios),
+        "UserProfileAudios".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(ChatOwnerLeft),
+        "ChatOwnerLeft".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(ChatOwnerChanged),
+        "ChatOwnerChanged".to_owned(),
         &mut errors,
         &exceptions,
     );

@@ -1,5 +1,6 @@
 use super::{serializer::Serializer, Storage};
 use futures::future::BoxFuture;
+use ronami_core::types::ChatId;
 use serde::{de::DeserializeOwned, Serialize};
 use sqlx::{sqlite::SqlitePool, Executor};
 use std::{
@@ -8,7 +9,6 @@ use std::{
     str,
     sync::Arc,
 };
-use ronami_core::types::ChatId;
 use thiserror::Error;
 
 /// A persistent dialogue storage based on [SQLite](https://www.sqlite.org/).
@@ -69,12 +69,11 @@ where
         ChatId(chat_id): ChatId,
     ) -> BoxFuture<'static, Result<(), Self::Error>> {
         Box::pin(async move {
-            let deleted_rows_count =
-                sqlx::query("DELETE FROM ronami_dialogues WHERE chat_id = ?")
-                    .bind(chat_id)
-                    .execute(&self.pool)
-                    .await?
-                    .rows_affected();
+            let deleted_rows_count = sqlx::query("DELETE FROM ronami_dialogues WHERE chat_id = ?")
+                .bind(chat_id)
+                .execute(&self.pool)
+                .await?
+                .rows_affected();
 
             if deleted_rows_count == 0 {
                 return Err(SqliteStorageError::DialogueNotFound);
