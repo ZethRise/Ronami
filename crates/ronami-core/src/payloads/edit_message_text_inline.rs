@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, InlineKeyboardMarkup, MessageEntity, ParseMode, True};
+use crate::types::{
+    BusinessConnectionId, InlineKeyboardMarkup, InputRichMessage, MessageEntity, ParseMode, True,
+};
 
 impl_payload! {
     /// Use this method to edit text and [games] messages. On success, _True_ is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
@@ -29,6 +31,8 @@ impl_payload! {
             pub entities: Vec<MessageEntity> [collect],
             /// Disables link previews for links in this message
             pub disable_web_page_preview: bool,
+            /// New rich content of the message; required if _text_ isn't specified
+            pub rich_message: InputRichMessage,
             /// A JSON-serialized object for an [inline keyboard].
             ///
             /// [inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating

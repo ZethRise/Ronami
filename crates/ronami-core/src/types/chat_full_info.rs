@@ -112,6 +112,10 @@ pub struct ChatFullInfo {
     /// The number of Telegram Stars a general user has to pay to send a message
     /// to the chat
     pub paid_message_star_count: Option<u32>,
+
+    /// The bot that processes join request queries in the chat. The field is
+    /// only available to chat administrators.
+    pub guard_bot: Option<User>,
 }
 
 #[serde_with::skip_serializing_none]
@@ -789,6 +793,7 @@ mod tests {
             rating: None,
             unique_gift_colors: None,
             paid_message_star_count: None,
+            guard_bot: None,
         };
         let actual = from_str(
             r#"{
@@ -856,6 +861,7 @@ mod tests {
             rating: None,
             unique_gift_colors: None,
             paid_message_star_count: None,
+            guard_bot: None,
         };
         eprintln!("{}", to_string(&chat).unwrap());
         assert_eq!(
@@ -921,6 +927,7 @@ mod tests {
             rating: None,
             unique_gift_colors: None,
             paid_message_star_count: None,
+            guard_bot: None,
         };
 
         let json = to_string(&chat).unwrap();

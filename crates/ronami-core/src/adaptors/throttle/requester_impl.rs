@@ -42,6 +42,7 @@ where
     B::Err: AsResponseParameters,
 
     B::SendMessage: Clone + Send + Sync + 'static,
+    B::SendRichMessage: Clone + Send + Sync + 'static,
     B::ForwardMessage: Clone + Send + Sync + 'static,
     B::ForwardMessages: Clone + Send + Sync + 'static,
     B::CopyMessage: Clone + Send + Sync + 'static,
@@ -69,6 +70,7 @@ where
 
     requester_forward! {
         send_message,
+        send_rich_message,
         forward_message,
         forward_messages,
         copy_message,
@@ -109,6 +111,7 @@ where
         edit_message_checklist,
         send_chat_action,
         send_message_draft,
+        send_rich_message_draft,
         set_message_reaction,
         get_user_profile_photos,
         get_user_profile_audios,
@@ -257,6 +260,8 @@ where
         set_game_score_inline,
         approve_chat_join_request,
         decline_chat_join_request,
+        answer_chat_join_request_query,
+        send_chat_join_request_web_app,
         get_game_high_scores
         => fid, ftyid
     }

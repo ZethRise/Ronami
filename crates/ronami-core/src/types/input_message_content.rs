@@ -1,7 +1,9 @@
 use reqwest::Url;
 use serde::{Deserialize, Serialize};
 
-use crate::types::{LabeledPrice, LinkPreviewOptions, LivePeriod, MessageEntity, ParseMode};
+use crate::types::{
+    InputRichMessage, LabeledPrice, LinkPreviewOptions, LivePeriod, MessageEntity, ParseMode,
+};
 
 /// This object represents the content of a message to be sent as a result of an
 /// inline query.
@@ -16,6 +18,7 @@ pub enum InputMessageContent {
     Venue(InputMessageContentVenue),
     Contact(InputMessageContentContact),
     Invoice(InputMessageContentInvoice),
+    Rich(InputMessageContentRich),
 }
 /// Represents the content of a text message to be sent as the result of an
 /// inline query.
@@ -590,6 +593,26 @@ impl InputMessageContentInvoice {
     }
 }
 
+/// Represents the content of a rich message to be sent as the result of an
+/// inline query.
+///
+/// [The official docs](https://core.telegram.org/bots/api#inputrichmessagecontent).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct InputMessageContentRich {
+    /// The message to be sent.
+    pub rich_message: InputRichMessage,
+}
+
+pub type InputRichMessageContent = InputMessageContentRich;
+
+impl InputMessageContentRich {
+    pub fn new(rich_message: InputRichMessage) -> Self {
+        Self { rich_message }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -660,6 +683,17 @@ mod tests {
         });
 
         let actual_json = serde_json::to_string(&contact_content).unwrap();
+        assert_eq!(expected_json, actual_json);
+    }
+
+    #[test]
+    fn rich_message_serialize() {
+        let expected_json = r#"{"rich_message":{"html":"<b>hello</b>"}}"#;
+        let content = InputMessageContent::Rich(InputMessageContentRich {
+            rich_message: InputRichMessage::html("<b>hello</b>"),
+        });
+
+        let actual_json = serde_json::to_string(&content).unwrap();
         assert_eq!(expected_json, actual_json);
     }
 }

@@ -46,6 +46,11 @@ pub struct User {
     /// from chats it is not a member of.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub supports_guest_queries: bool,
+
+    /// `true`, if the bot supports join request queries and can be assigned to
+    /// process them. Returned only in `getMe`.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub supports_join_request_queries: bool,
 }
 
 impl User {
@@ -164,6 +169,7 @@ mod tests {
             added_to_attachment_menu: false,
             can_manage_bots: false,
             supports_guest_queries: false,
+            supports_join_request_queries: false,
         };
         let actual = serde_json::from_str::<User>(json).unwrap();
         assert_eq!(actual, expected)
@@ -182,6 +188,7 @@ mod tests {
             added_to_attachment_menu: false,
             can_manage_bots: false,
             supports_guest_queries: false,
+            supports_join_request_queries: false,
         };
 
         let user_b = User {
@@ -195,6 +202,7 @@ mod tests {
             added_to_attachment_menu: false,
             can_manage_bots: false,
             supports_guest_queries: false,
+            supports_join_request_queries: false,
         };
 
         assert_eq!(user_a.full_name(), "First Last");

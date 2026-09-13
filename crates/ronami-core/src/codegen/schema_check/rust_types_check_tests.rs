@@ -1947,6 +1947,384 @@ fn test_rust_objects() {
         &mut errors,
         &exceptions,
     );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichMessage),
+        "InputRichMessage".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputMessageContentRich),
+        "InputRichMessageContent".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichMessage),
+        "RichMessage".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlock),
+        "RichBlock".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichText),
+        "RichText".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockCaption),
+        "RichBlockCaption".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockTableCell),
+        "RichBlockTableCell".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockListItem),
+        "RichBlockListItem".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockParagraph),
+        "RichBlockParagraph".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockSectionHeading),
+        "RichBlockSectionHeading".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockPreformatted),
+        "RichBlockPreformatted".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockFooter),
+        "RichBlockFooter".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockDivider),
+        "RichBlockDivider".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockMathematicalExpression),
+        "RichBlockMathematicalExpression".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockAnchor),
+        "RichBlockAnchor".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockList),
+        "RichBlockList".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockBlockQuotation),
+        "RichBlockBlockQuotation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockPullQuotation),
+        "RichBlockPullQuotation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockCollage),
+        "RichBlockCollage".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockSlideshow),
+        "RichBlockSlideshow".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockTable),
+        "RichBlockTable".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockDetails),
+        "RichBlockDetails".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockMap),
+        "RichBlockMap".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockAnimation),
+        "RichBlockAnimation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockAudio),
+        "RichBlockAudio".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockPhoto),
+        "RichBlockPhoto".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockVideo),
+        "RichBlockVideo".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockVoiceNote),
+        "RichBlockVoiceNote".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockThinking),
+        "RichBlockThinking".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextBold),
+        "RichTextBold".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextItalic),
+        "RichTextItalic".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextUnderline),
+        "RichTextUnderline".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextStrikethrough),
+        "RichTextStrikethrough".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextSpoiler),
+        "RichTextSpoiler".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextSubscript),
+        "RichTextSubscript".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextSuperscript),
+        "RichTextSuperscript".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextMarked),
+        "RichTextMarked".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextCode),
+        "RichTextCode".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextDateTime),
+        "RichTextDateTime".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextTextMention),
+        "RichTextTextMention".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextCustomEmoji),
+        "RichTextCustomEmoji".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextMathematicalExpression),
+        "RichTextMathematicalExpression".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextUrl),
+        "RichTextUrl".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextEmailAddress),
+        "RichTextEmailAddress".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextPhoneNumber),
+        "RichTextPhoneNumber".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextBankCardNumber),
+        "RichTextBankCardNumber".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextMention),
+        "RichTextMention".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextHashtag),
+        "RichTextHashtag".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextCashtag),
+        "RichTextCashtag".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextBotCommand),
+        "RichTextBotCommand".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextAnchor),
+        "RichTextAnchor".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextAnchorLink),
+        "RichTextAnchorLink".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextReference),
+        "RichTextReference".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextReferenceLink),
+        "RichTextReferenceLink".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
 
     if !errors.is_empty() {
         let mut errors_string = String::new();

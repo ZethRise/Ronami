@@ -1,7 +1,7 @@
 //! Core part of the [`ronami`] library.
 //!
 //! This library provides tools for making requests to the [Telegram Bot API]
-//! (Currently, version `9.6` is supported) with ease. The library is fully
+//! (Currently, version `10.1` is supported) with ease. The library is fully
 //! asynchronous and built using [`tokio`].
 //!
 //!```toml

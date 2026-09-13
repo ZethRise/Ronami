@@ -15,11 +15,11 @@ use crate::types::{
     Invoice, LinkPreviewOptions, LivePhoto, Location, ManagedBotCreated, MaybeInaccessibleMessage,
     MessageAutoDeleteTimerChanged, MessageEntity, MessageEntityRef, MessageId, MessageOrigin,
     PaidMediaInfo, PaidMessagePriceChanged, PassportData, PhotoSize, Poll, PollOptionAdded,
-    PollOptionDeleted, ProximityAlertTriggered, RefundedPayment, Sticker, Story, SuccessfulPayment,
-    SuggestedPostApprovalFailed, SuggestedPostApproved, SuggestedPostDeclined, SuggestedPostInfo,
-    SuggestedPostPaid, SuggestedPostRefunded, TextQuote, ThreadId, True, UniqueGiftInfo, User,
-    UsersShared, Venue, Video, VideoChatEnded, VideoChatParticipantsInvited, VideoChatScheduled,
-    VideoChatStarted, VideoNote, Voice, WebAppData, WriteAccessAllowed,
+    PollOptionDeleted, ProximityAlertTriggered, RefundedPayment, RichMessage, Sticker, Story,
+    SuccessfulPayment, SuggestedPostApprovalFailed, SuggestedPostApproved, SuggestedPostDeclined,
+    SuggestedPostInfo, SuggestedPostPaid, SuggestedPostRefunded, TextQuote, ThreadId, True,
+    UniqueGiftInfo, User, UsersShared, Venue, Video, VideoChatEnded, VideoChatParticipantsInvited,
+    VideoChatScheduled, VideoChatStarted, VideoNote, Voice, WebAppData, WriteAccessAllowed,
 };
 
 /// This object represents a message.
@@ -226,6 +226,9 @@ pub struct MessageCommon {
 
     /// Message is a live photo, information about it.
     pub live_photo: Option<LivePhoto>,
+
+    /// Message is a rich message, information about it.
+    pub rich_message: Option<RichMessage>,
 
     /// If the sender of the message boosted the chat, the number of boosts
     /// added by the user
@@ -1075,7 +1078,7 @@ mod getters {
         MessageSuggestedPostApprovalFailed, MessageSuggestedPostApproved,
         MessageSuggestedPostDeclined, MessageSuggestedPostPaid, MessageSuggestedPostRefunded,
         MessageSupergroupChatCreated, MessageUsersShared, MessageVideoChatParticipantsInvited,
-        PhotoSize, Story, TextQuote, User,
+        PhotoSize, RichMessage, Story, TextQuote, User,
     };
 
     use super::{
@@ -1259,6 +1262,15 @@ mod getters {
                     media_kind: MediaKind::Text(MediaText { text, .. }),
                     ..
                 }) => Some(text),
+                _ => None,
+            }
+        }
+
+        /// Returns rich message if the message is a rich message.
+        #[must_use]
+        pub fn rich_message(&self) -> Option<&RichMessage> {
+            match &self.kind {
+                Common(MessageCommon { rich_message, .. }) => rich_message.as_ref(),
                 _ => None,
             }
         }
@@ -3324,6 +3336,7 @@ mod tests {
                     added_to_attachment_menu: false,
                     can_manage_bots: false,
                     supports_guest_queries: false,
+                    supports_join_request_queries: false,
                 }],
                 additional_chat_count: None,
                 premium_subscription_month_count: Some(6),

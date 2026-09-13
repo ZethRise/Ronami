@@ -210,6 +210,8 @@ where
         forward_message,
         forward_messages,
         copy_messages,
+        send_rich_message,
+        send_rich_message_draft,
         send_video_note,
         send_location,
         edit_message_live_location,
@@ -357,7 +359,9 @@ where
         set_game_score_inline,
         get_game_high_scores,
         approve_chat_join_request,
-        decline_chat_join_request
+        decline_chat_join_request,
+        answer_chat_join_request_query,
+        send_chat_join_request_web_app
         => fid, ftyid
     }
 }

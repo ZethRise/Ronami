@@ -99,6 +99,8 @@ where
         copy_messages,
         send_message,
         send_message_draft,
+        send_rich_message,
+        send_rich_message_draft,
         send_photo,
         send_audio,
         send_document,
@@ -271,7 +273,9 @@ where
         set_game_score_inline,
         get_game_high_scores,
         approve_chat_join_request,
-        decline_chat_join_request
+        decline_chat_join_request,
+        answer_chat_join_request_query,
+        send_chat_join_request_web_app
         => f, fty
     }
 }

@@ -3,8 +3,8 @@
 use serde::Serialize;
 
 use crate::types::{
-    BusinessConnectionId, InlineKeyboardMarkup, LinkPreviewOptions, Message, MessageEntity,
-    MessageId, ParseMode, Recipient,
+    BusinessConnectionId, InlineKeyboardMarkup, InputRichMessage, LinkPreviewOptions, Message,
+    MessageEntity, MessageId, ParseMode, Recipient,
 };
 
 impl_payload! {
@@ -35,6 +35,8 @@ impl_payload! {
             pub entities: Vec<MessageEntity> [collect],
             /// Link preview generation options for the message
             pub link_preview_options: LinkPreviewOptions,
+            /// New rich content of the message; required if _text_ isn't specified
+            pub rich_message: InputRichMessage,
             /// A JSON-serialized object for an [inline keyboard].
             ///
             /// [inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating

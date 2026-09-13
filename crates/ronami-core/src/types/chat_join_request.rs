@@ -25,4 +25,7 @@ pub struct ChatJoinRequest {
     pub bio: Option<String>,
     /// Chat invite link that was used by the user to send the join request
     pub invite_link: Option<ChatInviteLink>,
+    /// Identifier of the join request query; for bots assigned to process join
+    /// requests only.
+    pub query_id: Option<String>,
 }

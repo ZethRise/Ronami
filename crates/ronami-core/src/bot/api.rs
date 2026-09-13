@@ -8,9 +8,9 @@ use crate::{
         AcceptedGiftTypes, BotCommand, BusinessConnectionId, CallbackQueryId, ChatId,
         ChatPermissions, CustomEmojiId, DraftId, FileId, GiftId, GuestQueryId, InlineQueryId,
         InlineQueryResult, InputChecklist, InputFile, InputMedia, InputPaidMedia, InputPollOption,
-        InputProfilePhoto, InputSticker, InputStoryContent, KeyboardButton, LabeledPrice,
-        MessageId, OwnedGiftId, PreCheckoutQueryId, Recipient, Seconds, ShippingQueryId,
-        StickerFormat, StoryId, TelegramTransactionId, ThreadId, UserId,
+        InputProfilePhoto, InputRichMessage, InputSticker, InputStoryContent, KeyboardButton,
+        LabeledPrice, MessageId, OwnedGiftId, PreCheckoutQueryId, Recipient, Seconds,
+        ShippingQueryId, StickerFormat, StoryId, TelegramTransactionId, ThreadId, UserId,
     },
     Bot,
 };
@@ -73,6 +73,39 @@ impl Requester for Bot {
         Self::SendMessageDraft::new(
             self.clone(),
             payloads::SendMessageDraft::new(chat_id, draft_id, text),
+        )
+    }
+
+    type SendRichMessage = JsonRequest<payloads::SendRichMessage>;
+
+    fn send_rich_message<C>(
+        &self,
+        chat_id: C,
+        rich_message: InputRichMessage,
+    ) -> Self::SendRichMessage
+    where
+        C: Into<Recipient>,
+    {
+        Self::SendRichMessage::new(
+            self.clone(),
+            payloads::SendRichMessage::new(chat_id, rich_message),
+        )
+    }
+
+    type SendRichMessageDraft = JsonRequest<payloads::SendRichMessageDraft>;
+
+    fn send_rich_message_draft<C>(
+        &self,
+        chat_id: C,
+        draft_id: DraftId,
+        rich_message: InputRichMessage,
+    ) -> Self::SendRichMessageDraft
+    where
+        C: Into<Recipient>,
+    {
+        Self::SendRichMessageDraft::new(
+            self.clone(),
+            payloads::SendRichMessageDraft::new(chat_id, draft_id, rich_message),
         )
     }
 
@@ -681,6 +714,40 @@ impl Requester for Bot {
         Self::DeclineChatJoinRequest::new(
             self.clone(),
             payloads::DeclineChatJoinRequest::new(chat_id, user_id),
+        )
+    }
+
+    type AnswerChatJoinRequestQuery = JsonRequest<payloads::AnswerChatJoinRequestQuery>;
+
+    fn answer_chat_join_request_query<C, R>(
+        &self,
+        chat_join_request_query_id: C,
+        result: R,
+    ) -> Self::AnswerChatJoinRequestQuery
+    where
+        C: Into<String>,
+        R: Into<String>,
+    {
+        Self::AnswerChatJoinRequestQuery::new(
+            self.clone(),
+            payloads::AnswerChatJoinRequestQuery::new(chat_join_request_query_id, result),
+        )
+    }
+
+    type SendChatJoinRequestWebApp = JsonRequest<payloads::SendChatJoinRequestWebApp>;
+
+    fn send_chat_join_request_web_app<C, W>(
+        &self,
+        chat_join_request_query_id: C,
+        web_app_url: W,
+    ) -> Self::SendChatJoinRequestWebApp
+    where
+        C: Into<String>,
+        W: Into<String>,
+    {
+        Self::SendChatJoinRequestWebApp::new(
+            self.clone(),
+            payloads::SendChatJoinRequestWebApp::new(chat_join_request_query_id, web_app_url),
         )
     }
 

@@ -11,6 +11,7 @@ and issue links in older entries point at the upstream repository.
 
 ### Added
 
+- Support for TBA 10.1 (Rich Messages: sendRichMessage, sendRichMessageDraft, RichMessage, RichBlock, RichText, InputRichMessage, InputRichMessageContent; Join Request Queries: answerChatJoinRequestQuery, sendChatJoinRequestWebApp, supports_join_request_queries, guard_bot, query_id)
 - Support for TBA 10.0 (guest mode, bot access settings, user personal chat messages, live photos, poll media, message reaction deletion, chat management additions)
 
 ### Changed

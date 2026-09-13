@@ -2,7 +2,8 @@
 
 #[doc(no_inline)]
 pub use crate::payloads::{
-    AddStickerToSetSetters as _, AnswerCallbackQuerySetters as _, AnswerGuestQuerySetters as _,
+    AddStickerToSetSetters as _, AnswerCallbackQuerySetters as _,
+    AnswerChatJoinRequestQuerySetters as _, AnswerGuestQuerySetters as _,
     AnswerInlineQuerySetters as _, AnswerPreCheckoutQuerySetters as _,
     AnswerShippingQuerySetters as _, AnswerWebAppQuerySetters as _,
     ApproveChatJoinRequestSetters as _, ApproveSuggestedPostSetters as _,
@@ -49,11 +50,12 @@ pub use crate::payloads::{
     RestrictChatMemberSetters as _, RevokeChatInviteLinkSetters as _,
     SavePreparedInlineMessageSetters as _, SavePreparedKeyboardButtonSetters as _,
     SendAnimationSetters as _, SendAudioSetters as _, SendChatActionSetters as _,
-    SendChecklistSetters as _, SendContactSetters as _, SendDiceSetters as _,
-    SendDocumentSetters as _, SendGameSetters as _, SendGiftChatSetters as _, SendGiftSetters as _,
-    SendInvoiceSetters as _, SendLivePhotoSetters as _, SendLocationSetters as _,
-    SendMediaGroupSetters as _, SendMessageDraftSetters as _, SendMessageSetters as _,
-    SendPaidMediaSetters as _, SendPhotoSetters as _, SendPollSetters as _,
+    SendChatJoinRequestWebAppSetters as _, SendChecklistSetters as _, SendContactSetters as _,
+    SendDiceSetters as _, SendDocumentSetters as _, SendGameSetters as _, SendGiftChatSetters as _,
+    SendGiftSetters as _, SendInvoiceSetters as _, SendLivePhotoSetters as _,
+    SendLocationSetters as _, SendMediaGroupSetters as _, SendMessageDraftSetters as _,
+    SendMessageSetters as _, SendPaidMediaSetters as _, SendPhotoSetters as _,
+    SendPollSetters as _, SendRichMessageDraftSetters as _, SendRichMessageSetters as _,
     SendStickerSetters as _, SendVenueSetters as _, SendVideoNoteSetters as _,
     SendVideoSetters as _, SendVoiceSetters as _, SetBusinessAccountBioSetters as _,
     SetBusinessAccountGiftSettingsSetters as _, SetBusinessAccountNameSetters as _,

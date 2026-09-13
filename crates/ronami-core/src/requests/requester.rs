@@ -203,6 +203,29 @@ pub trait Requester {
         C: Into<Recipient>,
         T: Into<String>;
 
+    type SendRichMessage: Request<Payload = SendRichMessage, Err = Self::Err>;
+
+    /// For Telegram documentation see [`SendRichMessage`].
+    fn send_rich_message<C>(
+        &self,
+        chat_id: C,
+        rich_message: InputRichMessage,
+    ) -> Self::SendRichMessage
+    where
+        C: Into<Recipient>;
+
+    type SendRichMessageDraft: Request<Payload = SendRichMessageDraft, Err = Self::Err>;
+
+    /// For Telegram documentation see [`SendRichMessageDraft`].
+    fn send_rich_message_draft<C>(
+        &self,
+        chat_id: C,
+        draft_id: DraftId,
+        rich_message: InputRichMessage,
+    ) -> Self::SendRichMessageDraft
+    where
+        C: Into<Recipient>;
+
     type ForwardMessage: Request<Payload = ForwardMessage, Err = Self::Err>;
 
     /// For Telegram documentation see [`ForwardMessage`].
@@ -681,6 +704,30 @@ pub trait Requester {
     ) -> Self::DeclineChatJoinRequest
     where
         C: Into<Recipient>;
+
+    type AnswerChatJoinRequestQuery: Request<Payload = AnswerChatJoinRequestQuery, Err = Self::Err>;
+
+    /// For Telegram documentation see [`AnswerChatJoinRequestQuery`].
+    fn answer_chat_join_request_query<C, R>(
+        &self,
+        chat_join_request_query_id: C,
+        result: R,
+    ) -> Self::AnswerChatJoinRequestQuery
+    where
+        C: Into<String>,
+        R: Into<String>;
+
+    type SendChatJoinRequestWebApp: Request<Payload = SendChatJoinRequestWebApp, Err = Self::Err>;
+
+    /// For Telegram documentation see [`SendChatJoinRequestWebApp`].
+    fn send_chat_join_request_web_app<C, W>(
+        &self,
+        chat_join_request_query_id: C,
+        web_app_url: W,
+    ) -> Self::SendChatJoinRequestWebApp
+    where
+        C: Into<String>,
+        W: Into<String>;
 
     type SetChatPhoto: Request<Payload = SetChatPhoto, Err = Self::Err>;
 
@@ -1827,6 +1874,8 @@ macro_rules! forward_all {
             copy_messages,
             send_message,
             send_message_draft,
+            send_rich_message,
+            send_rich_message_draft,
             send_photo,
             send_audio,
             send_document,
@@ -1999,7 +2048,9 @@ macro_rules! forward_all {
             set_game_score_inline,
             get_game_high_scores,
             approve_chat_join_request,
-            decline_chat_join_request
+            decline_chat_join_request,
+            answer_chat_join_request_query,
+            send_chat_join_request_web_app
             => $body, $ty
         }
     };

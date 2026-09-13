@@ -488,6 +488,22 @@ macro_rules! requester_forward {
             $body!(send_message_draft this (chat_id: C, draft_id: DraftId, text: T))
         }
     };
+    (@method send_rich_message $body:ident $ty:ident) => {
+        type SendRichMessage = $ty![SendRichMessage];
+
+        fn send_rich_message<C>(&self, chat_id: C, rich_message: InputRichMessage) -> Self::SendRichMessage where C: Into<Recipient> {
+            let this = self;
+            $body!(send_rich_message this (chat_id: C, rich_message: InputRichMessage))
+        }
+    };
+    (@method send_rich_message_draft $body:ident $ty:ident) => {
+        type SendRichMessageDraft = $ty![SendRichMessageDraft];
+
+        fn send_rich_message_draft<C>(&self, chat_id: C, draft_id: DraftId, rich_message: InputRichMessage) -> Self::SendRichMessageDraft where C: Into<Recipient> {
+            let this = self;
+            $body!(send_rich_message_draft this (chat_id: C, draft_id: DraftId, rich_message: InputRichMessage))
+        }
+    };
     (@method forward_message $body:ident $ty:ident) => {
         type ForwardMessage = $ty![ForwardMessage];
 
@@ -898,6 +914,24 @@ macro_rules! requester_forward {
         fn decline_chat_join_request<C>(&self, chat_id: C, user_id: UserId) -> Self::DeclineChatJoinRequest where C: Into<Recipient> {
             let this = self;
             $body!(decline_chat_join_request this (chat_id: C, user_id: UserId))
+        }
+    };
+    (@method answer_chat_join_request_query $body:ident $ty:ident) => {
+        type AnswerChatJoinRequestQuery = $ty![AnswerChatJoinRequestQuery];
+
+        fn answer_chat_join_request_query<C, R>(&self, chat_join_request_query_id: C, result: R) -> Self::AnswerChatJoinRequestQuery where C: Into<String>,
+        R: Into<String> {
+            let this = self;
+            $body!(answer_chat_join_request_query this (chat_join_request_query_id: C, result: R))
+        }
+    };
+    (@method send_chat_join_request_web_app $body:ident $ty:ident) => {
+        type SendChatJoinRequestWebApp = $ty![SendChatJoinRequestWebApp];
+
+        fn send_chat_join_request_web_app<C, W>(&self, chat_join_request_query_id: C, web_app_url: W) -> Self::SendChatJoinRequestWebApp where C: Into<String>,
+        W: Into<String> {
+            let this = self;
+            $body!(send_chat_join_request_web_app this (chat_join_request_query_id: C, web_app_url: W))
         }
     };
     (@method set_chat_photo $body:ident $ty:ident) => {

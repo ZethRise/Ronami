@@ -201,6 +201,8 @@ where
         copy_messages,
         send_message,
         send_message_draft,
+        send_rich_message,
+        send_rich_message_draft,
         send_photo,
         send_audio,
         send_document,
@@ -373,7 +375,9 @@ where
         set_game_score_inline,
         get_game_high_scores,
         approve_chat_join_request,
-        decline_chat_join_request
+        decline_chat_join_request,
+        answer_chat_join_request_query,
+        send_chat_join_request_web_app
         => fwd_erased, fty
     }
 }
@@ -409,6 +413,19 @@ trait ErasableRequester<'a> {
         draft_id: DraftId,
         text: String,
     ) -> ErasedRequest<'a, SendMessageDraft, Self::Err>;
+
+    fn send_rich_message(
+        &self,
+        chat_id: Recipient,
+        rich_message: InputRichMessage,
+    ) -> ErasedRequest<'a, SendRichMessage, Self::Err>;
+
+    fn send_rich_message_draft(
+        &self,
+        chat_id: Recipient,
+        draft_id: DraftId,
+        rich_message: InputRichMessage,
+    ) -> ErasedRequest<'a, SendRichMessageDraft, Self::Err>;
 
     fn forward_message(
         &self,
@@ -705,6 +722,20 @@ trait ErasableRequester<'a> {
         chat_id: Recipient,
         user_id: UserId,
     ) -> ErasedRequest<'a, DeclineChatJoinRequest, Self::Err>;
+
+    /// For Telegram documentation see [`AnswerChatJoinRequestQuery`].
+    fn answer_chat_join_request_query(
+        &self,
+        chat_join_request_query_id: String,
+        result: String,
+    ) -> ErasedRequest<'a, AnswerChatJoinRequestQuery, Self::Err>;
+
+    /// For Telegram documentation see [`SendChatJoinRequestWebApp`].
+    fn send_chat_join_request_web_app(
+        &self,
+        chat_join_request_query_id: String,
+        web_app_url: String,
+    ) -> ErasedRequest<'a, SendChatJoinRequestWebApp, Self::Err>;
 
     fn set_chat_photo(
         &self,
@@ -1429,6 +1460,23 @@ where
         Requester::send_message_draft(self, chat_id, draft_id, text).erase()
     }
 
+    fn send_rich_message(
+        &self,
+        chat_id: Recipient,
+        rich_message: InputRichMessage,
+    ) -> ErasedRequest<'a, SendRichMessage, Self::Err> {
+        Requester::send_rich_message(self, chat_id, rich_message).erase()
+    }
+
+    fn send_rich_message_draft(
+        &self,
+        chat_id: Recipient,
+        draft_id: DraftId,
+        rich_message: InputRichMessage,
+    ) -> ErasedRequest<'a, SendRichMessageDraft, Self::Err> {
+        Requester::send_rich_message_draft(self, chat_id, draft_id, rich_message).erase()
+    }
+
     fn forward_message(
         &self,
         chat_id: Recipient,
@@ -1834,6 +1882,23 @@ where
         user_id: UserId,
     ) -> ErasedRequest<'a, DeclineChatJoinRequest, Self::Err> {
         Requester::decline_chat_join_request(self, chat_id, user_id).erase()
+    }
+
+    fn answer_chat_join_request_query(
+        &self,
+        chat_join_request_query_id: String,
+        result: String,
+    ) -> ErasedRequest<'a, AnswerChatJoinRequestQuery, Self::Err> {
+        Requester::answer_chat_join_request_query(self, chat_join_request_query_id, result).erase()
+    }
+
+    fn send_chat_join_request_web_app(
+        &self,
+        chat_join_request_query_id: String,
+        web_app_url: String,
+    ) -> ErasedRequest<'a, SendChatJoinRequestWebApp, Self::Err> {
+        Requester::send_chat_join_request_web_app(self, chat_join_request_query_id, web_app_url)
+            .erase()
     }
 
     fn set_chat_photo(

@@ -5,18 +5,18 @@
 </p>
 
 <p align="center">
-  Full-featured, elegant Telegram Bot framework in Rust with Bot API 10.0+ coverage.
+  Full-featured, elegant Telegram Bot framework in Rust with Bot API 10.1+ coverage.
 </p>
 
 <p align="center">
   <a href="https://github.com/ZethRise/Ronami/stargazers"><img src="https://img.shields.io/github/stars/ZethRise/Ronami?style=for-the-badge&logo=github" alt="GitHub stars"></a>
-  <a href="https://core.telegram.org/bots/api"><img src="https://img.shields.io/badge/API%20coverage-10.0-2481cc?style=for-the-badge&logo=telegram" alt="API coverage 10.0"></a>
+  <a href="https://core.telegram.org/bots/api"><img src="https://img.shields.io/badge/API%20coverage-10.1-2481cc?style=for-the-badge&logo=telegram" alt="API coverage 10.1"></a>
   <a href="https://crates.io/crates/ronami"><img src="https://img.shields.io/crates/v/ronami?style=for-the-badge&color=e17055" alt="Crates.io"></a>
   <a href="https://docs.rs/ronami"><img src="https://img.shields.io/docsrs/ronami?style=for-the-badge" alt="Documentation"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6c5ce7?style=for-the-badge" alt="MIT License"></a>
 </p>
 
-> **v1.0.0** — Ronami is a modern Telegram Bot framework in Rust, evolved from [teloxide](https://github.com/teloxide/teloxide) to deliver up-to-date Telegram Bot API 10.0+ coverage, refreshed crate naming, and active maintenance. this Project is Vibe Coded with Ai so expect bugs and errors
+> **v1.0.0** — Ronami is a modern Telegram Bot framework in Rust, evolved from [teloxide](https://github.com/teloxide/teloxide) to deliver up-to-date Telegram Bot API 10.1+ coverage, refreshed crate naming, and active maintenance. this Project is Vibe Coded with Ai so expect bugs and errors
 
 ## What Ronami does
 
@@ -40,7 +40,7 @@ Telegram Bot API Server (:8081 / cloud)
 
 ## Highlights
 
-- **Telegram Bot API 10.0**: Full coverage including guest mode (`answerGuestQuery`, `SentGuestMessage`, `UpdateKind::GuestMessage`), managed bot access settings (`getManagedBotAccessSettings`, `setManagedBotAccessSettings`, `BotAccessSettings`), user personal chat messages (`getUserPersonalChatMessages`), live photos (`sendLivePhoto`, `LivePhoto`, `InputMediaLivePhoto`), poll media (`PollMedia`, `InputPollMedia`, `members_only`, `country_codes`), reaction management (`deleteMessageReaction`, `deleteAllMessageReactions`), and earlier 9.x features (managed bots, multi-answer quizzes, chat member tags, draft streaming).
+- **Telegram Bot API 10.1**: Full coverage including Rich Messages (`sendRichMessage`, `sendRichMessageDraft`, `RichMessage`, `RichBlock`, `RichText`, `InputRichMessage`), join request queries (`answerChatJoinRequestQuery`, `sendChatJoinRequestWebApp`, `supports_join_request_queries`, `guard_bot`, `query_id`), guest mode (`answerGuestQuery`, `SentGuestMessage`), managed bot access settings, live photos, and poll media.
 - **Declarative Dispatching**: Functional chain-of-responsibility routing powered by `dptree`. Inject dependencies, compose pipelines, and cleanly isolate event handlers.
 - **Stateful Dialogues**: Built-in finite-state-machine (FSM) conversations with interchangeable storage backends: In-Memory, Redis, SQLite, and PostgreSQL.
 - **Pluggable Adaptor Stack**: Layer decorators for automatic request throttling, default parse modes (HTML / MarkdownV2), structured trace logging, and cache tiers.
@@ -150,7 +150,7 @@ Ronami is an API-compatible drop-in successor to teloxide. Rename dependencies a
 | Custom API URL | `TELOXIDE_API_URL` | `RONAMI_API_URL` |
 | Proxy | `TELOXIDE_PROXY` | `RONAMI_PROXY` |
 | Dialogue table | `teloxide_dialogues` | `ronami_dialogues` |
-| Coverage | 9.2 | **10.0** |
+| Coverage | 9.2 | **10.1** |
 
 See [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) for full details.
 

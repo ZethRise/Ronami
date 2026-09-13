@@ -40,7 +40,7 @@
 //! [github]: https://github.com/WaffleLapkin/tg-methods-schema
 
 Schema(
-    api_version: ApiVersion(ver: "10.0", date: "May 8, 2026"),
+    api_version: ApiVersion(ver: "10.1", date: "June 11, 2026"),
     methods: [
         Method(
             names: ("getUpdates", "GetUpdates", "get_updates"),
@@ -355,6 +355,118 @@ Schema(
                     name: "entities",
                     ty: Option(ArrayOf(RawTy("MessageEntity"))),
                     descr: Doc(md: "A JSON-serialized list of special entities that appear in message text, which can be specified instead of _parse\\_mode_"),
+                ),
+            ],
+        ),
+        Method(
+            names: ("sendRichMessage", "SendRichMessage", "send_rich_message"),
+            return_ty: RawTy("Message"),
+            doc: Doc(
+                md: "Use this method to send rich messages. If the message contains a block with a media element, then the bot must have the right to send the media to the chat. On success, the sent [Message] is returned.",
+                md_links: {"Message": "https://core.telegram.org/bots/api#message"},
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#sendrichmessage",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)"),
+                ),
+                Param(
+                    name: "rich_message",
+                    ty: RawTy("InputRichMessage"),
+                    descr: Doc(md: "The message to be sent"),
+                ),
+                Param(
+                    name: "business_connection_id",
+                    ty: Option(RawTy("BusinessConnectionId")),
+                    descr: Doc(md: "Unique identifier of the business connection on behalf of which the message will be sent"),
+                ),
+                Param(
+                    name: "message_thread_id",
+                    ty: Option(RawTy("ThreadId")),
+                    descr: Doc(md: "Unique identifier for the target message thread (topic) of the forum; for forum supergroups only"),
+                ),
+                Param(
+                    name: "direct_messages_topic_id",
+                    ty: Option(RawTy("TopicId")),
+                    descr: Doc(md: "Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat"),
+                ),
+                Param(
+                    name: "disable_notification",
+                    ty: Option(bool),
+                    descr: Doc(
+                        md: "Sends the message [silently]. Users will receive a notification with no sound.",
+                        md_links: {"silently": "https://telegram.org/blog/channels-2-0#silent-messages"},
+                    ),
+                ),
+                Param(
+                    name: "protect_content",
+                    ty: Option(bool),
+                    descr: Doc(md: "Protects the contents of sent messages from forwarding and saving"),
+                ),
+                Param(
+                    name: "allow_paid_broadcast",
+                    ty: Option(bool),
+                    descr: Doc(md: "Pass `true` to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"),
+                ),
+                Param(
+                    name: "message_effect_id",
+                    ty: Option(RawTy("EffectId")),
+                    descr: Doc(md: "Unique identifier of the message effect to be added to the message; for private chats only"),
+                ),
+                Param(
+                    name: "suggested_post_parameters",
+                    ty: Option(RawTy("SuggestedPostParameters")),
+                    descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
+                ),
+                Param(
+                    name: "reply_parameters",
+                    ty: Option(RawTy("ReplyParameters")),
+                    descr: Doc(md: "Description of the message to reply to"),
+                ),
+                Param(
+                    name: "reply_markup",
+                    ty: Option(RawTy("ReplyMarkup")),
+                    descr: Doc(
+                        md: "Additional interface options. A JSON-serialized object for an [inline keyboard], [custom reply keyboard], instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account.",
+                        md_links: {
+                            "inline keyboard": "https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating",
+                            "custom reply keyboard": "https://core.telegram.org/bots#keyboards",
+                        },
+                    ),
+                ),
+            ],
+        ),
+        Method(
+            names: ("sendRichMessageDraft", "SendRichMessageDraft", "send_rich_message_draft"),
+            return_ty: True,
+            doc: Doc(
+                md: "Use this method to stream a partial rich message to a user while the message is being generated. Returns _True_ on success.",
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#sendrichmessagedraft",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target private chat"),
+                ),
+                Param(
+                    name: "draft_id",
+                    ty: RawTy("DraftId"),
+                    descr: Doc(md: "Unique identifier of the message draft; must be non-zero"),
+                ),
+                Param(
+                    name: "rich_message",
+                    ty: RawTy("InputRichMessage"),
+                    descr: Doc(md: "The partial message to be streamed"),
+                ),
+                Param(
+                    name: "message_thread_id",
+                    ty: Option(RawTy("ThreadId")),
+                    descr: Doc(md: "Unique identifier for the target message thread"),
                 ),
             ],
         ),
@@ -3446,6 +3558,49 @@ Schema(
             ],
         ),
         Method(
+            names: ("answerChatJoinRequestQuery", "AnswerChatJoinRequestQuery", "answer_chat_join_request_query"),
+            return_ty: True,
+            doc: Doc(
+                md: "Use this method to process a received chat join request query. Returns _True_ on success.",
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#answerchatjoinrequestquery",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "chat_join_request_query_id",
+                    ty: String,
+                    descr: Doc(md: "Unique identifier of the join request query"),
+                ),
+                Param(
+                    name: "result",
+                    ty: String,
+                    descr: Doc(md: "Result of the query. Must be either \"approve\" to allow the user to join the chat, \"decline\" to disallow the user to join the chat, or \"queue\" to leave the decision to other administrators."),
+                ),
+            ],
+        ),
+        Method(
+            names: ("sendChatJoinRequestWebApp", "SendChatJoinRequestWebApp", "send_chat_join_request_web_app"),
+            return_ty: True,
+            doc: Doc(
+                md: "Use this method to process a received chat join request query by showing a Mini App to the user before deciding the outcome. Call [answerChatJoinRequestQuery] to resolve the join request query based on the user interaction with the Mini App. Returns _True_ on success.",
+                md_links: {"answerChatJoinRequestQuery": "https://core.telegram.org/bots/api#answerchatjoinrequestquery"},
+            ),
+            tg_doc: "https://core.telegram.org/bots/api#sendchatjoinrequestwebapp",
+            tg_category: "Available methods",
+            params: [
+                Param(
+                    name: "chat_join_request_query_id",
+                    ty: String,
+                    descr: Doc(md: "Unique identifier of the join request query"),
+                ),
+                Param(
+                    name: "web_app_url",
+                    ty: String,
+                    descr: Doc(md: "The URL of the Mini App to be opened"),
+                ),
+            ],
+        ),
+        Method(
             names: ("setChatPhoto", "SetChatPhoto", "set_chat_photo"),
             return_ty: True,
             doc: Doc(md: "Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns _True_ on success."),
@@ -4602,6 +4757,11 @@ Schema(
                     descr: Doc(md: "Link preview generation options for the message"),
                 ),
                 Param(
+                    name: "rich_message",
+                    ty: Option(RawTy("InputRichMessage")),
+                    descr: Doc(md: "New rich content of the message; required if _text_ isn't specified"),
+                ),
+                Param(
                     name: "reply_markup",
                     ty: Option(RawTy("InlineKeyboardMarkup")),
                     descr: Doc(
@@ -4654,6 +4814,11 @@ Schema(
                     name: "disable_web_page_preview",
                     ty: Option(bool),
                     descr: Doc(md: "Disables link previews for links in this message")
+                ),
+                Param(
+                    name: "rich_message",
+                    ty: Option(RawTy("InputRichMessage")),
+                    descr: Doc(md: "New rich content of the message; required if _text_ isn't specified"),
                 ),
                 Param(
                     name: "reply_markup",

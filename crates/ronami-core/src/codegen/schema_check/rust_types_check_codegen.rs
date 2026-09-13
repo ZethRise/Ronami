@@ -1150,6 +1150,10 @@ mod tests {
                 api_object_name: "InputInvoiceMessageContent".to_owned(),
                 rust_object_name: "InputMessageContentInvoice".to_owned(),
             },
+            Exception::RenameCheckingObject {
+                api_object_name: "InputRichMessageContent".to_owned(),
+                rust_object_name: "InputMessageContentRich".to_owned(),
+            },
         ]);
 
         let mut string_exceptions = String::new();

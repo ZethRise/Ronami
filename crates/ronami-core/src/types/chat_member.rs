@@ -786,6 +786,7 @@ mod tests {
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
                 supports_guest_queries: false,
+                supports_join_request_queries: false,
             },
             kind: ChatMemberKind::Administrator(Administrator {
                 custom_title: None,
@@ -856,6 +857,7 @@ mod tests {
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
                 supports_guest_queries: false,
+                supports_join_request_queries: false,
             },
             kind: ChatMemberKind::Restricted(Restricted {
                 tag: None,

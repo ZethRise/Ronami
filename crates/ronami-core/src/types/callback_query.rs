@@ -125,6 +125,7 @@ mod tests {
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
                 supports_guest_queries: false,
+                supports_join_request_queries: false,
             },
             chat_instance: "123456".to_string(),
             message: None,
