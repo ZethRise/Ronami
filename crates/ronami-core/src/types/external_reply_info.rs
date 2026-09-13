@@ -2,8 +2,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::{
     Animation, Audio, Chat, Checklist, Contact, Dice, Document, Game, Giveaway, GiveawayWinners,
-    Invoice, LinkPreviewOptions, Location, MessageId, MessageOrigin, PaidMediaInfo, PhotoSize,
-    Poll, Sticker, Story, Venue, Video, VideoNote, Voice,
+    Invoice, LinkPreviewOptions, LivePhoto, Location, MessageId, MessageOrigin, PaidMediaInfo,
+    PhotoSize, Poll, Sticker, Story, Venue, Video, VideoNote, Voice,
 };
 
 /// This object contains information about a message that is being replied to,
@@ -35,6 +35,7 @@ pub struct ExternalReplyInfo {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 #[serde(rename_all = "snake_case")]
+#[allow(clippy::large_enum_variant)] // LivePhoto variant is modestly larger
 pub enum ExternalReplyInfoKind {
     // Note:
     // - `Venue` must be in front of `Location`
@@ -64,4 +65,5 @@ pub enum ExternalReplyInfoKind {
     VideoNote(VideoNote),
     Voice(Voice),
     Invoice(Invoice),
+    LivePhoto(LivePhoto),
 }

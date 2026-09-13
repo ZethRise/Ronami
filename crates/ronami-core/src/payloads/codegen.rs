@@ -203,6 +203,7 @@ fn eq_hash_suitable(method: &Method) -> bool {
                     && raw != "MaskPosition"
                     && raw != "InlineQueryResult"
                     && raw != "InputProfilePhoto"
+                    && raw != "InputPollMedia"
             }
         }
     }

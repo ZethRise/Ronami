@@ -1004,6 +1004,12 @@ mod tests {
                 object: "User".to_owned(),
                 field_name: "supports_inline_queries".to_owned(),
             },
+            // The media field can be both serialized and deserialized, but the type
+            // is an enum, mismatched with how schemars resolves it
+            Exception::IgnoreObjectField {
+                object: "InputPollOption".to_owned(),
+                field_name: "media".to_owned(),
+            },
             // Date is always 0, so we omit it
             Exception::IgnoreObjectField {
                 object: "InaccessibleMessage".to_owned(),

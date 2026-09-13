@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for TBA 10.0
+  - Guest mode: add `guest_query_id`, `guest_bot_caller_user`, `guest_bot_caller_chat` to `Message`, `SentGuestMessage` struct, `GuestQueryId`, `answer_guest_query` method, `supports_guest_queries` to `User`, `UpdateKind::GuestMessage` and `filter_guest_message`
+  - Add `bot_access_settings` (BotAccessSettings) struct and `get_managed_bot_access_settings`/`set_managed_bot_access_settings` methods
+  - Add `get_user_personal_chat_messages` method
+  - Live photos: add `LivePhoto` struct, `InputMediaLivePhoto`, `PaidMediaLivePhoto`/`InputPaidMediaLivePhoto`, `send_live_photo` method, `live_photo` to `Message`/`ExternalReplyInfo`/`PollMedia`, and LivePhoto variants to `InputMedia`/`InputPaidMedia`/`PaidMedia`
+  - Poll media: add `PollMedia`, `InputPollMedia`, `InputPollOptionMedia`, `Link`, `InputMediaLink/Sticker/Location/Venue`; add `media`/`explanation_media`/`members_only`/`country_codes` to `sendPoll`, `media` to `Poll`/`PollOption`/`InputPollOption`
+  - Chat management: add `can_react_to_messages` to `ChatPermissions`/`ChatMemberRestricted`, `return_bots` to `get_chat_administrators`, `delete_message_reaction`/`delete_all_message_reactions` methods, `can_send_welcome_messages` to `ChatAdministratorRights`/`ChatMemberAdministrator`/`promoteChatMember`
+
 - Support for TBA 9.6
   - Add `get_managed_bot_token`, `replace_managed_bot_token`, and `save_prepared_keyboard_button` methods and payloads
   - Add `can_manage_bots` field to `User` struct

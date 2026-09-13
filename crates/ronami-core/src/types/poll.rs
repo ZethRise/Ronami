@@ -1,4 +1,4 @@
-use crate::types::{Chat, MessageEntity, PollType, Seconds, User};
+use crate::types::{Chat, MessageEntity, PollMedia, PollType, Seconds, User};
 
 use chrono::{DateTime, Utc};
 use derive_more::derive::From;
@@ -26,7 +26,7 @@ pub struct PollId(pub String);
 ///
 /// [The official docs](https://core.telegram.org/bots/api#poll).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct Poll {
     /// Unique poll identifier.
@@ -94,13 +94,30 @@ pub struct Poll {
     /// Special entities like usernames, URLs, bot commands, etc. that appear in
     /// the description
     pub description_entities: Option<Vec<MessageEntity>>,
+
+    /// Media added to the poll description
+    pub media: Option<PollMedia>,
+
+    /// Media added to the quiz explanation
+    pub explanation_media: Option<PollMedia>,
+
+    /// `true`, if the poll is not available for users who are not in the chat;
+    /// for supergroups only
+    #[serde(default)]
+    pub members_only: bool,
+
+    /// Countries in the [ISO 3166-1 alpha-2] format for which the poll can be
+    /// voted in by regular users; for polls with country restrictions
+    ///
+    /// [ISO 3166-1 alpha-2]: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+    pub country_codes: Option<Vec<String>>,
 }
 
 /// This object contains information about one answer option in a poll.
 ///
 /// [The official docs](https://core.telegram.org/bots/api#polloption).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct PollOption {
     /// Persistent identifier for the option.
@@ -127,6 +144,9 @@ pub struct PollOption {
     #[serde(default, with = "crate::types::serde_opt_date_from_unix_timestamp")]
     #[cfg_attr(test, schemars(with = "Option<i64>"))]
     pub addition_date: Option<DateTime<Utc>>,
+
+    /// Media added to the option
+    pub media: Option<PollMedia>,
 }
 
 impl Poll {

@@ -157,6 +157,10 @@ pub enum UpdateKind {
     /// that is managed by the current bot.
     ManagedBot(ManagedBotUpdated),
 
+    /// A user sent a message to the bot in a chat the bot is not a member of;
+    /// for bots with guest mode enabled
+    GuestMessage(Message),
+
     /// An error that happened during deserialization.
     ///
     /// This allows `ronami` to continue working even if telegram adds a new
@@ -201,6 +205,7 @@ impl Update {
             ChatBoost(b) => return b.boost.source.user(),
             RemovedChatBoost(b) => return b.source.user(),
             ManagedBot(b) => &b.user,
+            GuestMessage(m) => return m.from.as_ref(),
 
             MessageReactionCount(_) | DeletedBusinessMessages(_) | Poll(_) | Error(_) => {
                 return None
@@ -295,6 +300,8 @@ impl Update {
             }
             UpdateKind::ManagedBot(b) => i6([&b.user, &b.bot].into_iter()),
 
+            UpdateKind::GuestMessage(message) => i0(message.mentioned_users()),
+
             UpdateKind::ChatJoinRequest(_)
             | UpdateKind::MessageReactionCount(_)
             | UpdateKind::BusinessConnection(_)
@@ -335,6 +342,8 @@ impl Update {
             | PollAnswer(_)
             | ManagedBot(_)
             | Error(_) => return None,
+
+            GuestMessage(m) => &m.chat,
         };
 
         Some(chat)
@@ -463,6 +472,9 @@ impl<'de> Deserialize<'de> for UpdateKind {
                         "managed_bot" => {
                             map.next_value::<ManagedBotUpdated>().ok().map(UpdateKind::ManagedBot)
                         }
+                        "guest_message" => {
+                            map.next_value::<Message>().ok().map(UpdateKind::GuestMessage)
+                        }
                         _ => Some(empty_error()),
                     })
                     .unwrap_or_else(empty_error);
@@ -538,6 +550,9 @@ impl Serialize for UpdateKind {
                 s.serialize_newtype_variant(name, 22, "removed_chat_boost", v)
             }
             UpdateKind::ManagedBot(v) => s.serialize_newtype_variant(name, 23, "managed_bot", v),
+            UpdateKind::GuestMessage(v) => {
+                s.serialize_newtype_variant(name, 24, "guest_message", v)
+            }
             UpdateKind::Error(v) => v.serialize(s),
         }
     }
@@ -606,6 +621,7 @@ mod test {
                     is_premium: false,
                     added_to_attachment_menu: false,
                     can_manage_bots: false,
+                    supports_guest_queries: false,
                 }),
                 sender_chat: None,
                 is_topic_message: false,
@@ -629,6 +645,10 @@ mod test {
                     quote: None,
                     reply_to_checklist_task_id: None,
                     reply_to_poll_option_id: None,
+                    guest_query_id: None,
+                    guest_bot_caller_user: None,
+                    guest_bot_caller_chat: None,
+                    live_photo: None,
                     reply_to_story: None,
                     sender_boost_count: None,
                     edit_date: None,
@@ -968,6 +988,7 @@ mod test {
                     is_premium: true,
                     added_to_attachment_menu: false,
                     can_manage_bots: false,
+                    supports_guest_queries: false,
                 }),
                 date: DateTime::from_timestamp(1721306082, 0).unwrap(),
                 old_reaction: vec![],
@@ -1149,6 +1170,7 @@ mod test {
                             is_premium: true,
                             added_to_attachment_menu: false,
                             can_manage_bots: false,
+                            supports_guest_queries: false,
                         },
                     }),
                 },
@@ -1210,6 +1232,7 @@ mod test {
                         is_premium: true,
                         added_to_attachment_menu: false,
                         can_manage_bots: false,
+                        supports_guest_queries: false,
                     },
                 }),
             }),

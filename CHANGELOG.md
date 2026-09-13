@@ -9,6 +9,10 @@ and issue links in older entries point at the upstream repository.
 
 ## unreleased
 
+### Added
+
+- Support for TBA 10.0 (guest mode, bot access settings, user personal chat messages, live photos, poll media, message reaction deletion, chat management additions)
+
 ### Changed
 
 - Rebranded the workspace from teloxide to Ronami (`ronami`, `ronami-core`, `ronami-macros`) [**BC**]

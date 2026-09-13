@@ -6,7 +6,7 @@ use futures::{
 use once_cell::sync::OnceCell;
 use rc_box::ArcBox;
 use reqwest::{multipart::Part, Body};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use takecell::TakeCell;
 use tokio::{
     io::{AsyncRead, AsyncReadExt, ReadBuf},
@@ -189,6 +189,50 @@ impl Serialize for InputFile {
         S: serde::Serializer,
     {
         self.attach_or_value().serialize(serializer)
+    }
+}
+
+impl<'de> Deserialize<'de> for InputFile {
+    /// Deserializes a file id (or an HTTP URL) from a string. Note that actual
+    /// file uploads can only be performed via the input API, not via
+    /// deserialization.
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        match url::Url::parse(&s) {
+            Ok(url) => Ok(Self::new(Url(url))),
+            Err(_) => Ok(Self::new(FileId(types::FileId(s)))),
+        }
+    }
+}
+
+impl PartialEq for InputFile {
+    fn eq(&self, other: &Self) -> bool {
+        match (&self.inner, &other.inner) {
+            (Url(l), Url(r)) => l == r,
+            (FileId(l), FileId(r)) => l == r,
+            (File(l), File(r)) => l == r,
+            (Bytes(l), Bytes(r)) => l == r,
+            _ => false,
+        }
+    }
+}
+
+impl Eq for InputFile {}
+
+impl core::hash::Hash for InputFile {
+    fn hash<H: core::hash::Hasher>(&self, state: &mut H) {
+        match &self.inner {
+            Url(url) => core::hash::Hash::hash(&url.as_str(), state),
+            FileId(file_id) => core::hash::Hash::hash(file_id, state),
+            File(path) => core::hash::Hash::hash(path, state),
+            Bytes(data) => core::hash::Hash::hash(data, state),
+            Read(_) => {
+                core::hash::Hash::hash(&core::hint::black_box(self as *const _ as usize), state)
+            }
+        }
     }
 }
 

@@ -68,6 +68,10 @@ pub struct ChatAdministratorRights {
     /// `true`, if the administrator can edit the tags of regular members; for
     /// groups and supergroups only
     pub can_manage_tags: Option<bool>,
+
+    /// `true`, if the administrator can send welcome messages for new members
+    #[serde(default)]
+    pub can_send_welcome_messages: bool,
 }
 
 impl ChatAdministratorRights {

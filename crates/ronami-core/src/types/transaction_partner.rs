@@ -255,6 +255,7 @@ mod tests {
                 is_premium: false,
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
+                supports_guest_queries: false,
             },
             kind: TransactionPartnerUserKind::PremiumPurchase(
                 TransactionPartnerUserPremiumPurchase { premium_subscription_duration: Some(1) },

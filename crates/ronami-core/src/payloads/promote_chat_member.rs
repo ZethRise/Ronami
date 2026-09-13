@@ -49,6 +49,8 @@ impl_payload! {
             pub can_manage_direct_messages: bool,
             /// Pass True if the administrator can edit the tags of regular members; for groups and supergroups only
             pub can_manage_tags: bool,
+            /// Pass True, if the administrator can send welcome messages for new members
+            pub can_send_welcome_messages: bool,
         }
     }
 }

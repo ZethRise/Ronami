@@ -12,7 +12,7 @@ use crate::types::{
     DirectMessagesTopic, Document, ExternalReplyInfo, ForumTopicClosed, ForumTopicCreated,
     ForumTopicEdited, ForumTopicReopened, Game, GeneralForumTopicHidden, GeneralForumTopicUnhidden,
     GiftInfo, Giveaway, GiveawayCompleted, GiveawayCreated, GiveawayWinners, InlineKeyboardMarkup,
-    Invoice, LinkPreviewOptions, Location, ManagedBotCreated, MaybeInaccessibleMessage,
+    Invoice, LinkPreviewOptions, LivePhoto, Location, ManagedBotCreated, MaybeInaccessibleMessage,
     MessageAutoDeleteTimerChanged, MessageEntity, MessageEntityRef, MessageId, MessageOrigin,
     PaidMediaInfo, PaidMessagePriceChanged, PassportData, PhotoSize, Poll, PollOptionAdded,
     PollOptionDeleted, ProximityAlertTriggered, RefundedPayment, Sticker, Story, SuccessfulPayment,
@@ -213,6 +213,19 @@ pub struct MessageCommon {
     /// Persistent identifier of the specific poll option to which the message
     /// is replying
     pub reply_to_poll_option_id: Option<String>,
+
+    /// Unique identifier of a guest query this message answers; for guest bots
+    pub guest_query_id: Option<String>,
+
+    /// The user that invoked the bot in a chat it is not a member of; for
+    /// guest bots
+    pub guest_bot_caller_user: Option<User>,
+
+    /// The chat in which the bot was invoked by a user; for guest bots
+    pub guest_bot_caller_chat: Option<Chat>,
+
+    /// Message is a live photo, information about it.
+    pub live_photo: Option<LivePhoto>,
 
     /// If the sender of the message boosted the chat, the number of boosts
     /// added by the user
@@ -3310,6 +3323,7 @@ mod tests {
                     is_premium: false,
                     added_to_attachment_menu: false,
                     can_manage_bots: false,
+                    supports_guest_queries: false,
                 }],
                 additional_chat_count: None,
                 premium_subscription_month_count: Some(6),

@@ -6,11 +6,11 @@ use crate::{
     requests::{JsonRequest, MultipartRequest},
     types::{
         AcceptedGiftTypes, BotCommand, BusinessConnectionId, CallbackQueryId, ChatId,
-        ChatPermissions, CustomEmojiId, DraftId, FileId, GiftId, InlineQueryId, InlineQueryResult,
-        InputChecklist, InputFile, InputMedia, InputPaidMedia, InputPollOption, InputProfilePhoto,
-        InputSticker, InputStoryContent, KeyboardButton, LabeledPrice, MessageId, OwnedGiftId,
-        PreCheckoutQueryId, Recipient, Seconds, ShippingQueryId, StickerFormat, StoryId,
-        TelegramTransactionId, ThreadId, UserId,
+        ChatPermissions, CustomEmojiId, DraftId, FileId, GiftId, GuestQueryId, InlineQueryId,
+        InlineQueryResult, InputChecklist, InputFile, InputMedia, InputPaidMedia, InputPollOption,
+        InputProfilePhoto, InputSticker, InputStoryContent, KeyboardButton, LabeledPrice,
+        MessageId, OwnedGiftId, PreCheckoutQueryId, Recipient, Seconds, ShippingQueryId,
+        StickerFormat, StoryId, TelegramTransactionId, ThreadId, UserId,
     },
     Bot,
 };
@@ -173,6 +173,23 @@ impl Requester for Bot {
         C: Into<Recipient>,
     {
         Self::SendVideoNote::new(self.clone(), payloads::SendVideoNote::new(chat_id, video_note))
+    }
+
+    type SendLivePhoto = MultipartRequest<payloads::SendLivePhoto>;
+
+    fn send_live_photo<C>(
+        &self,
+        chat_id: C,
+        live_photo: InputFile,
+        photo: InputFile,
+    ) -> Self::SendLivePhoto
+    where
+        C: Into<Recipient>,
+    {
+        Self::SendLivePhoto::new(
+            self.clone(),
+            payloads::SendLivePhoto::new(chat_id, live_photo, photo),
+        )
     }
 
     type SendPaidMedia = MultipartRequest<payloads::SendPaidMedia>;
@@ -1092,6 +1109,81 @@ impl Requester for Bot {
         Self::SavePreparedKeyboardButton::new(
             self.clone(),
             payloads::SavePreparedKeyboardButton::new(user_id, button),
+        )
+    }
+
+    type GetManagedBotAccessSettings = JsonRequest<payloads::GetManagedBotAccessSettings>;
+
+    fn get_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+    ) -> Self::GetManagedBotAccessSettings {
+        Self::GetManagedBotAccessSettings::new(
+            self.clone(),
+            payloads::GetManagedBotAccessSettings::new(user_id),
+        )
+    }
+
+    type SetManagedBotAccessSettings = JsonRequest<payloads::SetManagedBotAccessSettings>;
+
+    fn set_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+        is_access_restricted: bool,
+    ) -> Self::SetManagedBotAccessSettings {
+        Self::SetManagedBotAccessSettings::new(
+            self.clone(),
+            payloads::SetManagedBotAccessSettings::new(user_id, is_access_restricted),
+        )
+    }
+
+    type GetUserPersonalChatMessages = JsonRequest<payloads::GetUserPersonalChatMessages>;
+
+    fn get_user_personal_chat_messages(
+        &self,
+        user_id: UserId,
+        limit: u8,
+    ) -> Self::GetUserPersonalChatMessages {
+        Self::GetUserPersonalChatMessages::new(
+            self.clone(),
+            payloads::GetUserPersonalChatMessages::new(user_id, limit),
+        )
+    }
+
+    type AnswerGuestQuery = JsonRequest<payloads::AnswerGuestQuery>;
+
+    fn answer_guest_query(
+        &self,
+        guest_query_id: GuestQueryId,
+        result: InlineQueryResult,
+    ) -> Self::AnswerGuestQuery {
+        Self::AnswerGuestQuery::new(
+            self.clone(),
+            payloads::AnswerGuestQuery::new(guest_query_id, result),
+        )
+    }
+
+    type DeleteMessageReaction = JsonRequest<payloads::DeleteMessageReaction>;
+
+    fn delete_message_reaction<C>(&self, chat_id: C, message_id: i32) -> Self::DeleteMessageReaction
+    where
+        C: Into<Recipient>,
+    {
+        Self::DeleteMessageReaction::new(
+            self.clone(),
+            payloads::DeleteMessageReaction::new(chat_id, message_id),
+        )
+    }
+
+    type DeleteAllMessageReactions = JsonRequest<payloads::DeleteAllMessageReactions>;
+
+    fn delete_all_message_reactions<C>(&self, chat_id: C) -> Self::DeleteAllMessageReactions
+    where
+        C: Into<Recipient>,
+    {
+        Self::DeleteAllMessageReactions::new(
+            self.clone(),
+            payloads::DeleteAllMessageReactions::new(chat_id),
         )
     }
 

@@ -14,5 +14,9 @@ impl_payload! {
             /// Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
             pub chat_id: Recipient [into],
         }
+        optional {
+            /// Pass _True_ to also return bots in the list
+            pub return_bots: bool,
+        }
     }
 }

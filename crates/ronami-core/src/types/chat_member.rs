@@ -124,6 +124,10 @@ pub struct Administrator {
     #[serde(default)]
     pub can_manage_tags: bool,
 
+    /// `true`, if the administrator can send welcome messages for new members
+    #[serde(default)]
+    pub can_send_welcome_messages: bool,
+
     /// `true` if the administrator can add new administrators with a subset of
     /// his own privileges or demote administrators that he has promoted,
     /// directly or indirectly (promoted by administrators that were appointed
@@ -209,6 +213,10 @@ pub struct Restricted {
     /// `true` if the user is allowed to edit their own tag.
     #[serde(default)]
     pub can_edit_tag: bool,
+
+    /// `true` if the user is allowed to react to messages.
+    #[serde(default)]
+    pub can_react_to_messages: bool,
 }
 
 /// User that was banned in the chat and can't return to it or view chat
@@ -777,6 +785,7 @@ mod tests {
                 is_premium: false,
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
+                supports_guest_queries: false,
             },
             kind: ChatMemberKind::Administrator(Administrator {
                 custom_title: None,
@@ -798,6 +807,7 @@ mod tests {
                 can_manage_direct_messages: true,
                 can_manage_topics: false,
                 can_manage_tags: false,
+                can_send_welcome_messages: false,
             }),
         };
         let actual = serde_json::from_str::<ChatMember>(json).unwrap();
@@ -845,6 +855,7 @@ mod tests {
                 is_premium: false,
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
+                supports_guest_queries: false,
             },
             kind: ChatMemberKind::Restricted(Restricted {
                 tag: None,
@@ -864,6 +875,7 @@ mod tests {
                 can_invite_users: true,
                 can_pin_messages: true,
                 can_edit_tag: false,
+                can_react_to_messages: false,
                 until_date: UntilDate::Date(
                     chrono::DateTime::from_timestamp(1620000000, 0).unwrap(),
                 ),

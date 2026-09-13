@@ -284,6 +284,13 @@ where
         get_my_short_description,
         set_my_profile_photo,
         remove_my_profile_photo,
+        send_live_photo,
+        get_user_personal_chat_messages,
+        answer_guest_query,
+        get_managed_bot_access_settings,
+        set_managed_bot_access_settings,
+        delete_message_reaction,
+        delete_all_message_reactions,
         get_managed_bot_token,
         replace_managed_bot_token,
         save_prepared_keyboard_button,
@@ -901,6 +908,47 @@ trait ErasableRequester<'a> {
         user_id: UserId,
         button: KeyboardButton,
     ) -> ErasedRequest<'a, SavePreparedKeyboardButton, Self::Err>;
+
+    fn send_live_photo(
+        &self,
+        chat_id: Recipient,
+        live_photo: InputFile,
+        photo: InputFile,
+    ) -> ErasedRequest<'a, SendLivePhoto, Self::Err>;
+
+    fn get_user_personal_chat_messages(
+        &self,
+        user_id: UserId,
+        limit: u8,
+    ) -> ErasedRequest<'a, GetUserPersonalChatMessages, Self::Err>;
+
+    fn answer_guest_query(
+        &self,
+        guest_query_id: GuestQueryId,
+        result: InlineQueryResult,
+    ) -> ErasedRequest<'a, AnswerGuestQuery, Self::Err>;
+
+    fn get_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, GetManagedBotAccessSettings, Self::Err>;
+
+    fn set_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+        is_access_restricted: bool,
+    ) -> ErasedRequest<'a, SetManagedBotAccessSettings, Self::Err>;
+
+    fn delete_message_reaction(
+        &self,
+        chat_id: Recipient,
+        message_id: i32,
+    ) -> ErasedRequest<'a, DeleteMessageReaction, Self::Err>;
+
+    fn delete_all_message_reactions(
+        &self,
+        chat_id: Recipient,
+    ) -> ErasedRequest<'a, DeleteAllMessageReactions, Self::Err>;
 
     fn set_chat_menu_button(&self) -> ErasedRequest<'a, SetChatMenuButton, Self::Err>;
 
@@ -2077,6 +2125,61 @@ where
         button: KeyboardButton,
     ) -> ErasedRequest<'a, SavePreparedKeyboardButton, Self::Err> {
         Requester::save_prepared_keyboard_button(self, user_id, button).erase()
+    }
+
+    fn send_live_photo(
+        &self,
+        chat_id: Recipient,
+        live_photo: InputFile,
+        photo: InputFile,
+    ) -> ErasedRequest<'a, SendLivePhoto, Self::Err> {
+        Requester::send_live_photo(self, chat_id, live_photo, photo).erase()
+    }
+
+    fn get_user_personal_chat_messages(
+        &self,
+        user_id: UserId,
+        limit: u8,
+    ) -> ErasedRequest<'a, GetUserPersonalChatMessages, Self::Err> {
+        Requester::get_user_personal_chat_messages(self, user_id, limit).erase()
+    }
+
+    fn answer_guest_query(
+        &self,
+        guest_query_id: GuestQueryId,
+        result: InlineQueryResult,
+    ) -> ErasedRequest<'a, AnswerGuestQuery, Self::Err> {
+        Requester::answer_guest_query(self, guest_query_id, result).erase()
+    }
+
+    fn get_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+    ) -> ErasedRequest<'a, GetManagedBotAccessSettings, Self::Err> {
+        Requester::get_managed_bot_access_settings(self, user_id).erase()
+    }
+
+    fn set_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+        is_access_restricted: bool,
+    ) -> ErasedRequest<'a, SetManagedBotAccessSettings, Self::Err> {
+        Requester::set_managed_bot_access_settings(self, user_id, is_access_restricted).erase()
+    }
+
+    fn delete_message_reaction(
+        &self,
+        chat_id: Recipient,
+        message_id: i32,
+    ) -> ErasedRequest<'a, DeleteMessageReaction, Self::Err> {
+        Requester::delete_message_reaction(self, chat_id, message_id).erase()
+    }
+
+    fn delete_all_message_reactions(
+        &self,
+        chat_id: Recipient,
+    ) -> ErasedRequest<'a, DeleteAllMessageReactions, Self::Err> {
+        Requester::delete_all_message_reactions(self, chat_id).erase()
     }
 
     fn set_chat_menu_button(&self) -> ErasedRequest<'a, SetChatMenuButton, Self::Err> {

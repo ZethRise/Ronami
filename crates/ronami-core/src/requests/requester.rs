@@ -285,6 +285,18 @@ pub trait Requester {
     where
         C: Into<Recipient>;
 
+    type SendLivePhoto: Request<Payload = SendLivePhoto, Err = Self::Err>;
+
+    /// For Telegram documentation see [`SendLivePhoto`].
+    fn send_live_photo<C>(
+        &self,
+        chat_id: C,
+        live_photo: InputFile,
+        photo: InputFile,
+    ) -> Self::SendLivePhoto
+    where
+        C: Into<Recipient>;
+
     type SendAnimation: Request<Payload = SendAnimation, Err = Self::Err>;
 
     /// For Telegram documentation see [`SendAnimation`].
@@ -762,6 +774,18 @@ pub trait Requester {
     where
         C: Into<Recipient>;
 
+    type GetUserPersonalChatMessages: Request<
+        Payload = GetUserPersonalChatMessages,
+        Err = Self::Err,
+    >;
+
+    /// For Telegram documentation see [`GetUserPersonalChatMessages`].
+    fn get_user_personal_chat_messages(
+        &self,
+        user_id: UserId,
+        limit: u8,
+    ) -> Self::GetUserPersonalChatMessages;
+
     type SetChatStickerSet: Request<Payload = SetChatStickerSet, Err = Self::Err>;
 
     /// For Telegram documentation see [`SetChatStickerSet`].
@@ -902,6 +926,15 @@ pub trait Requester {
         callback_query_id: CallbackQueryId,
     ) -> Self::AnswerCallbackQuery;
 
+    type AnswerGuestQuery: Request<Payload = AnswerGuestQuery, Err = Self::Err>;
+
+    /// For Telegram documentation see [`AnswerGuestQuery`].
+    fn answer_guest_query(
+        &self,
+        guest_query_id: GuestQueryId,
+        result: InlineQueryResult,
+    ) -> Self::AnswerGuestQuery;
+
     type GetUserChatBoosts: Request<Payload = GetUserChatBoosts, Err = Self::Err>;
 
     /// For Telegram documentation see [`GetUserChatBoosts`].
@@ -987,6 +1020,27 @@ pub trait Requester {
         user_id: UserId,
         button: KeyboardButton,
     ) -> Self::SavePreparedKeyboardButton;
+
+    type GetManagedBotAccessSettings: Request<
+        Payload = GetManagedBotAccessSettings,
+        Err = Self::Err,
+    >;
+
+    /// For Telegram documentation see [`GetManagedBotAccessSettings`].
+    fn get_managed_bot_access_settings(&self, user_id: UserId)
+        -> Self::GetManagedBotAccessSettings;
+
+    type SetManagedBotAccessSettings: Request<
+        Payload = SetManagedBotAccessSettings,
+        Err = Self::Err,
+    >;
+
+    /// For Telegram documentation see [`SetManagedBotAccessSettings`].
+    fn set_managed_bot_access_settings(
+        &self,
+        user_id: UserId,
+        is_access_restricted: bool,
+    ) -> Self::SetManagedBotAccessSettings;
 
     type SetChatMenuButton: Request<Payload = SetChatMenuButton, Err = Self::Err>;
 
@@ -1186,6 +1240,24 @@ pub trait Requester {
     where
         C: Into<Recipient>,
         M: IntoIterator<Item = MessageId>;
+
+    type DeleteMessageReaction: Request<Payload = DeleteMessageReaction, Err = Self::Err>;
+
+    /// For Telegram documentation see [`DeleteMessageReaction`].
+    fn delete_message_reaction<C>(
+        &self,
+        chat_id: C,
+        message_id: i32,
+    ) -> Self::DeleteMessageReaction
+    where
+        C: Into<Recipient>;
+
+    type DeleteAllMessageReactions: Request<Payload = DeleteAllMessageReactions, Err = Self::Err>;
+
+    /// For Telegram documentation see [`DeleteAllMessageReactions`].
+    fn delete_all_message_reactions<C>(&self, chat_id: C) -> Self::DeleteAllMessageReactions
+    where
+        C: Into<Recipient>;
 
     type SendSticker: Request<Payload = SendSticker, Err = Self::Err>;
 
@@ -1838,6 +1910,13 @@ macro_rules! forward_all {
             get_my_short_description,
             set_my_profile_photo,
             remove_my_profile_photo,
+        send_live_photo,
+        get_user_personal_chat_messages,
+        answer_guest_query,
+        get_managed_bot_access_settings,
+        set_managed_bot_access_settings,
+        delete_message_reaction,
+        delete_all_message_reactions,
             get_managed_bot_token,
             replace_managed_bot_token,
             save_prepared_keyboard_button,

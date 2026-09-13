@@ -4,15 +4,15 @@ use chrono::{DateTime, Utc};
 use serde::Serialize;
 
 use crate::types::{
-    BusinessConnectionId, EffectId, InputPollOption, Message, MessageEntity, ParseMode, PollType,
-    Recipient, ReplyMarkup, ReplyParameters, ThreadId,
+    BusinessConnectionId, EffectId, InputPollMedia, InputPollOption, Message, MessageEntity,
+    ParseMode, PollType, Recipient, ReplyMarkup, ReplyParameters, ThreadId,
 };
 
 impl_payload! {
     /// Use this method to send a native poll. On success, the sent [`Message`] is returned.
     ///
     /// [`Message`]: crate::types::Message
-    #[derive(Debug, PartialEq, Eq, Hash, Clone, Serialize)]
+    #[derive(Debug, PartialEq, Clone, Serialize)]
     pub SendPoll (SendPollSetters) => Message {
         required {
             /// Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
@@ -48,6 +48,10 @@ impl_payload! {
             pub allow_adding_options: bool,
             /// Pass True, if the poll results should be hidden until the poll is closed, defaults to False
             pub hide_results_until_closes: bool,
+            /// Pass True, if the poll is not available for users, that are not in the chat; for supergroups only
+            pub members_only: bool,
+            /// A JSON-serialized list of countries in the [ISO 3166-1 alpha-2] format for which the poll can be voted in by regular users
+            pub country_codes: Vec<String> [collect],
             /// 0-based identifiers of the correct answer options, required for polls in quiz mode
             pub correct_option_ids: Vec<u8> [collect],
             /// Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing
@@ -58,6 +62,8 @@ impl_payload! {
             pub explanation_parse_mode: ParseMode,
             /// List of special entities that appear in the poll explanation, which can be specified instead of _parse\_mode_
             pub explanation_entities: Vec<MessageEntity> [collect],
+            /// A JSON-serialized object for the media in the explanation to be sent
+            pub explanation_media: InputPollMedia,
             /// Amount of time in seconds the poll will be active after creation, 5-2628000. Can't be used together with close_date.
             pub open_period: u32,
             /// Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 2628000 seconds in the future. Can't be used together with open_period.
@@ -73,6 +79,8 @@ impl_payload! {
             pub description_parse_mode: ParseMode,
             /// List of special entities that appear in the poll description, which can be specified instead of _description\_parse\_mode_
             pub description_entities: Vec<MessageEntity> [collect],
+            /// A JSON-serialized object for the media added to the poll description
+            pub media: InputPollMedia,
             /// Sends the message [silently]. Users will receive a notification with no sound.
             ///
             /// [silently]: https://telegram.org/blog/channels-2-0#silent-messages

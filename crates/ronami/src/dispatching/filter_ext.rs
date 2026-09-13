@@ -197,4 +197,5 @@ define_update_ext! {
     (filter_chat_boost, UpdateKind::ChatBoost, ChatBoost),
     (filter_removed_chat_boost, UpdateKind::RemovedChatBoost, RemovedChatBoost),
     (filter_managed_bot, UpdateKind::ManagedBot, ManagedBot),
+    (filter_guest_message, UpdateKind::GuestMessage, GuestMessage),
 }

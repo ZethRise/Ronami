@@ -14,6 +14,7 @@ use crate::types::{InputFile, Seconds};
 pub enum InputPaidMedia {
     Photo(InputPaidMediaPhoto),
     Video(Box<InputPaidMediaVideo>),
+    LivePhoto(Box<InputPaidMediaLivePhoto>),
 }
 
 impl From<InputPaidMedia> for InputFile {
@@ -21,6 +22,9 @@ impl From<InputPaidMedia> for InputFile {
         match media {
             InputPaidMedia::Photo(InputPaidMediaPhoto { media, .. }) => media,
             InputPaidMedia::Video(input_paid_media_video) => input_paid_media_video.media,
+            InputPaidMedia::LivePhoto(input_paid_media_live_photo) => {
+                input_paid_media_live_photo.media
+            }
         }
     }
 }
@@ -35,9 +39,14 @@ impl InputPaidMedia {
             Video(input_paid_media_video) => {
                 (&input_paid_media_video.media, input_paid_media_video.thumbnail.as_ref())
             }
+            LivePhoto(input_paid_media_live_photo) => {
+                let InputPaidMediaLivePhoto { media, photo, .. } = &**input_paid_media_live_photo;
+                return Box::new(iter::once(media).chain(iter::once(photo)))
+                    as Box<dyn Iterator<Item = &InputFile>>;
+            }
         };
 
-        iter::once(media).chain(thumbnail)
+        Box::new(iter::once(media).chain(thumbnail)) as Box<dyn Iterator<Item = &InputFile>>
     }
 
     /// Returns an iterator of all files in this input media
@@ -49,9 +58,15 @@ impl InputPaidMedia {
             Video(input_paid_media_video) => {
                 (&mut input_paid_media_video.media, input_paid_media_video.thumbnail.as_mut())
             }
+            LivePhoto(input_paid_media_live_photo) => {
+                let InputPaidMediaLivePhoto { media, photo, .. } =
+                    &mut **input_paid_media_live_photo;
+                return Box::new(iter::once(media).chain(iter::once(photo)))
+                    as Box<dyn Iterator<Item = &mut InputFile>>;
+            }
         };
 
-        iter::once(media).chain(thumbnail)
+        Box::new(iter::once(media).chain(thumbnail)) as Box<dyn Iterator<Item = &mut InputFile>>
     }
 }
 
@@ -79,6 +94,27 @@ impl InputPaidMediaPhoto {
     pub fn media(mut self, val: InputFile) -> Self {
         self.media = val;
         self
+    }
+}
+
+/// The paid media to send is a live photo.
+///
+/// [The official docs](https://core.telegram.org/bots/api#inputpaidmedialivephoto).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, Serialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct InputPaidMediaLivePhoto {
+    /// Live photo video to send. The video must be no longer than 10 seconds
+    /// and must not exceed 10 MB in size.
+    pub media: InputFile,
+
+    /// The static photo to send.
+    pub photo: InputFile,
+}
+
+impl InputPaidMediaLivePhoto {
+    pub const fn new(media: InputFile, photo: InputFile) -> Self {
+        Self { media, photo }
     }
 }
 

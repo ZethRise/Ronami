@@ -1,13 +1,13 @@
 use std::iter;
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::types::{InputFile, MessageEntity, ParseMode, Seconds};
 
 /// This object represents the content of a media message to be sent.
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputmedia).
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 #[serde(tag = "type")]
 #[serde(rename_all = "snake_case")]
@@ -23,7 +23,7 @@ pub enum InputMedia {
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputmediaphoto).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct InputMediaPhoto {
     /// File to send.
@@ -109,7 +109,7 @@ impl InputMediaPhoto {
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputmediavideo).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct InputMediaVideo {
     // File to send.
@@ -267,7 +267,7 @@ impl InputMediaVideo {
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputmediaanimation).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct InputMediaAnimation {
     /// File to send.
@@ -394,7 +394,7 @@ impl InputMediaAnimation {
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputmediaaudio).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct InputMediaAudio {
     /// File to send.
@@ -503,7 +503,7 @@ impl InputMediaAudio {
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputmediadocument).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct InputMediaDocument {
     /// File to send.

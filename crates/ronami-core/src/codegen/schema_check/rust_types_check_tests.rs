@@ -37,6 +37,10 @@ fn test_rust_objects() {
             field_name: "date".to_owned(),
         },
         Exception::IgnoreObjectField {
+            object: "InputPollOption".to_owned(),
+            field_name: "media".to_owned(),
+        },
+        Exception::IgnoreObjectField {
             object: "User".to_owned(),
             field_name: "supports_inline_queries".to_owned(),
         },
@@ -230,6 +234,13 @@ fn test_rust_objects() {
     );
     check_object(
         api_schema.clone(),
+        schema_for!(LivePhoto),
+        "LivePhoto".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
         schema_for!(Story),
         "Story".to_owned(),
         &mut errors,
@@ -272,6 +283,13 @@ fn test_rust_objects() {
     );
     check_object(
         api_schema.clone(),
+        schema_for!(PaidMediaLivePhoto),
+        "PaidMediaLivePhoto".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
         schema_for!(PaidMediaPreview),
         "PaidMediaPreview".to_owned(),
         &mut errors,
@@ -302,6 +320,20 @@ fn test_rust_objects() {
         api_schema.clone(),
         schema_for!(Dice),
         "Dice".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(Link),
+        "Link".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(PollMedia),
+        "PollMedia".to_owned(),
         &mut errors,
         &exceptions,
     );
@@ -1091,6 +1123,13 @@ fn test_rust_objects() {
     );
     check_object(
         api_schema.clone(),
+        schema_for!(BotAccessSettings),
+        "BotAccessSettings".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
         schema_for!(AcceptedGiftTypes),
         "AcceptedGiftTypes".to_owned(),
         &mut errors,
@@ -1245,6 +1284,20 @@ fn test_rust_objects() {
     );
     check_object(
         api_schema.clone(),
+        schema_for!(InputMediaVenue),
+        "InputMediaVenue".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputMediaSticker),
+        "InputMediaSticker".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
         schema_for!(InputMediaVideo),
         "InputMediaVideo".to_owned(),
         &mut errors,
@@ -1268,6 +1321,27 @@ fn test_rust_objects() {
         api_schema.clone(),
         schema_for!(InputMediaDocument),
         "InputMediaDocument".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputMediaLocation),
+        "InputMediaLocation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputMediaLink),
+        "InputMediaLink".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputMediaLivePhoto),
+        "InputMediaLivePhoto".to_owned(),
         &mut errors,
         &exceptions,
     );
@@ -1583,6 +1657,13 @@ fn test_rust_objects() {
         api_schema.clone(),
         schema_for!(SentWebAppMessage),
         "SentWebAppMessage".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(SentGuestMessage),
+        "SentGuestMessage".to_owned(),
         &mut errors,
         &exceptions,
     );
