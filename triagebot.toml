@@ -1,6 +1,6 @@
 [assign]
 warn_non_default_branch = true
-contributing_url = "https://github.com/teloxide/teloxide/blob/master/CONTRIBUTING.md"
+contributing_url = "CONTRIBUTING.md"
 users_on_vacation = ["@syrtcevvi"]
 
 [assign.adhoc_groups]
@@ -8,9 +8,9 @@ users_on_vacation = ["@syrtcevvi"]
 fallback = ["@hirrolot", "@shdwchn10", "@LasterAlex"]
 
 [assign.owners]
-"crates/teloxide" = ["@hirrolot", "@LasterAlex", "@shdwchn10"]
-"crates/teloxide-core" = ["@LasterAlex", "@shdwchn10"]
-"crates/teloxide-macros" = ["@hirrolot", "@LasterAlex"]
+"crates/ronami" = ["@hirrolot", "@LasterAlex", "@shdwchn10"]
+"crates/ronami-core" = ["@LasterAlex", "@shdwchn10"]
+"crates/ronami-macros" = ["@hirrolot", "@LasterAlex"]
 ".devcontainer" = ["@shdwchn10"]
 
 
@@ -21,37 +21,37 @@ new_pr = true
 #new_issue = true
 
 [autolabel."C-core"]
-trigger_files = ["crates/teloxide-core/"]
+trigger_files = ["crates/ronami-core/"]
 
 [autolabel."C-main"]
-trigger_files = ["crates/teloxide/"]
+trigger_files = ["crates/ronami/"]
 
 [autolabel."C-macros"]
-trigger_files = ["crates/teloxide-macros/"]
+trigger_files = ["crates/ronami-macros/"]
 
 [autolabel."A-dialogue"]
-trigger_files = ["crates/teloxide/src/dispatching/dialogue/"]
+trigger_files = ["crates/ronami/src/dispatching/dialogue/"]
 
 [autolabel."A-dispatching"]
-trigger_files = ["crates/teloxide/src/dispatching/"]
+trigger_files = ["crates/ronami/src/dispatching/"]
 
 [autolabel."A-macros"]
-trigger_files = ["crates/teloxide-macros/"]
+trigger_files = ["crates/ronami-macros/"]
 
 [autolabel."A-requester"]
-trigger_files = ["crates/teloxide-core/src/requests/requester.rs", "crates/teloxide-core/src/requests/requester_ext.rs"]
+trigger_files = ["crates/ronami-core/src/requests/requester.rs", "crates/ronami-core/src/requests/requester_ext.rs"]
 
 [autolabel."A-requests"]
-trigger_files = ["crates/teloxide-core/src/requests/", "crates/teloxide-core/src/payloads/"]
+trigger_files = ["crates/ronami-core/src/requests/", "crates/ronami-core/src/payloads/"]
 
 [autolabel."A-tba-errors"]
-trigger_files = ["crates/teloxide-core/src/errors.rs"]
+trigger_files = ["crates/ronami-core/src/errors.rs"]
 
 [autolabel."A-tba-types"]
-trigger_files = ["crates/teloxide-core/src/types"]
+trigger_files = ["crates/ronami-core/src/types"]
 
 [autolabel."A-update-listeners"]
-trigger_files = ["crates/teloxide/src/update_listeners"]
+trigger_files = ["crates/ronami/src/update_listeners"]
 
 [relabel]
 allow-unauthenticated = [

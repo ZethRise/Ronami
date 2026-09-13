@@ -1,6 +1,6 @@
 ---
 name: Unknown telegram error
-about: You've found telegram error which is not known to teloxide
+about: You've found telegram error which is not known to ronami
 title: 'Unknown Error: <error description>'
 labels: K-bug, good first issue, FIXME, C-core, A-unknown-error, A-tba-errors
 assignees: ''
@@ -18,7 +18,7 @@ When using `<...>` method I've got  `ApiError::Unknown` error with the following
 
 ## Meta
 
-- `teloxide` version: <!-- (e.g.: `0.3.1`) -->
+- `ronami` version: <!-- (e.g.: `0.3.1`) -->
 
 ### Additional context
 

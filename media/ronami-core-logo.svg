@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ronami">
+  <rect width="512" height="512" rx="96" fill="#0B1220"/>
+  <path fill="#D7E3FF" d="M256 72 L392 248 L256 440 L120 248 Z"/>
+  <path fill="#0B1220" d="M256 148 L332 248 L256 372 L180 248 Z"/>
+  <path fill="#3DDCFF" d="M256 72 L300 132 L256 148 L212 132 Z"/>
+</svg>

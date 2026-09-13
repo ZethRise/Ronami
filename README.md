@@ -1,31 +1,33 @@
 <div align="center">
-  <img src="https://github.com/teloxide/teloxide/blob/master/media/teloxide-logo.png?raw=true" width="250"/>
-  <h1><code>teloxide</code></h1>
-  <a href="https://docs.rs/teloxide/">
-    <img src="https://docs.rs/teloxide/badge.svg">
+  <img src="media/ronami-logo.png" width="250" alt="Ronami"/>
+  <h1><code>ronami</code></h1>
+  <a href="https://github.com/ZethRise/Ronami">
+    <img src="https://img.shields.io/badge/GitHub-ZethRise%2FRonami-181717?logo=github">
   </a>
-  <a href="https://github.com/teloxide/teloxide/actions">
-    <img src="https://github.com/teloxide/teloxide/workflows/Continuous%20integration/badge.svg">
+  <a href="https://docs.rs/ronami/">
+    <img src="https://docs.rs/ronami/badge.svg">
   </a>
-  <a href="https://crates.io/crates/teloxide">
-    <img src="https://img.shields.io/crates/v/teloxide.svg">
+  <a href="https://crates.io/crates/ronami">
+    <img src="https://img.shields.io/crates/v/ronami.svg">
   </a>
   <a href="https://core.telegram.org/bots/api">
-    <img src="https://img.shields.io/badge/API%20coverage-Up%20to%209.2%20(inclusively)-green.svg">
-  </a>
-  <a href="https://t.me/teloxide">
-    <img src="https://img.shields.io/badge/support-t.me%2Fteloxide-blueviolet">
-  </a>
-  <a href="https://devpod.sh/open#https://github.com/teloxide/teloxide">
-    <img src="https://img.shields.io/badge/Open_in-DevPod-blueviolet">
+    <img src="https://img.shields.io/badge/API%20coverage-Up%20to%209.3%20(inclusively)-green.svg">
   </a>
 
-  A full-featured framework that empowers you to easily build [Telegram bots](https://telegram.org/blog/bot-revolution) using [Rust](https://www.rust-lang.org/). It handles all the difficult stuff so you can focus only on your business logic.
+  A full-featured framework for building [Telegram bots](https://telegram.org/blog/bot-revolution) in [Rust](https://www.rust-lang.org/). It handles the difficult stuff so you can focus on business logic.
 </div>
+
+## Fork of teloxide
+
+**Ronami is a fork of [teloxide](https://github.com/teloxide/teloxide).**
+
+This repository lives at [github.com/ZethRise/Ronami](https://github.com/ZethRise/Ronami). The original project is [github.com/teloxide/teloxide](https://github.com/teloxide/teloxide). Ronami keeps teloxide's architecture (typed Bot API client, `dptree` dispatching, dialogues, macros) under new crate names (`ronami`, `ronami-core`, `ronami-macros`) and is catching Telegram Bot API coverage up past teloxide's 9.2.
+
+Use `RONAMI_TOKEN` instead of `TELOXIDE_TOKEN`. See [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) for the rest of the rename.
 
 ## Highlights
 
- - **Declarative design.** `teloxide` is based upon [`dptree`], a functional [chain of responsibility] pattern that allows you to express pipelines of message processing in a highly declarative and extensible style.
+ - **Declarative design.** `ronami` is based upon [`dptree`], a functional [chain of responsibility] pattern that allows you to express pipelines of message processing in a highly declarative and extensible style.
 
 [`dptree`]: https://github.com/teloxide/dptree
 [chain of responsibility]: https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
@@ -38,7 +40,7 @@
 [Redis]: https://redis.io/
 [Sqlite]: https://www.sqlite.org
 
- - **Strongly typed commands.** Define bot commands as an `enum` and `teloxide` will parse them automatically — just like JSON structures in [`serde-json`] and command-line arguments in [`structopt`].
+ - **Strongly typed commands.** Define bot commands as an `enum` and `ronami` will parse them automatically — just like JSON structures in [`serde-json`] and command-line arguments in [`structopt`].
 
 [`structopt`]: https://github.com/TeXitoi/structopt
 [`serde-json`]: https://github.com/serde-rs/json
@@ -47,19 +49,19 @@
 
  1. [Download Rust](http://rustup.rs/).
  2. Create a new bot using [@Botfather](https://t.me/botfather) to get a token in the format `123456789:blablabla`.
- 3. Initialise the `TELOXIDE_TOKEN` environmental variable to your token:
+ 3. Initialise the `RONAMI_TOKEN` environmental variable to your token:
 ```bash
 # Unix-like
-$ export TELOXIDE_TOKEN=<Your token here>
+$ export RONAMI_TOKEN=<Your token here>
 
 # Windows command line
-$ set TELOXIDE_TOKEN=<Your token here>
+$ set RONAMI_TOKEN=<Your token here>
 
 # Windows PowerShell
-$ $env:TELOXIDE_TOKEN=<Your token here>
+$ $env:RONAMI_TOKEN=<Your token here>
 ```
 
- 4. Make sure that your Rust compiler is up to date (`teloxide` currently requires rustc at least version 1.85):
+ 4. Make sure that your Rust compiler is up to date (`ronami` currently requires rustc at least version 1.85):
 ```bash
 # If you're using stable
 $ rustup update stable
@@ -73,16 +75,16 @@ $ rustup override set nightly
  5. Run `cargo new my_bot`, enter the directory and put these lines into your `Cargo.toml`:
 ```toml
 [dependencies]
-teloxide = { version = "0.17.0", features = ["macros"] }
+ronami = { version = "1.0.0", features = ["macros"] }
 log = "0.4"
 pretty_env_logger = "0.5"
 tokio = { version =  "1.39", features = ["rt-multi-thread", "macros"] }
 ```
 
-_Note: if there is functionality in master that is not released yet, you can pull the Git repository as follows:_
+_Note: before a crates.io release, depend on git:_
 
 ```toml
-teloxide = { git = "https://github.com/teloxide/teloxide.git", features = ["macros"] }
+ronami = { git = "https://github.com/ZethRise/Ronami.git", features = ["macros"] }
 ```
 
 ## API overview
@@ -91,10 +93,10 @@ teloxide = { git = "https://github.com/teloxide/teloxide.git", features = ["macr
 
 This bot replies with a dice to each received message:
 
-[[`examples/throw_dice.rs`](crates/teloxide/examples/throw_dice.rs)]
+[[`examples/throw_dice.rs`](crates/ronami/examples/throw_dice.rs)]
 
 ```rust,no_run
-use teloxide::prelude::*;
+use ronami::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -103,7 +105,7 @@ async fn main() {
 
     let bot = Bot::from_env();
 
-    teloxide::repl(bot, |bot: Bot, msg: Message| async move {
+    ronami::repl(bot, |bot: Bot, msg: Message| async move {
         bot.send_dice(msg.chat.id).await?;
         Ok(())
     })
@@ -112,7 +114,7 @@ async fn main() {
 ```
 
 <div align="center">
-    <img src="https://github.com/teloxide/teloxide/blob/master/media/throw-dice.gif?raw=true" width="420" />
+    <img src="media/throw-dice.gif" width="420" />
 </div>
 
 ### Commands
@@ -126,10 +128,10 @@ Commands are strongly typed and defined declaratively, similar to how we define 
 [structopt]: https://docs.rs/structopt/0.3.9/structopt/
 [serde-json]: https://github.com/serde-rs/json
 
-[[`examples/command.rs`](crates/teloxide/examples/command.rs)]
+[[`examples/command.rs`](crates/ronami/examples/command.rs)]
 
 ```rust,no_run
-use teloxide::{prelude::*, utils::command::BotCommands};
+use ronami::{prelude::*, utils::command::BotCommands};
 
 #[tokio::main]
 async fn main() {
@@ -169,7 +171,7 @@ async fn answer(bot: Bot, msg: Message, cmd: Command) -> ResponseResult<()> {
 ```
 
 <div align="center">
-    <img src="https://github.com/teloxide/teloxide/blob/master/media/command.gif?raw=true" width="420" />
+    <img src="media/command.gif" width="420" />
 </div>
 
 ### Dialogues management
@@ -180,10 +182,10 @@ A dialogue is typically described by an enumeration where each variant is one po
 
 Below is a bot that asks you three questions and then sends the answers back to you:
 
-[[`examples/dialogue.rs`](crates/teloxide/examples/dialogue.rs)]
+[[`examples/dialogue.rs`](crates/ronami/examples/dialogue.rs)]
 
 ```rust,ignore
-use teloxide::{dispatching::dialogue::InMemStorage, prelude::*};
+use ronami::{dispatching::dialogue::InMemStorage, prelude::*};
 
 type MyDialogue = Dialogue<State, InMemStorage<State>>;
 type HandlerResult = Result<(), Box<dyn std::error::Error + Send + Sync>>;
@@ -288,36 +290,24 @@ async fn receive_location(
 ```
 
 <div align="center">
-    <img src="https://github.com/teloxide/teloxide/blob/master/media/dialogue.gif?raw=true" width="420" />
+    <img src="media/dialogue.gif" width="420" />
 </div>
 
-[More examples >>](crates/teloxide/examples/)
+[More examples >>](crates/ronami/examples/)
 
 ## Testing
 
-The community has made a crate called [`teloxide_tests`](https://github.com/LasterAlex/teloxide_tests) for testing `teloxide` bots.
-
-[See some testing examples >>](https://github.com/LasterAlex/teloxide_tests/tree/master/examples)
+Upstream teloxide has a community test helper, [`teloxide_tests`](https://github.com/LasterAlex/teloxide_tests). It still targets the teloxide crate names and will not work with Ronami until it is forked or updated.
 
 ## Tutorials
 
- - [_`dptree` starter guide with teloxide_](https://github.com/teloxide/teloxide/blob/master/DPTREE_GUIDE.md)
- - [_"Migrating my family finance bot from Python to Rust (teloxide) because I am tired of exceptions (part 1)"_](https://web.archive.org/web/20230130112018/https://trkohler.com/posts/i-migrated-my-family-finance-bot-from-python-to-rust-because-i-am-tired-of-exceptions/) by Troy Köhler.
- - [_"Migrating my family finance bot from Python to Rust (teloxide) [part 2]"_](https://web.archive.org/web/20240529200929/https://trkohler.com/posts/migrating-my-family-finance-bot-from-python-to-rust-teloxide-part-2/) by Troy Köhler.
+ - [_`dptree` starter guide_](DPTREE_GUIDE.md)
 
 ## FAQ
 
-**Q: Where I can ask questions?**
+**Q: Where can I ask questions?**
 
-A:
-
- - [Issues] is a good place for well-formed questions about the library design, enhancements, and bug reports.
- - [GitHub Discussions] is a place where you can ask us for help in a less formal manner.
- - If you need quick help in real-time, you should ask a question in [our official Telegram group].
-
-[Issues]: https://github.com/teloxide/teloxide/issues
-[our official Telegram group]: https://t.me/teloxide
-[GitHub Discussions]: https://github.com/teloxide/teloxide/discussions
+A: Open an issue on this repository. Ronami does not yet have a dedicated Telegram support chat.
 
 **Q: Do you support the Telegram API for clients?**
 
@@ -325,11 +315,11 @@ A: No, only the bots API.
 
 **Q: Can I use webhooks?**
 
-A: You can! `teloxide` has a built-in support for webhooks in `dispatching::update_listeners::webhooks` module. See how it's used in [`examples/ngrok_ping_pong_bot.rs`](crates/teloxide/examples/ngrok_ping_pong.rs) and [`examples/heroku_ping_pong_bot.rs`](crates/teloxide/examples/heroku_ping_pong.rs).
+A: You can! `ronami` has a built-in support for webhooks in `dispatching::update_listeners::webhooks` module. See how it's used in [`examples/ngrok_ping_pong_bot.rs`](crates/ronami/examples/ngrok_ping_pong.rs) and [`examples/heroku_ping_pong_bot.rs`](crates/ronami/examples/heroku_ping_pong.rs).
 
 **Q: Can I handle both callback queries and messages within a single dialogue?**
 
-A: Yes, see [`examples/purchase.rs`](crates/teloxide/examples/purchase.rs).
+A: Yes, see [`examples/purchase.rs`](crates/ronami/examples/purchase.rs).
 
 **Q: How can I organize complex logic?**
 
@@ -339,10 +329,10 @@ A: You can use [`CommonVoiceBot`] as an example of a bot with a nested dialogue 
 
 **Q: Where can I find a WebApp example?**
 
-A: Check out [@TheAwiteb]'s [WebApp `teloxide` example].
+A: Check out [@TheAwiteb]'s [WebApp `ronami` example].
 
 [@TheAwiteb]: https://github.com/TheAwiteb
-[WebApp `teloxide` example]: https://gist.github.com/TheAwiteb/8d809b34b619b01e64453bb31dbd8bf4
+[WebApp `ronami` example]: https://gist.github.com/TheAwiteb/8d809b34b619b01e64453bb31dbd8bf4
 
 ## Community bots
 
@@ -364,8 +354,8 @@ Feel free to propose your own bot to our collection!
  - [`fr0staman/fr0staman_bot`](https://github.com/fr0staman/fr0staman_bot) — Feature rich Telegram game-like bot with pigs 🐽.
  - [`franciscofigueira/transferBot`](https://github.com/franciscofigueira/transferBot) — Telegram bot that notifies of crypto token transfers.
 
-See [2500+ other public repositories using `teloxide` >>](https://github.com/teloxide/teloxide/network/dependents)
+The bots above were built with teloxide; they are listed as examples of the same architecture.
 
 ## Contributing
 
-See [`CONRIBUTING.md`](CONTRIBUTING.md).
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).

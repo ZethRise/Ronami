@@ -4,7 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+Ronami is a fork of [teloxide](https://github.com/teloxide/teloxide). Pull request
+and issue links in older entries point at the upstream repository.
+
 ## unreleased
+
+### Changed
+
+- Rebranded the workspace from teloxide to Ronami (`ronami`, `ronami-core`, `ronami-macros`) [**BC**]
+- Environment variables are now `RONAMI_TOKEN`, `RONAMI_API_URL`, `RONAMI_PROXY`, and `RONAMI_DIALOGUE_BEHAVIOUR` [**BC**]
+- Dialogue SQL table renamed from `teloxide_dialogues` to `ronami_dialogues` [**BC**]
+- Crate versions set to `1.0.0`
+- Support for TBA 9.3 (sendMessageDraft, getUserGifts, getChatGifts, repostStory, gift/topic fields) [**BC**]
+
+## History (upstream teloxide)
+
+## unreleased (teloxide master at fork)
 
 ### Added
 
@@ -148,19 +163,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - [`examples/middlewares.rs`]
   - [`examples/middlewares_fallible.rs`]
 
-[`examples/middlewares.rs`]: crates/teloxide/examples/middlewares.rs
-[`examples/middlewares_fallible.rs`]: crates/teloxide/examples/middlewares_fallible.rs
+[`examples/middlewares.rs`]: crates/ronami/examples/middlewares.rs
+[`examples/middlewares_fallible.rs`]: crates/ronami/examples/middlewares_fallible.rs
 
 ### Changed
 
-- Implement `Clone` for `teloxide::RequestError`
+- Implement `Clone` for `ronami::RequestError`
   - `RequestError::Network` now accepts `Arc<reqwest::Error>` [**BC**]
   - `RequestError::InvalidJson` now accepts `source: Arc<serde_json::Error>` [**BC**]
   - `RequestError::Io` now accepts `Arc<io::Error>` [**BC**]
-- Implement `Clone` for `teloxide::DownloadError`
+- Implement `Clone` for `ronami::DownloadError`
   - `DownloadError::Network` now accepts `Arc<reqwest::Error>` [**BC**]
   - `DownloadError::Io` now accepts `Arc<std::io::Error>` [**BC**]
-- If `TELOXIDE_DIALOGUE_BEHAVIOUR` environment variable is set to `default`, `.enter_dialogue` will never error, instead setting the dialogue to default ([PR 1187](https://github.com/teloxide/teloxide/pull/1187))
+- If `RONAMI_DIALOGUE_BEHAVIOUR` environment variable is set to `default`, `.enter_dialogue` will never error, instead setting the dialogue to default ([PR 1187](https://github.com/teloxide/teloxide/pull/1187))
 - `D` (state) now has to implement `Clone` for `HandlerExt::enter_dialogue` and `dialogue::enter` [**BC**]
 
 ### Deprecated
@@ -190,7 +205,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `req.disable_link_preview` method to the new `crate::sugar::request::RequestLinkPreviewExt` trait
 - `stack_size` setter to `DispatcherBuilder` ([PR 1185](https://github.com/teloxide/teloxide/pull/1185))
 - `utils::render` module to render HTML/Markdown-formatted output ([PR 1152](https://github.com/teloxide/teloxide/pull/1152))
-- `Bot::from_env` now can read and use `TELOXIDE_API_URL` environmental variable ([PR 1197](https://github.com/teloxide/teloxide/pull/1197))
+- `Bot::from_env` now can read and use `RONAMI_API_URL` environmental variable ([PR 1197](https://github.com/teloxide/teloxide/pull/1197))
 - Improved developer experience: ([PR 1255](https://github.com/teloxide/teloxide/pull/1255))
   - Added devcontainer support. It was tested with VS Codium on Fedora/Podman and Ubuntu/Docker, but should work for any platform that supports devcontainers
   - Added Justfile for common tasks. E.g. run `just ci` for a full check, similar to what we do in CI (do it before sending PR!)
@@ -219,7 +234,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Now `InlineQueryResultsButton` serializes properly ([issue 1181](https://github.com/teloxide/teloxide/issues/1181))
 - Now `ThreadId` is able to serialize in multipart requests ([PR 1179](https://github.com/teloxide/teloxide/pull/1179))
 - Now stack does not overflow on dispatch ([issue 1154](https://github.com/teloxide/teloxide/issues/1154))
-- Implement `RequestReplyExt` and `RequestLinkPreviewExt` on setters from `teloxide_core::payloads` so syntax sugar can work on bot adaptors too ([PR 1270](https://github.com/teloxide/teloxide/pull/1270))
+- Implement `RequestReplyExt` and `RequestLinkPreviewExt` on setters from `ronami_core::payloads` so syntax sugar can work on bot adaptors too ([PR 1270](https://github.com/teloxide/teloxide/pull/1270))
 - Now blockquote handling in the render module works correctly ([PR 1267](https://github.com/teloxide/teloxide/pull/1267))
 - Now blockquote generation in the `utils::markdown` module works correctly ([PR 1273](https://github.com/teloxide/teloxide/pull/1273))
 - Fixed calculation of per-second limits in the `Throttle` adaptor ([PR 1212](https://github.com/teloxide/teloxide/pull/1212))
@@ -231,7 +246,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Documentation regarding the way captions work for the official clients on `SendMediaGroup` ([PR 992](https://github.com/teloxide/teloxide/pull/992))
-- Add `MessageToCopyNotFound` error to `teloxide::errors::ApiError` ([PR 917](https://github.com/teloxide/teloxide/pull/917))
+- Add `MessageToCopyNotFound` error to `ronami::errors::ApiError` ([PR 917](https://github.com/teloxide/teloxide/pull/917))
 - `Dispatcher::try_dispatch_with_listener` ([PR 913](https://github.com/teloxide/teloxide/pull/913))
 - Missing Message::filter_* functions ([PR 982](https://github.com/teloxide/teloxide/pull/982)):
   - `filter_game`
@@ -267,7 +282,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `filter_video_chat_participants_invited`
   - `filter_web_app_data`
 - Implement `PostgresStorage`, a persistent dialogue storage based on [PostgreSQL](https://www.postgresql.org/)([PR 996](https://github.com/teloxide/teloxide/pull/996))
-- Implement `GetChatId` for `teloxide_core::types::{Chat, ChatJoinRequest, ChatMemberUpdated}`
+- Implement `GetChatId` for `ronami_core::types::{Chat, ChatJoinRequest, ChatMemberUpdated}`
 - Use [deadpool-redis](https://crates.io/crates/deadpool-redis) for Redis connection pooling ([PR 1081](https://github.com/teloxide/teloxide/pull/1081))
 - Add `MessageExt::filter_story` method for the corresponding `MediaKind::Story` variant ([PR 1087](https://github.com/teloxide/teloxide/pull/1087))
 - Add `update_listeners::webhooks::Options::path`, an option to make the webhook server listen on a different path, which can be useful behind a reverse proxy
@@ -318,18 +333,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updated `teloxide-core` to v0.9.1; see its [changelog](https://github.com/teloxide/teloxide/blob/master/crates/teloxide-core/CHANGELOG.md#091---2023-02-15) for more
+- Updated `ronami-core` to v0.9.1; see its [changelog](https://github.com/teloxide/teloxide/blob/master/crates/ronami-core/CHANGELOG.md#091---2023-02-15) for more
 
 ## 0.12.0 - 2023-01-17
 
 ### Changed
 
-- Updated `teloxide-macros` to v0.7.1; see its [changelog](crates/teloxide-macros/CHANGELOG.md#071---2023-01-17) for more
-- Updated `teloxide-core` to v0.9.0; see its [changelog](crates/teloxide-core/CHANGELOG.md#090---2023-01-17) for more
+- Updated `ronami-macros` to v0.7.1; see its [changelog](crates/ronami-macros/CHANGELOG.md#071---2023-01-17) for more
+- Updated `ronami-core` to v0.9.0; see its [changelog](crates/ronami-core/CHANGELOG.md#090---2023-01-17) for more
 - Updated `axum` to v0.6.0
 - The module structure
-  - `teloxide::dispatching::update_listeners` => `teloxide::update_listeners`
-  - `teloxide::dispatching::repls` => `teloxide::repls`
+  - `ronami::dispatching::update_listeners` => `ronami::update_listeners`
+  - `ronami::dispatching::repls` => `ronami::repls`
 - `CommandDescriptions::new` was made `const`
 - The following functions were made `#[must_use]`:
   - `DispatcherBuilder::{enable_ctrlc_handler, distribution_function}`
@@ -340,7 +355,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deprecated
 
-- `teloxide::dispatching::{update_listeners, repls}` (see in the "Changed" section)
+- `ronami::dispatching::{update_listeners, repls}` (see in the "Changed" section)
 
 ## 0.11.3 - 2022-11-28
 
@@ -361,18 +376,18 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 ### Added
 
 - The `rocksdb-storage` feature -- enables the RocksDB support ([PR #753](https://github.com/teloxide/teloxide/pull/753))
-- `teloxide::dispatching::repls::CommandReplExt`, `teloxide::prelude::CommandReplExt` ([issue #740](https://github.com/teloxide/teloxide/issues/740))
+- `ronami::dispatching::repls::CommandReplExt`, `ronami::prelude::CommandReplExt` ([issue #740](https://github.com/teloxide/teloxide/issues/740))
 
 ### Deprecated
 
-- `teloxide::dispatching::repls::{commands_repl, commands_repl_with_listener}`, `teloxide::utils::command::BotCommands::ty` (use `CommandReplExt` instead)
+- `ronami::dispatching::repls::{commands_repl, commands_repl_with_listener}`, `ronami::utils::command::BotCommands::ty` (use `CommandReplExt` instead)
 
 ## 0.11.0 - 2022-10-07
 
 ### Changed
 
-- Updated `teloxide-macros` to v0.7.0; see its [changelog](https://github.com/teloxide/teloxide-macros/blob/master/CHANGELOG.md#070---2022-10-06) for more
-- Updated `teloxide-core` to v0.8.0; see its [changelog](https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#080---2022-10-03) for more
+- Updated `ronami-macros` to v0.7.0; see its [changelog](https://github.com/teloxide/teloxide-macros/blob/master/CHANGELOG.md#070---2022-10-06) for more
+- Updated `ronami-core` to v0.8.0; see its [changelog](https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#080---2022-10-03) for more
 - `UpdateListener` now has an associated type `Err` instead of a generic
 - `AsUpdateStream` now has an associated type `StreamErr` instead of a generic
 - Rename `dispatching::stop_token::{AsyncStopToken, AsyncStopFlag}` => `stop::{StopToken, StopFlag}`
@@ -380,8 +395,8 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 - The following functions are now `#[must_use]`:
   - `BotCommands::ty`
   - `CommandDescriptions::{new, global_description, username, username_from_me}`
-  - `teloxide::filter_command`
-  - `teloxide::dispatching::dialogue::enter`
+  - `ronami::filter_command`
+  - `ronami::dispatching::dialogue::enter`
 - `BotCommands::parse` now accept `bot_username` as `&str`
 
 ### Added
@@ -423,7 +438,7 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 - Add the `Key: Clone` requirement for `impl Dispatcher` [**BC**]
 - `dispatching::update_listeners::{polling_default, polling}` now return a named, `Polling<_>` type
-- Update `teloxide-core` to v0.7.0 with Bot API 6.1 support, see [its changelog][core07c] for more information [**BC**]
+- Update `ronami-core` to v0.7.0 with Bot API 6.1 support, see [its changelog][core07c] for more information [**BC**]
 
 [core07c]: https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#070---2022-07-19
 
@@ -448,12 +463,12 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 ### Added
 
-- The `dispatching::filter_command` function (also accessible as `teloxide::filter_command`) as a shortcut for `dptree::entry().filter_command()`
-- Re-export `dptree::case!` as `teloxide::handler!` (the former is preferred for new code)
+- The `dispatching::filter_command` function (also accessible as `ronami::filter_command`) as a shortcut for `dptree::entry().filter_command()`
+- Re-export `dptree::case!` as `ronami::handler!` (the former is preferred for new code)
 
 ### Changed
 
-- Update `teloxide-core` to v0.6.0 with [Bot API 6.0] support [**BC**]
+- Update `ronami-core` to v0.6.0 with [Bot API 6.0] support [**BC**]
 
 [Bot API 6.0]: https://core.telegram.org/bots/api#april-16-2022
 
@@ -474,17 +489,17 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 ### Removed
 
-- The old dispatching system and related stuff: `dispatching`, `utils::UpState`, `prelude`, `repls2`, `crate::{dialogues_repl, dialogues_repl_with_listener}`, and `#[teloxide(subtransition)]` [**BC**]
+- The old dispatching system and related stuff: `dispatching`, `utils::UpState`, `prelude`, `repls2`, `crate::{dialogues_repl, dialogues_repl_with_listener}`, and `#[ronami(subtransition)]` [**BC**]
 
 ### Added
 
-- The new API for dialogue handlers: `teloxide::handler!` ([issue 567](https://github.com/teloxide/teloxide/issues/567))
-- Built-in webhooks support via `teloxide::dispatching::update_listeners::webhooks` module
+- The new API for dialogue handlers: `ronami::handler!` ([issue 567](https://github.com/teloxide/teloxide/issues/567))
+- Built-in webhooks support via `ronami::dispatching::update_listeners::webhooks` module
 - `Dialogue::chat_id` for retrieving a chat ID from a dialogue
 
 ### Changed
 
-- Updated `teloxide-core` from version `0.4.5` to version [`0.5.0`](https://github.com/teloxide/teloxide-core/releases/tag/v0.5.0) [**BC**]
+- Updated `ronami-core` from version `0.4.5` to version [`0.5.0`](https://github.com/teloxide/teloxide-core/releases/tag/v0.5.0) [**BC**]
 - Rename `dispatching2` => `dispatching` [**BC**]
 - Rename `prelude2` => `prelude` [**BC**]
 - Move `update_listeners`, `stop_token`, `IdleShutdownError`, and `ShutdownToken` from the old `dispatching` to the new `dispatching` (previously `dispatching2`)
@@ -500,13 +515,13 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 ### Deprecated
 
-- `HandlerFactory` and `HandlerExt::dispatch_by` in favour of `teloxide::handler!`
+- `HandlerFactory` and `HandlerExt::dispatch_by` in favour of `ronami::handler!`
 
 ## 0.7.3 - 2022-04-03
 
 ### Fixed
 
-- Update `teloxide-core` to version `0.4.5` to fix a security vulnerability. See more in `teloxide-core` [release notes](https://github.com/teloxide/teloxide-core/releases/tag/v0.4.5)
+- Update `ronami-core` to version `0.4.5` to fix a security vulnerability. See more in `ronami-core` [release notes](https://github.com/teloxide/teloxide-core/releases/tag/v0.4.5)
 
 ## 0.7.2 - 2022-03-23
 
@@ -522,7 +537,7 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 ### Fixed
 
-- Log `UpdateKind::Error` in `teloxide::dispatching2::Dispatcher`
+- Log `UpdateKind::Error` in `ronami::dispatching2::Dispatcher`
 - Don't warn about unhandled updates in `repls2` ([issue 557](https://github.com/teloxide/teloxide/issues/557))
 - `parse_command` and `parse_command_with_prefix` now ignores case of the bot username
 
@@ -555,7 +570,7 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 - Require that `AsUpdateStream::Stream` is `Send`
 - Restrict a user crate by `CARGO_CRATE_NAME` instead of `CARGO_PKG_NAME` in `enable_logging!` and `enable_logging_with_filter!`
-- Updated `teloxide-core` to v0.4.0, see [its changelog](https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#040---2022-02-03)
+- Updated `ronami-core` to v0.4.0, see [its changelog](https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#040---2022-02-03)
 
 ### Deprecated
 
@@ -619,13 +634,13 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 - Repls can now be stopped by `^C` signal
 - `Noop` and `AsyncStopToken`stop tokens
 - `StatefulListener`
-- Emit not only errors but also warnings and general information from teloxide, when set up by `enable_logging!`
+- Emit not only errors but also warnings and general information from ronami, when set up by `enable_logging!`
 - Use `i64` instead of `i32` for `user_id` in `html::user_mention` and `markdown::user_mention`
-- Updated to `teloxide-core` `v0.3.0` (see it's [changelog](https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#030---2021-07-05) for more)
+- Updated to `ronami-core` `v0.3.0` (see it's [changelog](https://github.com/teloxide/teloxide-core/blob/master/CHANGELOG.md#030---2021-07-05) for more)
 
 ### Fixed
 
-- Remove the `reqwest` dependency. It's not needed after the [teloxide-core] integration
+- Remove the `reqwest` dependency. It's not needed after the [ronami-core] integration
 - A storage persistence bug ([issue 304](https://github.com/teloxide/teloxide/issues/304))
 - Log errors from `Storage::{remove_dialogue, update_dialogue}` in `DialogueDispatcher` ([issue 302](https://github.com/teloxide/teloxide/issues/302))
 - Mark all the functions of `Storage` as `#[must_use]`
@@ -634,13 +649,13 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 ### Added
 
-- Integrate [teloxide-core]
+- Integrate [ronami-core]
 - Allow arbitrary error types to be returned from (sub)transitions ([issue 242](https://github.com/teloxide/teloxide/issues/242))
 - The `respond` function, a shortcut for `ResponseResult::Ok(())`
 - The `sqlite-storage` feature -- enables SQLite support
 - `Dispatcher::{my_chat_members_handler, chat_members_handler}`
 
-[teloxide-core]: https://github.com/teloxide/teloxide-core
+[ronami-core]: https://github.com/teloxide/teloxide-core
 
 ### Deprecated
 
@@ -652,7 +667,7 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 
 ### Changed
 
-- Export `teloxide_macros::teloxide` in `prelude`
+- Export `ronami_macros::ronami` in `prelude`
 - `dispatching::dialogue::serializer::{JSON -> Json, CBOR -> Cbor}`
 - Allow `bot_name` be `N`, where `N: Into<String> + ...` in `commands_repl` & `commands_repl_with_listener`
 - 'Edit methods' (namely `edit_message_live_location`, `stop_message_live_location`, `edit_message_text`,
@@ -700,22 +715,22 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 - Support for typed bot commands ([issue 152](https://github.com/teloxide/teloxide/issues/152))
 - `BotBuilder`, which allows setting a default `ParseMode`
 - The `Transition`, `Subtransition`, `SubtransitionOutputType` traits
-- A nicer approach to manage dialogues via `#[derive(Transition)]` + `#[teloxide(subtransition)]` (see [`examples/dialogue_bot`](https://github.com/teloxide/teloxide/tree/af2aa218e7bfc442ab4475023a1c661834f576fc/examples/dialogue_bot))
+- A nicer approach to manage dialogues via `#[derive(Transition)]` + `#[ronami(subtransition)]` (see [`examples/dialogue_bot`](https://github.com/teloxide/teloxide/tree/af2aa218e7bfc442ab4475023a1c661834f576fc/examples/dialogue_bot))
 - The `redis-storage` feature -- enables the Redis support
 - The `cbor-serializer` feature -- enables the `CBOR` serializer for dialogues
 - The `bincode-serializer` feature -- enables the `Bincode` serializer for dialogues
-- The `frunk` feature -- enables `teloxide::utils::UpState`, which allows mapping from a structure of `field1, ..., fieldN` to a structure of `field1, ..., fieldN, fieldN+1`
+- The `frunk` feature -- enables `ronami::utils::UpState`, which allows mapping from a structure of `field1, ..., fieldN` to a structure of `field1, ..., fieldN, fieldN+1`
 - Upgrade to v4.9 Telegram bots API
-- `teloxide::utils::client_from_env` -- constructs a client from the `TELOXIDE_TOKEN` environmental variable
-- Import `Transition`, `TransitionIn`, `TransitionOut`, `UpState` to `teloxide::prelude`
-- Import `repl`, `commands_repl` to `teloxide`
+- `ronami::utils::client_from_env` -- constructs a client from the `RONAMI_TOKEN` environmental variable
+- Import `Transition`, `TransitionIn`, `TransitionOut`, `UpState` to `ronami::prelude`
+- Import `repl`, `commands_repl` to `ronami`
 - Let users inspect an unknown API error using `ApiErrorKind::Unknown(String)`. All the known API errors are placed into `KnownApiErrorKind`
 - Setters to all the API types
-- `teloxide::dispatching::dialogue::serializer` -- various serializers for memory storages. The `Serializer` trait, `Bincode`, `CBOR`, `JSON`
-- `teloxide::{repl, repl_with_listener, commands_repl, commands_repl_with_listener, dialogues_repl, dialogues_repl_with_listener}`
+- `ronami::dispatching::dialogue::serializer` -- various serializers for memory storages. The `Serializer` trait, `Bincode`, `CBOR`, `JSON`
+- `ronami::{repl, repl_with_listener, commands_repl, commands_repl_with_listener, dialogues_repl, dialogues_repl_with_listener}`
 - `InputFile::Memory`
 - Option to hide a command from description ([issue 217](https://github.com/teloxide/teloxide/issues/217))
-- Respect the `TELOXIDE_PROXY` environment variable in `Bot::from_env`
+- Respect the `RONAMI_PROXY` environment variable in `Bot::from_env`
 
 ### Deprecated
 
@@ -752,7 +767,7 @@ This release was yanked because it accidentally [breaks backwards compatibility]
 ### Removed
 
 - [either](https://crates.io/crates/either) from the dependencies in `Cargo.toml`
-- `teloxide-macros` migrated into [the separate repository](https://github.com/teloxide/teloxide-macros) to easier releases and testing
+- `ronami-macros` migrated into [the separate repository](https://github.com/teloxide/teloxide-macros) to easier releases and testing
 
 ## 0.1.0 - 2020-02-19
 

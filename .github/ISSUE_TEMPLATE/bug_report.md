@@ -17,4 +17,4 @@ Instead, this happened: _explanation_
 
 ## Meta
 
-- `teloxide` version: <!-- (e.g.: `0.3.1`) -->
+- `ronami` version: <!-- (e.g.: `0.3.1`) -->

@@ -9,13 +9,9 @@
 
 ## Reporting bugs, questions, feature requests and adding new features
 
-To report a bug or suggest new functionality, go to the [issues](https://github.com/teloxide/teloxide/issues). Try to make MRE (**M**inimal **R**eproducible **E**xample) and specify your `teloxide` version to let others help you.
+To report a bug or suggest new functionality, open an issue on this repository. Try to make an MRE (**M**inimal **R**eproducible **E**xample) and specify your `ronami` version.
 
-If you want to ask a question, you can either
-- open a new [GitHub discussion](https://github.com/teloxide/teloxide/discussions), or
-- write to our Telegram group ([ENG](https://t.me/teloxide), [RU](https://t.me/teloxide_ru)).
-
-If you want to contribute a new feature or a TBA update, you should contact other developers in the [teloxide_dev](https://t.me/teloxide_dev) chat, or in the github issues. What you want to do may already be in the works, or we may not want to support your feature in the future. 
+If you want to contribute a new feature or a TBA update, open an issue first. What you want to do may already be in the works. 
 
 ## Code
 
@@ -77,13 +73,13 @@ git push --force-with-lease
 
 ### Developing with DevPod
 
-If you want, you can develop `teloxide` inside a DevPod container. You can read more about DevPod [here](https://devpod.sh/docs/what-is-devpod).
+If you want, you can develop `ronami` inside a DevPod container. You can read more about DevPod [here](https://devpod.sh/docs/what-is-devpod).
 
 Option 1:
 
 ```shell
-git clone <your-fork> teloxide
-cd teloxide
+git clone <your-fork> ronami
+cd ronami
 devpod up .
 ```
 
@@ -124,7 +120,7 @@ Once again, if you want to make a major update, like a TBA update, you need to c
 
 #### Step 1:
 
-You start at the [official TBA release notes](https://core.telegram.org/bots/api-changelog), BUT you should use [web archive](https://web.archive.org/) if `teloxide` is lagging behind a few updates. If you use the latest docs you might add something that is not yet supported in the rest of the codebase!
+You start at the [official TBA release notes](https://core.telegram.org/bots/api-changelog), BUT you should use [web archive](https://web.archive.org/) if `ronami` is lagging behind a few updates. If you use the latest docs you might add something that is not yet supported in the rest of the codebase!
 
 There are a few most common lines:
 
@@ -168,9 +164,9 @@ pub struct PollOption {
 
 All types should implement `Clone`, `Debug`, `PartialEq`, `Serialize` and `Deserialize`. If the fields allow it, you should also implement `Eq` and `Hash` (if some field contains `f32` there traits are not possible to implement)
 
-And all new types should be added to `teloxide-core/src/types/` as a new file, if needed.
+And all new types should be added to `ronami-core/src/types/` as a new file, if needed.
 
-2. Teloxide has more types than the official TBA docs. For example, all ids should be their own type:
+2. Ronami has more types than the official TBA docs. For example, all ids should be their own type:
 
 ```rust
 /// Identifier of a story.
@@ -311,7 +307,7 @@ If some new things broke too much, or are complex in general, they should be tes
 
 #### Step 6:
 
-You need to update the check schema. It is located in `teloxide-core/custom_v2.json`. To obtain it, you need to clone the repository https://github.com/teloxide/tba-parser and generate a new schema. Follow the repository README to get the schema and copy the `schema/custom_v2.json` to `teloxide-core/custom_v2.json`, then run the tests!
+You need to update the check schema. It is located in `ronami-core/custom_v2.json`. To obtain it, you need to clone the repository https://github.com/teloxide/tba-parser and generate a new schema. Follow the repository README to get the schema and copy the `schema/custom_v2.json` to `ronami-core/custom_v2.json`, then run the tests!
 
 #### Step 7:
 
@@ -325,7 +321,7 @@ If there were breaking changes, you should also write them in `MIGRATION_GUIDE.m
 
 #### Step 9:
 
-If there was a release lately, you should probably change the `teloxide/Cargo.toml` to use the path for `teloxide-core` and `teloxide-macros`, so they reference the latest code
+If there was a release lately, you should probably change the `ronami/Cargo.toml` to use the path for `ronami-core` and `ronami-macros`, so they reference the latest code
 
 #### Step 10:
 
@@ -339,22 +335,22 @@ Make a PR and wait for review, you should be all set.
 
 When you introduce changes that bump suppported Telegram Bot API version (e.g. 6.9 → 7.0), you must:
 
-- Specify your changes in [crates/teloxide-core/CHANGELOG.md](crates/teloxide-core/CHANGELOG.md) file
+- Specify your changes in [crates/ronami-core/CHANGELOG.md](crates/ronami-core/CHANGELOG.md) file
 - Mark all breaking changes with `[**BC**]` in the CHANGELOG
 - Specify your PR without detailed list of changes in [CHANGELOG.md](CHANGELOG.md) file and mention breaking changes with `[**BC**]` mark if there're any
-- Change TBA version and it's announce date in `api_version: ApiVersion(ver: "7.0", date: "December 29, 2023"),` line in head of [crates/teloxide-core/schema.ron](crates/teloxide-core/schema.ron) file
-- Change TBA version in `(Currently, version … is supported)` line in head of [crates/teloxide-core/src/lib.rs](crates/teloxide-core/src/lib.rs) file
-- Change TBA version in `Currently, version … of` line in head of [crates/teloxide/src/lib.rs](crates/teloxide/src/lib.rs) file
-- Change TBA version in `…https://img.shields.io/badge/API%20coverage…` line in [crates/teloxide-core/README.md](crates/teloxide-core/README.md) file
+- Change TBA version and it's announce date in `api_version: ApiVersion(ver: "7.0", date: "December 29, 2023"),` line in head of [crates/ronami-core/schema.ron](crates/ronami-core/schema.ron) file
+- Change TBA version in `(Currently, version … is supported)` line in head of [crates/ronami-core/src/lib.rs](crates/ronami-core/src/lib.rs) file
+- Change TBA version in `Currently, version … of` line in head of [crates/ronami/src/lib.rs](crates/ronami/src/lib.rs) file
+- Change TBA version in `…https://img.shields.io/badge/API%20coverage…` line in [crates/ronami-core/README.md](crates/ronami-core/README.md) file
 - Change TBA version in `…https://img.shields.io/badge/API%20coverage…` line in [README.md](README.md) file
 
 ### Adding a new TBA method
 
 #### Step 1:
 
-Add the method and its info to `crates/teloxide-core/src/schema.ron` file.
+Add the method and its info to `crates/ronami-core/src/schema.ron` file.
 
-For example, lets add a `createChatInviteLink` from TBA 5.1. Look at the [TBA documentation](https://web.archive.org/web/20210331031440/https://core.telegram.org/bots/api#createchatinvitelink) in the web archive (`teloxide` can lag behind a few versions of TBA, you should look at the past versions to not implement something that isn't in the version you are doing).
+For example, lets add a `createChatInviteLink` from TBA 5.1. Look at the [TBA documentation](https://web.archive.org/web/20210331031440/https://core.telegram.org/bots/api#createchatinvitelink) in the web archive (`ronami` can lag behind a few versions of TBA, you should look at the past versions to not implement something that isn't in the version you are doing).
 After that, you need to start adding the method. First of all, look at where that method is relative to other methods. 
 `createChatInviteLink` is between `exportChatInviteLink` and `editChatInviteLink`. Find that spot in the `schema.ron` file and add the method as such:
 
@@ -413,7 +409,7 @@ Run `cargo test --features "full nightly"` or `just test`. This will trigger the
 
 #### Step 3:
 
-Rerun the tests, and look at the compiler errors. Most likely there will be errors from `crates/teloxide-core/src/adaptors`, `crates/teloxide-core/src/requests/requester.rs` and `crates/teloxide-core/src/bot/api.rs`.
+Rerun the tests, and look at the compiler errors. Most likely there will be errors from `crates/ronami-core/src/adaptors`, `crates/ronami-core/src/requests/requester.rs` and `crates/ronami-core/src/bot/api.rs`.
 
 1. To fix some of the errors in the adaptors, just add the snake_case of the new method to the `requester_forward!` macro in `cache_me.rs`, `erased.rs` and `trace.rs`. You also need to add it to the end of `requests/requester.rs` to `forward_all!` macro:
 ```diff
@@ -539,45 +535,45 @@ After that run the tests again, it should be all done!
 
 #### Special cases
 
-1. Telegram has `editMessageText`, `editMessageCaption` and other edit methods. Usually they work two ways, one for regular messages and one for inline ones. But that is very confusing and complicates a lot of interactions, so `teloxide` works differently. All edit methods are split in two, one for regular messages and one for inline ones. To look at an example, look at `editMessageText` and `editMessageTextInline` in `schema.ron`. The process is similar to adding a regular method, but you will have to add two, as well as adding a `sibling` field to both of the new methods. Also, return types differ (refer to telegram documentation for what these types are).
+1. Telegram has `editMessageText`, `editMessageCaption` and other edit methods. Usually they work two ways, one for regular messages and one for inline ones. But that is very confusing and complicates a lot of interactions, so `ronami` works differently. All edit methods are split in two, one for regular messages and one for inline ones. To look at an example, look at `editMessageText` and `editMessageTextInline` in `schema.ron`. The process is similar to adding a regular method, but you will have to add two, as well as adding a `sibling` field to both of the new methods. Also, return types differ (refer to telegram documentation for what these types are).
 
 2. Same as the 1st point, if the method requires "this or that", you probably should make two methods. The example is `sendGift` and `sendGiftChat`.
 
-3. Sometimes you will encounter situation when it's impossible to write something in `schema.ron`. It may be some doc comment that renders incorrectly or some type (like `Option<DateTime<Utc>>`) impossible to write. In such cases you can workaround it with `crates/teloxide-core/src/codegen/patch.rs` file.
+3. Sometimes you will encounter situation when it's impossible to write something in `schema.ron`. It may be some doc comment that renders incorrectly or some type (like `Option<DateTime<Utc>>`) impossible to write. In such cases you can workaround it with `crates/ronami-core/src/codegen/patch.rs` file.
 
-4. In very rare cases, autogenerated files in `crates/teloxide-core/src/payloads/*` may have errors related to deriving impls for the `PartialEq`, `Eq`, or `Hash` traits. In such cases, remove them manually and add the payload as an exception to `codegen_payloads()` in `crates/teloxide-core/src/payloads/codegen.rs`.
+4. In very rare cases, autogenerated files in `crates/ronami-core/src/payloads/*` may have errors related to deriving impls for the `PartialEq`, `Eq`, or `Hash` traits. In such cases, remove them manually and add the payload as an exception to `codegen_payloads()` in `crates/ronami-core/src/payloads/codegen.rs`.
 
 #### Other notes
 
 1. If you mess up the .ron and run the codegen, it is better to reset the files, rather than to try and fix it all by hand:
-`git restore crates/teloxide-core/src/local_macros.rs crates/teloxide-core/src/payloads.rs crates/teloxide-core/src/payloads/ crates/teloxide-core/src/requests/requester.rs && git clean -fd crates/teloxide-core/src/payloads/`
+`git restore crates/ronami-core/src/local_macros.rs crates/ronami-core/src/payloads.rs crates/ronami-core/src/payloads/ crates/ronami-core/src/requests/requester.rs && git clean -fd crates/ronami-core/src/payloads/`
 
 This command will restore the listed files to your current git branch and delete all the new files in the `payloads/` dict.
 
 2. Some methods require special attention, if you find that, please make sure to add it to this guide as an exception!
 
-## @teloxidebot
+## @ronamibot
 
-`teloxide` uses @teloxidebot as a helper to manage PRs and issues. It is based on triagebot used by rustc developers, which docs can be found [here](https://forge.rust-lang.org/triagebot/index.html).
+`ronami` uses @ronamibot as a helper to manage PRs and issues. It is based on triagebot used by rustc developers, which docs can be found [here](https://forge.rust-lang.org/triagebot/index.html).
 
-We will describe here a few most used @teloxidebot's features, but we still recommend you to read the docs.
+We will describe here a few most used @ronamibot's features, but we still recommend you to read the docs.
 
 ### PR status tracking
 
-`teloxide` uses `S-*` labels (mainly https://github.com/teloxide/teloxide/labels/S-waiting-on-author and https://github.com/teloxide/teloxide/labels/S-waiting-on-review) to track the status of pull requests.
+`ronami` uses `S-*` labels (mainly https://github.com/teloxide/teloxide/labels/S-waiting-on-author and https://github.com/teloxide/teloxide/labels/S-waiting-on-review) to track the status of pull requests.
 
-You can change the status with `@teloxidebot review` and `@teloxidebot ready` (sets the status to https://github.com/teloxide/teloxide/labels/S-waiting-on-review) or `@teloxidebot author` (sets the status to https://github.com/teloxide/teloxide/labels/S-waiting-on-author).
+You can change the status with `@ronamibot review` and `@ronamibot ready` (sets the status to https://github.com/teloxide/teloxide/labels/S-waiting-on-review) or `@ronamibot author` (sets the status to https://github.com/teloxide/teloxide/labels/S-waiting-on-author).
 
 Requesting a review from PR's assignee via GitHub UI will also change the status of the PR to waiting on review. Similarly, submitting a review that requests changes will change the status of the PR to waiting on author.
 
-There is also https://github.com/teloxide/teloxide/labels/S-blocked, which can be set with `@teloxidebot blocked`.
+There is also https://github.com/teloxide/teloxide/labels/S-blocked, which can be set with `@ronamibot blocked`.
 
 Please note that your PR won't be reviewed unless it's waiting for review :)
 
 ### Labels
 
-Normally, GitHub only allows privileged users to change labels. @teloxidebot allows anyone to add or remove certain [labels](https://github.com/teloxide/teloxide/labels/) with `@teloxidebot label +additional_label -removed_label`. See more in the [documentation](https://forge.rust-lang.org/triagebot/index.html).
+Normally, GitHub only allows privileged users to change labels. @ronamibot allows anyone to add or remove certain [labels](https://github.com/teloxide/teloxide/labels/) with `@ronamibot label +additional_label -removed_label`. See more in the [documentation](https://forge.rust-lang.org/triagebot/index.html).
 
 ### PR assignment
 
-When a PR is created, @teloxidebot will automatically assign one of the maintainers to it. If you want to override this assignment, use `r? @ReviewerUsername`.
+When a PR is created, @ronamibot will automatically assign one of the maintainers to it. If you want to override this assignment, use `r? @ReviewerUsername`.

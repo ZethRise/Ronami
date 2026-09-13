@@ -17,7 +17,7 @@ env:
   RUSTUP_MAX_RETRIES: 10
 
   # When updating this, also update:
-  # - crates/teloxide-core/src/codegen.rs
+  # - crates/ronami-core/src/codegen.rs
   # - rust-toolchain.toml
   # - below in the test matrix
   rust_nightly: nightly-2025-06-12
@@ -80,7 +80,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_USER: teloxide
+          POSTGRES_USER: ronami
           POSTGRES_PASSWORD: rewrite_it_in_rust
         options: >-
           --health-cmd pg_isready
@@ -157,9 +157,9 @@ jobs:
           sudo apt-get install -y postgresql-client
       - name: Create PostgreSQL databases
         run: |
-          psql -h localhost -U teloxide -c "CREATE DATABASE test_postgres_json;"
-          psql -h localhost -U teloxide -c "CREATE DATABASE test_postgres_bincode;"
-          psql -h localhost -U teloxide -c "CREATE DATABASE test_postgres_cbor;"
+          psql -h localhost -U ronami -c "CREATE DATABASE test_postgres_json;"
+          psql -h localhost -U ronami -c "CREATE DATABASE test_postgres_bincode;"
+          psql -h localhost -U ronami -c "CREATE DATABASE test_postgres_cbor;"
         env:
           PGPASSWORD: rewrite_it_in_rust
       - name: Test unit & integration tests

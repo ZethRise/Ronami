@@ -1,6 +1,6 @@
 ---
 name: Parse error
-about: Report issue with `teloxide` parsing of telegram response
+about: Report issue with `ronami` parsing of telegram response
 title: 'Parse Error: <type or error description>'
 labels: K-bug, FIXME, C-core
 
@@ -17,7 +17,7 @@ When using `<...>` method I've got  `RequestError::InvalidJson` error with the f
 
 ## Meta
 
-- `teloxide` version: <!-- (e.g.: `0.3.1`) -->
+- `ronami` version: <!-- (e.g.: `0.3.1`) -->
 
 ### Additional context
 

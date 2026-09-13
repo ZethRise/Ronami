@@ -1,4 +1,4 @@
 contact_links:
-  - name: Teloxide Discussions
+  - name: Discussions
     url: https://github.com/teloxide/teloxide/discussions/categories/q-a
-    about: Please ask and answer questions here.
+    about: Upstream teloxide Q&A. Replace this URL when Ronami has its own tracker.

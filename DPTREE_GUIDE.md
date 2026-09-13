@@ -1,12 +1,12 @@
 # `dptree` guide
 
-`teloxide` heavily relies on the [`dptree`] crate, but it might take some time to understand how to use it. `dptree` handles where the incoming update will go, and also what values (dependencies) the handlers will receive.
+`ronami` heavily relies on the [`dptree`] crate, but it might take some time to understand how to use it. `dptree` handles where the incoming update will go, and also what values (dependencies) the handlers will receive.
 
 [`dptree`]: https://github.com/teloxide/dptree
 
-This guide assumes you have some basic knowledge of `teloxide` (see `README.md` and the [examples]), but you have some troubles with understanding `dptree`, which this tutorial will guide you through.
+This guide assumes you have some basic knowledge of `ronami` (see `README.md` and the [examples]), but you have some troubles with understanding `dptree`, which this tutorial will guide you through.
 
-[examples]: crates/teloxide/examples/
+[examples]: crates/ronami/examples/
 
 Let's start from the beginning:
 
@@ -34,9 +34,9 @@ let handler = dptree::entry()
     // because nothing prevents it from not executing
 ```
 
-If `dptree` doesn't find any handler that fits, `teloxide` will execute the [default_handler].
+If `dptree` doesn't find any handler that fits, `ronami` will execute the [default_handler].
 
-[default handler]: https://docs.rs/teloxide/latest/teloxide/dispatching/struct.DispatcherBuilder.html#method.default_handler
+[default handler]: https://docs.rs/ronami/latest/ronami/dispatching/struct.DispatcherBuilder.html#method.default_handler
 
 ## Filters
 
@@ -95,7 +95,7 @@ let handler = dptree::map_async(map_my_type1)
     .endpoint(my_type_handler);
 ```
 
-By default, every single `teloxide` tree has two types in it: the `Update` type because, well, something has to kickstart the tree, and the `Me` type, which contains the info about the bot. There also is a third type, usually a `Bot` type, but the type can change with [bot adaptors](https://docs.rs/teloxide/latest/teloxide/adaptors/index.html). To add types that exist in every tree, you need to use `deps![]` with `.dependencies(deps![/* your variables here */])` in `DispatcherBuilder`.
+By default, every single `ronami` tree has two types in it: the `Update` type because, well, something has to kickstart the tree, and the `Me` type, which contains the info about the bot. There also is a third type, usually a `Bot` type, but the type can change with [bot adaptors](https://docs.rs/ronami/latest/ronami/adaptors/index.html). To add types that exist in every tree, you need to use `deps![]` with `.dependencies(deps![/* your variables here */])` in `DispatcherBuilder`.
 
 ## Branches
 
@@ -258,11 +258,11 @@ let handler = Update::filter_message().map_async(/* ... */);
 let handler = dptree::map_async(/* ... */).map_async(/* ... */).filter(/* ... */);
 ```
 
-2. The generic return type of the complete tree is `UpdateHandler<Box<dyn std::error::Error + Send + Sync + 'static>>`. To have the type of the whole tree figured out by Rust compiler without spelling out the types, you need to have an `.endpoint()` somewhere as well as actively using it in `teloxide`'s `DispatcherBuilder`, which will tell the compiler the type of the error, and also that it is an `UpdateHandler` tree, and not something else.
+2. The generic return type of the complete tree is `UpdateHandler<Box<dyn std::error::Error + Send + Sync + 'static>>`. To have the type of the whole tree figured out by Rust compiler without spelling out the types, you need to have an `.endpoint()` somewhere as well as actively using it in `ronami`'s `DispatcherBuilder`, which will tell the compiler the type of the error, and also that it is an `UpdateHandler` tree, and not something else.
 3. To use `Message::filter_...()` and stuff like that, you need to have `Message` in `DependencyMap` (usually by the means of `Update::filter_message()`)
 4. There exist the `filter_map` and `filter_map_async` methods. They have to return `Option<ReturnType>`. If the option is `None`, the method will act as a filter and close up the branch. If the option is `Some(ReturnType)`, the method will act as a map and insert `ReturnType` into `DependencyMap`
 5. There also exist `inspect` and `inspect_async`, which will allow you to just, well, inspect the fields without altering anything. They work just as `filter` or `map` -- they just don't do anything to the control flow, only inspecting. This is very useful for debugging and seeing where the update goes!
 6. If you get an error like `the trait bound [closure@examples/state_machine.rs:150:20: 150:92]: Injectable<_, bool, _> is not satisfied`, your handler does not implement the `Injectable` trait. Ensure that your types implement `Clone` and can be shared between threads (`Send + Sync`). If they are too expensive to clone, you can wrap your types into `Arc`.
-7. There are a lot of premade filters in `teloxide`, like `.filter_command()`, `.filter_mention()`, `Message::filter_poll()` and many others -- you can look them up in the documentation!
+7. There are a lot of premade filters in `ronami`, like `.filter_command()`, `.filter_mention()`, `Message::filter_poll()` and many others -- you can look them up in the documentation!
 
 If you find something you got stuck on with `dptree`, please make a PR that adds an explanation to this guide -- this will help others a lot!

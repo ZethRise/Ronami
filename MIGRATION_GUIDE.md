@@ -1,11 +1,52 @@
-This document describes breaking changes of `teloxide` crate, as well as the ways to update code.
+This document describes breaking changes of the `ronami` crate, as well as the ways to update code.
 Note that the list of required changes is not fully exhaustive and it may lack something in rare cases.
+
+## teloxide -> Ronami
+
+Ronami is a hard-cut fork of teloxide. There are no compatibility shims.
+
+```diff
+-[dependencies]
+-teloxide = { version = "0.17.0", features = ["macros"] }
++[dependencies]
++ronami = { version = "1.0.0", features = ["macros"] }
+```
+
+```diff
+-use teloxide::prelude::*;
++use ronami::prelude::*;
+```
+
+```diff
+-export TELOXIDE_TOKEN=...
+-export TELOXIDE_API_URL=...
+-export TELOXIDE_PROXY=...
+-export TELOXIDE_DIALOGUE_BEHAVIOUR=...
++export RONAMI_TOKEN=...
++export RONAMI_API_URL=...
++export RONAMI_PROXY=...
++export RONAMI_DIALOGUE_BEHAVIOUR=...
+```
+
+Dialogue storage table:
+
+```sql
+ALTER TABLE teloxide_dialogues RENAME TO ronami_dialogues;
+```
+
+Feature flag names (`macros`, `webhooks-axum`, `redis-storage`, …) are unchanged.
+
+## 9.2 -> 9.3
+
+`UniqueGiftInfo.last_resale_star_count` was replaced by `last_resale_currency` and `last_resale_amount`.
+
+`getBusinessAccountGifts.exclude_limited` was replaced by `exclude_limited_upgradable` and `exclude_limited_non_upgradable`.
 
 ## unreleased
 
 ## 0.16 -> 0.17
 
-### teloxide
+### ronami
 
 TBA removed `hide_url` field from `InlineQueryResultArticle`. Just don't pass the url instead:
 
@@ -44,7 +85,7 @@ InlineQueryResultArticle::new(
 
 ## 0.15 -> 0.16
 
-### teloxide
+### ronami
 
 A lot of previously `String` type ids got their own types. To easily convert into them you can just add `.into()`
 
@@ -81,13 +122,13 @@ type UpdHandler = Handler<
     'static,
 -    DependencyMap,
     core::result::Result<(), Box<dyn std::error::Error + Send + Sync + 'static>>,
-    teloxide::dispatching::DpHandlerDescription,
+    ronami::dispatching::DpHandlerDescription,
 >;
 ```
 
 ## 0.14.1 -> 0.15.0
 
-### teloxide
+### ronami
 
 The `DispatcherBuilder::stack_size` method is now a no-op; you can remove it from your code if you use it:
 
@@ -121,12 +162,12 @@ Also, note that our examples now contain code with "middlewares" that show how t
   - [`examples/middlewares.rs`]
   - [`examples/middlewares_fallible.rs`]
 
-[`examples/middlewares.rs`]: crates/teloxide/examples/middlewares.rs
-[`examples/middlewares_fallible.rs`]: crates/teloxide/examples/middlewares_fallible.rs
+[`examples/middlewares.rs`]: crates/ronami/examples/middlewares.rs
+[`examples/middlewares_fallible.rs`]: crates/ronami/examples/middlewares_fallible.rs
 
 ## 0.13 -> 0.14
 
-### teloxide
+### ronami
 
 We have finally introduced three different categories for syntactic sugar:
 
@@ -222,25 +263,25 @@ bot.create_invoice_link(
 
 ## 0.11 -> 0.12
 
-### teloxide
+### ronami
 
-The `rocksdb-storage` feature and associated items were removed. If you need to use RocksDB, you can use the [`teloxide-rocksdb`] crate.
+The `rocksdb-storage` feature and associated items were removed. If you need to use RocksDB, you can use the [`ronami-rocksdb`] crate.
 
-[`teloxide-rocksdb`]: https://github.com/teloxide/teloxide-rocksdb
+[`ronami-rocksdb`]: https://github.com/teloxide/teloxide-rocksdb
 
 ## 0.11 -> 0.11.3
 
-### teloxide
+### ronami
 
 We have introduced the new trait `CommandRepl` that replaces the old `commands_repl_(with_listener)` functions:
 
 ```diff
-- teloxide::commands_repl(bot, answer, Command::ty())
+- ronami::commands_repl(bot, answer, Command::ty())
 + Command::repl(bot, answer)
 ```
 
 ```diff
-- teloxide::commands_repl_with_listener(bot, answer, listener, Command::ty())
+- ronami::commands_repl_with_listener(bot, answer, listener, Command::ty())
 + Command::repl_with_listener(bot, answer, listener)
 ```
 
@@ -303,12 +344,12 @@ Because of API updates `Sticker` type was refactored again.
 You may need to change code accordingly.
 See `Sticker` documentation for more information about the new structure.
 
-### teloxide
+### ronami
 
 You can now write `Ok(())` instead of `respond(())` at the end of closures provided to RELPs:
 
 ```diff
-teloxide::repl(bot, |bot: Bot, msg: Message| async move {
+ronami::repl(bot, |bot: Bot, msg: Message| async move {
     bot.send_dice(msg.chat.id).await?;
 -    respond(())
 +    Ok(())
@@ -316,13 +357,13 @@ teloxide::repl(bot, |bot: Bot, msg: Message| async move {
 .await;
 ```
 
-This is because REPLs now require the closure to return `RequestError` instead of a generic error type, so type inference works perfectly for a return value. If you use something other than `RequestError`, you can transfer your code to `teloxide::dispatching`, which still permits a generic error type.
+This is because REPLs now require the closure to return `RequestError` instead of a generic error type, so type inference works perfectly for a return value. If you use something other than `RequestError`, you can transfer your code to `ronami::dispatching`, which still permits a generic error type.
 
 "Stop tokens" were refactored, the trait is now removed and the types were renamed:
 
 ```diff
--use teloxide::dispatching::stop_token::{AsyncStopToken, AsyncStopFlag};
-+use teloxide::stop::{StopToken, StopFlag, mk_stop_token};
+-use ronami::dispatching::stop_token::{AsyncStopToken, AsyncStopFlag};
++use ronami::stop::{StopToken, StopFlag, mk_stop_token};
 
 -let (token, flag): (AsyncStopToken, AsyncStopFlag) = AsyncStopToken::new_pair();
 +let (token, flag): (StopToken, StopFlag) = mk_stop_token();
@@ -378,7 +419,7 @@ Some places now use `FileMeta` instead of `File`, you may need to change types.
 `Sticker` and `StickerSet` now has a `kind` field instead of `is_animated` and `is_video`:
 
 ```diff
-+use teloxide::types::StickerKind::*;
++use ronami::types::StickerKind::*;
 -match () {
 +match sticker.kind {
 -    _ if sticker.is_animated => /* handle animated */,
@@ -390,9 +431,9 @@ Some places now use `FileMeta` instead of `File`, you may need to change types.
 }
 ```
 
-### teloxide
+### ronami
 
-Teloxide itself doesn't have any major API changes.
+Ronami itself doesn't have any major API changes.
 Note however that some function were deprecated:
 - Instead of `dispatching::update_listeners::polling` use `polling_builder`
 - Instead of `Dispatcher::setup_ctrlc_handler` use `DispatcherBuilder::enable_ctrlc_handler`
@@ -416,7 +457,7 @@ bot.send_message(chat_id, "Hi!").await?;
 
 `RequestError::RetryAfter` now has a field of type `Duration`, instead of `i32`.
 
-### teloxide
+### ronami
 
 The old dispatching system was removed. If you still hasn't moved to the new one, read the [0.5 -> 0.6 migration guide] for more information on this topic. Note that since the old dispatching was removed, the new dispatching system now lives in the `dispatching` module, **not** `dispatching2` module.
 
@@ -424,13 +465,13 @@ If you implement `UpdateListener` yourself, note that `StopToken` is now require
 
 `BotCommand` trait was renamed to `BotCommands`. `BotCommands::descriptions` not returns `CommandDescriptions` instead of `String`. To get string, you can call `.to_string()`.
 
-`#[derive(DialogueState)]` is deprecated in favour of `teloxide::handler!`, a more flexible API for dealing with dialogues. [`examples/dialogue.rs`](https://github.com/teloxide/teloxide/blob/03521bfd3d68f6f576dcc44b5473aaa5ce9b553f/examples/dialogue.rs) shows how to use it.
+`#[derive(DialogueState)]` is deprecated in favour of `ronami::handler!`, a more flexible API for dealing with dialogues. [`examples/dialogue.rs`](https://github.com/teloxide/teloxide/blob/03521bfd3d68f6f576dcc44b5473aaa5ce9b553f/examples/dialogue.rs) shows how to use it.
 
 [0.5 -> 0.6 migration guide]: #05---06
 
 ## 0.6 -> 0.7
 
-### teloxide
+### ronami
 
 In order to make `Dispatcher` implement `Send`, `DispatcherBuilder::{default_handler, error_handler}` now accept handlers that implements `Send + Sync`. If you used `!Send` or `!Sync` handlers here, you may need to change that.
 
@@ -442,9 +483,9 @@ In order to make `Dispatcher` implement `Send`, `DispatcherBuilder::{default_han
  - `RequestError` and `DownloadError` error variants were slightly renamed
 - `ChatPermissions` is now bitflags.
 
-### teloxide
+### ronami
 
-v0.6 of teloxide introduces a new dispatching model based on the [chain of responsibility pattern]. To use it, you need to replace `prelude` with `prelude2` and `dispatching` with `dispatching2`. Instead of using old REPLs, you should now use `teloxide::repls2`.
+v0.6 of ronami introduces a new dispatching model based on the [chain of responsibility pattern]. To use it, you need to replace `prelude` with `prelude2` and `dispatching` with `dispatching2`. Instead of using old REPLs, you should now use `ronami::repls2`.
 
 The whole design is different from the previous one based on Tokio streams. In this section, we are only to address the most common usage scenarios.
 
@@ -452,11 +493,11 @@ First of all, now there are no streams. Instead of using streams, you use [`dptr
 
 Secondly, `Dispatcher` has been split into two separate abstractions: `DispatcherBuilder` and `Dispatcher`. The calling sequence is simple: you call `Dispatcher::builder(bot, handler)`, set up your stuff, and then call `.build()` to obtain `Dispatcher`. Later, you can `.setup_ctrlc_handler()` on it and finally `.dispatch()` (or `.dispatch_with_listener()`).
 
-Lastly, the dialogue management system has been greatly simplified. Just compare the [new `examples/dialogue.rs`](https://github.com/teloxide/teloxide/blob/25f863402d4f377f573ce2ba394f5b768ee8052e/examples/dialogue.rs) with the [old one](https://github.com/teloxide/teloxide/tree/2a6067fe94773a0015627a6aaa1930b8f88b6da0/examples/dialogue_bot/src) to see the difference. Now you don't need `TransitionIn`, `TransitionOut`, `#[teloxide(subtransition)]`, etc. All you need is to derive `DialogueState` for your FSM enumeration, call `.enter_dialogue()` and write handlers for each of a dialogue's states. Instead of supplying dependencies in the `aux` parameter of `Transition::react`, you can just call `.dependencies()` while setting up the dispatcher and all the dependencies will be passed to your handler functions as parameters.
+Lastly, the dialogue management system has been greatly simplified. Just compare the [new `examples/dialogue.rs`](https://github.com/teloxide/teloxide/blob/25f863402d4f377f573ce2ba394f5b768ee8052e/examples/dialogue.rs) with the [old one](https://github.com/teloxide/teloxide/tree/2a6067fe94773a0015627a6aaa1930b8f88b6da0/examples/dialogue_bot/src) to see the difference. Now you don't need `TransitionIn`, `TransitionOut`, `#[ronami(subtransition)]`, etc. All you need is to derive `DialogueState` for your FSM enumeration, call `.enter_dialogue()` and write handlers for each of a dialogue's states. Instead of supplying dependencies in the `aux` parameter of `Transition::react`, you can just call `.dependencies()` while setting up the dispatcher and all the dependencies will be passed to your handler functions as parameters.
 
 For more information, please look at the appropriate documentation pages and the [updated examples](https://github.com/teloxide/teloxide/tree/master/examples). Note that, in one of the upcoming releases, the old dispatching model will be removed, so we highly encourage you to migrate your bots to the new one.
 
-Thanks for using teloxide!
+Thanks for using ronami!
 
 [chain of responsibility pattern]: https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
 [`dptree`]: https://github.com/p0lunin/dptree
@@ -488,7 +529,7 @@ List of changed types:
 
 #### Method output types
 
-In teloxide `v0.4` (core `v0.2`) some API methods had wrong return types.
+In ronami `v0.4` (core `v0.2`) some API methods had wrong return types.
 This made them practically unusable as they've always returned parsing error.
 On the off-chance you were using the methods, you may need to adjust types in your code.
 
@@ -526,7 +567,7 @@ let link = bot
     .await?;
 ```
 
-See also: [teloxide examples fixes](https://github.com/teloxide/teloxide/pull/408/files/369e43aa7ed1b192d326e6bdfe76f3560001353f..18f88cc034e97fd437c48930728c1d5d2da7a14d).
+See also: [ronami examples fixes](https://github.com/teloxide/teloxide/pull/408/files/369e43aa7ed1b192d326e6bdfe76f3560001353f..18f88cc034e97fd437c48930728c1d5d2da7a14d).
 
 List of changed required params:
 - `SetWebhook::url`: `String` -> `Url`
@@ -586,7 +627,7 @@ let bot = Bot::new(token).parse_mode(ParseMode::MarkdownV2);
 ```
 
 
-### teloxide
+### ronami
 
 #### Mutable reference for dispatching
 
@@ -604,11 +645,11 @@ dp.dispatch();
 #### Listener refactor
 
 `UpdateListener` trait was refactored.
-If you've used `polling`/`polling_default` provided by teloxide, no changes are required.
+If you've used `polling`/`polling_default` provided by ronami, no changes are required.
 If, however, you've used or implemented `UpdateListener` directly or used a `Stream` as a listener, 
 then you need to refactor your code too.
 
-See also: [teloxide examples fixes](https://github.com/teloxide/teloxide/pull/385/files/8785b8263cb4caebf212e2a66a19f73e653eb060..c378d6ef4e524da96718beec6f989e8ac51d1531).
+See also: [ronami examples fixes](https://github.com/teloxide/teloxide/pull/385/files/8785b8263cb4caebf212e2a66a19f73e653eb060..c378d6ef4e524da96718beec6f989e8ac51d1531).
 
 
 #### `polling_default`

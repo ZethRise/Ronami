@@ -19,5 +19,5 @@ docs = """doc
 #        or we don't depend on `generic-array` anymore
 #
 # N.B.: when changing this, also change `RUSTDOCFLAGS` in `.github/workflows/ci.yml` and
-#      `package.metadata.docs.rs.rustdoc-args` in `crates/teloxide/Cargo.toml`
+#      `package.metadata.docs.rs.rustdoc-args` in `crates/ronami/Cargo.toml`
 rustdocflags = ["--cfg", "docsrs"]

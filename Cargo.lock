@@ -2128,6 +2128,92 @@ dependencies = [
 ]
 
 [[package]]
+name = "ronami"
+version = "1.0.0"
+dependencies = [
+ "aquamarine",
+ "axum",
+ "bincode",
+ "bytes",
+ "chrono",
+ "deadpool-redis",
+ "derive_more",
+ "dptree",
+ "either",
+ "futures",
+ "log",
+ "mime",
+ "pin-project",
+ "pretty_env_logger",
+ "rand 0.9.4",
+ "reqwest",
+ "ronami-core",
+ "ronami-macros",
+ "serde",
+ "serde_cbor",
+ "serde_json",
+ "sqlx",
+ "thiserror",
+ "tokio",
+ "tokio-stream",
+ "tokio-util",
+ "tower",
+ "tower-http",
+ "tracing",
+ "url",
+]
+
+[[package]]
+name = "ronami-core"
+version = "1.0.0"
+dependencies = [
+ "aho-corasick",
+ "bitflags",
+ "bytes",
+ "chrono",
+ "cool_asserts",
+ "derive_more",
+ "either",
+ "futures",
+ "indexmap 2.11.4",
+ "itertools 0.14.0",
+ "log",
+ "mime",
+ "once_cell",
+ "pin-project",
+ "pretty_assertions",
+ "pretty_env_logger",
+ "rc-box",
+ "reqwest",
+ "rgb",
+ "ron",
+ "schemars 1.0.4",
+ "serde",
+ "serde_json",
+ "serde_with",
+ "stacker",
+ "take_mut",
+ "takecell",
+ "thiserror",
+ "tokio",
+ "tokio-util",
+ "url",
+ "uuid",
+ "vecrem",
+ "xshell",
+]
+
+[[package]]
+name = "ronami-macros"
+version = "1.0.0"
+dependencies = [
+ "heck",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "rustc-demangle"
 version = "0.1.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2800,92 +2886,6 @@ name = "takecell"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "20f34339676cdcab560c9a82300c4c2581f68b9369aedf0fae86f2ff9565ff3e"
-
-[[package]]
-name = "teloxide"
-version = "0.17.0"
-dependencies = [
- "aquamarine",
- "axum",
- "bincode",
- "bytes",
- "chrono",
- "deadpool-redis",
- "derive_more",
- "dptree",
- "either",
- "futures",
- "log",
- "mime",
- "pin-project",
- "pretty_env_logger",
- "rand 0.9.4",
- "reqwest",
- "serde",
- "serde_cbor",
- "serde_json",
- "sqlx",
- "teloxide-core",
- "teloxide-macros",
- "thiserror",
- "tokio",
- "tokio-stream",
- "tokio-util",
- "tower",
- "tower-http",
- "tracing",
- "url",
-]
-
-[[package]]
-name = "teloxide-core"
-version = "0.13.0"
-dependencies = [
- "aho-corasick",
- "bitflags",
- "bytes",
- "chrono",
- "cool_asserts",
- "derive_more",
- "either",
- "futures",
- "indexmap 2.11.4",
- "itertools 0.14.0",
- "log",
- "mime",
- "once_cell",
- "pin-project",
- "pretty_assertions",
- "pretty_env_logger",
- "rc-box",
- "reqwest",
- "rgb",
- "ron",
- "schemars 1.0.4",
- "serde",
- "serde_json",
- "serde_with",
- "stacker",
- "take_mut",
- "takecell",
- "thiserror",
- "tokio",
- "tokio-util",
- "url",
- "uuid",
- "vecrem",
- "xshell",
-]
-
-[[package]]
-name = "teloxide-macros"
-version = "0.10.0"
-dependencies = [
- "heck",
- "proc-macro2",
- "quote",
- "syn",
-]
 
 [[package]]
 name = "tempfile"

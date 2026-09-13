@@ -83,7 +83,7 @@ impl<T: Trait> Trait for Wrap<T> { ... }
    /// [`tokio::fs::File`]: tokio::fs::File
    /// [`Bot::download_file`]: crate::Bot::download_file
    ```
-4. Write `teloxide`, `teloxide-macros`, and `teloxide-core`, not "teloxide", "Teloxide", "teloxide-macros" or any other variant.
+4. Write `ronami`, `ronami-macros`, and `ronami-core`, not "Ronami", "RONAMI", or other variants.
 
 ## Use `Self` where possible
 
