@@ -1,7 +1,7 @@
 # Ronami
 
 <p align="center">
-  <img src="media/ronami-logo.png" width="160" alt="Ronami logo">
+  <img src="media/ronami-logo-transparent.png" width="160" alt="Ronami logo">
 </p>
 
 <p align="center">
