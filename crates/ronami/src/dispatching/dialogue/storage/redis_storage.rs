@@ -71,17 +71,22 @@ where
                 redis::pipe().atomic().del(chat_id).query_async(&mut conn).await?;
 
             if let redis::Value::Array(values) = deleted_rows_count {
-                // False positive
-                #[allow(clippy::collapsible_match)]
-                if let redis::Value::Int(deleted_rows_count) = values[0] {
-                    match deleted_rows_count {
+                if let Some(redis::Value::Int(deleted_rows_count)) = values.first() {
+                    match *deleted_rows_count {
                         0 => return Err(RedisStorageError::DialogueNotFound),
                         _ => return Ok(()),
                     }
                 }
             }
 
-            unreachable!("Must return redis::Value::Bulk(redis::Value::Int(_))");
+            if let redis::Value::Int(count) = deleted_rows_count {
+                match count {
+                    0 => return Err(RedisStorageError::DialogueNotFound),
+                    _ => return Ok(()),
+                }
+            }
+
+            Ok(())
         })
     }
 

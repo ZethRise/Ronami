@@ -193,13 +193,29 @@ where
 
     let (tx, rx): (UpdateSender, _) = mpsc::unbounded_channel();
 
+    fn constant_time_eq(a: Option<&[u8]>, b: Option<&[u8]>) -> bool {
+        match (a, b) {
+            (None, None) => true,
+            (Some(a), Some(b)) => {
+                if a.len() != b.len() {
+                    return false;
+                }
+                let mut diff = 0u8;
+                for (&x, &y) in a.iter().zip(b) {
+                    diff |= x ^ y;
+                }
+                diff == 0
+            }
+            _ => false,
+        }
+    }
+
     async fn telegram_request(
         State(WebhookState { secret, flag, mut tx }): State<WebhookState>,
         secret_header: XTelegramBotApiSecretToken,
         input: String,
     ) -> impl IntoResponse {
-        // FIXME: use constant time comparison here
-        if secret_header.0.as_deref() != secret.as_deref().map(str::as_bytes) {
+        if !constant_time_eq(secret_header.0.as_deref(), secret.as_deref().map(str::as_bytes)) {
             return StatusCode::UNAUTHORIZED;
         }
 

@@ -162,7 +162,10 @@ impl InputFile {
     fn take_or_guess_filename(&mut self) -> Cow<'static, str> {
         self.file_name.take().unwrap_or_else(|| match &self.inner {
             File(path_to_file) => match path_to_file.file_name() {
-                Some(name) => Cow::Owned(name.to_string_lossy().into_owned()),
+                Some(name) => {
+                    let sanitized = name.to_string_lossy().replace(['\r', '\n', '"'], "_");
+                    Cow::Owned(sanitized)
+                }
                 None => Cow::Borrowed(""),
             },
             _ => Cow::Borrowed(""),

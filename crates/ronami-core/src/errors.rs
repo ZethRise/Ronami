@@ -814,32 +814,13 @@ pub(crate) fn hide_token(mut error: reqwest::Error) -> reqwest::Error {
 
         if let Some(token) = segment.and_then(|s| s.strip_prefix("bot")) {
             // make sure that what we are about to delete looks like a bot token
-            if let Some((id, secret)) = token.split_once(':') {
-                // The part before the : in the token is the id of the bot.
-                let id_character = |c: char| c.is_ascii_digit();
+            if let Some((_id, _secret)) = token.split_once(':') {
+                // found token, hide the token unconditionally
+                let without_token = &url.path()[(beginning.len() + "/bot".len() + token.len())..];
+                let redacted = format!("{beginning}token:redacted{without_token}");
 
-                // The part after the : in the token is the secret.
-                //
-                // In all bot tokens we could find the secret is 35 characters long and is
-                // 0-9a-zA-Z_- only.
-                //
-                // It would be nice to research if TBA always has 35 character secrets or if it
-                // is just a coincidence.
-                const SECRET_LENGTH: usize = 35;
-                let secret_character = |c: char| c.is_ascii_alphanumeric() || c == '-' || c == '_';
-
-                if secret.len() >= SECRET_LENGTH
-                    && id.chars().all(id_character)
-                    && secret.chars().all(secret_character)
-                {
-                    // found token, hide only the token
-                    let without_token =
-                        &url.path()[(beginning.len() + "/bot".len() + token.len())..];
-                    let redacted = format!("{beginning}token:redacted{without_token}");
-
-                    url.set_path(&redacted);
-                    return error;
-                }
+                url.set_path(&redacted);
+                return error;
             }
         }
     }

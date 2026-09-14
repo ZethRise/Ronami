@@ -520,7 +520,9 @@ where
                     }),
                 };
 
-                worker.tx.send(upd).await.expect("TX is dead");
+                if let Err(err) = worker.tx.send(upd).await {
+                    log::error!("Worker channel closed unexpectedly, dropped update: {err:?}");
+                }
             }
             Err(err) => err_handler.clone().handle_error(err).await,
         }

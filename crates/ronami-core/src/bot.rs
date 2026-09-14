@@ -53,11 +53,25 @@ const RONAMI_API_URL: &str = "RONAMI_API_URL";
 /// [`Arc`]: std::sync::Arc
 /// [Telegram Bot API]: https://core.telegram.org/bots/api
 #[must_use]
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Bot {
     token: Arc<str>,
     api_url: Arc<reqwest::Url>,
     client: Client,
+}
+
+impl std::fmt::Debug for Bot {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let redacted = match self.token.split_once(':') {
+            Some((id, _)) => format!("{id}:[REDACTED]"),
+            None => "[REDACTED]".to_string(),
+        };
+        f.debug_struct("Bot")
+            .field("token", &redacted)
+            .field("api_url", &self.api_url)
+            .field("client", &self.client)
+            .finish()
+    }
 }
 
 /// Constructors

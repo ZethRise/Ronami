@@ -39,7 +39,9 @@ impl<S> SqliteStorage<S> {
         path: &str,
         serializer: S,
     ) -> Result<Arc<Self>, SqliteStorageError<Infallible>> {
-        let pool = SqlitePool::connect(format!("sqlite:{path}?mode=rwc").as_str()).await?;
+        let separator = if path.contains('?') { '&' } else { '?' };
+        let pool =
+            SqlitePool::connect(format!("sqlite:{path}{separator}mode=rwc").as_str()).await?;
         sqlx::query(
             "
 CREATE TABLE IF NOT EXISTS ronami_dialogues (

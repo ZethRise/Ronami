@@ -70,7 +70,7 @@ pub fn strike(s: &str) -> String {
 #[must_use = "This function returns a new string, rather than mutating the argument, so calling it \
               without using its output does nothing useful"]
 pub fn link(url: &str, text: &str) -> String {
-    format!("<a href=\"{}\">{}</a>", escape(url), escape(text))
+    format!("<a href=\"{}\">{}</a>", escape(url).replace('"', "&quot;"), escape(text))
 }
 
 /// Builds an inline user mention link with an anchor.
