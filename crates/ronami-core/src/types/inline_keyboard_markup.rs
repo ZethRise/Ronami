@@ -72,6 +72,14 @@ impl InlineKeyboardMarkup {
         };
         self
     }
+
+    #[must_use]
+    pub fn remove_row(mut self, index: usize) -> Self {
+        if index < self.inline_keyboard.len() {
+            self.inline_keyboard.remove(index);
+        }
+        self
+    }
 }
 
 #[cfg(test)]
@@ -121,5 +129,18 @@ mod tests {
         let expected = InlineKeyboardMarkup { inline_keyboard: vec![vec![button1], vec![button2]] };
 
         assert_eq!(markup, expected);
+    }
+
+    #[test]
+    fn remove_row() {
+        let button1 = InlineKeyboardButton::url("text 1".to_string(), url(1));
+        let button2 = InlineKeyboardButton::url("text 2".to_string(), url(2));
+        let kb = InlineKeyboardMarkup::default()
+            .append_row(vec![button1])
+            .append_row(vec![button2.clone()]);
+        assert_eq!(kb.inline_keyboard.len(), 2);
+        let kb = kb.remove_row(0);
+        assert_eq!(kb.inline_keyboard.len(), 1);
+        assert_eq!(kb.inline_keyboard[0][0], button2);
     }
 }

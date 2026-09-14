@@ -52,7 +52,7 @@ Telegram Bot API Server (:8081 / cloud)
 ### Requirements
 
 - Rust 1.85+ (`stable` or `nightly`)
-- A Telegram bot token from [@BotFather](https://t.me/botfather)
+- A Telegram bot token from [@BotFather](https://t.me/botfather) (Note: BotFather enables Privacy Mode by default in groups; disable via `/setprivacy` if your bot needs to process non-command group messages)
 
 ### Add dependency
 

@@ -170,6 +170,30 @@ pub enum MessageKind {
 #[from(&'static str, String)]
 pub struct EffectId(pub String);
 
+/// Wrapper type representing the message that was replied to.
+///
+/// Use with `filter_replied_message` to receive both the original message and
+/// the replied-to message in downstream handlers without overriding the
+/// original [`Message`] dependency in `dptree`.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+#[serde(transparent)]
+pub struct RepliedMessage(pub Box<Message>);
+
+impl std::ops::Deref for RepliedMessage {
+    type Target = Message;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl From<Message> for RepliedMessage {
+    fn from(m: Message) -> Self {
+        Self(Box::new(m))
+    }
+}
+
 #[serde_with::skip_serializing_none]
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
@@ -1090,7 +1114,7 @@ mod getters {
         MessageManagedBotCreated, MessageMessageAutoDeleteTimerChanged,
         MessagePaidMessagePriceChanged, MessagePollOptionAdded, MessagePollOptionDeleted,
         MessageUniqueGiftInfo, MessageVideoChatEnded, MessageVideoChatScheduled,
-        MessageVideoChatStarted, MessageWebAppData, MessageWriteAccessAllowed,
+        MessageVideoChatStarted, MessageWebAppData, MessageWriteAccessAllowed, RepliedMessage,
     };
 
     /// Getters for [Message] fields from [telegram docs].
@@ -1225,6 +1249,11 @@ mod getters {
         }
 
         #[must_use]
+        pub fn replied_message(&self) -> Option<RepliedMessage> {
+            self.reply_to_message().cloned().map(RepliedMessage::from)
+        }
+
+        #[must_use]
         pub fn edit_date(&self) -> Option<&DateTime<Utc>> {
             match &self.kind {
                 Common(MessageCommon { edit_date, .. }) => edit_date.as_ref(),
@@ -1258,6 +1287,17 @@ mod getters {
         #[must_use]
         pub fn text(&self) -> Option<&str> {
             match &self.kind {
+                Common(MessageCommon {
+                    media_kind: MediaKind::Text(MediaText { text, .. }),
+                    ..
+                }) => Some(text),
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn into_text(self) -> Option<String> {
+            match self.kind {
                 Common(MessageCommon {
                     media_kind: MediaKind::Text(MediaText { text, .. }),
                     ..
@@ -1484,8 +1524,30 @@ mod getters {
         }
 
         #[must_use]
+        pub fn into_photo(self) -> Option<Vec<PhotoSize>> {
+            match self.kind {
+                Common(MessageCommon {
+                    media_kind: MediaKind::Photo(MediaPhoto { photo, .. }),
+                    ..
+                }) => Some(photo),
+                _ => None,
+            }
+        }
+
+        #[must_use]
         pub fn sticker(&self) -> Option<&types::Sticker> {
             match &self.kind {
+                Common(MessageCommon {
+                    media_kind: MediaKind::Sticker(MediaSticker { sticker, .. }),
+                    ..
+                }) => Some(sticker),
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn into_sticker(self) -> Option<types::Sticker> {
+            match self.kind {
                 Common(MessageCommon {
                     media_kind: MediaKind::Sticker(MediaSticker { sticker, .. }),
                     ..
@@ -1517,6 +1579,17 @@ mod getters {
         }
 
         #[must_use]
+        pub fn into_video(self) -> Option<types::Video> {
+            match self.kind {
+                Common(MessageCommon {
+                    media_kind: MediaKind::Video(MediaVideo { video, .. }),
+                    ..
+                }) => Some(video),
+                _ => None,
+            }
+        }
+
+        #[must_use]
         pub fn voice(&self) -> Option<&types::Voice> {
             match &self.kind {
                 Common(MessageCommon {
@@ -1528,8 +1601,30 @@ mod getters {
         }
 
         #[must_use]
+        pub fn into_voice(self) -> Option<types::Voice> {
+            match self.kind {
+                Common(MessageCommon {
+                    media_kind: MediaKind::Voice(MediaVoice { voice, .. }),
+                    ..
+                }) => Some(voice),
+                _ => None,
+            }
+        }
+
+        #[must_use]
         pub fn video_note(&self) -> Option<&types::VideoNote> {
             match &self.kind {
+                Common(MessageCommon {
+                    media_kind: MediaKind::VideoNote(MediaVideoNote { video_note, .. }),
+                    ..
+                }) => Some(video_note),
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn into_video_note(self) -> Option<types::VideoNote> {
+            match self.kind {
                 Common(MessageCommon {
                     media_kind: MediaKind::VideoNote(MediaVideoNote { video_note, .. }),
                     ..
@@ -1551,6 +1646,23 @@ mod getters {
                         | MediaKind::Voice(MediaVoice { caption, .. }),
                     ..
                 }) => caption.as_ref().map(Deref::deref),
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn into_caption(self) -> Option<String> {
+            match self.kind {
+                Common(MessageCommon {
+                    media_kind:
+                        MediaKind::Animation(MediaAnimation { caption, .. })
+                        | MediaKind::Audio(MediaAudio { caption, .. })
+                        | MediaKind::Document(MediaDocument { caption, .. })
+                        | MediaKind::Photo(MediaPhoto { caption, .. })
+                        | MediaKind::Video(MediaVideo { caption, .. })
+                        | MediaKind::Voice(MediaVoice { caption, .. }),
+                    ..
+                }) => caption,
                 _ => None,
             }
         }

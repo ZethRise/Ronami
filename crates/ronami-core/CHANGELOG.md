@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Methods: add `send_rich_message` (`SendRichMessage`), `send_rich_message_draft` (`SendRichMessageDraft`), and `rich_message` optional parameter to `edit_message_text` and `edit_message_text_inline`
   - Join Request Queries: add `supports_join_request_queries` to `User`, `guard_bot` to `ChatFullInfo`, `query_id` to `ChatJoinRequest`, and `answer_chat_join_request_query` (`AnswerChatJoinRequestQuery`) and `send_chat_join_request_web_app` (`SendChatJoinRequestWebApp`) methods
   - Polls: `Link` and `InputMediaLink` for poll media and poll option media
+  - Fix `MessageKind::Empty` when replying to channel/external messages without media by making `ExternalReplyInfo.kind: Option<ExternalReplyInfoKind>` ([#1420](https://github.com/teloxide/teloxide/issues/1420))
+  - Add `remove_row` method to `InlineKeyboardMarkup` and `ReplyKeyboardMarkup` ([#1425](https://github.com/teloxide/teloxide/issues/1425))
+  - Add `RepliedMessage` wrapper and `replied_message()` getter on `Message` ([#751](https://github.com/teloxide/teloxide/issues/751))
+  - Add `into_text`, `into_caption`, `into_photo`, `into_video`, `into_audio`, `into_document`, `into_sticker`, `into_voice`, `into_video_note` methods on `Message` ([#1172](https://github.com/teloxide/teloxide/issues/1172))
+  - Expose `requester_forward!` macro publicly in prelude ([#822](https://github.com/teloxide/teloxide/issues/822))
+  - Increase default network timeouts and fix per-request timeout propagation for large uploads ([#529](https://github.com/teloxide/teloxide/issues/529))
 
 - Support for TBA 10.0
   - Guest mode: add `guest_query_id`, `guest_bot_caller_user`, `guest_bot_caller_chat` to `Message`, `SentGuestMessage` struct, `GuestQueryId`, `answer_guest_query` method, `supports_guest_queries` to `User`, `UpdateKind::GuestMessage` and `filter_guest_message`

@@ -402,6 +402,7 @@ macro_rules! download_forward {
     };
 }
 
+#[macro_export]
 macro_rules! requester_forward {
     ($i:ident $(, $rest:ident )* $(,)? => $body:ident, $ty:ident ) => {
         requester_forward!(@method $i $body $ty);

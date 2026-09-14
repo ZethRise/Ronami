@@ -106,7 +106,6 @@ derive_more = { version = "2.0.1", features = ["display", "from", "deref"] }
 thiserror = "2.0.11"
 futures = "0.3.15"
 pin-project = "1.0"
-aquamarine = "0.6.0"
 either = "1.9.0"
 
 sqlx = { version = "0.8.1", optional = true, default-features = false, features = [

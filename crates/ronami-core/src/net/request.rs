@@ -16,7 +16,7 @@ pub async fn request_multipart<T>(
     api_url: reqwest::Url,
     method_name: &str,
     params: reqwest::multipart::Form,
-    _timeout_hint: Option<Duration>,
+    timeout_hint: Option<Duration>,
 ) -> ResponseResult<T>
 where
     T: DeserializeOwned + 'static,
@@ -34,15 +34,14 @@ where
     // [#460]: https://github.com/teloxide/teloxide/issues/460
     let method_name = method_name.trim_end_matches("Inline");
 
-    let request = client
-        .post(crate::net::method_url(api_url, token, method_name))
-        .multipart(params)
-        .build()?;
+    let mut req_builder =
+        client.post(crate::net::method_url(api_url, token, method_name)).multipart(params);
 
-    // FIXME: uncomment this, when reqwest starts setting default timeout early
-    // if let Some(timeout) = timeout_hint {
-    //     *request.timeout_mut().get_or_insert(Duration::ZERO) += timeout;
-    // }
+    if let Some(timeout) = timeout_hint {
+        req_builder = req_builder.timeout(Duration::from_secs(17) + timeout);
+    }
+
+    let request = req_builder.build()?;
 
     let response = client.execute(request).await?;
 
@@ -55,7 +54,7 @@ pub async fn request_json<T>(
     api_url: reqwest::Url,
     method_name: &str,
     params: Vec<u8>,
-    _timeout_hint: Option<Duration>,
+    timeout_hint: Option<Duration>,
 ) -> ResponseResult<T>
 where
     T: DeserializeOwned + 'static,
@@ -73,16 +72,16 @@ where
     // [#460]: https://github.com/teloxide/teloxide/issues/460
     let method_name = method_name.trim_end_matches("Inline");
 
-    let request = client
+    let mut req_builder = client
         .post(crate::net::method_url(api_url, token, method_name))
         .header(CONTENT_TYPE, HeaderValue::from_static("application/json"))
-        .body(params)
-        .build()?;
+        .body(params);
 
-    // FIXME: uncomment this, when reqwest starts setting default timeout early
-    // if let Some(timeout) = timeout_hint {
-    //     *request.timeout_mut().get_or_insert(Duration::ZERO) += timeout;
-    // }
+    if let Some(timeout) = timeout_hint {
+        req_builder = req_builder.timeout(Duration::from_secs(17) + timeout);
+    }
+
+    let request = req_builder.build()?;
 
     let response = client.execute(request).await?;
 

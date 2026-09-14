@@ -15,7 +15,7 @@ pub use ronami_core::{
     requests::ResponseResult,
     types::{
         CallbackQuery, ChatMemberUpdated, ChosenInlineResult, InlineQuery, Message, Poll,
-        PollAnswer, PreCheckoutQuery, ShippingQuery, Update,
+        PollAnswer, PreCheckoutQuery, RepliedMessage, ShippingQuery, Update,
     },
 };
 

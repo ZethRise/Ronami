@@ -169,7 +169,6 @@ where
     }
 }
 
-#[cfg_attr(doc, aquamarine::aquamarine)]
 /// A polling update listener.
 ///
 /// ## How it works

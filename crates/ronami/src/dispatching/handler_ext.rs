@@ -35,6 +35,18 @@ pub trait HandlerExt<Output> {
     where
         C: BotCommands + Send + Sync + 'static;
 
+    /// Returns a handler that extracts a [`RepliedMessage`] from an incoming
+    /// [`Message`], allowing access to both the original message and the
+    /// replied-to message.
+    ///
+    /// ## Dependency requirements
+    ///
+    ///  - [`crate::types::Message`]
+    ///
+    /// [`RepliedMessage`]: crate::types::RepliedMessage
+    #[must_use]
+    fn filter_replied_message(self) -> Self;
+
     /// Passes [`Dialogue<D, S>`] and `D` as handler dependencies.
     ///
     /// It does so by the following steps:
@@ -83,6 +95,10 @@ where
         C: BotCommands + Send + Sync + 'static,
     {
         self.chain(filter_mention_command::<C, Output>())
+    }
+
+    fn filter_replied_message(self) -> Self {
+        self.chain(filter_replied_message::<Output>())
     }
 
     fn enter_dialogue<Upd, S, D>(self) -> Self
@@ -153,6 +169,18 @@ where
     })
 }
 
+/// A call to this function is the same as
+/// `dptree::entry().filter_replied_message()`.
+///
+/// See [`HandlerExt::filter_replied_message`].
+#[must_use]
+pub fn filter_replied_message<Output>() -> Handler<'static, Output, DpHandlerDescription>
+where
+    Output: Send + Sync + 'static,
+{
+    dptree::filter_map(|message: Message| message.replied_message())
+}
+
 #[cfg(test)]
 #[cfg(feature = "macros")]
 mod tests {
@@ -192,6 +220,7 @@ mod tests {
                     added_to_attachment_menu: false,
                     can_manage_bots: false,
                     supports_guest_queries: false,
+                    supports_join_request_queries: false,
                 }),
                 sender_chat: None,
                 is_topic_message: false,
@@ -239,6 +268,7 @@ mod tests {
                     guest_bot_caller_user: None,
                     guest_bot_caller_chat: None,
                     live_photo: None,
+                    rich_message: None,
                     sender_boost_count: None,
                     is_from_offline: false,
                     business_connection_id: None,
@@ -260,6 +290,7 @@ mod tests {
                 added_to_attachment_menu: false,
                 can_manage_bots: false,
                 supports_guest_queries: false,
+                supports_join_request_queries: false,
             },
             can_join_groups: false,
             allows_users_to_create_topics: false,
@@ -307,5 +338,47 @@ mod tests {
         let update = make_update("/test".to_owned());
         let result = h.dispatch(deps![update, me.clone()]).await;
         assert!(result.is_continue());
+    }
+
+    #[tokio::test]
+    async fn test_filter_replied_message() {
+        use ronami_core::types::{MessageKind, RepliedMessage, UpdateKind};
+
+        let h = dptree::entry().branch(Update::filter_message().filter_replied_message().endpoint(
+            |msg: Message, reply: RepliedMessage| async move {
+                assert_eq!(msg.text(), Some("reply"));
+                assert_eq!(reply.text(), Some("original"));
+            },
+        ));
+
+        let original = serde_json::from_str::<Message>(
+            r#"{
+            "message_id": 1,
+            "date": 100,
+            "chat": {"id": 1, "type": "private", "first_name": "fn"},
+            "text": "original"
+        }"#,
+        )
+        .unwrap();
+
+        let mut reply_msg = serde_json::from_str::<Message>(
+            r#"{
+            "message_id": 2,
+            "date": 200,
+            "chat": {"id": 1, "type": "private", "first_name": "fn"},
+            "text": "reply"
+        }"#,
+        )
+        .unwrap();
+
+        if let MessageKind::Common(ref mut common) = reply_msg.kind {
+            common.reply_to_message = Some(Box::new(original));
+        }
+
+        let update =
+            Update { id: ronami_core::types::UpdateId(1), kind: UpdateKind::Message(reply_msg) };
+
+        let result = h.dispatch(deps![update]).await;
+        assert!(result.is_break());
     }
 }

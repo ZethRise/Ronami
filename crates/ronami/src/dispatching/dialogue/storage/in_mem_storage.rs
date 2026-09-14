@@ -29,6 +29,12 @@ impl<S> InMemStorage<S> {
     pub fn new() -> Arc<Self> {
         Arc::new(Self { map: Mutex::new(HashMap::new()) })
     }
+
+    /// Returns a list of all chat IDs that currently have a dialogue state in
+    /// memory.
+    pub async fn chat_ids(&self) -> Vec<ChatId> {
+        self.map.lock().await.keys().copied().collect()
+    }
 }
 
 impl<D> Storage<D> for InMemStorage<D>
@@ -73,5 +79,23 @@ where
         chat_id: ChatId,
     ) -> BoxFuture<'static, Result<Option<D>, Self::Error>> {
         Box::pin(async move { Ok(self.map.lock().await.get(&chat_id).map(ToOwned::to_owned)) })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_in_mem_storage_chat_ids() {
+        let storage = InMemStorage::<i32>::new();
+        assert!(storage.chat_ids().await.is_empty());
+
+        storage.clone().update_dialogue(ChatId(1), 10).await.unwrap();
+        storage.clone().update_dialogue(ChatId(2), 20).await.unwrap();
+
+        let mut ids = storage.chat_ids().await;
+        ids.sort_by_key(|id| id.0);
+        assert_eq!(ids, vec![ChatId(1), ChatId(2)]);
     }
 }

@@ -586,3 +586,28 @@ fn custom_result() {
     #[allow(dead_code)]
     enum DefaultCommands {}
 }
+
+#[test]
+#[cfg(feature = "macros")]
+fn parse_custom_struct_without_from_str_in_scope() {
+    #[derive(Debug, PartialEq)]
+    struct CustomId(u64);
+
+    impl std::str::FromStr for CustomId {
+        type Err = std::num::ParseIntError;
+        fn from_str(s: &str) -> Result<Self, Self::Err> {
+            Ok(CustomId(s.parse()?))
+        }
+    }
+
+    #[derive(BotCommands, Debug, PartialEq)]
+    #[command(rename_rule = "lowercase", parse_with = "split")]
+    enum Cmd {
+        GiveStrike { member_id: CustomId },
+    }
+
+    let data = "/givestrike 42";
+    let expected = Cmd::GiveStrike { member_id: CustomId(42) };
+    let actual = Cmd::parse(data, "").unwrap();
+    assert_eq!(actual, expected);
+}

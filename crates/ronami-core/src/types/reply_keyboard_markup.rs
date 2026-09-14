@@ -94,6 +94,14 @@ impl KeyboardMarkup {
         self
     }
 
+    #[must_use]
+    pub fn remove_row(mut self, index: usize) -> Self {
+        if index < self.keyboard.len() {
+            self.keyboard.remove(index);
+        }
+        self
+    }
+
     /// Sets [`is_persistent`] to `true`.
     ///
     /// [`is_persistent`]: KeyboardMarkup::is_persistent

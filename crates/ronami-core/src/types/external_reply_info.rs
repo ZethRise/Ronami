@@ -29,7 +29,7 @@ pub struct ExternalReplyInfo {
     pub has_media_spoiler: bool,
 
     #[serde(flatten)]
-    pub kind: ExternalReplyInfoKind,
+    pub kind: Option<ExternalReplyInfoKind>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -66,4 +66,69 @@ pub enum ExternalReplyInfoKind {
     Voice(Voice),
     Invoice(Invoice),
     LivePhoto(LivePhoto),
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_external_reply_without_media() {
+        let json = r#"{
+            "origin": {
+                "type": "channel",
+                "chat": {
+                    "id": -1003134985225,
+                    "title": "Channel",
+                    "type": "channel"
+                },
+                "message_id": 1537,
+                "date": 1720000000
+            },
+            "chat": {
+                "id": -1003106365660,
+                "title": "Group",
+                "type": "supergroup"
+            },
+            "message_id": 1537
+        }"#;
+
+        let res: Result<ExternalReplyInfo, _> = serde_json::from_str(json);
+        assert!(res.is_ok(), "Failed to deserialize: {:?}", res.err());
+        assert_eq!(res.unwrap().kind, None);
+    }
+
+    #[test]
+    fn test_external_reply_with_photo() {
+        let json = r#"{
+            "origin": {
+                "type": "channel",
+                "chat": {
+                    "id": -1003134985225,
+                    "title": "Channel",
+                    "type": "channel"
+                },
+                "message_id": 1537,
+                "date": 1720000000
+            },
+            "chat": {
+                "id": -1003106365660,
+                "title": "Group",
+                "type": "supergroup"
+            },
+            "message_id": 1537,
+            "photo": [
+                {
+                    "file_id": "photo_123",
+                    "file_unique_id": "unique_123",
+                    "width": 100,
+                    "height": 100
+                }
+            ]
+        }"#;
+
+        let res: Result<ExternalReplyInfo, _> = serde_json::from_str(json);
+        assert!(res.is_ok(), "Failed to deserialize: {:?}", res.err());
+        assert!(matches!(res.unwrap().kind, Some(ExternalReplyInfoKind::Photo(_))));
+    }
 }

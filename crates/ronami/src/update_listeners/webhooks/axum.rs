@@ -109,7 +109,7 @@ where
 /// versions of this function.
 pub async fn axum_to_router<R>(
     bot: R,
-    mut options: Options,
+    options: Options,
 ) -> Result<
     (impl UpdateListener<Err = Infallible>, impl Future<Output = ()> + Send, axum::Router),
     R::Err,
@@ -118,12 +118,29 @@ where
     R: Requester + Send,
     <R as Requester>::DeleteWebhook: Send,
 {
+    axum_to_router_with_state(bot, options).await
+}
+
+/// Same as [`axum_to_router`], but allows providing a generic state type `S`
+/// for the returned [`axum::Router<S>`].
+pub async fn axum_to_router_with_state<R, S>(
+    bot: R,
+    mut options: Options,
+) -> Result<
+    (impl UpdateListener<Err = Infallible>, impl Future<Output = ()> + Send, axum::Router<S>),
+    R::Err,
+>
+where
+    R: Requester + Send,
+    <R as Requester>::DeleteWebhook: Send,
+    S: Clone + Send + Sync + 'static,
+{
     use crate::{requests::Request, update_listeners::webhooks::setup_webhook};
     use futures::FutureExt;
 
     setup_webhook(&bot, &mut options).await?;
 
-    let (listener, stop_flag, router) = axum_no_setup(options);
+    let (listener, stop_flag, router) = axum_no_setup_with_state(options);
 
     let stop_flag = stop_flag.then(move |()| async move {
         // This assignment is needed to not require `R: Sync` since without it `&bot`
@@ -155,6 +172,17 @@ where
 pub fn axum_no_setup(
     options: Options,
 ) -> (impl UpdateListener<Err = Infallible>, impl Future<Output = ()>, axum::Router) {
+    axum_no_setup_with_state(options)
+}
+
+/// Same as [`axum_no_setup`], but allows providing a generic state type `S`
+/// for the returned [`axum::Router<S>`].
+pub fn axum_no_setup_with_state<S>(
+    options: Options,
+) -> (impl UpdateListener<Err = Infallible>, impl Future<Output = ()>, axum::Router<S>)
+where
+    S: Clone + Send + Sync + 'static,
+{
     use crate::{
         stop::{mk_stop_token, StopToken},
         update_listeners::{webhooks::tuple_first_mut, StatefulListener},

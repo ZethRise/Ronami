@@ -84,7 +84,7 @@ fn create_parser<'a>(
                 quote! {
                     (
                         |s: ::std::string::String| {
-                            let res = <#ty>::from_str(&s)
+                            let res = <#ty as ::std::str::FromStr>::from_str(&s)
                                 .map_err(|e| ronami::utils::command::ParseError::IncorrectFormat(e.into()))?;
 
                             ::std::result::Result::Ok((res,))
@@ -124,7 +124,7 @@ fn parser_with_separator<'a>(
                             message: format!("Expected but not found arg number {}", #found + 1),
                         })?;
 
-                        <#types>::from_str(s).map_err(|e| ronami::utils::command::ParseError::IncorrectFormat(e.into()))?
+                        <#types as ::std::str::FromStr>::from_str(s).map_err(|e| ronami::utils::command::ParseError::IncorrectFormat(e.into()))?
                     },
                 )*
             )

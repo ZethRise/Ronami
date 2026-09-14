@@ -13,6 +13,18 @@ and issue links in older entries point at the upstream repository.
 
 - Support for TBA 10.1 (Rich Messages: sendRichMessage, sendRichMessageDraft, RichMessage, RichBlock, RichText, InputRichMessage, InputRichMessageContent; Join Request Queries: answerChatJoinRequestQuery, sendChatJoinRequestWebApp, supports_join_request_queries, guard_bot, query_id)
 - Support for TBA 10.0 (guest mode, bot access settings, user personal chat messages, live photos, poll media, message reaction deletion, chat management additions)
+- Upstream issue fixes and enhancements:
+  - Add `RepliedMessage` wrapper and `HandlerExt::filter_replied_message()` to access both original and reply messages ([#751](https://github.com/teloxide/teloxide/issues/751))
+  - Fix `MessageKind::Empty` on reply to channel/external messages without media ([#1420](https://github.com/teloxide/teloxide/issues/1420))
+  - Add `remove_row` method to `InlineKeyboardMarkup` and `ReplyKeyboardMarkup` ([#1425](https://github.com/teloxide/teloxide/issues/1425))
+  - Fix `BotCommands` derive macro for custom structs implementing `FromStr` ([#1031](https://github.com/teloxide/teloxide/issues/1031))
+  - Add `axum_no_setup_with_state` and `axum_to_router_with_state` supporting generic `Router<S>` in webhooks ([#1335](https://github.com/teloxide/teloxide/issues/1335))
+  - Add `into_text`, `into_caption`, `into_photo`, `into_video`, `into_audio`, `into_document`, `into_sticker`, `into_voice`, `into_video_note` methods on `Message` ([#1172](https://github.com/teloxide/teloxide/issues/1172))
+  - Add `chat_ids` method to `InMemStorage` ([#1178](https://github.com/teloxide/teloxide/issues/1178))
+  - Add `split_message` utility in `ronami::utils::split` ([#482](https://github.com/teloxide/teloxide/issues/482))
+  - Expose `requester_forward!` macro publicly in prelude ([#822](https://github.com/teloxide/teloxide/issues/822))
+  - Increase default network timeouts and fix per-request timeout propagation for large uploads ([#529](https://github.com/teloxide/teloxide/issues/529))
+  - Remove deprecated `aquamarine` and `proc-macro-error2` dependency ([#1475](https://github.com/teloxide/teloxide/issues/1475))
 
 ### Changed
 
