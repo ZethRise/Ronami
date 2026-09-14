@@ -152,7 +152,6 @@ Ronami is an API-compatible drop-in successor to teloxide. Rename dependencies a
 | Dialogue table | `teloxide_dialogues` | `ronami_dialogues` |
 | Coverage | 9.2 | **10.1** |
 
-See [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) for full details.
 
 ## Project layout
 
