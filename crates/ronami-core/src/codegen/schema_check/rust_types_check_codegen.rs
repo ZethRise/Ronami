@@ -822,6 +822,14 @@ mod tests {
                 field_name: "date".to_owned(),
             },
             Exception::IgnoreObjectField {
+                object: "Message".to_owned(),
+                field_name: "ephemeral_message_id".to_owned(),
+            },
+            Exception::IgnoreObjectField {
+                object: "MaybeInaccessibleMessage".to_owned(),
+                field_name: "ephemeral_message_id".to_owned(),
+            },
+            Exception::IgnoreObjectField {
                 object: "UniqueGiftInfo".to_owned(),
                 field_name: "last_resale_star_count".to_owned(),
             },
@@ -1014,6 +1022,14 @@ mod tests {
             Exception::IgnoreObjectField {
                 object: "InaccessibleMessage".to_owned(),
                 field_name: "date".to_owned(),
+            },
+            Exception::IgnoreObjectField {
+                object: "Message".to_owned(),
+                field_name: "ephemeral_message_id".to_owned(),
+            },
+            Exception::IgnoreObjectField {
+                object: "MaybeInaccessibleMessage".to_owned(),
+                field_name: "ephemeral_message_id".to_owned(),
             },
             // It has custom deser
             Exception::IgnoreObjectField {

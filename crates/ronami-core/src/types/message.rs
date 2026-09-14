@@ -8,11 +8,12 @@ use url::Url;
 use crate::types::{
     Animation, Audio, BareChatId, BusinessConnectionId, Chat, ChatBackground, ChatBoostAdded,
     ChatId, ChatOwnerChanged, ChatOwnerLeft, ChatShared, Checklist, ChecklistTaskId,
-    ChecklistTasksAdded, ChecklistTasksDone, Contact, Dice, DirectMessagePriceChanged,
-    DirectMessagesTopic, Document, ExternalReplyInfo, ForumTopicClosed, ForumTopicCreated,
-    ForumTopicEdited, ForumTopicReopened, Game, GeneralForumTopicHidden, GeneralForumTopicUnhidden,
-    GiftInfo, Giveaway, GiveawayCompleted, GiveawayCreated, GiveawayWinners, InlineKeyboardMarkup,
-    Invoice, LinkPreviewOptions, LivePhoto, Location, ManagedBotCreated, MaybeInaccessibleMessage,
+    ChecklistTasksAdded, ChecklistTasksDone, CommunityChatAdded, CommunityChatJoined,
+    CommunityChatRemoved, Contact, Dice, DirectMessagePriceChanged, DirectMessagesTopic, Document,
+    ExternalReplyInfo, ForumTopicClosed, ForumTopicCreated, ForumTopicEdited, ForumTopicReopened,
+    Game, GeneralForumTopicHidden, GeneralForumTopicUnhidden, GiftInfo, Giveaway,
+    GiveawayCompleted, GiveawayCreated, GiveawayWinners, InlineKeyboardMarkup, Invoice,
+    LinkPreviewOptions, LivePhoto, Location, ManagedBotCreated, MaybeInaccessibleMessage,
     MessageAutoDeleteTimerChanged, MessageEntity, MessageEntityRef, MessageId, MessageOrigin,
     PaidMediaInfo, PaidMessagePriceChanged, PassportData, PhotoSize, Poll, PollOptionAdded,
     PollOptionDeleted, ProximityAlertTriggered, RefundedPayment, RichMessage, Sticker, Story,
@@ -81,6 +82,13 @@ pub struct Message {
     /// connected business account.
     pub sender_business_bot: Option<User>,
 
+    /// For ephemeral messages, the user who received the message.
+    pub receiver_user: Option<User>,
+
+    /// For ephemeral messages, identifier of the ephemeral message inside this
+    /// chat.
+    pub ephemeral_message_id: Option<MessageId>,
+
     #[serde(flatten)]
     pub kind: MessageKind,
 }
@@ -147,6 +155,9 @@ pub enum MessageKind {
     ManagedBotCreated(MessageManagedBotCreated),
     PollOptionAdded(MessagePollOptionAdded),
     PollOptionDeleted(MessagePollOptionDeleted),
+    CommunityChatAdded(MessageCommunityChatAdded),
+    CommunityChatJoined(MessageCommunityChatJoined),
+    CommunityChatRemoved(MessageCommunityChatRemoved),
     /// An empty, content-less message, that can appear in callback queries
     /// attached to old messages.
     Empty {},
@@ -1084,6 +1095,30 @@ pub struct MessagePollOptionDeleted {
     pub poll_option_deleted: PollOptionDeleted,
 }
 
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct MessageCommunityChatAdded {
+    /// Service message: chat or bot added to a Community.
+    pub community_chat_added: CommunityChatAdded,
+}
+
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct MessageCommunityChatJoined {
+    /// Service message: chat was joined by a user from a Community.
+    pub community_chat_joined: CommunityChatJoined,
+}
+
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct MessageCommunityChatRemoved {
+    /// Service message: chat or bot removed from a Community.
+    pub community_chat_removed: CommunityChatRemoved,
+}
+
 mod getters {
     use chrono::{DateTime, Utc};
     use std::ops::Deref;
@@ -1107,7 +1142,8 @@ mod getters {
 
     use super::{
         MediaGroupId, MessageChatBackground, MessageChatBoostAdded, MessageChatOwnerChanged,
-        MessageChatOwnerLeft, MessageForumTopicClosed, MessageForumTopicCreated,
+        MessageChatOwnerLeft, MessageCommunityChatAdded, MessageCommunityChatJoined,
+        MessageCommunityChatRemoved, MessageForumTopicClosed, MessageForumTopicCreated,
         MessageForumTopicEdited, MessageForumTopicReopened, MessageGeneralForumTopicHidden,
         MessageGeneralForumTopicUnhidden, MessageGiftInfo, MessageGiftUpgradeSent, MessageGiveaway,
         MessageGiveawayCompleted, MessageGiveawayCreated, MessageGiveawayWinners,
@@ -2299,6 +2335,46 @@ mod getters {
         }
 
         #[must_use]
+        pub fn receiver_user(&self) -> Option<&User> {
+            self.receiver_user.as_ref()
+        }
+
+        #[must_use]
+        pub fn ephemeral_message_id(&self) -> Option<MessageId> {
+            self.ephemeral_message_id
+        }
+
+        #[must_use]
+        pub fn community_chat_added(&self) -> Option<&types::CommunityChatAdded> {
+            match &self.kind {
+                CommunityChatAdded(MessageCommunityChatAdded { community_chat_added }) => {
+                    Some(community_chat_added)
+                }
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn community_chat_joined(&self) -> Option<&types::CommunityChatJoined> {
+            match &self.kind {
+                CommunityChatJoined(MessageCommunityChatJoined { community_chat_joined }) => {
+                    Some(community_chat_joined)
+                }
+                _ => None,
+            }
+        }
+
+        #[must_use]
+        pub fn community_chat_removed(&self) -> Option<&types::CommunityChatRemoved> {
+            match &self.kind {
+                CommunityChatRemoved(MessageCommunityChatRemoved { community_chat_removed }) => {
+                    Some(community_chat_removed)
+                }
+                _ => None,
+            }
+        }
+
+        #[must_use]
         pub fn reply_to_poll_option_id(&self) -> Option<&str> {
             match &self.kind {
                 Common(MessageCommon { reply_to_poll_option_id, .. }) => {
@@ -2672,6 +2748,8 @@ mod tests {
                     }),
                 },
                 sender_business_bot: None,
+                receiver_user: None,
+                ephemeral_message_id: None,
                 kind: MessageKind::ChatShared(MessageChatShared {
                     chat_shared: ChatShared {
                         request_id: RequestId(348349),
@@ -3332,6 +3410,8 @@ mod tests {
                     },
                     via_bot: None,
                     sender_business_bot: None,
+                    receiver_user: None,
+                    ephemeral_message_id: None,
                     suggested_post_info: None,
                     kind: MessageKind::Giveaway(MessageGiveaway {
                         giveaway: Giveaway {

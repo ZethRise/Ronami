@@ -598,7 +598,7 @@ impl InputMessageContentInvoice {
 ///
 /// [The official docs](https://core.telegram.org/bots/api#inputrichmessagecontent).
 #[serde_with::skip_serializing_none]
-#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct InputMessageContentRich {
     /// The message to be sent.

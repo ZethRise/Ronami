@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::{
     AcceptedGiftTypes, Audio, Birthdate, BusinessIntro, BusinessLocation, BusinessOpeningHours,
-    Chat, ChatId, ChatLocation, ChatPermissions, ChatPhoto, Message, ReactionType, Seconds,
-    UniqueGiftColors, User, UserRating,
+    Chat, ChatId, ChatLocation, ChatPermissions, ChatPhoto, Community, Message, ReactionType,
+    Seconds, UniqueGiftColors, User, UserRating,
 };
 
 /// Custom emoji identifier.
@@ -116,6 +116,9 @@ pub struct ChatFullInfo {
     /// The bot that processes join request queries in the chat. The field is
     /// only available to chat administrators.
     pub guard_bot: Option<User>,
+
+    /// The Community to which the chat belongs.
+    pub community: Option<Community>,
 }
 
 #[serde_with::skip_serializing_none]
@@ -794,6 +797,7 @@ mod tests {
             unique_gift_colors: None,
             paid_message_star_count: None,
             guard_bot: None,
+            community: None,
         };
         let actual = from_str(
             r#"{
@@ -862,6 +866,7 @@ mod tests {
             unique_gift_colors: None,
             paid_message_star_count: None,
             guard_bot: None,
+            community: None,
         };
         eprintln!("{}", to_string(&chat).unwrap());
         assert_eq!(
@@ -928,6 +933,7 @@ mod tests {
             unique_gift_colors: None,
             paid_message_star_count: None,
             guard_bot: None,
+            community: None,
         };
 
         let json = to_string(&chat).unwrap();

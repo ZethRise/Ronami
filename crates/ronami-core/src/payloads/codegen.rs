@@ -204,6 +204,7 @@ fn eq_hash_suitable(method: &Method) -> bool {
                     && raw != "InlineQueryResult"
                     && raw != "InputProfilePhoto"
                     && raw != "InputPollMedia"
+                    && raw != "InputRichMessage"
             }
         }
     }

@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for TBA 10.2
+  - Ephemeral Messages: add `edit_ephemeral_message_text`, `edit_ephemeral_message_media`, `edit_ephemeral_message_caption`, `edit_ephemeral_message_reply_markup`, `delete_ephemeral_message` methods; add `is_ephemeral` to `BotCommand`, `receiver_user` and `ephemeral_message_id` to `Message`, `ephemeral_message_id` to `ReplyParameters` and make `message_id` optional; add `receiver_user_id` and `callback_query_id` parameters to 13 send methods
+  - Communities: add `Community`, `CommunityChatAdded`, `CommunityChatJoined`, `CommunityChatRemoved` types, and `community` field to `ChatFullInfo`
+  - Rich Messages: add `InputRichBlock` enum with 21 block structs, `InputRichBlockListItem`, `InputRichMessageMedia`, `InputMediaVoiceNote`, and `blocks` and `media` fields to `InputRichMessage`
+  - User Payment Subscriptions: add `BotSubscriptionUpdated` type, `subscription` variant to `UpdateKind`, and `AllowedUpdate::Subscription`
 - Support for TBA 10.1
   - Rich Messages: add `RichText` enum and 24 `RichText*` structs (`RichTextBold`, `RichTextItalic`, etc.), `RichBlock` enum and 21 `RichBlock*` structs (`RichBlockParagraph`, `RichBlockSectionHeading`, etc.), `RichBlockCaption`, `RichBlockTableCell`, `RichBlockListItem`, `RichMessage` struct, `InputRichMessage`, and `InputRichMessageContent` / `InputMessageContentRich`
   - Methods: add `send_rich_message` (`SendRichMessage`), `send_rich_message_draft` (`SendRichMessageDraft`), and `rich_message` optional parameter to `edit_message_text` and `edit_message_text_inline`

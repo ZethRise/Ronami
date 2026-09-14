@@ -14,6 +14,11 @@ pub struct BotCommand {
 
     /// Description of the command, 3-256 characters.
     pub description: String,
+
+    /// Pass `true`, if the command sends an ephemeral message, which can be
+    /// seen only by the sender of the message and the bot.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub is_ephemeral: bool,
 }
 
 impl BotCommand {
@@ -22,7 +27,7 @@ impl BotCommand {
         S1: Into<String>,
         S2: Into<String>,
     {
-        Self { command: command.into(), description: description.into() }
+        Self { command: command.into(), description: description.into(), is_ephemeral: false }
     }
 
     pub fn command<S>(mut self, val: S) -> Self
@@ -38,6 +43,12 @@ impl BotCommand {
         S: Into<String>,
     {
         self.description = val.into();
+        self
+    }
+
+    #[must_use]
+    pub fn is_ephemeral(mut self, val: bool) -> Self {
+        self.is_ephemeral = val;
         self
     }
 }

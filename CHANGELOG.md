@@ -11,6 +11,11 @@ and issue links in older entries point at the upstream repository.
 
 ### Added
 
+- Support for TBA 10.2:
+  - Ephemeral Messages: `editEphemeralMessageText`, `editEphemeralMessageMedia`, `editEphemeralMessageCaption`, `editEphemeralMessageReplyMarkup`, `deleteEphemeralMessage` methods, `is_ephemeral` on `BotCommand`, `receiver_user` and `ephemeral_message_id` on `Message`, `ephemeral_message_id` on `ReplyParameters`
+  - Communities: `Community`, `CommunityChatAdded`, `CommunityChatJoined`, `CommunityChatRemoved` types, `community` field on `ChatFullInfo`, and filters in dispatching
+  - Rich Messages enhancements: `InputRichBlock` (21 block types), `InputRichBlockListItem`, `InputRichMessageMedia`, `InputMediaVoiceNote`, `blocks` and `media` fields on `InputRichMessage`
+  - User payment subscriptions: `BotSubscriptionUpdated` type, `subscription` field on `Update`, `AllowedUpdate::Subscription`, and `filter_subscription` dispatcher filter
 - Support for TBA 10.1 (Rich Messages: sendRichMessage, sendRichMessageDraft, RichMessage, RichBlock, RichText, InputRichMessage, InputRichMessageContent; Join Request Queries: answerChatJoinRequestQuery, sendChatJoinRequestWebApp, supports_join_request_queries, guard_bot, query_id)
 - Support for TBA 10.0 (guest mode, bot access settings, user personal chat messages, live photos, poll media, message reaction deletion, chat management additions)
 - Upstream issue fixes and enhancements:

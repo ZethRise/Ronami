@@ -262,6 +262,11 @@ where
         decline_chat_join_request,
         answer_chat_join_request_query,
         send_chat_join_request_web_app,
+        edit_ephemeral_message_text,
+        edit_ephemeral_message_media,
+        edit_ephemeral_message_caption,
+        edit_ephemeral_message_reply_markup,
+        delete_ephemeral_message,
         get_game_high_scores
         => fid, ftyid
     }

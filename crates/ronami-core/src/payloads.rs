@@ -44,6 +44,7 @@ mod delete_all_message_reactions;
 mod delete_business_messages;
 mod delete_chat_photo;
 mod delete_chat_sticker_set;
+mod delete_ephemeral_message;
 mod delete_forum_topic;
 mod delete_message;
 mod delete_message_reaction;
@@ -55,6 +56,10 @@ mod delete_story;
 mod delete_webhook;
 mod edit_chat_invite_link;
 mod edit_chat_subscription_invite_link;
+mod edit_ephemeral_message_caption;
+mod edit_ephemeral_message_media;
+mod edit_ephemeral_message_reply_markup;
+mod edit_ephemeral_message_text;
 mod edit_forum_topic;
 mod edit_general_forum_topic;
 mod edit_message_caption;
@@ -241,6 +246,7 @@ pub use delete_all_message_reactions::{
 pub use delete_business_messages::{DeleteBusinessMessages, DeleteBusinessMessagesSetters};
 pub use delete_chat_photo::{DeleteChatPhoto, DeleteChatPhotoSetters};
 pub use delete_chat_sticker_set::{DeleteChatStickerSet, DeleteChatStickerSetSetters};
+pub use delete_ephemeral_message::{DeleteEphemeralMessage, DeleteEphemeralMessageSetters};
 pub use delete_forum_topic::{DeleteForumTopic, DeleteForumTopicSetters};
 pub use delete_message::{DeleteMessage, DeleteMessageSetters};
 pub use delete_message_reaction::{DeleteMessageReaction, DeleteMessageReactionSetters};
@@ -254,6 +260,16 @@ pub use edit_chat_invite_link::{EditChatInviteLink, EditChatInviteLinkSetters};
 pub use edit_chat_subscription_invite_link::{
     EditChatSubscriptionInviteLink, EditChatSubscriptionInviteLinkSetters,
 };
+pub use edit_ephemeral_message_caption::{
+    EditEphemeralMessageCaption, EditEphemeralMessageCaptionSetters,
+};
+pub use edit_ephemeral_message_media::{
+    EditEphemeralMessageMedia, EditEphemeralMessageMediaSetters,
+};
+pub use edit_ephemeral_message_reply_markup::{
+    EditEphemeralMessageReplyMarkup, EditEphemeralMessageReplyMarkupSetters,
+};
+pub use edit_ephemeral_message_text::{EditEphemeralMessageText, EditEphemeralMessageTextSetters};
 pub use edit_forum_topic::{EditForumTopic, EditForumTopicSetters};
 pub use edit_general_forum_topic::{EditGeneralForumTopic, EditGeneralForumTopicSetters};
 pub use edit_message_caption::{EditMessageCaption, EditMessageCaptionSetters};

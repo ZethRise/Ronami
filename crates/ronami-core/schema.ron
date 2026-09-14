@@ -40,7 +40,7 @@
 //! [github]: https://github.com/WaffleLapkin/tg-methods-schema
 
 Schema(
-    api_version: ApiVersion(ver: "10.1", date: "June 11, 2026"),
+    api_version: ApiVersion(ver: "10.2", date: "July 14, 2026"),
     methods: [
         Method(
             names: ("getUpdates", "GetUpdates", "get_updates"),
@@ -296,7 +296,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -851,7 +861,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -979,7 +999,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -1094,7 +1124,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -1250,7 +1290,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -1371,7 +1421,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -1507,7 +1567,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -1618,7 +1688,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -1723,7 +1803,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -2007,7 +2097,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -2367,7 +2467,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -2466,7 +2576,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),
@@ -5186,7 +5306,197 @@ Schema(
                 ),
             ],
         ),
+                Method(
+            names: ("editEphemeralMessageText", "EditEphemeralMessageText", "edit_ephemeral_message_text"),
+            return_ty: True,
+            doc: Doc(md: "Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned."),
+            tg_doc: "https://core.telegram.org/bots/api#editephemeralmessagetext",
+            tg_category: "Updating messages",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target chat or username of the target supergroup in the format `@username`"),
+                ),
+                Param(
+                    name: "receiver_user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
+                Param(
+                    name: "ephemeral_message_id",
+                    ty: RawTy("MessageId"),
+                    descr: Doc(md: "Identifier of the ephemeral message to edit"),
+                ),
+                Param(
+                    name: "text",
+                    ty: Option(String),
+                    descr: Doc(md: "New text of the message, 1-4096 characters after entity parsing; required if rich_message isn't specified"),
+                ),
+                Param(
+                    name: "parse_mode",
+                    ty: Option(RawTy("ParseMode")),
+                    descr: Doc(md: "Mode for parsing entities in the message text. See [formatting options] for more details.", md_links: {"formatting options": "https://core.telegram.org/bots/api#formatting-options"}),
+                ),
+                Param(
+                    name: "entities",
+                    ty: Option(ArrayOf(RawTy("MessageEntity"))),
+                    descr: Doc(md: "A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode"),
+                ),
+                Param(
+                    name: "rich_message",
+                    ty: Option(RawTy("InputRichMessage")),
+                    descr: Doc(md: "New rich content of the message; required if text isn't specified"),
+                ),
+                Param(
+                    name: "link_preview_options",
+                    ty: Option(RawTy("LinkPreviewOptions")),
+                    descr: Doc(md: "Link preview generation options for the message"),
+                ),
+                Param(
+                    name: "reply_markup",
+                    ty: Option(RawTy("InlineKeyboardMarkup")),
+                    descr: Doc(md: "A JSON-serialized object for an inline keyboard"),
+                ),
+            ],
+        ),
         Method(
+            names: ("editEphemeralMessageMedia", "EditEphemeralMessageMedia", "edit_ephemeral_message_media"),
+            return_ty: True,
+            doc: Doc(md: "Use this method to edit the media of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned."),
+            tg_doc: "https://core.telegram.org/bots/api#editephemeralmessagemedia",
+            tg_category: "Updating messages",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target chat or username of the target supergroup in the format `@username`"),
+                ),
+                Param(
+                    name: "receiver_user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
+                Param(
+                    name: "ephemeral_message_id",
+                    ty: RawTy("MessageId"),
+                    descr: Doc(md: "Identifier of the ephemeral message to edit"),
+                ),
+                Param(
+                    name: "media",
+                    ty: RawTy("InputMedia"),
+                    descr: Doc(md: "A JSON-serialized object for the new media content of the message"),
+                ),
+                Param(
+                    name: "reply_markup",
+                    ty: Option(RawTy("InlineKeyboardMarkup")),
+                    descr: Doc(md: "A JSON-serialized object for an inline keyboard"),
+                ),
+            ],
+        ),
+        Method(
+            names: ("editEphemeralMessageCaption", "EditEphemeralMessageCaption", "edit_ephemeral_message_caption"),
+            return_ty: True,
+            doc: Doc(md: "Use this method to edit the caption of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned."),
+            tg_doc: "https://core.telegram.org/bots/api#editephemeralmessagecaption",
+            tg_category: "Updating messages",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target chat or username of the target supergroup in the format `@username`"),
+                ),
+                Param(
+                    name: "receiver_user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
+                Param(
+                    name: "ephemeral_message_id",
+                    ty: RawTy("MessageId"),
+                    descr: Doc(md: "Identifier of the ephemeral message to edit"),
+                ),
+                Param(
+                    name: "caption",
+                    ty: Option(String),
+                    descr: Doc(md: "New caption of the message, 0-1024 characters after entities parsing"),
+                ),
+                Param(
+                    name: "parse_mode",
+                    ty: Option(RawTy("ParseMode")),
+                    descr: Doc(md: "Mode for parsing entities in the message caption. See [formatting options] for more details.", md_links: {"formatting options": "https://core.telegram.org/bots/api#formatting-options"}),
+                ),
+                Param(
+                    name: "caption_entities",
+                    ty: Option(ArrayOf(RawTy("MessageEntity"))),
+                    descr: Doc(md: "A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode"),
+                ),
+                Param(
+                    name: "show_caption_above_media",
+                    ty: Option(bool),
+                    descr: Doc(md: "Pass True if the caption must be shown above the message media. Supported only for animation, photo and video messages."),
+                ),
+                Param(
+                    name: "reply_markup",
+                    ty: Option(RawTy("InlineKeyboardMarkup")),
+                    descr: Doc(md: "A JSON-serialized object for an inline keyboard"),
+                ),
+            ],
+        ),
+        Method(
+            names: ("editEphemeralMessageReplyMarkup", "EditEphemeralMessageReplyMarkup", "edit_ephemeral_message_reply_markup"),
+            return_ty: True,
+            doc: Doc(md: "Use this method to edit only the reply markup of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned."),
+            tg_doc: "https://core.telegram.org/bots/api#editephemeralmessagereplymarkup",
+            tg_category: "Updating messages",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target chat or username of the target supergroup in the format `@username`"),
+                ),
+                Param(
+                    name: "receiver_user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
+                Param(
+                    name: "ephemeral_message_id",
+                    ty: RawTy("MessageId"),
+                    descr: Doc(md: "Identifier of the ephemeral message to edit"),
+                ),
+                Param(
+                    name: "reply_markup",
+                    ty: Option(RawTy("InlineKeyboardMarkup")),
+                    descr: Doc(md: "A JSON-serialized object for an inline keyboard"),
+                ),
+            ],
+        ),
+        Method(
+            names: ("deleteEphemeralMessage", "DeleteEphemeralMessage", "delete_ephemeral_message"),
+            return_ty: True,
+            doc: Doc(md: "Use this method to delete an ephemeral message. Note that it is not guaranteed that the user will receive the message deletion event, especially if they are offline. Returns True on success."),
+            tg_doc: "https://core.telegram.org/bots/api#deleteephemeralmessage",
+            tg_category: "Updating messages",
+            params: [
+                Param(
+                    name: "chat_id",
+                    ty: RawTy("Recipient"),
+                    descr: Doc(md: "Unique identifier for the target chat or username of the target supergroup in the format `@username`"),
+                ),
+                Param(
+                    name: "receiver_user_id",
+                    ty: RawTy("UserId"),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
+                Param(
+                    name: "ephemeral_message_id",
+                    ty: RawTy("MessageId"),
+                    descr: Doc(md: "Identifier of the ephemeral message to delete"),
+                ),
+            ],
+        ),
+Method(
             names: ("deleteMessageReaction", "DeleteMessageReaction", "delete_message_reaction"),
             return_ty: True,
             doc: Doc(
@@ -5314,7 +5624,17 @@ Schema(
                     ty: Option(RawTy("SuggestedPostParameters")),
                     descr: Doc(md: "An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined."),
                 ),
+                                Param(
+                    name: "receiver_user_id",
+                    ty: Option(RawTy("UserId")),
+                    descr: Doc(md: "Identifier of the user who received the message"),
+                ),
                 Param(
+                    name: "callback_query_id",
+                    ty: Option(RawTy("CallbackQueryId")),
+                    descr: Doc(md: "Unique identifier of the query to be answered"),
+                ),
+Param(
                     name: "reply_parameters",
                     ty: Option(RawTy("ReplyParameters")),
                     descr: Doc(md: "Description of the message to reply to"),

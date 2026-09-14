@@ -3,8 +3,8 @@
 use serde::Serialize;
 
 use crate::types::{
-    BusinessConnectionId, EffectId, InputFile, Message, MessageEntity, ParseMode, Recipient,
-    ReplyMarkup, ReplyParameters, SuggestedPostParameters, ThreadId, TopicId,
+    BusinessConnectionId, CallbackQueryId, EffectId, InputFile, Message, MessageEntity, ParseMode,
+    Recipient, ReplyMarkup, ReplyParameters, SuggestedPostParameters, ThreadId, TopicId, UserId,
 };
 
 impl_payload! {
@@ -63,6 +63,10 @@ impl_payload! {
             pub message_effect_id: EffectId,
             /// An object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
             pub suggested_post_parameters: SuggestedPostParameters,
+            /// Identifier of the user who received the message
+            pub receiver_user_id: UserId,
+            /// Unique identifier of the query to be answered
+            pub callback_query_id: CallbackQueryId,
             /// Description of the message to reply to
             pub reply_parameters: ReplyParameters,
             /// Additional interface options. A JSON-serialized object for an [inline keyboard], [custom reply keyboard], instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account.

@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/license-MIT-blue.svg">
   </a>
   <a href="https://core.telegram.org/bots/api">
-    <img src="https://img.shields.io/badge/API%20coverage-Up%20to%2010.1%20(inclusively)-green.svg">
+    <img src="https://img.shields.io/badge/API%20coverage-Up%20to%2010.2%20(inclusively)-green.svg">
   </a>
   <a href="https://crates.io/crates/ronami-core">
     <img src="https://img.shields.io/crates/v/ronami-core.svg">

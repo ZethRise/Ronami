@@ -13,7 +13,7 @@ impl_payload! {
     /// See also: [`EditMessageTextInline`](crate::payloads::EditMessageTextInline)
     ///
     /// [games]: https://core.telegram.org/bots/api#games
-    #[derive(Debug, PartialEq, Eq, Hash, Clone, Serialize)]
+    #[derive(Debug, PartialEq, Clone, Serialize)]
     pub EditMessageText (EditMessageTextSetters) => Message {
         required {
             /// Unique identifier for the target chat or username of the target channel (in the format `@channelusername`).

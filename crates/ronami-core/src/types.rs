@@ -13,6 +13,7 @@ pub use bot_command_scope::*;
 pub use bot_description::*;
 pub use bot_name::*;
 pub use bot_short_description::*;
+pub use bot_subscription_updated::*;
 pub use business_bot_rights::*;
 pub use business_connection::*;
 pub use business_connection_id::*;
@@ -47,6 +48,7 @@ pub use chat_shared::*;
 pub use chat_type::*;
 pub use checklist::*;
 pub use chosen_inline_result::*;
+pub use community::*;
 pub use contact::*;
 pub use copy_text_button::*;
 pub use dice::*;
@@ -108,7 +110,9 @@ pub use input_message_content::*;
 pub use input_paid_media::*;
 pub use input_poll_option::*;
 pub use input_profile_photo::*;
+pub use input_rich_block::*;
 pub use input_rich_message::*;
+pub use input_rich_message_media::*;
 pub use input_sticker::*;
 pub use input_story_content::*;
 pub use invoice::*;
@@ -237,6 +241,7 @@ mod bot_command_scope;
 mod bot_description;
 mod bot_name;
 mod bot_short_description;
+mod bot_subscription_updated;
 mod business_bot_rights;
 mod business_connection;
 mod business_connection_id;
@@ -270,6 +275,7 @@ mod chat_shared;
 mod chat_type;
 mod checklist;
 mod chosen_inline_result;
+mod community;
 mod contact;
 mod copy_text_button;
 mod dice;
@@ -307,7 +313,9 @@ mod input_message_content;
 mod input_paid_media;
 mod input_poll_option;
 mod input_profile_photo;
+mod input_rich_block;
 mod input_rich_message;
+mod input_rich_message_media;
 mod input_sticker;
 mod input_story_content;
 mod invoice;
@@ -597,6 +605,7 @@ pub(crate) mod option_url_from_string {
 // Issue https://github.com/teloxide/teloxide/issues/1135
 // Workaround to avoid flattening with serde-multipart requests (involving
 // file-manipulations)
+#[allow(dead_code)]
 pub(crate) mod msg_id_as_int {
     use crate::types::MessageId;
 

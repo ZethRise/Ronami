@@ -8,11 +8,17 @@ use crate::types::{ChecklistTaskId, MessageEntity, MessageId, Recipient};
 #[cfg_attr(test, derive(schemars::JsonSchema))]
 pub struct ReplyParameters {
     /// Identifier of the message that will be replied to in the current chat,
-    /// or in the chat _chat\_id_ if it is specified
+    /// or in the chat _chat\_id_ if it is specified. Required if
+    /// ephemeral_message_id isn't specified.
     // Issue https://github.com/teloxide/teloxide/issues/1135
-    #[serde(with = "crate::types::msg_id_as_int")]
-    #[cfg_attr(test, schemars(with = "i32"))]
-    pub message_id: MessageId,
+    #[serde(default, with = "crate::types::option_msg_id_as_int")]
+    #[cfg_attr(test, schemars(with = "Option<i32>"))]
+    pub message_id: Option<MessageId>,
+    /// Identifier of the incoming ephemeral message that will be replied to in
+    /// the current chat. Required if message_id isn't specified.
+    #[serde(default, with = "crate::types::option_msg_id_as_int")]
+    #[cfg_attr(test, schemars(with = "Option<i32>"))]
+    pub ephemeral_message_id: Option<MessageId>,
     /// If the message to be replied to is from a different chat, unique
     /// identifier for the chat or username of the channel (in the format
     /// `@channelusername`). Not supported for messages sent on behalf of a
@@ -48,7 +54,17 @@ pub struct ReplyParameters {
 
 impl ReplyParameters {
     pub fn new(message_id: MessageId) -> Self {
-        Self { message_id, ..Self::default() }
+        Self { message_id: Some(message_id), ..Self::default() }
+    }
+
+    pub fn ephemeral(ephemeral_message_id: MessageId) -> Self {
+        Self { ephemeral_message_id: Some(ephemeral_message_id), ..Self::default() }
+    }
+
+    /// Setter for the `ephemeral_message_id` field
+    pub fn ephemeral_message_id(mut self, ephemeral_message_id: MessageId) -> Self {
+        self.ephemeral_message_id = Some(ephemeral_message_id);
+        self
     }
 
     /// Setter for the `chat_id` field

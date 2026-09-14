@@ -6,7 +6,7 @@ use crate::types::{DraftId, InputRichMessage, Recipient, ThreadId, True};
 
 impl_payload! {
     /// Use this method to stream a partial rich message to a user while the message is being generated. Returns _True_ on success.
-    #[derive(Debug, PartialEq, Eq, Hash, Clone, Serialize)]
+    #[derive(Debug, PartialEq, Clone, Serialize)]
     pub SendRichMessageDraft (SendRichMessageDraftSetters) => True {
         required {
             /// Unique identifier for the target private chat

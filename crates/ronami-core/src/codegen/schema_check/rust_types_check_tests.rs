@@ -33,6 +33,14 @@ fn test_rust_objects() {
             field_name: "voter_chat".to_owned(),
         },
         Exception::IgnoreObjectField {
+            object: "MaybeInaccessibleMessage".to_owned(),
+            field_name: "ephemeral_message_id".to_owned(),
+        },
+        Exception::IgnoreObjectField {
+            object: "Message".to_owned(),
+            field_name: "ephemeral_message_id".to_owned(),
+        },
+        Exception::IgnoreObjectField {
             object: "InaccessibleMessage".to_owned(),
             field_name: "date".to_owned(),
         },
@@ -2322,6 +2330,216 @@ fn test_rust_objects() {
         api_schema.clone(),
         schema_for!(RichTextReferenceLink),
         "RichTextReferenceLink".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(Community),
+        "Community".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(CommunityChatAdded),
+        "CommunityChatAdded".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(CommunityChatJoined),
+        "CommunityChatJoined".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(CommunityChatRemoved),
+        "CommunityChatRemoved".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(BotSubscriptionUpdated),
+        "BotSubscriptionUpdated".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputMediaVoiceNote),
+        "InputMediaVoiceNote".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichMessageMedia),
+        "InputRichMessageMedia".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlock),
+        "InputRichBlock".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockListItem),
+        "InputRichBlockListItem".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockParagraph),
+        "InputRichBlockParagraph".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockSectionHeading),
+        "InputRichBlockSectionHeading".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockPreformatted),
+        "InputRichBlockPreformatted".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockFooter),
+        "InputRichBlockFooter".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockDivider),
+        "InputRichBlockDivider".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockMathematicalExpression),
+        "InputRichBlockMathematicalExpression".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockAnchor),
+        "InputRichBlockAnchor".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockList),
+        "InputRichBlockList".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockBlockQuotation),
+        "InputRichBlockBlockQuotation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockPullQuotation),
+        "InputRichBlockPullQuotation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockCollage),
+        "InputRichBlockCollage".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockSlideshow),
+        "InputRichBlockSlideshow".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockTable),
+        "InputRichBlockTable".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockDetails),
+        "InputRichBlockDetails".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockMap),
+        "InputRichBlockMap".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockAnimation),
+        "InputRichBlockAnimation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockAudio),
+        "InputRichBlockAudio".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockPhoto),
+        "InputRichBlockPhoto".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockVideo),
+        "InputRichBlockVideo".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockVoiceNote),
+        "InputRichBlockVoiceNote".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockThinking),
+        "InputRichBlockThinking".to_owned(),
         &mut errors,
         &exceptions,
     );

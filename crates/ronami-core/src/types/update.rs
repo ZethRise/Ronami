@@ -3,9 +3,9 @@ use serde::{de::MapAccess, Deserialize, Serialize, Serializer};
 use serde_json::Value;
 
 use crate::types::{
-    BusinessConnection, BusinessMessagesDeleted, CallbackQuery, Chat, ChatBoostRemoved,
-    ChatBoostUpdated, ChatJoinRequest, ChatMemberUpdated, ChosenInlineResult, InlineQuery,
-    ManagedBotUpdated, Message, MessageReactionCountUpdated, MessageReactionUpdated,
+    BotSubscriptionUpdated, BusinessConnection, BusinessMessagesDeleted, CallbackQuery, Chat,
+    ChatBoostRemoved, ChatBoostUpdated, ChatJoinRequest, ChatMemberUpdated, ChosenInlineResult,
+    InlineQuery, ManagedBotUpdated, Message, MessageReactionCountUpdated, MessageReactionUpdated,
     PaidMediaPurchased, Poll, PollAnswer, PreCheckoutQuery, ShippingQuery, User,
 };
 
@@ -161,6 +161,9 @@ pub enum UpdateKind {
     /// for bots with guest mode enabled
     GuestMessage(Message),
 
+    /// A user payment subscription toward the current bot has changed.
+    Subscription(BotSubscriptionUpdated),
+
     /// An error that happened during deserialization.
     ///
     /// This allows `ronami` to continue working even if telegram adds a new
@@ -206,6 +209,7 @@ impl Update {
             RemovedChatBoost(b) => return b.source.user(),
             ManagedBot(b) => &b.user,
             GuestMessage(m) => return m.from.as_ref(),
+            Subscription(s) => &s.user,
 
             MessageReactionCount(_) | DeletedBusinessMessages(_) | Poll(_) | Error(_) => {
                 return None
@@ -302,6 +306,8 @@ impl Update {
 
             UpdateKind::GuestMessage(message) => i0(message.mentioned_users()),
 
+            UpdateKind::Subscription(s) => i1(once(&s.user)),
+
             UpdateKind::ChatJoinRequest(_)
             | UpdateKind::MessageReactionCount(_)
             | UpdateKind::BusinessConnection(_)
@@ -341,6 +347,7 @@ impl Update {
             | Poll(_)
             | PollAnswer(_)
             | ManagedBot(_)
+            | Subscription(_)
             | Error(_) => return None,
 
             GuestMessage(m) => &m.chat,
@@ -475,6 +482,10 @@ impl<'de> Deserialize<'de> for UpdateKind {
                         "guest_message" => {
                             map.next_value::<Message>().ok().map(UpdateKind::GuestMessage)
                         }
+                        "subscription" => map
+                            .next_value::<BotSubscriptionUpdated>()
+                            .ok()
+                            .map(UpdateKind::Subscription),
                         _ => Some(empty_error()),
                     })
                     .unwrap_or_else(empty_error);
@@ -553,6 +564,7 @@ impl Serialize for UpdateKind {
             UpdateKind::GuestMessage(v) => {
                 s.serialize_newtype_variant(name, 24, "guest_message", v)
             }
+            UpdateKind::Subscription(v) => s.serialize_newtype_variant(name, 25, "subscription", v),
             UpdateKind::Error(v) => v.serialize(s),
         }
     }
@@ -638,6 +650,8 @@ mod test {
                     }),
                 },
                 sender_business_bot: None,
+                receiver_user: None,
+                ephemeral_message_id: None,
                 direct_messages_topic: None,
                 kind: MessageKind::Common(MessageCommon {
                     reply_to_message: None,

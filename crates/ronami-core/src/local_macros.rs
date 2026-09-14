@@ -1494,6 +1494,46 @@ macro_rules! requester_forward {
             $body!(delete_messages this (chat_id: C, message_ids: M))
         }
     };
+    (@method edit_ephemeral_message_text $body:ident $ty:ident) => {
+        type EditEphemeralMessageText = $ty![EditEphemeralMessageText];
+
+        fn edit_ephemeral_message_text<C>(&self, chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId) -> Self::EditEphemeralMessageText where C: Into<Recipient> {
+            let this = self;
+            $body!(edit_ephemeral_message_text this (chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId))
+        }
+    };
+    (@method edit_ephemeral_message_media $body:ident $ty:ident) => {
+        type EditEphemeralMessageMedia = $ty![EditEphemeralMessageMedia];
+
+        fn edit_ephemeral_message_media<C>(&self, chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId, media: InputMedia) -> Self::EditEphemeralMessageMedia where C: Into<Recipient> {
+            let this = self;
+            $body!(edit_ephemeral_message_media this (chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId, media: InputMedia))
+        }
+    };
+    (@method edit_ephemeral_message_caption $body:ident $ty:ident) => {
+        type EditEphemeralMessageCaption = $ty![EditEphemeralMessageCaption];
+
+        fn edit_ephemeral_message_caption<C>(&self, chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId) -> Self::EditEphemeralMessageCaption where C: Into<Recipient> {
+            let this = self;
+            $body!(edit_ephemeral_message_caption this (chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId))
+        }
+    };
+    (@method edit_ephemeral_message_reply_markup $body:ident $ty:ident) => {
+        type EditEphemeralMessageReplyMarkup = $ty![EditEphemeralMessageReplyMarkup];
+
+        fn edit_ephemeral_message_reply_markup<C>(&self, chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId) -> Self::EditEphemeralMessageReplyMarkup where C: Into<Recipient> {
+            let this = self;
+            $body!(edit_ephemeral_message_reply_markup this (chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId))
+        }
+    };
+    (@method delete_ephemeral_message $body:ident $ty:ident) => {
+        type DeleteEphemeralMessage = $ty![DeleteEphemeralMessage];
+
+        fn delete_ephemeral_message<C>(&self, chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId) -> Self::DeleteEphemeralMessage where C: Into<Recipient> {
+            let this = self;
+            $body!(delete_ephemeral_message this (chat_id: C, receiver_user_id: UserId, ephemeral_message_id: MessageId))
+        }
+    };
     (@method delete_message_reaction $body:ident $ty:ident) => {
         type DeleteMessageReaction = $ty![DeleteMessageReaction];
 

@@ -1,13 +1,13 @@
 {
   "version": {
     "major": 10,
-    "minor": 1,
+    "minor": 2,
     "patch": 0
   },
   "recent_changes": {
     "year": 2026,
-    "month": 6,
-    "day": 11
+    "month": 7,
+    "day": 14
   },
   "methods": [
     {
@@ -377,6 +377,24 @@
                 "reference": "ForceReply"
               }
             ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
           }
         }
       ],
@@ -1081,6 +1099,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": true,
@@ -1298,6 +1334,24 @@
                 "reference": "ForceReply"
               }
             ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
           }
         }
       ],
@@ -1528,6 +1582,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": true,
@@ -1737,6 +1809,24 @@
                 "reference": "ForceReply"
               }
             ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
           }
         }
       ],
@@ -2018,6 +2108,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": true,
@@ -2263,6 +2371,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": true,
@@ -2456,6 +2582,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": true,
@@ -2643,6 +2787,24 @@
                 "reference": "ForceReply"
               }
             ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
           }
         }
       ],
@@ -3155,6 +3317,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": false,
@@ -3359,6 +3539,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": false,
@@ -3528,6 +3726,24 @@
                 "reference": "ForceReply"
               }
             ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
           }
         }
       ],
@@ -9035,6 +9251,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "Callback query id",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
         }
       ],
       "maybe_multipart": true,
@@ -11246,6 +11480,377 @@
       },
       "documentation_link": "https://core.telegram.org/bots/api#sendchatjoinrequestwebapp",
       "maybe_multipart": false
+    },
+    {
+      "name": "editEphemeralMessageText",
+      "description": "Edit ephemeral message text",
+      "arguments": [
+        {
+          "name": "chat_id",
+          "description": "Target chat",
+          "required": true,
+          "type_info": {
+            "type": "any_of",
+            "any_of": [
+              {
+                "type": "integer",
+                "enumeration": []
+              },
+              {
+                "type": "string",
+                "enumeration": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Ephemeral message id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "text",
+          "description": "New text",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "parse_mode",
+          "description": "Parse mode",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "entities",
+          "description": "Entities",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        },
+        {
+          "name": "rich_message",
+          "description": "Rich message",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputRichMessage"
+          }
+        },
+        {
+          "name": "link_preview_options",
+          "description": "Link preview",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "LinkPreviewOptions"
+          }
+        },
+        {
+          "name": "reply_markup",
+          "description": "Inline keyboard",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "InlineKeyboardMarkup"
+          }
+        }
+      ],
+      "return_type": {
+        "type": "bool",
+        "default": true
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#editephemeralmessagetext",
+      "maybe_multipart": false
+    },
+    {
+      "name": "editEphemeralMessageMedia",
+      "description": "Edit ephemeral message media",
+      "arguments": [
+        {
+          "name": "chat_id",
+          "description": "Target chat",
+          "required": true,
+          "type_info": {
+            "type": "any_of",
+            "any_of": [
+              {
+                "type": "integer",
+                "enumeration": []
+              },
+              {
+                "type": "string",
+                "enumeration": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Ephemeral message id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "media",
+          "description": "New media",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMedia"
+          }
+        },
+        {
+          "name": "reply_markup",
+          "description": "Inline keyboard",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "InlineKeyboardMarkup"
+          }
+        }
+      ],
+      "return_type": {
+        "type": "bool",
+        "default": true
+      },
+      "maybe_multipart": true,
+      "documentation_link": "https://core.telegram.org/bots/api#editephemeralmessagemedia"
+    },
+    {
+      "name": "editEphemeralMessageCaption",
+      "description": "Edit ephemeral message caption",
+      "arguments": [
+        {
+          "name": "chat_id",
+          "description": "Target chat",
+          "required": true,
+          "type_info": {
+            "type": "any_of",
+            "any_of": [
+              {
+                "type": "integer",
+                "enumeration": []
+              },
+              {
+                "type": "string",
+                "enumeration": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Ephemeral message id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "caption",
+          "description": "New caption",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "parse_mode",
+          "description": "Parse mode",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "caption_entities",
+          "description": "Caption entities",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        },
+        {
+          "name": "show_caption_above_media",
+          "description": "Show caption above media",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "reply_markup",
+          "description": "Inline keyboard",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "InlineKeyboardMarkup"
+          }
+        }
+      ],
+      "return_type": {
+        "type": "bool",
+        "default": true
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#editephemeralmessagecaption",
+      "maybe_multipart": false
+    },
+    {
+      "name": "editEphemeralMessageReplyMarkup",
+      "description": "Edit ephemeral message reply markup",
+      "arguments": [
+        {
+          "name": "chat_id",
+          "description": "Target chat",
+          "required": true,
+          "type_info": {
+            "type": "any_of",
+            "any_of": [
+              {
+                "type": "integer",
+                "enumeration": []
+              },
+              {
+                "type": "string",
+                "enumeration": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Ephemeral message id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "reply_markup",
+          "description": "Inline keyboard",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "InlineKeyboardMarkup"
+          }
+        }
+      ],
+      "return_type": {
+        "type": "bool",
+        "default": true
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#editephemeralmessagereplymarkup",
+      "maybe_multipart": false
+    },
+    {
+      "name": "deleteEphemeralMessage",
+      "description": "Delete ephemeral message",
+      "arguments": [
+        {
+          "name": "chat_id",
+          "description": "Target chat",
+          "required": true,
+          "type_info": {
+            "type": "any_of",
+            "any_of": [
+              {
+                "type": "integer",
+                "enumeration": []
+              },
+              {
+                "type": "string",
+                "enumeration": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver_user_id",
+          "description": "Receiver user id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Ephemeral message id",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        }
+      ],
+      "return_type": {
+        "type": "bool",
+        "default": true
+      },
+      "documentation_link": "https://core.telegram.org/bots/api#deleteephemeralmessage",
+      "maybe_multipart": false
     }
   ],
   "objects": [
@@ -11486,6 +12091,15 @@
           "type_info": {
             "type": "reference",
             "reference": "ManagedBotUpdated"
+          }
+        },
+        {
+          "name": "subscription",
+          "description": "User payment subscription has changed",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "BotSubscriptionUpdated"
           }
         }
       ],
@@ -12273,6 +12887,15 @@
           "type_info": {
             "type": "reference",
             "reference": "User"
+          }
+        },
+        {
+          "name": "community",
+          "description": "The Community to which the chat belongs.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "Community"
           }
         }
       ],
@@ -13323,6 +13946,51 @@
             "type": "reference",
             "reference": "RichMessage"
           }
+        },
+        {
+          "name": "receiver_user",
+          "description": "Field receiver_user",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "User"
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Field ephemeral_message_id",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "community_chat_added",
+          "description": "Field community_chat_added",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "CommunityChatAdded"
+          }
+        },
+        {
+          "name": "community_chat_joined",
+          "description": "Field community_chat_joined",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "CommunityChatJoined"
+          }
+        },
+        {
+          "name": "community_chat_removed",
+          "description": "Field community_chat_removed",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "CommunityChatRemoved"
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#message"
@@ -13805,7 +14473,7 @@
         {
           "name": "message_id",
           "description": "Identifier of the message that will be replied to in the current chat, or in the chat *chat\\_id* if it is specified",
-          "required": true,
+          "required": false,
           "type_info": {
             "type": "integer",
             "enumeration": []
@@ -13893,6 +14561,15 @@
           "required": false,
           "type_info": {
             "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "ephemeral_message_id",
+          "description": "Identifier of the incoming ephemeral message that will be replied to in the current chat.",
+          "required": false,
+          "type_info": {
+            "type": "integer",
             "enumeration": []
           }
         }
@@ -21087,6 +21764,14 @@
             "max_len": 256,
             "enumeration": []
           }
+        },
+        {
+          "name": "is_ephemeral",
+          "description": "True, if the command sends an ephemeral message.",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#botcommand"
@@ -22004,6 +22689,10 @@
         {
           "type": "reference",
           "reference": "InputMediaVideo"
+        },
+        {
+          "type": "reference",
+          "reference": "InputMediaVoiceNote"
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#inputmedia"
@@ -28680,6 +29369,30 @@
           "type_info": {
             "type": "bool"
           }
+        },
+        {
+          "name": "blocks",
+          "description": "Blocks",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlock"
+            }
+          }
+        },
+        {
+          "name": "media",
+          "description": "Media",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichMessageMedia"
+            }
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#inputrichmessage"
@@ -30725,6 +31438,1132 @@
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#richtextreferencelink"
+    },
+    {
+      "name": "Community",
+      "description": "Represents a community.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "id",
+          "description": "Unique identifier",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "name",
+          "description": "Name",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#community"
+    },
+    {
+      "name": "CommunityChatAdded",
+      "description": "Service message: chat added to community",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "community",
+          "description": "The community",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "Community"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#communitychatadded"
+    },
+    {
+      "name": "CommunityChatJoined",
+      "description": "Service message: chat joined from community",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "community",
+          "description": "The community",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "Community"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#communitychatjoined"
+    },
+    {
+      "name": "CommunityChatRemoved",
+      "description": "Service message: chat removed from community",
+      "type": "properties",
+      "properties": [],
+      "documentation_link": "https://core.telegram.org/bots/api#communitychatremoved"
+    },
+    {
+      "name": "BotSubscriptionUpdated",
+      "description": "Payment subscription updated",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "user",
+          "description": "User",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "User"
+          }
+        },
+        {
+          "name": "invoice_payload",
+          "description": "Invoice payload",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "state",
+          "description": "State",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#botsubscriptionupdated"
+    },
+    {
+      "name": "InputMediaVoiceNote",
+      "description": "Voice note to send",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "voice_note"
+            ]
+          }
+        },
+        {
+          "name": "media",
+          "description": "Media",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "caption",
+          "description": "Caption",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "parse_mode",
+          "description": "Parse mode",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "caption_entities",
+          "description": "Caption entities",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        },
+        {
+          "name": "duration",
+          "description": "Duration",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputmediavoicenote"
+    },
+    {
+      "name": "InputRichMessageMedia",
+      "description": "Embedded media in rich message",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "id",
+          "description": "Unique id",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "media",
+          "description": "Media to send",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMedia"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichmessagemedia"
+    },
+    {
+      "name": "InputRichBlock",
+      "description": "Block in a rich message to be sent.",
+      "type": "any_of",
+      "any_of": [
+        {
+          "type": "reference",
+          "reference": "InputRichBlockParagraph"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockSectionHeading"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockPreformatted"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockFooter"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockDivider"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockMathematicalExpression"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockAnchor"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockList"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockBlockQuotation"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockPullQuotation"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockCollage"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockSlideshow"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockTable"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockDetails"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockMap"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockAnimation"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockAudio"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockPhoto"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockVideo"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockVoiceNote"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockThinking"
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblock"
+    },
+    {
+      "name": "InputRichBlockListItem",
+      "description": "Item in a list to be sent.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "blocks",
+          "description": "Content",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlock"
+            }
+          }
+        },
+        {
+          "name": "has_checkbox",
+          "description": "Checkbox",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "is_checked",
+          "description": "Checked",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "value",
+          "description": "Value",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "type",
+          "description": "Type",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblocklistitem"
+    },
+    {
+      "name": "InputRichBlockParagraph",
+      "description": "InputRichBlockParagraph",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "paragraph"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "text",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockparagraph"
+    },
+    {
+      "name": "InputRichBlockSectionHeading",
+      "description": "InputRichBlockSectionHeading",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "heading"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "text",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "size",
+          "description": "size",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblocksectionheading"
+    },
+    {
+      "name": "InputRichBlockPreformatted",
+      "description": "InputRichBlockPreformatted",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "pre"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "text",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "language",
+          "description": "language",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockpreformatted"
+    },
+    {
+      "name": "InputRichBlockFooter",
+      "description": "InputRichBlockFooter",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "footer"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "text",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockfooter"
+    },
+    {
+      "name": "InputRichBlockDivider",
+      "description": "InputRichBlockDivider",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "divider"
+            ]
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockdivider"
+    },
+    {
+      "name": "InputRichBlockMathematicalExpression",
+      "description": "InputRichBlockMathematicalExpression",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "mathematical_expression"
+            ]
+          }
+        },
+        {
+          "name": "expression",
+          "description": "expression",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockmathematicalexpression"
+    },
+    {
+      "name": "InputRichBlockAnchor",
+      "description": "InputRichBlockAnchor",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "anchor"
+            ]
+          }
+        },
+        {
+          "name": "name",
+          "description": "name",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockanchor"
+    },
+    {
+      "name": "InputRichBlockList",
+      "description": "InputRichBlockList",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "list"
+            ]
+          }
+        },
+        {
+          "name": "items",
+          "description": "items",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlockListItem"
+            }
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblocklist"
+    },
+    {
+      "name": "InputRichBlockBlockQuotation",
+      "description": "InputRichBlockBlockQuotation",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "blockquote"
+            ]
+          }
+        },
+        {
+          "name": "blocks",
+          "description": "blocks",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlock"
+            }
+          }
+        },
+        {
+          "name": "credit",
+          "description": "credit",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockblockquotation"
+    },
+    {
+      "name": "InputRichBlockPullQuotation",
+      "description": "InputRichBlockPullQuotation",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "pullquote"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "text",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "credit",
+          "description": "credit",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockpullquotation"
+    },
+    {
+      "name": "InputRichBlockCollage",
+      "description": "InputRichBlockCollage",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "collage"
+            ]
+          }
+        },
+        {
+          "name": "blocks",
+          "description": "blocks",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlock"
+            }
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockcollage"
+    },
+    {
+      "name": "InputRichBlockSlideshow",
+      "description": "InputRichBlockSlideshow",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "slideshow"
+            ]
+          }
+        },
+        {
+          "name": "blocks",
+          "description": "blocks",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlock"
+            }
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockslideshow"
+    },
+    {
+      "name": "InputRichBlockTable",
+      "description": "InputRichBlockTable",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "table"
+            ]
+          }
+        },
+        {
+          "name": "cells",
+          "description": "cells",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "array",
+              "array": {
+                "type": "reference",
+                "reference": "RichBlockTableCell"
+              }
+            }
+          }
+        },
+        {
+          "name": "is_bordered",
+          "description": "is_bordered",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "is_striped",
+          "description": "is_striped",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "is_compact",
+          "description": "is_compact",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblocktable"
+    },
+    {
+      "name": "InputRichBlockDetails",
+      "description": "InputRichBlockDetails",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "details"
+            ]
+          }
+        },
+        {
+          "name": "summary",
+          "description": "summary",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "blocks",
+          "description": "blocks",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "InputRichBlock"
+            }
+          }
+        },
+        {
+          "name": "is_open",
+          "description": "is_open",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockdetails"
+    },
+    {
+      "name": "InputRichBlockMap",
+      "description": "InputRichBlockMap",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "map"
+            ]
+          }
+        },
+        {
+          "name": "location",
+          "description": "location",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "Location"
+          }
+        },
+        {
+          "name": "zoom",
+          "description": "zoom",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "width",
+          "description": "width",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "height",
+          "description": "height",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockmap"
+    },
+    {
+      "name": "InputRichBlockAnimation",
+      "description": "InputRichBlockAnimation",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "animation"
+            ]
+          }
+        },
+        {
+          "name": "animation",
+          "description": "animation",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMediaAnimation"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockanimation"
+    },
+    {
+      "name": "InputRichBlockAudio",
+      "description": "InputRichBlockAudio",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "audio"
+            ]
+          }
+        },
+        {
+          "name": "audio",
+          "description": "audio",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMediaAudio"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockaudio"
+    },
+    {
+      "name": "InputRichBlockPhoto",
+      "description": "InputRichBlockPhoto",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "photo"
+            ]
+          }
+        },
+        {
+          "name": "photo",
+          "description": "photo",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMediaPhoto"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockphoto"
+    },
+    {
+      "name": "InputRichBlockVideo",
+      "description": "InputRichBlockVideo",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "video"
+            ]
+          }
+        },
+        {
+          "name": "video",
+          "description": "video",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMediaVideo"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockvideo"
+    },
+    {
+      "name": "InputRichBlockVoiceNote",
+      "description": "InputRichBlockVoiceNote",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "voice_note"
+            ]
+          }
+        },
+        {
+          "name": "voice_note",
+          "description": "voice_note",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMediaVoiceNote"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "caption",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockvoicenote"
+    },
+    {
+      "name": "InputRichBlockThinking",
+      "description": "InputRichBlockThinking",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "type",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "thinking"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "text",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockthinking"
     }
   ]
 }

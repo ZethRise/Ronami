@@ -4,7 +4,8 @@ use url::Url;
 
 use crate::{
     payloads::{
-        AnswerInlineQuery, AnswerWebAppQuery, CopyMessage, EditMessageCaption,
+        AnswerInlineQuery, AnswerWebAppQuery, CopyMessage, EditEphemeralMessageCaption,
+        EditEphemeralMessageMedia, EditEphemeralMessageText, EditMessageCaption,
         EditMessageCaptionInline, EditMessageChecklist, EditMessageMedia, EditMessageMediaInline,
         EditMessageText, EditMessageTextInline, EditStory, GiftPremiumSubscription, PostStory,
         SavePreparedInlineMessage, SendAnimation, SendAudio, SendChecklist, SendDocument, SendGift,
@@ -164,6 +165,9 @@ where
     B::GiftPremiumSubscription: Clone,
     B::SendGift: Clone,
     B::SendGiftChat: Clone,
+    B::EditEphemeralMessageText: Clone,
+    B::EditEphemeralMessageMedia: Clone,
+    B::EditEphemeralMessageCaption: Clone,
 {
     type Err = B::Err;
 
@@ -196,6 +200,9 @@ where
         gift_premium_subscription,
         send_gift,
         send_gift_chat,
+        edit_ephemeral_message_text,
+        edit_ephemeral_message_media,
+        edit_ephemeral_message_caption,
         => f, fty
     }
 
@@ -361,7 +368,9 @@ where
         approve_chat_join_request,
         decline_chat_join_request,
         answer_chat_join_request_query,
-        send_chat_join_request_web_app
+        send_chat_join_request_web_app,
+        edit_ephemeral_message_reply_markup,
+        delete_ephemeral_message
         => fid, ftyid
     }
 }
@@ -422,6 +431,8 @@ impl_visit_parse_modes! {
     CopyMessage => [parse_mode],
     PostStory => [parse_mode],
     EditStory => [parse_mode],
+    EditEphemeralMessageText => [parse_mode],
+    EditEphemeralMessageCaption => [parse_mode],
     SendPoll => [explanation_parse_mode, description_parse_mode],
 }
 
@@ -460,6 +471,12 @@ impl VisitParseModes for EditMessageMedia {
 }
 
 impl VisitParseModes for EditMessageMediaInline {
+    fn visit_parse_modes(&mut self, mut visitor: impl FnMut(&mut Option<ParseMode>)) {
+        visit_parse_modes_in_input_media(&mut self.media, &mut visitor);
+    }
+}
+
+impl VisitParseModes for EditEphemeralMessageMedia {
     fn visit_parse_modes(&mut self, mut visitor: impl FnMut(&mut Option<ParseMode>)) {
         visit_parse_modes_in_input_media(&mut self.media, &mut visitor);
     }
@@ -541,6 +558,7 @@ fn visit_parse_modes_in_input_media(
         Animation(m) => &mut m.parse_mode,
         Audio(m) => &mut m.parse_mode,
         Document(m) => &mut m.parse_mode,
+        VoiceNote(m) => &mut m.parse_mode,
     };
 
     visitor(parse_mode);

@@ -30,4 +30,5 @@ pub enum AllowedUpdate {
     RemovedChatBoost,
     ManagedBot,
     GuestMessage,
+    Subscription,
 }

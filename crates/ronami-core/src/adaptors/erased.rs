@@ -377,7 +377,12 @@ where
         approve_chat_join_request,
         decline_chat_join_request,
         answer_chat_join_request_query,
-        send_chat_join_request_web_app
+        send_chat_join_request_web_app,
+        edit_ephemeral_message_text,
+        edit_ephemeral_message_media,
+        edit_ephemeral_message_caption,
+        edit_ephemeral_message_reply_markup,
+        delete_ephemeral_message
         => fwd_erased, fty
     }
 }
@@ -736,6 +741,47 @@ trait ErasableRequester<'a> {
         chat_join_request_query_id: String,
         web_app_url: String,
     ) -> ErasedRequest<'a, SendChatJoinRequestWebApp, Self::Err>;
+
+    /// For Telegram documentation see [`EditEphemeralMessageText`].
+    fn edit_ephemeral_message_text(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, EditEphemeralMessageText, Self::Err>;
+
+    /// For Telegram documentation see [`EditEphemeralMessageMedia`].
+    fn edit_ephemeral_message_media(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+        media: InputMedia,
+    ) -> ErasedRequest<'a, EditEphemeralMessageMedia, Self::Err>;
+
+    /// For Telegram documentation see [`EditEphemeralMessageCaption`].
+    fn edit_ephemeral_message_caption(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, EditEphemeralMessageCaption, Self::Err>;
+
+    /// For Telegram documentation see [`EditEphemeralMessageReplyMarkup`].
+    fn edit_ephemeral_message_reply_markup(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, EditEphemeralMessageReplyMarkup, Self::Err>;
+
+    /// For Telegram documentation see [`DeleteEphemeralMessage`].
+    fn delete_ephemeral_message(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, DeleteEphemeralMessage, Self::Err>;
 
     fn set_chat_photo(
         &self,
@@ -1898,6 +1944,78 @@ where
         web_app_url: String,
     ) -> ErasedRequest<'a, SendChatJoinRequestWebApp, Self::Err> {
         Requester::send_chat_join_request_web_app(self, chat_join_request_query_id, web_app_url)
+            .erase()
+    }
+
+    fn edit_ephemeral_message_text(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, EditEphemeralMessageText, Self::Err> {
+        Requester::edit_ephemeral_message_text(
+            self,
+            chat_id,
+            receiver_user_id,
+            ephemeral_message_id,
+        )
+        .erase()
+    }
+
+    fn edit_ephemeral_message_media(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+        media: InputMedia,
+    ) -> ErasedRequest<'a, EditEphemeralMessageMedia, Self::Err> {
+        Requester::edit_ephemeral_message_media(
+            self,
+            chat_id,
+            receiver_user_id,
+            ephemeral_message_id,
+            media,
+        )
+        .erase()
+    }
+
+    fn edit_ephemeral_message_caption(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, EditEphemeralMessageCaption, Self::Err> {
+        Requester::edit_ephemeral_message_caption(
+            self,
+            chat_id,
+            receiver_user_id,
+            ephemeral_message_id,
+        )
+        .erase()
+    }
+
+    fn edit_ephemeral_message_reply_markup(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, EditEphemeralMessageReplyMarkup, Self::Err> {
+        Requester::edit_ephemeral_message_reply_markup(
+            self,
+            chat_id,
+            receiver_user_id,
+            ephemeral_message_id,
+        )
+        .erase()
+    }
+
+    fn delete_ephemeral_message(
+        &self,
+        chat_id: Recipient,
+        receiver_user_id: UserId,
+        ephemeral_message_id: MessageId,
+    ) -> ErasedRequest<'a, DeleteEphemeralMessage, Self::Err> {
+        Requester::delete_ephemeral_message(self, chat_id, receiver_user_id, ephemeral_message_id)
             .erase()
     }
 

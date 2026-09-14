@@ -153,6 +153,9 @@ define_message_ext! {
     (filter_poll_option_added, Message::poll_option_added),
     (filter_poll_option_deleted, Message::poll_option_deleted),
     (filter_reply_to_poll_option_id, Message::reply_to_poll_option_id),
+    (filter_community_chat_added, Message::community_chat_added),
+    (filter_community_chat_joined, Message::community_chat_joined),
+    (filter_community_chat_removed, Message::community_chat_removed),
 }
 
 macro_rules! define_update_ext {
@@ -198,4 +201,5 @@ define_update_ext! {
     (filter_removed_chat_boost, UpdateKind::RemovedChatBoost, RemovedChatBoost),
     (filter_managed_bot, UpdateKind::ManagedBot, ManagedBot),
     (filter_guest_message, UpdateKind::GuestMessage, GuestMessage),
+    (filter_subscription, UpdateKind::Subscription, Subscription),
 }
