@@ -16,7 +16,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6c5ce7?style=for-the-badge" alt="MIT License"></a>
 </p>
 
-> **v1.0.0** — Ronami is a modern Telegram Bot framework in Rust, evolved from [teloxide](https://github.com/teloxide/teloxide) to deliver up-to-date Telegram Bot API 10.2+ coverage, refreshed crate naming, and active maintenance. this Project is Vibe Coded with Ai so expect bugs and errors
+> **v1.1.0** — Ronami is a modern Telegram Bot framework in Rust, evolved from [teloxide](https://github.com/teloxide/teloxide) to deliver up-to-date Telegram Bot API 10.2+ coverage, refreshed crate naming, and active maintenance. this Project is Vibe Coded with Ai so expect bugs and errors
 
 ## What Ronami does
 
