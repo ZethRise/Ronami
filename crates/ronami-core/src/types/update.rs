@@ -5,8 +5,9 @@ use serde_json::Value;
 use crate::types::{
     BotSubscriptionUpdated, BusinessConnection, BusinessMessagesDeleted, CallbackQuery, Chat,
     ChatBoostRemoved, ChatBoostUpdated, ChatJoinRequest, ChatMemberUpdated, ChosenInlineResult,
-    InlineQuery, ManagedBotUpdated, Message, MessageReactionCountUpdated, MessageReactionUpdated,
-    PaidMediaPurchased, Poll, PollAnswer, PreCheckoutQuery, ShippingQuery, User,
+    InlineQuery, ManagedBotUpdated, Message, MessageGenerationStopped, MessageReactionCountUpdated,
+    MessageReactionUpdated, PaidMediaPurchased, Poll, PollAnswer, PreCheckoutQuery, ShippingQuery,
+    User,
 };
 
 /// This [object] represents an incoming update.
@@ -164,6 +165,9 @@ pub enum UpdateKind {
     /// A user payment subscription toward the current bot has changed.
     Subscription(BotSubscriptionUpdated),
 
+    /// A user asked the bot to stop the generation of a message.
+    StoppedMessageGeneration(MessageGenerationStopped),
+
     /// An error that happened during deserialization.
     ///
     /// This allows `ronami` to continue working even if telegram adds a new
@@ -211,9 +215,11 @@ impl Update {
             GuestMessage(m) => return m.from.as_ref(),
             Subscription(s) => &s.user,
 
-            MessageReactionCount(_) | DeletedBusinessMessages(_) | Poll(_) | Error(_) => {
-                return None
-            }
+            MessageReactionCount(_)
+            | DeletedBusinessMessages(_)
+            | Poll(_)
+            | StoppedMessageGeneration(_)
+            | Error(_) => return None,
         };
 
         Some(from)
@@ -309,6 +315,7 @@ impl Update {
             UpdateKind::Subscription(s) => i1(once(&s.user)),
 
             UpdateKind::ChatJoinRequest(_)
+            | UpdateKind::StoppedMessageGeneration(_)
             | UpdateKind::MessageReactionCount(_)
             | UpdateKind::BusinessConnection(_)
             | UpdateKind::DeletedBusinessMessages(_)
@@ -337,6 +344,7 @@ impl Update {
             ChatBoost(b) => &b.chat,
             RemovedChatBoost(b) => &b.chat,
             DeletedBusinessMessages(m) => &m.chat,
+            StoppedMessageGeneration(s) => &s.chat,
 
             InlineQuery(_)
             | BusinessConnection(_)
@@ -486,6 +494,10 @@ impl<'de> Deserialize<'de> for UpdateKind {
                             .next_value::<BotSubscriptionUpdated>()
                             .ok()
                             .map(UpdateKind::Subscription),
+                        "stopped_message_generation" => map
+                            .next_value::<MessageGenerationStopped>()
+                            .ok()
+                            .map(UpdateKind::StoppedMessageGeneration),
                         _ => Some(empty_error()),
                     })
                     .unwrap_or_else(empty_error);
@@ -565,6 +577,9 @@ impl Serialize for UpdateKind {
                 s.serialize_newtype_variant(name, 24, "guest_message", v)
             }
             UpdateKind::Subscription(v) => s.serialize_newtype_variant(name, 25, "subscription", v),
+            UpdateKind::StoppedMessageGeneration(v) => {
+                s.serialize_newtype_variant(name, 26, "stopped_message_generation", v)
+            }
             UpdateKind::Error(v) => v.serialize(s),
         }
     }
@@ -1311,5 +1326,33 @@ mod test {
         let update: Update = serde_json::from_str(json).unwrap();
         let users: Vec<_> = update.mentioned_users().map(|u| u.id.0).collect();
         assert_eq!(users, vec![1, 2]);
+    }
+
+    #[test]
+    fn stopped_message_generation() {
+        let json = r#"{
+            "update_id": 7,
+            "stopped_message_generation": {
+                "chat": {"id": 42, "first_name": "FN", "type": "private"},
+                "draft_id": 5
+            }
+        }"#;
+
+        let update: Update = serde_json::from_str(json).unwrap();
+
+        match &update.kind {
+            UpdateKind::StoppedMessageGeneration(stopped) => {
+                assert_eq!(stopped.draft_id.0, 5);
+                assert_eq!(stopped.message_thread_id, None);
+            }
+            other => panic!("expected `StoppedMessageGeneration`, got {other:?}"),
+        }
+
+        assert_eq!(update.chat().map(|chat| chat.id), Some(ChatId(42)));
+        assert!(update.from().is_none());
+        assert_eq!(update.mentioned_users().count(), 0);
+
+        let serialized = serde_json::to_value(&update).unwrap();
+        assert_eq!(serialized["stopped_message_generation"]["draft_id"], 5);
     }
 }

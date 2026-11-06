@@ -11,6 +11,8 @@ and issue links in older entries point at the upstream repository.
 
 ### Added
 
+- Support for TBA 10.3 (ephemeral message parameters, rich message buttons, expandable block quotations and document blocks, disabled buttons, `force_reply` for keyboards, stoppable message drafts with `MessageGenerationStopped`, and `UniqueGiftInfo` text) [**BC**]
+  - Add the `filter_stopped_message_generation` dispatcher filter
 - Support for TBA 10.2:
   - Ephemeral Messages: `editEphemeralMessageText`, `editEphemeralMessageMedia`, `editEphemeralMessageCaption`, `editEphemeralMessageReplyMarkup`, `deleteEphemeralMessage` methods, `is_ephemeral` on `BotCommand`, `receiver_user` and `ephemeral_message_id` on `Message`, `ephemeral_message_id` on `ReplyParameters`
   - Communities: `Community`, `CommunityChatAdded`, `CommunityChatJoined`, `CommunityChatRemoved` types, `community` field on `ChatFullInfo`, and filters in dispatching

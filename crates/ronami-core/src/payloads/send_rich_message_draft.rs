@@ -19,6 +19,10 @@ impl_payload! {
         optional {
             /// Unique identifier for the target message thread
             pub message_thread_id: ThreadId,
+            /// Pass `true` to show the user a button to stop further drafts. The bot will receive an Update "stopped\_message\_generation" if the user presses the button.
+            pub can_stop: bool,
+            /// Pass `true` to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message.
+            pub keep_on_stop: bool,
         }
     }
 }

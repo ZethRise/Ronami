@@ -206,12 +206,12 @@
 //! [default]: DispatcherBuilder#method.default_handler
 //! [error]: DispatcherBuilder#method.error_handler
 //! [dialogues]: dialogue
-//! [`examples/purchase.rs`]: https://github.com/teloxide/teloxide/blob/master/crates/ronami/examples/purchase.rs
+//! [`examples/purchase.rs`]: https://github.com/ZethRise/Ronami/blob/master/crates/ronami/examples/purchase.rs
 //! [`Update::filter_message`]: crate::types::Update::filter_message
 //! [`Update::filter_callback_query`]: crate::types::Update::filter_callback_query
 //! [chain of responsibility]: https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
 //! [dependency injection (DI)]: https://en.wikipedia.org/wiki/Dependency_injection
-//! [`examples/dispatching_features.rs`]: https://github.com/teloxide/teloxide/blob/master/crates/ronami/examples/dispatching_features.rs
+//! [`examples/dispatching_features.rs`]: https://github.com/ZethRise/Ronami/blob/master/crates/ronami/examples/dispatching_features.rs
 //! [`Update`]: crate::types::Update
 
 pub mod dialogue;

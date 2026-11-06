@@ -88,6 +88,7 @@ impl EventKind for Kind {
             ManagedBot,
             GuestMessage,
             Subscription,
+            StoppedMessageGeneration,
         ]
         .into_iter()
         .map(Kind)
@@ -172,6 +173,7 @@ mod tests {
             ManagedBot,
             GuestMessage,
             Subscription,
+            StoppedMessageGeneration,
         ];
 
         for update in allowed_updates_reference {
@@ -202,7 +204,8 @@ mod tests {
                 | DeletedBusinessMessages
                 | ManagedBot
                 | GuestMessage
-                | Subscription => {
+                | Subscription
+                | StoppedMessageGeneration => {
                     assert!(full_set.contains(&Kind(update)))
                 }
             }

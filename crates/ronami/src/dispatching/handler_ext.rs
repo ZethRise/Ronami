@@ -237,6 +237,8 @@ mod tests {
                     }),
                 },
                 direct_messages_topic: None,
+                receiver_user: None,
+                ephemeral_message_id: None,
                 kind: MessageKind::Common(MessageCommon {
                     reply_to_message: None,
                     forward_origin: None,

@@ -70,7 +70,7 @@ where
             let deleted_rows_count =
                 redis::pipe().atomic().del(chat_id).query_async(&mut conn).await?;
 
-            if let redis::Value::Array(values) = deleted_rows_count {
+            if let redis::Value::Array(values) = &deleted_rows_count {
                 if let Some(redis::Value::Int(deleted_rows_count)) = values.first() {
                     match *deleted_rows_count {
                         0 => return Err(RedisStorageError::DialogueNotFound),

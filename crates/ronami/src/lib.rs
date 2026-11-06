@@ -1,11 +1,11 @@
 //! A full-featured framework that empowers you to easily build [Telegram bots]
 //! using [Rust]. It handles all the difficult stuff so you can focus only on
-//! your business logic. Currently, version `10.2` of [Telegram Bot API] is
+//! your business logic. Currently, version `10.3` of [Telegram Bot API] is
 //! supported.
 //!
 //! For a high-level overview, see the crate README.
 //!
-//! [[`examples/throw_dice.rs`](https://github.com/teloxide/teloxide/blob/master/crates/ronami/examples/throw_dice.rs)]
+//! [[`examples/throw_dice.rs`](https://github.com/ZethRise/Ronami/blob/master/crates/ronami/examples/throw_dice.rs)]
 //! ```no_run
 //! # #[cfg(feature = "ctrlc_handler")]
 //! use ronami::prelude::*;
@@ -107,7 +107,7 @@
 //! [`MessageFilterExt`]: crate::dispatching::MessageFilterExt
 //! [`Update::filter_message`]: crate::dispatching::UpdateFilterExt::filter_message
 //! [`filter_map`]: crate::prelude::Handler::filter_map
-//! [_this guide_]: https://github.com/teloxide/teloxide/blob/master/DPTREE_GUIDE.md
+//! [_this guide_]: https://docs.rs/dptree
 
 // This hack is used to cancel formatting for a Markdown table. See [1], [2], and [3].
 //
@@ -116,8 +116,8 @@
 // [3]: https://github.com/rust-lang/rust/issues/82768#issuecomment-803935643
 #![cfg_attr(feature = "nightly", cfg_attr(feature = "nightly", doc = include_str!("features.md")))]
 #![doc(
-    html_logo_url = "https://docs.rs/crate/ronami/badge.svg",
-    html_favicon_url = "https://docs.rs/crate/ronami/badge.svg"
+    html_logo_url = "https://raw.githubusercontent.com/ZethRise/Ronami/master/media/ronami-logo.png",
+    html_favicon_url = "https://raw.githubusercontent.com/ZethRise/Ronami/master/media/ronami-logo.png"
 )]
 // To properly build docs of this crate run
 // ```console

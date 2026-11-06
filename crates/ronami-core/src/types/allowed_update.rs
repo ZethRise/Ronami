@@ -31,4 +31,5 @@ pub enum AllowedUpdate {
     ManagedBot,
     GuestMessage,
     Subscription,
+    StoppedMessageGeneration,
 }

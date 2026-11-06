@@ -1,11 +1,11 @@
 //! Core part of the [`ronami`] library.
 //!
 //! This library provides tools for making requests to the [Telegram Bot API]
-//! (Currently, version `10.2` is supported) with ease. The library is fully
+//! (Currently, version `10.3` is supported) with ease. The library is fully
 //! asynchronous and built using [`tokio`].
 //!
 //!```toml
-//! ronami-core = "1.0.0"
+//! ronami-core = "1.1.0"
 //! ```
 //! _Compiler support: requires rustc 1.85+_.
 //!
@@ -56,9 +56,8 @@
 //! [`rustls`]: https://docs.rs/rustls
 
 #![doc(
-    // FIXME(waffle): use github
-    html_logo_url = "https://cdn.discordapp.com/attachments/224881373326999553/798598120760934410/logo.png",
-    html_favicon_url = "https://cdn.discordapp.com/attachments/224881373326999553/798598120760934410/logo.png"
+    html_logo_url = "https://raw.githubusercontent.com/ZethRise/Ronami/master/media/ronami-core-logo.png",
+    html_favicon_url = "https://raw.githubusercontent.com/ZethRise/Ronami/master/media/ronami-core-logo.png"
 )]
 //
 // we pass "--cfg docsrs" when building docs to add `This is supported on feature="..." only.`

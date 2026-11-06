@@ -41,7 +41,7 @@ In general, try to make PR title/description as clear as possible, as they are t
 
 If your PR introduces breaking changes, mark them with `[**BC**]` in the changelog and update [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md).
 
-[GitHub issue]: https://github.com/teloxide/teloxide/issues
+[GitHub issue]: https://github.com/ZethRise/Ronami/issues
 [using keywords in issues and pull requests]: https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests
 
 ### Merge conflicts
@@ -86,7 +86,7 @@ devpod up .
 Option 2:
 
 ```shell
-devpod up https://github.com/teloxide/teloxide
+devpod up https://github.com/ZethRise/Ronami
 ```
 
 ### Testing
@@ -560,19 +560,19 @@ We will describe here a few most used @ronamibot's features, but we still recomm
 
 ### PR status tracking
 
-`ronami` uses `S-*` labels (mainly https://github.com/teloxide/teloxide/labels/S-waiting-on-author and https://github.com/teloxide/teloxide/labels/S-waiting-on-review) to track the status of pull requests.
+`ronami` uses `S-*` labels (mainly https://github.com/ZethRise/Ronami/labels/S-waiting-on-author and https://github.com/ZethRise/Ronami/labels/S-waiting-on-review) to track the status of pull requests.
 
-You can change the status with `@ronamibot review` and `@ronamibot ready` (sets the status to https://github.com/teloxide/teloxide/labels/S-waiting-on-review) or `@ronamibot author` (sets the status to https://github.com/teloxide/teloxide/labels/S-waiting-on-author).
+You can change the status with `@ronamibot review` and `@ronamibot ready` (sets the status to https://github.com/ZethRise/Ronami/labels/S-waiting-on-review) or `@ronamibot author` (sets the status to https://github.com/ZethRise/Ronami/labels/S-waiting-on-author).
 
 Requesting a review from PR's assignee via GitHub UI will also change the status of the PR to waiting on review. Similarly, submitting a review that requests changes will change the status of the PR to waiting on author.
 
-There is also https://github.com/teloxide/teloxide/labels/S-blocked, which can be set with `@ronamibot blocked`.
+There is also https://github.com/ZethRise/Ronami/labels/S-blocked, which can be set with `@ronamibot blocked`.
 
 Please note that your PR won't be reviewed unless it's waiting for review :)
 
 ### Labels
 
-Normally, GitHub only allows privileged users to change labels. @ronamibot allows anyone to add or remove certain [labels](https://github.com/teloxide/teloxide/labels/) with `@ronamibot label +additional_label -removed_label`. See more in the [documentation](https://forge.rust-lang.org/triagebot/index.html).
+Normally, GitHub only allows privileged users to change labels. @ronamibot allows anyone to add or remove certain [labels](https://github.com/ZethRise/Ronami/labels/) with `@ronamibot label +additional_label -removed_label`. See more in the [documentation](https://forge.rust-lang.org/triagebot/index.html).
 
 ### PR assignment
 

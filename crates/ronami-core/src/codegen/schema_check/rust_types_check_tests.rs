@@ -2543,6 +2543,83 @@ fn test_rust_objects() {
         &mut errors,
         &exceptions,
     );
+    check_object(
+        api_schema.clone(),
+        schema_for!(EphemeralMessageParameters),
+        "EphemeralMessageParameters".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(MessageGenerationStopped),
+        "MessageGenerationStopped".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(DisabledButton),
+        "DisabledButton".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichMessageButton),
+        "RichMessageButton".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichTextButton),
+        "RichTextButton".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockButtons),
+        "RichBlockButtons".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockButtons),
+        "InputRichBlockButtons".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockExpandableBlockQuotation),
+        "RichBlockExpandableBlockQuotation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockExpandableBlockQuotation),
+        "InputRichBlockExpandableBlockQuotation".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(RichBlockDocument),
+        "RichBlockDocument".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
+    check_object(
+        api_schema.clone(),
+        schema_for!(InputRichBlockDocument),
+        "InputRichBlockDocument".to_owned(),
+        &mut errors,
+        &exceptions,
+    );
 
     if !errors.is_empty() {
         let mut errors_string = String::new();

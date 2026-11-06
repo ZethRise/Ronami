@@ -1,4 +1,4 @@
-use crate::types::{OwnedGiftId, UniqueGift};
+use crate::types::{MessageEntity, OwnedGiftId, UniqueGift};
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
@@ -14,6 +14,17 @@ pub struct UniqueGiftInfo {
     /// regular gifts, `Transfer` for gifts transferred from other users or
     /// channels, or `Resale` for gifts bought from other users
     pub origin: UniqueGiftOrigin,
+
+    /// Text of the message that was added to the gift
+    pub text: Option<String>,
+
+    /// Special entities that appear in the text
+    pub entities: Option<Vec<MessageEntity>>,
+
+    /// `true`, if the sender and gift text are shown only to the gift receiver;
+    /// otherwise, everyone will be able to see them
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub is_private: bool,
 
     /// For gifts bought from other users, the currency in which the payment for
     /// the gift was done. Currently, one of `XTR` for Telegram Stars or `TON`
@@ -116,5 +127,30 @@ mod tests {
         assert_eq!(unique_gift_info.origin, UniqueGiftOrigin::Upgrade);
         assert_eq!(unique_gift_info.gift.name, "name");
         assert_eq!(unique_gift_info.gift.backdrop.rarity_per_mille, 123);
+    }
+
+    #[test]
+    fn deserialize_text_and_privacy() {
+        let data = r#"{
+            "gift": {
+                "gift_id": "gid",
+                "base_name": "name",
+                "name": "name",
+                "number": 123,
+                "model": {"name": "m", "sticker": {"file_id": "f", "file_unique_id": "u", "width": 1, "height": 1, "type": "regular", "is_animated": false, "is_video": false, "needs_repainting": false}, "rarity_per_mille": 1},
+                "symbol": {"name": "s", "sticker": {"file_id": "f", "file_unique_id": "u", "width": 1, "height": 1, "type": "regular", "is_animated": false, "is_video": false, "needs_repainting": false}, "rarity_per_mille": 1},
+                "backdrop": {"name": "b", "colors": {"center_color": 0, "edge_color": 0, "symbol_color": 0, "text_color": 0}, "rarity_per_mille": 1}
+            },
+            "origin": "upgrade",
+            "text": "Happy birthday",
+            "entities": [{"type": "bold", "offset": 0, "length": 5}],
+            "is_private": true
+        }"#;
+
+        let info: UniqueGiftInfo = serde_json::from_str(data).unwrap();
+
+        assert_eq!(info.text.as_deref(), Some("Happy birthday"));
+        assert_eq!(info.entities.map(|entities| entities.len()), Some(1));
+        assert!(info.is_private);
     }
 }

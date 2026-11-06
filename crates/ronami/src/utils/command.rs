@@ -47,7 +47,7 @@
 //!
 //! See [examples/admin] as a more complicated examples.
 //!
-//! [examples/admin]: https://github.com/teloxide/teloxide/blob/master/crates/ronami/examples/admin.rs
+//! [examples/admin]: https://github.com/ZethRise/Ronami/blob/master/crates/ronami/examples/admin.rs
 
 use core::fmt;
 use std::{

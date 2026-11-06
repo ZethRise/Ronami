@@ -91,7 +91,7 @@
 //! }
 //! ```
 //!
-//! [`examples/dialogue.rs`]: https://github.com/teloxide/teloxide/blob/master/crates/ronami/examples/dialogue.rs
+//! [`examples/dialogue.rs`]: https://github.com/ZethRise/Ronami/blob/master/crates/ronami/examples/dialogue.rs
 
 #[cfg(feature = "redis-storage")]
 pub use self::{RedisStorage, RedisStorageError};

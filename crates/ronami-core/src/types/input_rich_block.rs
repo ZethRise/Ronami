@@ -1,8 +1,9 @@
 use serde::{Deserialize, Serialize};
 
 use crate::types::{
-    InputMediaAnimation, InputMediaAudio, InputMediaPhoto, InputMediaVideo, InputMediaVoiceNote,
-    Location, RichBlockCaption, RichBlockTableCell, RichText,
+    InputMediaAnimation, InputMediaAudio, InputMediaDocument, InputMediaPhoto, InputMediaVideo,
+    InputMediaVoiceNote, Location, RichBlockCaption, RichBlockTableCell, RichMessageButton,
+    RichText,
 };
 
 /// This object represents a block in a rich formatted message to be sent.
@@ -37,6 +38,10 @@ pub enum InputRichBlock {
     Video(InputRichBlockVideo),
     VoiceNote(InputRichBlockVoiceNote),
     Thinking(InputRichBlockThinking),
+    Buttons(InputRichBlockButtons),
+    #[serde(rename = "expandable_blockquote")]
+    ExpandableBlockQuotation(InputRichBlockExpandableBlockQuotation),
+    Document(InputRichBlockDocument),
 }
 
 /// An item of a list to be sent.
@@ -351,4 +356,51 @@ pub struct InputRichBlockVoiceNote {
 pub struct InputRichBlockThinking {
     /// Text of the block.
     pub text: RichText,
+}
+
+/// A block containing a list of buttons that are shown in one row to be sent,
+/// corresponding to the custom HTML tag `<tg-button-row>`.
+///
+/// [The official docs](https://core.telegram.org/bots/api#inputrichblockbuttons).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct InputRichBlockButtons {
+    /// List of 1-8 buttons to send.
+    pub buttons: Vec<RichMessageButton>,
+
+    /// Horizontal alignment of the buttons. Currently, must be one of `left`,
+    /// `center`, or `right`.
+    pub align: Option<String>,
+}
+
+/// A block quotation to be sent, which can be expanded or collapsed back,
+/// corresponding to the HTML tag `<blockquote>` with the custom attribute
+/// `expandable`.
+///
+/// [The official docs](https://core.telegram.org/bots/api#inputrichblockexpandableblockquotation).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct InputRichBlockExpandableBlockQuotation {
+    /// Content of the block.
+    pub text: RichText,
+
+    /// Credit of the block.
+    pub credit: Option<RichText>,
+}
+
+/// A block with a general file to be sent, corresponding to the custom HTML tag
+/// `<tg-document>`.
+///
+/// [The official docs](https://core.telegram.org/bots/api#inputrichblockdocument).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct InputRichBlockDocument {
+    /// The document. Caption is ignored.
+    pub document: InputMediaDocument,
+
+    /// Caption of the block.
+    pub caption: Option<RichBlockCaption>,
 }

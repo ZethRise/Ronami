@@ -24,7 +24,7 @@
 [Sqlite]: https://www.sqlite.org/
 [CBOR]: https://en.wikipedia.org/wiki/CBOR
 [Bincode]: https://github.com/servo/bincode
-[`ronami-macros`]: https://github.com/teloxide/teloxide-macros
+[`ronami-macros`]: https://github.com/ZethRise/Ronami/tree/master/crates/ronami-macros
 [`native-tls`]: https://docs.rs/native-tls
 [`rustls`]: https://docs.rs/rustls
 [`ronami-core` features]: https://docs.rs/ronami-core/latest/ronami_core/#cargo-features

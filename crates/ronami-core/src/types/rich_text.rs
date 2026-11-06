@@ -1,7 +1,7 @@
 use reqwest::Url;
 use serde::{Deserialize, Serialize};
 
-use crate::types::User;
+use crate::types::{RichMessageButton, User};
 
 /// This object represents a rich formatted text.
 ///
@@ -98,6 +98,7 @@ pub enum RichTextEntity {
     AnchorLink(RichTextAnchorLink),
     Reference(RichTextReference),
     ReferenceLink(RichTextReferenceLink),
+    Button(RichTextButton),
 }
 
 /// A bold text.
@@ -365,6 +366,17 @@ pub struct RichTextReferenceLink {
     pub reference_name: String,
 }
 
+/// A button.
+///
+/// [The official docs](https://core.telegram.org/bots/api#richtextbutton).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct RichTextButton {
+    /// The button.
+    pub button: RichMessageButton,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -394,6 +406,18 @@ mod tests {
         let text = RichText::Array(vec![RichText::from("Hello, "), RichText::bold("world!")]);
         let json = serde_json::to_string(&text).unwrap();
         assert_eq!(json, r#"["Hello, ",{"type":"bold","text":"world!"}]"#);
+
+        let de: RichText = serde_json::from_str(&json).unwrap();
+        assert_eq!(de, text);
+    }
+
+    #[test]
+    fn button_text_serde() {
+        let text = RichText::Entity(Box::new(RichTextEntity::Button(RichTextButton {
+            button: RichMessageButton::callback("Click", "data"),
+        })));
+        let json = serde_json::to_string(&text).unwrap();
+        assert_eq!(json, r#"{"type":"button","button":{"text":"Click","callback_data":"data"}}"#);
 
         let de: RichText = serde_json::from_str(&json).unwrap();
         assert_eq!(de, text);

@@ -58,6 +58,11 @@ pub struct KeyboardMarkup {
     /// [`Message`]: crate::types::Message
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub selective: bool,
+
+    /// `true`, if the reply interface must be shown to the user, as if they had
+    /// manually selected the bot's message and tapped "Reply".
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub force_reply: bool,
 }
 
 impl KeyboardMarkup {
@@ -74,6 +79,7 @@ impl KeyboardMarkup {
             one_time_keyboard: false,
             input_field_placeholder: String::new(),
             selective: false,
+            force_reply: false,
         }
     }
 
@@ -136,6 +142,13 @@ impl KeyboardMarkup {
     /// [`selective`]: KeyboardMarkup::selective
     pub fn selective(self) -> Self {
         Self { selective: true, ..self }
+    }
+
+    /// Sets [`force_reply`] to `true`.
+    ///
+    /// [`force_reply`]: KeyboardMarkup::force_reply
+    pub fn force_reply(self) -> Self {
+        Self { force_reply: true, ..self }
     }
 }
 

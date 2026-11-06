@@ -20,6 +20,14 @@ pub struct InlineKeyboardMarkup {
     ///
     /// [`InlineKeyboardButton`]: crate::types::InlineKeyboardButton
     pub inline_keyboard: Vec<Vec<InlineKeyboardButton>>,
+
+    /// `true`, if the reply interface must be shown to the user, as if they had
+    /// manually selected the bot's message and tapped "Reply".
+    ///
+    /// The value of the field can't be changed when the inline keyboard is
+    /// edited.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub force_reply: bool,
 }
 
 /// Build `InlineKeyboardMarkup`.
@@ -44,7 +52,16 @@ impl InlineKeyboardMarkup {
                 .map(<_>::into_iter)
                 .map(<_>::collect)
                 .collect(),
+            force_reply: false,
         }
+    }
+
+    /// Sets [`force_reply`] to `true`.
+    ///
+    /// [`force_reply`]: InlineKeyboardMarkup::force_reply
+    #[must_use]
+    pub fn force_reply(self) -> Self {
+        Self { force_reply: true, ..self }
     }
 
     pub fn inline_keyboard<I>(mut self, val: I) -> Self
@@ -98,7 +115,10 @@ mod tests {
         let markup =
             InlineKeyboardMarkup::default().append_row(vec![button1.clone(), button2.clone()]);
 
-        let expected = InlineKeyboardMarkup { inline_keyboard: vec![vec![button1, button2]] };
+        let expected = InlineKeyboardMarkup {
+            inline_keyboard: vec![vec![button1, button2]],
+            force_reply: false,
+        };
 
         assert_eq!(markup, expected);
     }
@@ -112,7 +132,10 @@ mod tests {
             .append_row(vec![button1.clone()])
             .append_to_row(0, button2.clone());
 
-        let expected = InlineKeyboardMarkup { inline_keyboard: vec![vec![button1, button2]] };
+        let expected = InlineKeyboardMarkup {
+            inline_keyboard: vec![vec![button1, button2]],
+            force_reply: false,
+        };
 
         assert_eq!(markup, expected);
     }
@@ -126,7 +149,10 @@ mod tests {
             .append_row(vec![button1.clone()])
             .append_to_row(1, button2.clone());
 
-        let expected = InlineKeyboardMarkup { inline_keyboard: vec![vec![button1], vec![button2]] };
+        let expected = InlineKeyboardMarkup {
+            inline_keyboard: vec![vec![button1], vec![button2]],
+            force_reply: false,
+        };
 
         assert_eq!(markup, expected);
     }
@@ -142,5 +168,35 @@ mod tests {
         let kb = kb.remove_row(0);
         assert_eq!(kb.inline_keyboard.len(), 1);
         assert_eq!(kb.inline_keyboard[0][0], button2);
+    }
+
+    #[test]
+    fn disabled_button_serialize() {
+        let markup = InlineKeyboardMarkup::default()
+            .append_row(vec![InlineKeyboardButton::disabled("Not now")])
+            .force_reply();
+
+        assert_eq!(
+            serde_json::to_string(&markup).unwrap(),
+            r#"{"inline_keyboard":[[{"text":"Not now","disabled":{}}]],"force_reply":true}"#
+        );
+    }
+
+    #[test]
+    fn force_reply_is_omitted_by_default() {
+        let markup = InlineKeyboardMarkup::default();
+
+        assert_eq!(serde_json::to_string(&markup).unwrap(), r#"{"inline_keyboard":[]}"#);
+
+        let de: InlineKeyboardMarkup = serde_json::from_str(r#"{"inline_keyboard":[]}"#).unwrap();
+        assert!(!de.force_reply);
+    }
+
+    #[test]
+    fn disabled_button_deserialize() {
+        let button: InlineKeyboardButton =
+            serde_json::from_str(r#"{"text":"Not now","disabled":{}}"#).unwrap();
+
+        assert_eq!(button, InlineKeyboardButton::disabled("Not now"));
     }
 }

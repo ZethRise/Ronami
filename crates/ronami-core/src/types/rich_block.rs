@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 
-use crate::types::{Animation, Audio, Location, PhotoSize, RichText, Video, Voice};
+use crate::types::{
+    Animation, Audio, Document, Location, PhotoSize, RichMessageButton, RichText, Video, Voice,
+};
 
 /// This object represents a block in a rich formatted message.
 ///
@@ -34,6 +36,10 @@ pub enum RichBlock {
     Video(RichBlockVideo),
     VoiceNote(RichBlockVoiceNote),
     Thinking(RichBlockThinking),
+    Buttons(RichBlockButtons),
+    #[serde(rename = "expandable_blockquote")]
+    ExpandableBlockQuotation(RichBlockExpandableBlockQuotation),
+    Document(RichBlockDocument),
 }
 
 /// Caption of a rich formatted block.
@@ -271,6 +277,10 @@ pub struct RichBlockTable {
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub is_striped: bool,
 
+    /// `true`, if table cells have smaller indents.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub is_compact: bool,
+
     /// Caption of the table.
     pub caption: Option<RichText>,
 }
@@ -409,6 +419,52 @@ pub struct RichBlockThinking {
     pub text: RichText,
 }
 
+/// A block containing a list of buttons that are shown in one row,
+/// corresponding to the custom HTML tag `<tg-button-row>`.
+///
+/// [The official docs](https://core.telegram.org/bots/api#richblockbuttons).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct RichBlockButtons {
+    /// The buttons.
+    pub buttons: Vec<RichMessageButton>,
+
+    /// Horizontal alignment of the buttons. Currently, must be one of `left`,
+    /// `center`, or `right`.
+    pub align: Option<String>,
+}
+
+/// A block quotation, which can be expanded or collapsed back, corresponding to
+/// the HTML tag `<blockquote>` with the custom attribute `expandable`.
+///
+/// [The official docs](https://core.telegram.org/bots/api#richblockexpandableblockquotation).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct RichBlockExpandableBlockQuotation {
+    /// Content of the block.
+    pub text: RichText,
+
+    /// Credit of the block.
+    pub credit: Option<RichText>,
+}
+
+/// A block with a general file, corresponding to the custom HTML tag
+/// `<tg-document>`.
+///
+/// [The official docs](https://core.telegram.org/bots/api#richblockdocument).
+#[serde_with::skip_serializing_none]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(test, derive(schemars::JsonSchema))]
+pub struct RichBlockDocument {
+    /// The document.
+    pub document: Document,
+
+    /// Caption of the block.
+    pub caption: Option<RichBlockCaption>,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -435,5 +491,74 @@ mod tests {
 
         let de: RichBlock = serde_json::from_str(&json).unwrap();
         assert_eq!(de, block);
+    }
+
+    #[test]
+    fn buttons_serde() {
+        let block = RichBlock::Buttons(RichBlockButtons {
+            buttons: vec![
+                RichMessageButton::callback("Yes", "yes"),
+                RichMessageButton::disabled("No"),
+            ],
+            align: Some("center".to_owned()),
+        });
+        let json = serde_json::to_string(&block).unwrap();
+        assert_eq!(
+            json,
+            r#"{"type":"buttons","buttons":[{"text":"Yes","callback_data":"yes"},{"text":"No","disabled":{}}],"align":"center"}"#
+        );
+
+        let de: RichBlock = serde_json::from_str(&json).unwrap();
+        assert_eq!(de, block);
+    }
+
+    #[test]
+    fn expandable_block_quotation_serde() {
+        let block = RichBlock::ExpandableBlockQuotation(RichBlockExpandableBlockQuotation {
+            text: RichText::from("quote"),
+            credit: Some(RichText::from("author")),
+        });
+        let json = serde_json::to_string(&block).unwrap();
+        assert_eq!(json, r#"{"type":"expandable_blockquote","text":"quote","credit":"author"}"#);
+
+        let de: RichBlock = serde_json::from_str(&json).unwrap();
+        assert_eq!(de, block);
+    }
+
+    #[test]
+    fn document_deserialize() {
+        let json = r#"{
+            "type": "document",
+            "document": {
+                "file_id": "id",
+                "file_unique_id": "uid",
+                "file_name": "report.pdf",
+                "mime_type": "application/pdf",
+                "file_size": 100
+            },
+            "caption": {"text": "Report"}
+        }"#;
+
+        let block: RichBlock = serde_json::from_str(json).unwrap();
+
+        match block {
+            RichBlock::Document(RichBlockDocument { document, caption }) => {
+                assert_eq!(document.file_name.as_deref(), Some("report.pdf"));
+                assert_eq!(caption.unwrap().text, RichText::from("Report"));
+            }
+            other => panic!("expected a document block, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn table_is_compact() {
+        let json = r#"{"type":"table","cells":[],"is_compact":true}"#;
+
+        let block: RichBlock = serde_json::from_str(json).unwrap();
+
+        match block {
+            RichBlock::Table(table) => assert!(table.is_compact),
+            other => panic!("expected a table block, got {other:?}"),
+        }
     }
 }

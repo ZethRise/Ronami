@@ -1,13 +1,13 @@
 {
   "version": {
     "major": 10,
-    "minor": 2,
+    "minor": 3,
     "patch": 0
   },
   "recent_changes": {
     "year": 2026,
-    "month": 7,
-    "day": 14
+    "month": 8,
+    "day": 24
   },
   "methods": [
     {
@@ -380,21 +380,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -1101,21 +1092,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -1337,21 +1319,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -1584,21 +1557,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -1812,21 +1776,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -2110,21 +2065,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -2373,21 +2319,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -2584,21 +2521,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -2790,21 +2718,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -3319,21 +3238,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -3541,21 +3451,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -3729,21 +3630,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -9253,21 +9145,12 @@
           }
         },
         {
-          "name": "receiver_user_id",
-          "description": "Receiver user id",
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
           "required": false,
           "type_info": {
-            "type": "integer",
-            "enumeration": []
-          }
-        },
-        {
-          "name": "callback_query_id",
-          "description": "Callback query id",
-          "required": false,
-          "type_info": {
-            "type": "string",
-            "enumeration": []
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
           }
         }
       ],
@@ -11355,6 +11238,15 @@
               }
             ]
           }
+        },
+        {
+          "name": "ephemeral_message_parameters",
+          "description": "A JSON-serialized object containing the parameters of the ephemeral message to send",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "EphemeralMessageParameters"
+          }
         }
       ],
       "return_type": {
@@ -11411,6 +11303,22 @@
           "type_info": {
             "type": "integer",
             "enumeration": []
+          }
+        },
+        {
+          "name": "can_stop",
+          "description": "Pass True to show the user a button to stop further drafts. The bot will receive an Update \u201cstopped_message_generation\u201d if the user presses the button.",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        },
+        {
+          "name": "keep_on_stop",
+          "description": "Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message.",
+          "required": false,
+          "type_info": {
+            "type": "bool"
           }
         }
       ],
@@ -12100,6 +12008,15 @@
           "type_info": {
             "type": "reference",
             "reference": "BotSubscriptionUpdated"
+          }
+        },
+        {
+          "name": "stopped_message_generation",
+          "description": "*Optional*. A user asked the bot to stop the generation of a message",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "MessageGenerationStopped"
           }
         }
       ],
@@ -18192,6 +18109,14 @@
           "type_info": {
             "type": "bool"
           }
+        },
+        {
+          "name": "force_reply",
+          "description": "*Optional*. Pass True if the reply interface must be shown to the user, as if they had manually selected the bot's message and tapped 'Reply'",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#replykeyboardmarkup"
@@ -18523,6 +18448,14 @@
               }
             }
           }
+        },
+        {
+          "name": "force_reply",
+          "description": "*Optional*. Pass True if the reply interface must be shown to the user, as if they had manually selected the bot's message and tapped 'Reply'. The value of the field can't be changed when the inline keyboard is edited.",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#inlinekeyboardmarkup"
@@ -18650,6 +18583,15 @@
               "success",
               "primary"
             ]
+          }
+        },
+        {
+          "name": "disabled",
+          "description": "*Optional*. If set, then the button is disabled and does nothing",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "DisabledButton"
           }
         }
       ],
@@ -21366,6 +21308,35 @@
           "type_info": {
             "type": "integer",
             "enumeration": []
+          }
+        },
+        {
+          "name": "text",
+          "description": "*Optional*. Text of the message that was added to the gift",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "entities",
+          "description": "*Optional*. Special entities that appear in the text",
+          "required": false,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "MessageEntity"
+            }
+          }
+        },
+        {
+          "name": "is_private",
+          "description": "*Optional*. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them",
+          "required": false,
+          "type_info": {
+            "type": "bool"
           }
         }
       ],
@@ -29530,6 +29501,18 @@
         {
           "type": "reference",
           "reference": "RichBlockThinking"
+        },
+        {
+          "type": "reference",
+          "reference": "RichBlockButtons"
+        },
+        {
+          "type": "reference",
+          "reference": "RichBlockExpandableBlockQuotation"
+        },
+        {
+          "type": "reference",
+          "reference": "RichBlockDocument"
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#richblock"
@@ -29638,6 +29621,10 @@
         {
           "type": "reference",
           "reference": "RichTextReferenceLink"
+        },
+        {
+          "type": "reference",
+          "reference": "RichTextButton"
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#richtext"
@@ -30247,6 +30234,14 @@
           "type_info": {
             "type": "reference",
             "reference": "RichText"
+          }
+        },
+        {
+          "name": "is_compact",
+          "description": "*Optional*. True, if table cells have smaller indents",
+          "required": false,
+          "type_info": {
+            "type": "bool"
           }
         }
       ],
@@ -31722,6 +31717,18 @@
         {
           "type": "reference",
           "reference": "InputRichBlockThinking"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockButtons"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockExpandableBlockQuotation"
+        },
+        {
+          "type": "reference",
+          "reference": "InputRichBlockDocument"
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#inputrichblock"
@@ -32564,6 +32571,445 @@
         }
       ],
       "documentation_link": "https://core.telegram.org/bots/api#inputrichblockthinking"
+    },
+    {
+      "name": "EphemeralMessageParameters",
+      "description": "Describes the parameters of an ephemeral message to be sent.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "receiver_user_id",
+          "description": "Identifier of the user who will receive the message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details.",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_query_id",
+          "description": "*Optional*. Identifier of the callback query which triggered the message, if any",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "replace_callback_query_message",
+          "description": "*Optional*. Pass True if the ephemeral message must be shown in place of the original message. Must be False for callback queries from ephemeral messages, which must be edited using regular editEphemeralMessage\u2026 methods.",
+          "required": false,
+          "type_info": {
+            "type": "bool"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#ephemeralmessageparameters"
+    },
+    {
+      "name": "MessageGenerationStopped",
+      "description": "This object describes an update about a user stopping message generation.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "chat",
+          "description": "Chat in which the message is generated",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "Chat"
+          }
+        },
+        {
+          "name": "message_thread_id",
+          "description": "*Optional*. Unique identifier of the message thread in which the message is generated",
+          "required": false,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "draft_id",
+          "description": "Unique identifier of the message draft which was stopped",
+          "required": true,
+          "type_info": {
+            "type": "integer",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#messagegenerationstopped"
+    },
+    {
+      "name": "DisabledButton",
+      "description": "This object represents a disabled button which does nothing. Currently holds no information.",
+      "type": "properties",
+      "properties": [],
+      "documentation_link": "https://core.telegram.org/bots/api#disabledbutton"
+    },
+    {
+      "name": "RichMessageButton",
+      "description": "This object represents a button in a RichMessage. Exactly one of the fields other than text and style must be used to specify the type of the button.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "text",
+          "description": "Text of the button. May contain only plain text, RichTextCustomEmoji and RichTextDateTime entities.",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "style",
+          "description": "*Optional*. Style of the button. Must be one of \u201cdanger\u201d, \u201csuccess\u201d, \u201cprimary\u201d, or \u201clink\u201d (the button is shown as a regular link without borders). Apps may use theme-specific colors for the button background and text based on the style. The style \u201clink\u201d is allowed only for callback buttons.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "url",
+          "description": "*Optional*. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id= can be used to mention a user by their identifier without using a username, if this is allowed by their privacy settings.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "callback_data",
+          "description": "*Optional*. Data to be sent in a callback query to the bot when the button is pressed, 1-64 bytes",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "web_app",
+          "description": "*Optional*. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a business account.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "WebAppInfo"
+          }
+        },
+        {
+          "name": "login_url",
+          "description": "*Optional*. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget. Not supported for ephemeral messages.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "LoginUrl"
+          }
+        },
+        {
+          "name": "switch_inline_query",
+          "description": "*Optional*. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent in channel direct messages chats and on behalf of a business account.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "switch_inline_query_current_chat",
+          "description": "*Optional*. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted. Not supported in channels and for messages sent in channel direct messages chats and on behalf of a business account.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        },
+        {
+          "name": "switch_inline_query_chosen_chat",
+          "description": "*Optional*. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent in channel direct messages chats and on behalf of a business account.",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "SwitchInlineQueryChosenChat"
+          }
+        },
+        {
+          "name": "copy_text",
+          "description": "*Optional*. A button that copies the specified text to the clipboard",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "CopyTextButton"
+          }
+        },
+        {
+          "name": "disabled",
+          "description": "*Optional*. If set, then the button is disabled and does nothing",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "DisabledButton"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#richmessagebutton"
+    },
+    {
+      "name": "RichTextButton",
+      "description": "A button.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the rich text, always \u201cbutton\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "button"
+            ]
+          }
+        },
+        {
+          "name": "button",
+          "description": "The button",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichMessageButton"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#richtextbutton"
+    },
+    {
+      "name": "RichBlockButtons",
+      "description": "A block containing a list of buttons that are shown in one row.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the block, always \u201cbuttons\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "buttons"
+            ]
+          }
+        },
+        {
+          "name": "buttons",
+          "description": "The buttons",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "RichMessageButton"
+            }
+          }
+        },
+        {
+          "name": "align",
+          "description": "*Optional*. Horizontal alignment of the buttons. Currently, must be one of \u201cleft\u201d, \u201ccenter\u201d, or \u201cright\u201d.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#richblockbuttons"
+    },
+    {
+      "name": "InputRichBlockButtons",
+      "description": "A block containing a list of buttons that are shown in one row.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the block, always \u201cbuttons\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "buttons"
+            ]
+          }
+        },
+        {
+          "name": "buttons",
+          "description": "List of 1-8 buttons to send",
+          "required": true,
+          "type_info": {
+            "type": "array",
+            "array": {
+              "type": "reference",
+              "reference": "RichMessageButton"
+            }
+          }
+        },
+        {
+          "name": "align",
+          "description": "*Optional*. Horizontal alignment of the buttons. Currently, must be one of \u201cleft\u201d, \u201ccenter\u201d, or \u201cright\u201d.",
+          "required": false,
+          "type_info": {
+            "type": "string",
+            "enumeration": []
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockbuttons"
+    },
+    {
+      "name": "RichBlockExpandableBlockQuotation",
+      "description": "A block quotation, which can be expanded or collapsed back.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the block, always \u201cexpandable_blockquote\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "expandable_blockquote"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "Content of the block",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "credit",
+          "description": "*Optional*. Credit of the block",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#richblockexpandableblockquotation"
+    },
+    {
+      "name": "InputRichBlockExpandableBlockQuotation",
+      "description": "A block quotation, which can be expanded or collapsed back.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the block, always \u201cexpandable_blockquote\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "expandable_blockquote"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "description": "Content of the block",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        },
+        {
+          "name": "credit",
+          "description": "*Optional*. Credit of the block",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichText"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockexpandableblockquotation"
+    },
+    {
+      "name": "RichBlockDocument",
+      "description": "A block with a general file.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the block, always \u201cdocument\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "document"
+            ]
+          }
+        },
+        {
+          "name": "document",
+          "description": "The document",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "Document"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "*Optional*. Caption of the block",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#richblockdocument"
+    },
+    {
+      "name": "InputRichBlockDocument",
+      "description": "A block with a general file.",
+      "type": "properties",
+      "properties": [
+        {
+          "name": "type",
+          "description": "Type of the block, always \u201cdocument\u201d",
+          "required": true,
+          "type_info": {
+            "type": "string",
+            "enumeration": [
+              "document"
+            ]
+          }
+        },
+        {
+          "name": "document",
+          "description": "The document. Caption is ignored.",
+          "required": true,
+          "type_info": {
+            "type": "reference",
+            "reference": "InputMediaDocument"
+          }
+        },
+        {
+          "name": "caption",
+          "description": "*Optional*. Caption of the block",
+          "required": false,
+          "type_info": {
+            "type": "reference",
+            "reference": "RichBlockCaption"
+          }
+        }
+      ],
+      "documentation_link": "https://core.telegram.org/bots/api#inputrichblockdocument"
     }
   ]
 }

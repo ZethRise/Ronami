@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for TBA 10.3 [**BC**]
+  - Ephemeral Messages: add `EphemeralMessageParameters` and replace the `receiver_user_id` and `callback_query_id` parameters of `send_message`, `send_photo`, `send_live_photo`, `send_audio`, `send_document`, `send_video`, `send_animation`, `send_voice`, `send_video_note`, `send_location`, `send_venue`, `send_contact` and `send_sticker` with `ephemeral_message_parameters` [**BC**]; add `ephemeral_message_parameters` to `send_rich_message`
+  - Rich Messages: add `RichMessageButton` (with `RichMessageButtonKind` and `RichMessageButtonStyle`), `RichTextButton`, `RichBlockButtons` / `InputRichBlockButtons`, `RichBlockExpandableBlockQuotation` / `InputRichBlockExpandableBlockQuotation`, `RichBlockDocument` / `InputRichBlockDocument`, and `is_compact` to `RichBlockTable`; new variants in `RichText`'s `RichTextEntity`, `RichBlock` and `InputRichBlock` [**BC**]
+  - Reply markup: add `DisabledButton`, `InlineKeyboardButtonKind::Disabled` and `InlineKeyboardButton::disabled` [**BC**]; add `force_reply` to `InlineKeyboardMarkup` and `KeyboardMarkup` [**BC**]
+  - Message drafts: add `can_stop` and `keep_on_stop` to `send_message_draft` and `send_rich_message_draft`; add `MessageGenerationStopped`, `UpdateKind::StoppedMessageGeneration` and `AllowedUpdate::StoppedMessageGeneration` [**BC**]
+  - Add `text`, `entities` and `is_private` to `UniqueGiftInfo` [**BC**]
 - Support for TBA 10.2
   - Ephemeral Messages: add `edit_ephemeral_message_text`, `edit_ephemeral_message_media`, `edit_ephemeral_message_caption`, `edit_ephemeral_message_reply_markup`, `delete_ephemeral_message` methods; add `is_ephemeral` to `BotCommand`, `receiver_user` and `ephemeral_message_id` to `Message`, `ephemeral_message_id` to `ReplyParameters` and make `message_id` optional; add `receiver_user_id` and `callback_query_id` parameters to 13 send methods
   - Communities: add `Community`, `CommunityChatAdded`, `CommunityChatJoined`, `CommunityChatRemoved` types, and `community` field to `ChatFullInfo`

@@ -2173,7 +2173,7 @@ dependencies = [
 
 [[package]]
 name = "ronami"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = [
  "axum",
  "bincode",
@@ -2208,7 +2208,7 @@ dependencies = [
 
 [[package]]
 name = "ronami-core"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = [
  "aho-corasick",
  "bitflags 2.13.2",
@@ -2248,7 +2248,7 @@ dependencies = [
 
 [[package]]
 name = "ronami-macros"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = [
  "heck",
  "proc-macro2",

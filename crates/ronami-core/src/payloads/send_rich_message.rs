@@ -3,8 +3,8 @@
 use serde::Serialize;
 
 use crate::types::{
-    BusinessConnectionId, EffectId, InputRichMessage, Message, Recipient, ReplyMarkup,
-    ReplyParameters, SuggestedPostParameters, ThreadId, TopicId,
+    BusinessConnectionId, EffectId, EphemeralMessageParameters, InputRichMessage, Message,
+    Recipient, ReplyMarkup, ReplyParameters, SuggestedPostParameters, ThreadId, TopicId,
 };
 
 impl_payload! {
@@ -45,6 +45,8 @@ impl_payload! {
             /// [inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
             /// [custom reply keyboard]: https://core.telegram.org/bots#keyboards
             pub reply_markup: ReplyMarkup [into],
+            /// A JSON-serialized object containing the parameters of the ephemeral message to send
+            pub ephemeral_message_parameters: EphemeralMessageParameters,
         }
     }
 }

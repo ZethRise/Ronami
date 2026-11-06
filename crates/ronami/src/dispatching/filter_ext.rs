@@ -202,4 +202,9 @@ define_update_ext! {
     (filter_managed_bot, UpdateKind::ManagedBot, ManagedBot),
     (filter_guest_message, UpdateKind::GuestMessage, GuestMessage),
     (filter_subscription, UpdateKind::Subscription, Subscription),
+    (
+        filter_stopped_message_generation,
+        UpdateKind::StoppedMessageGeneration,
+        StoppedMessageGeneration
+    ),
 }

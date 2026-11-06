@@ -1,6 +1,6 @@
 use crate::types::{
-    ButtonStyle, CallbackGame, CopyTextButton, LoginUrl, SwitchInlineQueryChosenChat, True,
-    WebAppInfo,
+    ButtonStyle, CallbackGame, CopyTextButton, DisabledButton, LoginUrl,
+    SwitchInlineQueryChosenChat, True, WebAppInfo,
 };
 use serde::{Deserialize, Serialize};
 
@@ -113,6 +113,9 @@ pub enum InlineKeyboardButtonKind {
     ///
     /// [Pay button]: https://core.telegram.org/bots/api#payments
     Pay(True),
+
+    /// If set, then the button is disabled and does nothing.
+    Disabled(DisabledButton),
 }
 
 impl InlineKeyboardButton {
@@ -238,5 +241,15 @@ impl InlineKeyboardButton {
         T: Into<String>,
     {
         Self::new(text, InlineKeyboardButtonKind::Pay(True))
+    }
+
+    /// Constructor for `InlineKeyboardButton` with [`Disabled`] kind.
+    ///
+    /// [`Disabled`]: InlineKeyboardButtonKind::Disabled
+    pub fn disabled<T>(text: T) -> Self
+    where
+        T: Into<String>,
+    {
+        Self::new(text, InlineKeyboardButtonKind::Disabled(DisabledButton {}))
     }
 }
