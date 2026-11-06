@@ -1,11 +1,11 @@
 use std::future::IntoFuture;
 
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{Serialize, de::DeserializeOwned};
 
 use crate::{
+    RequestError,
     bot::Bot,
     requests::{HasPayload, Payload, Request, ResponseResult},
-    RequestError,
 };
 
 /// A ready-to-send Telegram request whose payload is sent using [JSON].

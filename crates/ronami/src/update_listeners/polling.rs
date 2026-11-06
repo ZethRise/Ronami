@@ -11,16 +11,16 @@ use std::{
 };
 
 use futures::{ready, stream::Stream};
-use tokio::time::{sleep, Sleep};
+use tokio::time::{Sleep, sleep};
 
 use ronami_core::errors::AsResponseParameters;
 
 use crate::{
-    backoff::{exponential_backoff_strategy, BackoffStrategy},
+    backoff::{BackoffStrategy, exponential_backoff_strategy},
     requests::{HasPayload, Request, Requester},
-    stop::{mk_stop_token, StopFlag, StopToken},
+    stop::{StopFlag, StopToken, mk_stop_token},
     types::{AllowedUpdate, Update},
-    update_listeners::{assert_update_listener, AsUpdateStream, UpdateListener},
+    update_listeners::{AsUpdateStream, UpdateListener, assert_update_listener},
 };
 
 /// Builder for polling update listener.

@@ -3,7 +3,8 @@
 use chrono::{DateTime, Utc};
 use serde::Serialize;
 
-use crate::types::{ChatInviteLink, Recipient};
+use crate::types::ChatInviteLink;
+use crate::types::Recipient;
 
 impl_payload! {
     /// Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. The link can be revoked using the method [`RevokeChatInviteLink`]. Returns the new invite link as [`ChatInviteLink`] object.

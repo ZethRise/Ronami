@@ -2,10 +2,14 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    BusinessConnectionId, EffectId, InputMedia, Message, Recipient, ReplyParameters, ThreadId,
-    TopicId,
-};
+use crate::types::BusinessConnectionId;
+use crate::types::EffectId;
+use crate::types::InputMedia;
+use crate::types::Message;
+use crate::types::Recipient;
+use crate::types::ReplyParameters;
+use crate::types::ThreadId;
+use crate::types::TopicId;
 
 impl_payload! {
     /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of [`Message`]s that were sent is returned.

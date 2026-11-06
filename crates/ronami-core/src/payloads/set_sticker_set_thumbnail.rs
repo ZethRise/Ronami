@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{InputFile, StickerFormat, True, UserId};
+use crate::types::InputFile;
+use crate::types::StickerFormat;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     @[multipart = thumbnail]

@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{MessageEntity, ParseMode, True, UserId};
+use crate::types::MessageEntity;
+use crate::types::ParseMode;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Gifts a Telegram Premium subscription to the given user. Returns True on success.

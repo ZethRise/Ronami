@@ -1,5 +1,5 @@
 use proc_macro2::{Span, TokenStream};
-use quote::{quote, ToTokens};
+use quote::{ToTokens, quote};
 
 pub(crate) type Result<T, E = Error> = std::result::Result<T, E>;
 

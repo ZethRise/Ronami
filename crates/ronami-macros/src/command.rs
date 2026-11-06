@@ -1,11 +1,11 @@
 use proc_macro2::Span;
 
 use crate::{
-    command_attr::{match_separator, CommandAttrs},
+    Result,
+    command_attr::{CommandAttrs, match_separator},
     command_enum::CommandEnum,
     error::compile_error_at,
     fields_parse::ParserType,
-    Result,
 };
 
 pub(crate) struct Command {
@@ -59,7 +59,7 @@ impl Command {
                 return Err(compile_error_at(
                     "`rename_rule` can't be applied to `rename`-d variant",
                     sp,
-                ))
+                ));
             }
             (None, Some((rule, _))) => rule.apply(name),
             (None, None) => global_options.rename_rule.apply(name),

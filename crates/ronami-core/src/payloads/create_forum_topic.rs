@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{CustomEmojiId, ForumTopic, Recipient, Rgb};
+use crate::types::CustomEmojiId;
+use crate::types::ForumTopic;
+use crate::types::Recipient;
+use crate::types::Rgb;
 
 impl_payload! {
     /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the _can\_manage\_topics_ administrator rights. Returns information about the created topic as a `ForumTopic` object.

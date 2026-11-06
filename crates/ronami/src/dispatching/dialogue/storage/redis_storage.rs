@@ -1,9 +1,9 @@
-use super::{serializer::Serializer, Storage};
-use deadpool_redis::{redis, CreatePoolError, PoolError, Runtime};
+use super::{Storage, serializer::Serializer};
+use deadpool_redis::{CreatePoolError, PoolError, Runtime, redis};
 use futures::future::BoxFuture;
 use redis::AsyncCommands;
 use ronami_core::types::ChatId;
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{Serialize, de::DeserializeOwned};
 use std::{
     convert::Infallible,
     fmt::{Debug, Display},

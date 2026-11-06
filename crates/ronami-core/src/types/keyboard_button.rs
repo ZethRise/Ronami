@@ -1,4 +1,4 @@
-use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Deserializer, Serialize, Serializer, de::Error};
 
 use crate::types::{
     ButtonStyle, KeyboardButtonPollType, KeyboardButtonRequestChat,

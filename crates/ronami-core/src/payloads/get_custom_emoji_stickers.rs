@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{CustomEmojiId, Sticker};
+use crate::types::CustomEmojiId;
+use crate::types::Sticker;
 
 impl_payload! {
     /// Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.

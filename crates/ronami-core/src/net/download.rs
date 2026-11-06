@@ -2,9 +2,9 @@ use std::{future::Future, sync::Arc};
 
 use bytes::Bytes;
 use futures::{
-    future::{ready, Either},
-    stream::{once, unfold},
     FutureExt, Stream, StreamExt,
+    future::{Either, ready},
+    stream::{once, unfold},
 };
 use reqwest::{Client, Response, Url};
 use tokio::io::{AsyncWrite, AsyncWriteExt};
@@ -95,7 +95,7 @@ pub fn download_file<'o, D>(
     token: &str,
     path: &str,
     dst: &'o mut D,
-) -> impl Future<Output = Result<(), DownloadError>> + 'o
+) -> impl Future<Output = Result<(), DownloadError>> + 'o + use<'o, D>
 where
     D: ?Sized + AsyncWrite + Unpin,
 {
@@ -120,7 +120,7 @@ pub fn download_file_stream(
     api_url: Url,
     token: &str,
     path: &str,
-) -> impl Stream<Item = reqwest::Result<Bytes>> + 'static {
+) -> impl Stream<Item = reqwest::Result<Bytes>> + 'static + use<> {
     client.get(file_url(api_url, token, path)).send().into_stream().flat_map(|res| {
         match res.and_then(Response::error_for_status) {
             Ok(res) => Either::Left(unfold(res, |mut res| async {

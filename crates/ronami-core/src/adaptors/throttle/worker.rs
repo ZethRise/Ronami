@@ -1,16 +1,16 @@
 use std::{
-    collections::{hash_map::Entry, HashMap, VecDeque},
+    collections::{HashMap, VecDeque, hash_map::Entry},
     pin::pin,
     time::{Duration, Instant},
 };
 
 use either::Either;
-use futures::{future, FutureExt as _};
+use futures::{FutureExt as _, future};
 use tokio::sync::{mpsc, mpsc::error::TryRecvError, oneshot::Sender};
 use vecrem::VecExt;
 
 use crate::{
-    adaptors::throttle::{request_lock::RequestLock, ChatIdHash, Limits, Settings},
+    adaptors::throttle::{ChatIdHash, Limits, Settings, request_lock::RequestLock},
     errors::AsResponseParameters,
     requests::Requester,
 };

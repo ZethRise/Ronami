@@ -248,21 +248,13 @@ impl StickerKind {
     /// Getter for [`StickerKind::Mask::mask_position`].
     #[must_use]
     pub fn mask_position(&self) -> Option<MaskPosition> {
-        if let Self::Mask { mask_position } = self {
-            Some(*mask_position)
-        } else {
-            None
-        }
+        if let Self::Mask { mask_position } = self { Some(*mask_position) } else { None }
     }
 
     /// Getter for [`StickerKind::CustomEmoji::custom_emoji_id`].
     #[must_use]
     pub fn custom_emoji_id(&self) -> Option<&CustomEmojiId> {
-        if let Self::CustomEmoji { custom_emoji_id } = self {
-            Some(custom_emoji_id)
-        } else {
-            None
-        }
+        if let Self::CustomEmoji { custom_emoji_id } = self { Some(custom_emoji_id) } else { None }
     }
 }
 

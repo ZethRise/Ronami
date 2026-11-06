@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnection, BusinessConnectionId};
+use crate::types::BusinessConnection;
+use crate::types::BusinessConnectionId;
 
 impl_payload! {
     /// Use this method to get information about the connection of the bot with a business account. Returns a BusinessConnection object on success.

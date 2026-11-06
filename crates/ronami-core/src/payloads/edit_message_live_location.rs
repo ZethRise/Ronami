@@ -2,7 +2,12 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, LivePeriod, Message, MessageId, Recipient, ReplyMarkup};
+use crate::types::BusinessConnectionId;
+use crate::types::LivePeriod;
+use crate::types::Message;
+use crate::types::MessageId;
+use crate::types::Recipient;
+use crate::types::ReplyMarkup;
 
 impl_payload! {
     /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to [`StopMessageLiveLocation`]. On success, the edited Message is returned.

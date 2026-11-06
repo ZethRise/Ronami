@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, True};
+use crate::types::BusinessConnectionId;
+use crate::types::True;
 
 impl_payload! {
     /// Transfers Telegram Stars from the business account balance to the bot's balance. Requires the _can_transfer_stars_ business bot right. Returns _true_ on success.

@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Message, UserId};
+use crate::types::Message;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an Array of [`Message`] objects is returned.

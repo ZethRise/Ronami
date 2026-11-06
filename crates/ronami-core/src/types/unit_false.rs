@@ -1,4 +1,4 @@
-use serde::{de::Visitor, Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Deserializer, Serialize, Serializer, de::Visitor};
 
 /// A type that is always false.
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq, Default)]

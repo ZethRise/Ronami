@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{InlineQueryResult, PreparedInlineMessage, UserId};
+use crate::types::InlineQueryResult;
+use crate::types::PreparedInlineMessage;
+use crate::types::UserId;
 
 impl_payload! {
     /// Stores a message that can be sent by a user of a Mini App. Returns a [`PreparedInlineMessage`] object.

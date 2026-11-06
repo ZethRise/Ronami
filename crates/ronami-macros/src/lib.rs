@@ -10,8 +10,8 @@ mod fields_parse;
 mod rename_rules;
 mod unzip;
 
-pub(crate) use error::{compile_error, Result};
-use syn::{parse_macro_input, DeriveInput};
+pub(crate) use error::{Result, compile_error};
+use syn::{DeriveInput, parse_macro_input};
 
 use crate::bot_commands::bot_commands_impl;
 use proc_macro::TokenStream;

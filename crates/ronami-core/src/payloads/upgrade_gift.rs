@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, OwnedGiftId, True};
+use crate::types::BusinessConnectionId;
+use crate::types::OwnedGiftId;
+use crate::types::True;
 
 impl_payload! {
     /// Upgrades a given regular gift to a unique gift. Requires the _can_transfer_and_upgrade_gifts_ business bot right. Additionally requires the _can_transfer_stars_ business bot right if the upgrade is paid. Returns _true_ on success.

@@ -113,7 +113,7 @@ mod tests {
     use std::ops::Deref;
 
     use super::*;
-    use ronami_core::{prelude::*, Bot};
+    use ronami_core::{Bot, prelude::*};
 
     #[test]
     fn test_reply_to() {

@@ -75,7 +75,7 @@ macro_rules! req_future {
 macro_rules! calculated_doc {
     (
         $(
-            #[doc = $doc:expr]
+            #[doc = $doc:expr_2021]
             $thing:item
         )*
     ) => (
@@ -345,13 +345,13 @@ macro_rules! impl_payload {
     (@convert? $T:ty) => {
         $T
     };
-    (@convert_map ($e:expr) [into]) => {
+    (@convert_map ($e:expr_2021) [into]) => {
         $e.into()
     };
-    (@convert_map ($e:expr) [collect]) => {
+    (@convert_map ($e:expr_2021) [collect]) => {
         $e.into_iter().collect()
     };
-    (@convert_map ($e:expr)) => {
+    (@convert_map ($e:expr_2021)) => {
         $e
     };
     (@[multipart = $($multipart_attr:ident),*] $Method:ident req { $($reqf:ident),* } opt { $($optf:ident),*} ) => {
@@ -373,7 +373,7 @@ macro_rules! impl_payload {
 }
 
 macro_rules! download_forward {
-    ($T:ident $S:ty {$this:ident => $inner:expr}) => {
+    ($T:ident $S:ty {$this:ident => $inner:expr_2021}) => {
         impl<$T: $crate::net::Download> $crate::net::Download for $S {
             type Err<'dst> = <$T as $crate::net::Download>::Err<'dst>;
 
@@ -382,9 +382,9 @@ macro_rules! download_forward {
             fn download_file<'dst>(
                 &self,
                 path: &'dst str,
-                destination: &'dst mut (dyn tokio::io::AsyncWrite
-                               + core::marker::Unpin
-                               + core::marker::Send),
+                destination: &'dst mut (
+                              dyn tokio::io::AsyncWrite + core::marker::Unpin + core::marker::Send
+                          ),
             ) -> Self::Fut<'dst> {
                 let $this = self;
                 ($inner).download_file(path, destination)
@@ -2029,7 +2029,7 @@ macro_rules! requester_forward {
 fn codegen_requester_forward() {
     use crate::codegen::{
         add_hidden_preamble,
-        convert::{convert_for, Convert},
+        convert::{Convert, convert_for},
         ensure_file_contents, min_prefix, project_root, reformat, replace_block,
         schema::{self, Type},
         to_uppercase,
@@ -2100,11 +2100,11 @@ fn codegen_requester_forward() {
                 .flat_map(|p| match convert_for(&p.ty) {
                     Convert::Id(_) => None,
                     Convert::Into(ty) => {
-                        Some(format!("{}: Into<{}>", &to_uppercase(prefixes[&*p.name]), ty))
+                        Some(format!("{}: Into<{}>", to_uppercase(prefixes[&*p.name]), ty))
                     }
                     Convert::Collect(ty) => Some(format!(
                         "{}: IntoIterator<Item = {}>",
-                        &to_uppercase(prefixes[&*p.name]),
+                        to_uppercase(prefixes[&*p.name]),
                         ty
                     )),
                 })

@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{MessageId, Recipient, True};
+use crate::types::MessageId;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to delete a message, including service messages, with the following limitations:

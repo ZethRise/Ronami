@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True};
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Verifies a chat [on behalf of the organization] which is represented by the bot. Returns _true_ on success.

@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True};
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Use the field _can\_set\_sticker\_set_ optionally returned in getChat requests to check if the bot can use this method. Returns _True_ on success.

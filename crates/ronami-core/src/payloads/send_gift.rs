@@ -2,7 +2,11 @@
 
 use serde::Serialize;
 
-use crate::types::{GiftId, MessageEntity, ParseMode, True, UserId};
+use crate::types::GiftId;
+use crate::types::MessageEntity;
+use crate::types::ParseMode;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Sends a gift to the given user. The gift can't be converted to Telegram Stars by the user. Returns True on success.

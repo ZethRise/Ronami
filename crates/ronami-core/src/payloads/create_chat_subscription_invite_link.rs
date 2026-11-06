@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatInviteLink, Recipient, Seconds};
+use crate::types::ChatInviteLink;
+use crate::types::Recipient;
+use crate::types::Seconds;
 
 impl_payload! {
     /// Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method [`EditChatSubscriptionInviteLink`] or revoked using the method [`RevokeChatInviteLink`]. Returns the new invite link as a [`ChatInviteLink`] object.

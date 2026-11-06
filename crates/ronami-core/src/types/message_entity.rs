@@ -299,8 +299,8 @@ pub enum MessageEntityKind {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use cool_asserts::assert_matches;
     use MessageEntityKind::*;
+    use cool_asserts::assert_matches;
 
     #[test]
     fn recursive_kind() {
@@ -414,7 +414,12 @@ mod tests {
 
         assert_matches!(
             parsed,
-            [entity if entity.text() == "б" && entity.kind() == &Strikethrough, entity if entity.text() == "ы" && entity.kind() == &Bold, entity if entity.text() == "б" && entity.kind() == &Italic, entity if entity.text() == "а" && entity.kind() == &Code]
+            [
+                entity if entity.text() == "б" && entity.kind() == &Strikethrough,
+                entity if entity.text() == "ы" && entity.kind() == &Bold,
+                entity if entity.text() == "б" && entity.kind() == &Italic,
+                entity if entity.text() == "а" && entity.kind() == &Code,
+            ]
         );
     }
 
@@ -442,7 +447,11 @@ mod tests {
 
         assert_matches!(
             parsed,
-            [entity if entity.text() == "b " && entity.kind() == &Bold, entity if entity.text() == "i b" && entity.kind() == &Bold, entity if entity.text() == "i" && entity.kind() == &Italic]
+            [
+                entity if entity.text() == "b " && entity.kind() == &Bold,
+                entity if entity.text() == "i b" && entity.kind() == &Bold,
+                entity if entity.text() == "i" && entity.kind() == &Italic,
+            ]
         );
     }
 
@@ -466,7 +475,10 @@ mod tests {
 
         assert_matches!(
             parsed,
-            [entity if entity.text() == "" && entity.kind() == &Bold, entity if entity.text() == "" && entity.kind() == &Italic]
+            [
+                entity if entity.text() == "" && entity.kind() == &Bold,
+                entity if entity.text() == "" && entity.kind() == &Italic,
+            ]
         );
     }
 }

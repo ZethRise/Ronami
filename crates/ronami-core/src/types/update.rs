@@ -1,5 +1,5 @@
 #![allow(clippy::large_enum_variant)]
-use serde::{de::MapAccess, Deserialize, Serialize, Serializer};
+use serde::{Deserialize, Serialize, Serializer, de::MapAccess};
 use serde_json::Value;
 
 use crate::types::{

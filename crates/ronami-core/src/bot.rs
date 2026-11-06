@@ -1,7 +1,7 @@
 use std::{future::Future, sync::Arc};
 
 use reqwest::Client;
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{Serialize, de::DeserializeOwned};
 
 use crate::{
     net,
@@ -240,7 +240,7 @@ impl Bot {
     pub(crate) fn execute_json<P>(
         &self,
         payload: &P,
-    ) -> impl Future<Output = ResponseResult<P::Output>> + 'static
+    ) -> impl Future<Output = ResponseResult<P::Output>> + 'static + use<P>
     where
         P: Payload + Serialize,
         P::Output: DeserializeOwned + 'static,
@@ -271,7 +271,7 @@ impl Bot {
     pub(crate) fn execute_multipart<P>(
         &self,
         payload: &mut P,
-    ) -> impl Future<Output = ResponseResult<P::Output>>
+    ) -> impl Future<Output = ResponseResult<P::Output>> + use<P>
     where
         P: MultipartPayload + Serialize,
         P::Output: DeserializeOwned + 'static,
@@ -301,7 +301,7 @@ impl Bot {
     pub(crate) fn execute_multipart_ref<P>(
         &self,
         payload: &P,
-    ) -> impl Future<Output = ResponseResult<P::Output>>
+    ) -> impl Future<Output = ResponseResult<P::Output>> + use<P>
     where
         P: MultipartPayload + Serialize,
         P::Output: DeserializeOwned + 'static,

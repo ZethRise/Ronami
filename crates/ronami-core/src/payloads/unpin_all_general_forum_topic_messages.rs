@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True};
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the _can\_pin\_messages_ administrator right in the supergroup. Returns True on success.

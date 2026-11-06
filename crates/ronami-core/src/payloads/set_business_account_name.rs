@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, True};
+use crate::types::BusinessConnectionId;
+use crate::types::True;
 
 impl_payload! {
     /// Changes the first and last name of a managed business account. Requires the _can_change_name_ business bot right. Returns _true_ on success.

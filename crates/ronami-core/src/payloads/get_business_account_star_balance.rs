@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, StarAmount};
+use crate::types::BusinessConnectionId;
+use crate::types::StarAmount;
 
 impl_payload! {
     /// Returns the amount of Telegram Stars owned by a managed business account. Requires the _can_view_gifts_and_stars_ business bot right. Returns [`StarAmount`] on success.

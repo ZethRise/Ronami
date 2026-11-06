@@ -3,7 +3,7 @@ use std::sync::Arc;
 use url::Url;
 
 use crate::{
-    adaptors::{throttle::ThrottlingRequest, Throttle},
+    adaptors::{Throttle, throttle::ThrottlingRequest},
     errors::AsResponseParameters,
     requests::{HasPayload, Requester},
     types::*,
@@ -40,7 +40,6 @@ macro_rules! ftyid {
 impl<B: Requester> Requester for Throttle<B>
 where
     B::Err: AsResponseParameters,
-
     B::SendMessage: Clone + Send + Sync + 'static,
     B::SendRichMessage: Clone + Send + Sync + 'static,
     B::ForwardMessage: Clone + Send + Sync + 'static,

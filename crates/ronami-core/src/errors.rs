@@ -92,7 +92,7 @@ macro_rules! impl_api_error {
         $vis:vis enum $ident:ident {
             $(
                 $( #[$var_meta:meta] )*
-                $var_name:ident $( ($var_inner:ty) )? = $var_string:literal $(with $var_parser:expr)?
+                $var_name:ident $( ($var_inner:ty) )? = $var_string:literal $(with $var_parser:expr_2021)?
              ),*
          }
     ) => {
@@ -141,14 +141,14 @@ macro_rules! impl_api_error {
             return Ok(Self::Value::$variant)
         }
     };
-    (@de $value:ident, $variant:ident ($var_inner:ty), $val:literal, $block:expr) => {
+    (@de $value:ident, $variant:ident ($var_inner:ty), $val:literal, $block:expr_2021) => {
         #[allow(clippy::redundant_closure_call)]
         match $block($value) {
             Some(data) => return Ok(Self::Value::$variant(data)),
             _ => {}
         }
     };
-    (@de $value:ident, $variant:ident, $val:literal, $block:expr) => {
+    (@de $value:ident, $variant:ident, $val:literal, $block:expr_2021) => {
         #[allow(clippy::redundant_closure_call)]
         if $block($value) {
             return Ok(Self::Value::$variant);

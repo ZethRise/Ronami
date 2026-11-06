@@ -1,6 +1,6 @@
 [package]
 name = "ronami"
-version = "1.1.0"
+version = "1.5.0"
 description = "A full-featured Telegram bots framework for Rust"
 
 rust-version.workspace = true
@@ -85,8 +85,8 @@ full = [
 
 [dependencies]
 # replace me by the actual version when release, and return path when it's time to make 0-day fixes
-ronami-core = { version = "1.1.0", path = "../ronami-core", default-features = false }
-ronami-macros = { version = "1.1.0", path = "../ronami-macros", optional = true }
+ronami-core = { version = "1.5.0", path = "../ronami-core", default-features = false }
+ronami-macros = { version = "1.5.0", path = "../ronami-macros", optional = true }
 
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }

@@ -3,7 +3,8 @@
 use chrono::{DateTime, Utc};
 use serde::Serialize;
 
-use crate::types::{ChatInviteLink, Recipient};
+use crate::types::ChatInviteLink;
+use crate::types::Recipient;
 
 impl_payload! {
     /// Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns the edited invite link as a [`ChatInviteLink`] object.

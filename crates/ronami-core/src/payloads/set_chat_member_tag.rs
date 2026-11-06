@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True, UserId};
+use crate::types::Recipient;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to set a tag for a regular member in a group or a supergroup. The bot must be an administrator in the chat for this to work and must have the can_manage_tags administrator right. Returns _True_ on success.

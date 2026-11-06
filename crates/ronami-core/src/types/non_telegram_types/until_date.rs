@@ -1,5 +1,5 @@
 use chrono::{DateTime, Utc};
-use serde::{de::Visitor, Deserialize, Serialize};
+use serde::{Deserialize, Serialize, de::Visitor};
 
 use crate::types::serde_timestamp;
 

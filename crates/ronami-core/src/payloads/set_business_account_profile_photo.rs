@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, InputProfilePhoto, True};
+use crate::types::BusinessConnectionId;
+use crate::types::InputProfilePhoto;
+use crate::types::True;
 
 impl_payload! {
     /// Changes the profile photo of a managed business account. Requires the _can_edit_profile_photo_ business bot right. Returns _true_ on success.

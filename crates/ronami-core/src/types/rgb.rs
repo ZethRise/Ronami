@@ -1,5 +1,5 @@
 use rgb::RGB8;
-use serde::{de::Visitor, Deserialize, Serialize};
+use serde::{Deserialize, Serialize, de::Visitor};
 
 /// RGB color format
 #[repr(C)]

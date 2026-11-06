@@ -1,11 +1,11 @@
-use crate::{error::compile_error_at, Result};
+use crate::{Result, error::compile_error_at};
 
 use proc_macro2::{Delimiter, Group, Span};
 use quote::ToTokens;
 use syn::{
+    Attribute, Ident, Lit, Path, Token,
     parse::{Parse, ParseStream, Parser},
     spanned::Spanned,
-    Attribute, Ident, Lit, Path, Token,
 };
 
 pub(crate) fn fold_attrs<A, R>(

@@ -1,7 +1,7 @@
 use crate::{
     dispatching::{
-        distribution::default_distribution_function, DefaultKey, DpHandlerDescription,
-        ShutdownToken,
+        DefaultKey, DpHandlerDescription, ShutdownToken,
+        distribution::default_distribution_function,
     },
     error_handlers::{ErrorHandler, LoggingErrorHandler},
     requests::{Request, Requester},
@@ -13,9 +13,9 @@ use crate::{
 use dptree::di::DependencyMap;
 use either::Either;
 use futures::{
+    FutureExt as _, StreamExt as _,
     future::{self, BoxFuture},
     stream::FuturesUnordered,
-    FutureExt as _, StreamExt as _,
 };
 use tokio_stream::wrappers::ReceiverStream;
 
@@ -27,8 +27,8 @@ use std::{
     ops::{ControlFlow, Deref},
     pin::pin,
     sync::{
-        atomic::{AtomicBool, AtomicU32, Ordering},
         Arc,
+        atomic::{AtomicBool, AtomicU32, Ordering},
     },
 };
 

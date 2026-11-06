@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{TelegramTransactionId, True, UserId};
+use crate::types::TelegramTransactionId;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Refunds a successful payment in [Telegram Stars]. Returns True on success.

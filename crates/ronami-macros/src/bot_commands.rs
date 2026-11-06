@@ -1,6 +1,6 @@
 use crate::{
-    command::Command, command_enum::CommandEnum, compile_error, fields_parse::impl_parse_args,
-    unzip::Unzip, Result,
+    Result, command::Command, command_enum::CommandEnum, compile_error,
+    fields_parse::impl_parse_args, unzip::Unzip,
 };
 
 use proc_macro2::TokenStream;

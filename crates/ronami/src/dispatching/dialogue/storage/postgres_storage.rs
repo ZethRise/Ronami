@@ -7,11 +7,11 @@ use std::{
 
 use futures::future::BoxFuture;
 use ronami_core::types::ChatId;
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{Serialize, de::DeserializeOwned};
 use sqlx::postgres::{PgPool, PgPoolOptions};
 use thiserror::Error;
 
-use super::{serializer::Serializer, Storage};
+use super::{Storage, serializer::Serializer};
 
 /// An error returned from [`PostgresStorage`].
 #[derive(Debug, Error)]

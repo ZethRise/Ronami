@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{TelegramTransactionId, True, UserId};
+use crate::types::TelegramTransactionId;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns True on success.

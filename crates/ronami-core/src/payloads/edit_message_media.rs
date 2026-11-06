@@ -2,9 +2,12 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    BusinessConnectionId, InlineKeyboardMarkup, InputMedia, Message, MessageId, Recipient,
-};
+use crate::types::BusinessConnectionId;
+use crate::types::InlineKeyboardMarkup;
+use crate::types::InputMedia;
+use crate::types::Message;
+use crate::types::MessageId;
+use crate::types::Recipient;
 
 impl_payload! {
     /// Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is a part of a message album, then it can be edited only to a photo or a video. Otherwise, message type can be changed arbitrarily. When inline message is edited, new file can't be uploaded. Use previously uploaded file via its file_id or specify a URL. On success, the edited Message is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.

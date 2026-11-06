@@ -2,10 +2,17 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    BusinessConnectionId, EffectId, EphemeralMessageParameters, InputFile, Message, Recipient,
-    ReplyMarkup, ReplyParameters, SuggestedPostParameters, ThreadId, TopicId,
-};
+use crate::types::BusinessConnectionId;
+use crate::types::EffectId;
+use crate::types::EphemeralMessageParameters;
+use crate::types::InputFile;
+use crate::types::Message;
+use crate::types::Recipient;
+use crate::types::ReplyMarkup;
+use crate::types::ReplyParameters;
+use crate::types::SuggestedPostParameters;
+use crate::types::ThreadId;
+use crate::types::TopicId;
 
 impl_payload! {
     @[multipart = video_note, thumbnail]

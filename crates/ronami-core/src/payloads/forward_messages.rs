@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{MessageId, Recipient, ThreadId, TopicId};
+use crate::types::MessageId;
+use crate::types::Recipient;
+use crate::types::ThreadId;
+use crate::types::TopicId;
 
 impl_payload! {
     /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of [`MessageId`] of the sent messages is returned.

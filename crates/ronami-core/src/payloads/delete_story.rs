@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, StoryId, True};
+use crate::types::BusinessConnectionId;
+use crate::types::StoryId;
+use crate::types::True;
 
 impl_payload! {
     /// Deletes a story previously posted by the bot on behalf of a managed business account. Requires the _can_manage_stories_ business bot right. Returns _true_ on success.

@@ -1,7 +1,7 @@
 use std::fmt;
 
 use mime::Mime;
-use serde::{de::Visitor, Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Deserializer, Serialize, Serializer, de::Visitor};
 
 pub(crate) mod deser {
     use mime::Mime;

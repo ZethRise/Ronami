@@ -1,9 +1,9 @@
 use serde::Deserialize;
 
 use crate::{
+    ApiError, RequestError,
     requests::ResponseResult,
     types::{False, ResponseParameters, True},
-    ApiError, RequestError,
 };
 
 #[derive(Deserialize)]

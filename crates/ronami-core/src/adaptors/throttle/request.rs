@@ -12,7 +12,7 @@ use futures::{
 use tokio::sync::mpsc;
 
 use crate::{
-    adaptors::throttle::{channel, ChatIdHash, FreezeUntil, RequestLock},
+    adaptors::throttle::{ChatIdHash, FreezeUntil, RequestLock, channel},
     errors::AsResponseParameters,
     requests::{HasPayload, Output, Request},
 };

@@ -7,7 +7,7 @@ use itertools::Itertools;
 
 use crate::codegen::{
     add_preamble,
-    convert::{convert_for, Convert},
+    convert::{Convert, convert_for},
     ensure_files_contents, project_root, reformat,
     schema::{self, Doc, Method, Param, Type},
     to_uppercase,
@@ -263,11 +263,7 @@ fn multipart_input_file_fields(m: &Method) -> Option<Vec<&str>> {
     let fields: Vec<_> =
         m.params.iter().filter(|&p| ty_is_multiparty(&p.ty)).map(|p| &*p.name).collect();
 
-    if fields.is_empty() {
-        None
-    } else {
-        Some(fields)
-    }
+    if fields.is_empty() { None } else { Some(fields) }
 }
 
 fn ty_is_multiparty(ty: &Type) -> bool {

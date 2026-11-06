@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BotCommand, BotCommandScope, True};
+use crate::types::BotCommand;
+use crate::types::BotCommandScope;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to change the list of the bot's commands. Returns _True_ on success.

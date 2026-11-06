@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatId, MenuButton, True};
+use crate::types::ChatId;
+use crate::types::MenuButton;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to change the bot's menu button in a private chat, or the default menu button.

@@ -3,10 +3,18 @@
 use chrono::{DateTime, Utc};
 use serde::Serialize;
 
-use crate::types::{
-    BusinessConnectionId, EffectId, InputPollMedia, InputPollOption, Message, MessageEntity,
-    ParseMode, PollType, Recipient, ReplyMarkup, ReplyParameters, ThreadId,
-};
+use crate::types::BusinessConnectionId;
+use crate::types::EffectId;
+use crate::types::InputPollMedia;
+use crate::types::InputPollOption;
+use crate::types::Message;
+use crate::types::MessageEntity;
+use crate::types::ParseMode;
+use crate::types::PollType;
+use crate::types::Recipient;
+use crate::types::ReplyMarkup;
+use crate::types::ReplyParameters;
+use crate::types::ThreadId;
 
 impl_payload! {
     /// Use this method to send a native poll. On success, the sent [`Message`] is returned.

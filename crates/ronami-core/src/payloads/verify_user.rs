@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{True, UserId};
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Verifies a user [on behalf of the organization] which is represented by the bot. Returns _true_ on success.

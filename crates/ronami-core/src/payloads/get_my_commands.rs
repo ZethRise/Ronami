@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BotCommand, BotCommandScope};
+use crate::types::BotCommand;
+use crate::types::BotCommandScope;
 
 impl_payload! {
     /// Use this method to get the current list of the bot's commands. Requires no parameters. Returns Array of [`BotCommand`] on success.

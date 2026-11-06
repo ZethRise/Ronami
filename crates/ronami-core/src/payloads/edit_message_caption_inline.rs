@@ -2,7 +2,11 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, InlineKeyboardMarkup, MessageEntity, ParseMode, True};
+use crate::types::BusinessConnectionId;
+use crate::types::InlineKeyboardMarkup;
+use crate::types::MessageEntity;
+use crate::types::ParseMode;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to edit captions of messages. On success, _True_ is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.

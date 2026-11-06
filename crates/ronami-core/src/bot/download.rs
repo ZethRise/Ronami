@@ -1,7 +1,7 @@
 use std::path::Path;
 
 use bytes::Bytes;
-use futures::{future::BoxFuture, stream::BoxStream, FutureExt, StreamExt};
+use futures::{FutureExt, StreamExt, future::BoxFuture, stream::BoxStream};
 
 use tokio::{
     fs::File,
@@ -9,9 +9,9 @@ use tokio::{
 };
 
 use crate::{
+    DownloadError,
     bot::Bot,
     net::{self, Download},
-    DownloadError,
 };
 
 impl Download for Bot {

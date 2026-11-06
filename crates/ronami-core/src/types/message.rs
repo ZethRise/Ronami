@@ -1124,11 +1124,11 @@ mod getters {
     use std::ops::Deref;
 
     use crate::types::{
-        self, message::MessageKind::*, Chat, ChatId, ChatMigration, EffectId, LinkPreviewOptions,
-        MaybeInaccessibleMessage, MediaAnimation, MediaAudio, MediaChecklist, MediaContact,
-        MediaDocument, MediaGame, MediaKind, MediaLocation, MediaPaid, MediaPhoto, MediaPoll,
-        MediaSticker, MediaStory, MediaText, MediaVenue, MediaVideo, MediaVideoNote, MediaVoice,
-        Message, MessageChannelChatCreated, MessageChatShared, MessageChecklistTasksAdded,
+        self, Chat, ChatId, ChatMigration, EffectId, LinkPreviewOptions, MaybeInaccessibleMessage,
+        MediaAnimation, MediaAudio, MediaChecklist, MediaContact, MediaDocument, MediaGame,
+        MediaKind, MediaLocation, MediaPaid, MediaPhoto, MediaPoll, MediaSticker, MediaStory,
+        MediaText, MediaVenue, MediaVideo, MediaVideoNote, MediaVoice, Message,
+        MessageChannelChatCreated, MessageChatShared, MessageChecklistTasksAdded,
         MessageChecklistTasksDone, MessageCommon, MessageConnectedWebsite, MessageDeleteChatPhoto,
         MessageDice, MessageDirectMessagePriceChanged, MessageEntity, MessageGroupChatCreated,
         MessageId, MessageInvoice, MessageLeftChatMember, MessageNewChatMembers,
@@ -1137,7 +1137,7 @@ mod getters {
         MessageSuggestedPostApprovalFailed, MessageSuggestedPostApproved,
         MessageSuggestedPostDeclined, MessageSuggestedPostPaid, MessageSuggestedPostRefunded,
         MessageSupergroupChatCreated, MessageUsersShared, MessageVideoChatParticipantsInvited,
-        PhotoSize, RichMessage, Story, TextQuote, User,
+        PhotoSize, RichMessage, Story, TextQuote, User, message::MessageKind::*,
     };
 
     use super::{

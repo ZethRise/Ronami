@@ -2,9 +2,13 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    BusinessConnectionId, ChatId, EffectId, Message, ReplyMarkup, ReplyParameters, ThreadId,
-};
+use crate::types::BusinessConnectionId;
+use crate::types::ChatId;
+use crate::types::EffectId;
+use crate::types::Message;
+use crate::types::ReplyMarkup;
+use crate::types::ReplyParameters;
+use crate::types::ThreadId;
 
 impl_payload! {
     /// Use this method to send a game. On success, the sent [`Message`] is returned.

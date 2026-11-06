@@ -22,8 +22,8 @@ use tokio::sync::{
 use crate::{errors::AsResponseParameters, requests::Requester, types::*};
 
 use self::{
-    request_lock::{channel, RequestLock},
-    worker::{worker, FreezeUntil, InfoMessage},
+    request_lock::{RequestLock, channel},
+    worker::{FreezeUntil, InfoMessage, worker},
 };
 
 pub use request::{ThrottlingRequest, ThrottlingSend};

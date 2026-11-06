@@ -689,9 +689,9 @@ pub(crate) mod option_msg_id_as_int {
 pub(crate) mod vec_msg_id_as_vec_int {
     use crate::types::MessageId;
     use serde::{
+        Deserializer, Serializer,
         de::{SeqAccess, Visitor},
         ser::SerializeSeq,
-        Deserializer, Serializer,
     };
     use std::fmt;
 

@@ -116,7 +116,7 @@ use serde::{Deserialize, Serialize};
 /// part of the block quotation started\nExpandable block quotation
 /// continued\nThe last line of the block quotation</blockquote>
 /// ````
-/// 
+///
 /// Please note:
 ///
 /// - Only the tags mentioned above are currently supported.
@@ -150,7 +150,7 @@ use serde::{Deserialize, Serialize};
 /// pre-formatted fixed-width code block written in the Rust programming language
 /// ```
 /// ````
-/// 
+///
 /// Please note:
 /// - Entities must not be nested, use parse mode [`MarkdownV2`] instead.
 /// - There is no way to specify underline and strikethrough entities, use parse

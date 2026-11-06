@@ -1,11 +1,11 @@
 use bytes::{Bytes, BytesMut};
 use futures::{
-    future::{ready, Either},
+    future::{Either, ready},
     stream,
 };
 use once_cell::sync::OnceCell;
 use rc_box::ArcBox;
-use reqwest::{multipart::Part, Body};
+use reqwest::{Body, multipart::Part};
 use serde::{Deserialize, Serialize};
 use takecell::TakeCell;
 use tokio::{

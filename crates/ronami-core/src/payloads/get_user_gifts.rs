@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{OwnedGifts, UserId};
+use crate::types::OwnedGifts;
+use crate::types::UserId;
 
 impl_payload! {
     /// Returns the gifts owned and hosted by a user. Returns [`OwnedGifts`] on success.

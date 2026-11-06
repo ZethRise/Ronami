@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, OwnedGiftId, True};
+use crate::types::BusinessConnectionId;
+use crate::types::OwnedGiftId;
+use crate::types::True;
 
 impl_payload! {
     /// Converts a given regular gift to Telegram Stars. Requires the _can_convert_gifts_to_stars_ business bot right. Returns _true_ on success.

@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{MessageId, Recipient, True};
+use crate::types::MessageId;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns _True_ on success.

@@ -2,9 +2,13 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    InlineKeyboardMarkup, MessageEntity, MessageId, ParseMode, Recipient, True, UserId,
-};
+use crate::types::InlineKeyboardMarkup;
+use crate::types::MessageEntity;
+use crate::types::MessageId;
+use crate::types::ParseMode;
+use crate::types::Recipient;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to edit the caption of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.

@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatId, Recipient, True, UserId};
+use crate::types::ChatId;
+use crate::types::Recipient;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to remove a reaction from a message in a group or a supergroup chat. The bot must have the _can\_delete\_messages_ administrator right in the chat. Returns _True_ on success.

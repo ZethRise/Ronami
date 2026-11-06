@@ -3,7 +3,8 @@
 use serde::Serialize;
 use url::Url;
 
-use crate::types::{CallbackQueryId, True};
+use crate::types::CallbackQueryId;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to send answers to callback queries sent from [inline keyboards]. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.

@@ -16,7 +16,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6c5ce7?style=for-the-badge" alt="MIT License"></a>
 </p>
 
-> **v1.1.0** — Ronami is a modern Telegram Bot framework in Rust, evolved from [teloxide](https://github.com/teloxide/teloxide) to deliver up-to-date Telegram Bot API 10.3+ coverage, refreshed crate naming, and active maintenance. this Project is Vibe Coded with Ai so expect bugs and errors
+> **v1.5.0** — Ronami is a modern Telegram Bot framework in Rust, evolved from [teloxide](https://github.com/teloxide/teloxide) to deliver up-to-date Telegram Bot API 10.3+ coverage, refreshed crate naming, and active maintenance. this Project is Vibe Coded with Ai so expect bugs and errors
 
 ## What Ronami does
 
@@ -51,7 +51,7 @@ Telegram Bot API Server (:8081 / cloud)
 
 ### Requirements
 
-- Rust 1.85+ (`stable` or `nightly`)
+- Rust 1.85+ (the repository is developed on the latest stable Rust, edition 2024)
 - A Telegram bot token from [@BotFather](https://t.me/botfather) (Note: BotFather enables Privacy Mode by default in groups; disable via `/setprivacy` if your bot needs to process non-command group messages)
 
 ### Add dependency
@@ -60,7 +60,7 @@ Add Ronami to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-ronami = { version = "1.1.0", features = ["macros"] }
+ronami = { version = "1.5.0", features = ["macros"] }
 tokio = { version = "1.47", features = ["rt-multi-thread", "macros"] }
 log = "0.4"
 pretty_env_logger = "0.5"

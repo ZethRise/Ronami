@@ -1,8 +1,8 @@
 // This bot answers how many messages it received in total on every message.
 
 use std::sync::{
-    atomic::{AtomicU64, Ordering},
     Arc,
+    atomic::{AtomicU64, Ordering},
 };
 
 use ronami::prelude::*;

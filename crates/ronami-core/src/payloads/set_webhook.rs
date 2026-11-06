@@ -3,7 +3,9 @@
 use serde::Serialize;
 use url::Url;
 
-use crate::types::{AllowedUpdate, InputFile, True};
+use crate::types::AllowedUpdate;
+use crate::types::InputFile;
+use crate::types::True;
 
 impl_payload! {
     @[multipart = certificate]

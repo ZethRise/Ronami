@@ -1,6 +1,6 @@
 // Some concepts are from Serde.
 
-use crate::error::{compile_error, Result};
+use crate::error::{Result, compile_error};
 
 use heck::{
     ToKebabCase, ToLowerCamelCase, ToPascalCase, ToShoutyKebabCase, ToShoutySnakeCase, ToSnakeCase,
@@ -67,7 +67,7 @@ impl RenameRule {
                     "invalid rename rule `{invalid}` (supported rules: `lowercase`, `UPPERCASE`, \
                      `PascalCase`, `camelCase`, `snake_case`, `SCREAMING_SNAKE_CASE`, \
                      `kebab-case`, `SCREAMING-KEBAB-CASE` and `identity`)"
-                )))
+                )));
             }
         };
 
@@ -80,7 +80,7 @@ mod tests {
     use super::*;
 
     macro_rules! test_eq {
-        ($input:expr => $output:expr) => {
+        ($input:expr_2021 => $output:expr_2021) => {
             let rule = RenameRule::parse(TYPE).unwrap();
 
             assert_eq!(rule.apply($input), $output);

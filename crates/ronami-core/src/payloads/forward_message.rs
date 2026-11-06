@@ -2,9 +2,14 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    EffectId, Message, MessageId, Recipient, Seconds, SuggestedPostParameters, ThreadId, TopicId,
-};
+use crate::types::EffectId;
+use crate::types::Message;
+use crate::types::MessageId;
+use crate::types::Recipient;
+use crate::types::Seconds;
+use crate::types::SuggestedPostParameters;
+use crate::types::ThreadId;
+use crate::types::TopicId;
 
 impl_payload! {
     /// Use this method to forward messages of any kind. On success, the sent [`Message`] is returned.

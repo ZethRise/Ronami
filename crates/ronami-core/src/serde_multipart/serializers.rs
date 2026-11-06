@@ -2,8 +2,8 @@ use crate::serde_multipart::error::Error;
 
 use reqwest::multipart::{Form, Part};
 use serde::{
-    ser::{Impossible, SerializeMap, SerializeSeq, SerializeStruct},
     Serialize, Serializer,
+    ser::{Impossible, SerializeMap, SerializeSeq, SerializeStruct},
 };
 
 /// The main serializer that serializes top-level and structures
@@ -464,8 +464,8 @@ impl SerializeStruct for JsonPartSerializer {
     where
         T: Serialize,
     {
-        use std::fmt::Write;
         use PartSerializerStructState::*;
+        use std::fmt::Write;
 
         let value = serde_json::to_string(value)?;
         match self.state {
@@ -503,8 +503,8 @@ impl SerializeSeq for JsonPartSerializer {
     where
         T: Serialize,
     {
-        use std::fmt::Write;
         use PartSerializerStructState::*;
+        use std::fmt::Write;
 
         let value = serde_json::to_string(value)?;
         match self.state {

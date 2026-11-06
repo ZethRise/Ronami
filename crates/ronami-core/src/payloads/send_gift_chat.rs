@@ -2,7 +2,11 @@
 
 use serde::Serialize;
 
-use crate::types::{GiftId, MessageEntity, ParseMode, Recipient, True};
+use crate::types::GiftId;
+use crate::types::MessageEntity;
+use crate::types::ParseMode;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Sends a gift to the given channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns True on success.

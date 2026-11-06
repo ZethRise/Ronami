@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{InputProfilePhoto, True};
+use crate::types::InputProfilePhoto;
+use crate::types::True;
 
 impl_payload! {
     /// Changes the profile photo of the bot. Returns _True_ on success.

@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True};
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have _can\_manage\_topics_ administrator rights. Returns True on success.

@@ -2,10 +2,17 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    EffectId, MessageEntity, MessageId, ParseMode, Recipient, ReplyMarkup, ReplyParameters,
-    Seconds, SuggestedPostParameters, ThreadId, TopicId,
-};
+use crate::types::EffectId;
+use crate::types::MessageEntity;
+use crate::types::MessageId;
+use crate::types::ParseMode;
+use crate::types::Recipient;
+use crate::types::ReplyMarkup;
+use crate::types::ReplyParameters;
+use crate::types::Seconds;
+use crate::types::SuggestedPostParameters;
+use crate::types::ThreadId;
+use crate::types::TopicId;
 
 impl_payload! {
     /// Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [`Poll`] can be copied only if the value of the field *correct_option_id* is known to the bot. The method is analogous to the method [`ForwardMessage`], but the copied message doesn't have a link to the original message. Returns the [`MessageId`] of the sent message on success.

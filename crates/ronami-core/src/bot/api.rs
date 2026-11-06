@@ -1,7 +1,7 @@
 use url::Url;
 
 use crate::{
-    payloads,
+    Bot, payloads,
     prelude::Requester,
     requests::{JsonRequest, MultipartRequest},
     types::{
@@ -12,7 +12,6 @@ use crate::{
         LabeledPrice, MessageId, OwnedGiftId, PreCheckoutQueryId, Recipient, Seconds,
         ShippingQueryId, StickerFormat, StoryId, TelegramTransactionId, ThreadId, UserId,
     },
-    Bot,
 };
 
 impl Requester for Bot {

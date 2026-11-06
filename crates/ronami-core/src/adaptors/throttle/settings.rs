@@ -1,6 +1,6 @@
 use std::pin::Pin;
 
-use futures::{future::ready, Future};
+use futures::{Future, future::ready};
 
 // Required to not trigger `clippy::type-complexity` lint
 type BoxedFnMut<I, O> = Box<dyn FnMut(I) -> O + Send>;

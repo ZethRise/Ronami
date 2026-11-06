@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{OwnedGifts, Recipient};
+use crate::types::OwnedGifts;
+use crate::types::Recipient;
 
 impl_payload! {
     /// Returns the gifts owned by a chat. Returns [`OwnedGifts`] on success.

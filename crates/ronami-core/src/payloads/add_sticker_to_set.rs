@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{InputSticker, True, UserId};
+use crate::types::InputSticker;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     @[multipart = sticker]

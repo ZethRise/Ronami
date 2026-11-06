@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatId, MenuButton};
+use crate::types::ChatId;
+use crate::types::MenuButton;
 
 impl_payload! {
     /// Use this method to get the current value of the bot's menu button in a private chat, or the default menu button.

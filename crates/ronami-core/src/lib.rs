@@ -5,7 +5,7 @@
 //! asynchronous and built using [`tokio`].
 //!
 //!```toml
-//! ronami-core = "1.1.0"
+//! ronami-core = "1.5.0"
 //! ```
 //! _Compiler support: requires rustc 1.85+_.
 //!

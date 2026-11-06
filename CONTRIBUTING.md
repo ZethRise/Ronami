@@ -104,10 +104,10 @@ Or manually, if you don't have `just` tool:
 cargo fmt --all
 
 # Run linter (compiles code too)
-cargo clippy --all-targets --features "full nightly"
+cargo clippy --all-targets --features full
 
 # Running tests
-cargo test --features "full nightly"
+cargo test --features full
 
 # Documentation (use --open if you want to open it in a browser)
 # (note the -s, `docs` is an alias to pass some additional flags to `rustdoc`)
@@ -405,7 +405,7 @@ That's the basics, for more info about .ron file look at the other methods or as
 
 #### Step 2:
 
-Run `cargo test --features "full nightly"` or `just test`. This will trigger the codegen scripts, and .ron will be converted to code!
+Run `cargo test --features full` or `just test`. This will trigger the codegen scripts, and .ron will be converted to code!
 
 #### Step 3:
 

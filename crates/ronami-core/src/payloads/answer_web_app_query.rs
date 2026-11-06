@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{InlineQueryResult, SentWebAppMessage};
+use crate::types::InlineQueryResult;
+use crate::types::SentWebAppMessage;
 
 impl_payload! {
     /// Use this method to set the result of an interaction with a [Web App] and send a corresponding message on behalf of the user to the chat from which the query originated.

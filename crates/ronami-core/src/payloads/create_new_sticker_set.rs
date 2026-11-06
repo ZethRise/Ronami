@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{InputSticker, StickerType, True, UserId};
+use crate::types::InputSticker;
+use crate::types::StickerType;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.

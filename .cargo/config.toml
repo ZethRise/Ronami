@@ -1,14 +1,15 @@
 [alias]
-# Using `--features=full --features=nightly` instead of `--all-features` because of
+# Using `--features=full` instead of `--all-features` because of
 # https://github.com/rust-lang/cargo/issues/10333
 #
 # "tokio/macros" and "tokio/rt-multi-thread" are required for examples
 #
-# N.B.: when changing this, also change `package.metadata.docs.rs`
+# This builds the docs on stable Rust. docs.rs builds them on nightly with the
+# `nightly` feature (see `package.metadata.docs.rs`), which enables the
+# `This is supported on feature="..." only.` banners.
 docs = """doc
 --no-deps
--Zrustdoc-scrape-examples
---features=full --features=nightly
+--features=full
 --features=tokio/macros --features=tokio/rt-multi-thread
 """
 
@@ -21,3 +22,8 @@ docs = """doc
 # N.B.: when changing this, also change `RUSTDOCFLAGS` in `.github/workflows/ci.yml` and
 #      `package.metadata.docs.rs.rustdoc-args` in `crates/ronami/Cargo.toml`
 rustdocflags = ["--cfg", "docsrs"]
+
+[env]
+# Deserializing a deeply nested `Message` needs a lot of stack in unoptimized builds, more than the
+# default 2 MiB of a test thread.
+RUST_MIN_STACK = { value = "8388608", force = false }

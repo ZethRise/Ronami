@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{GuestQueryId, InlineQueryResult, SentGuestMessage};
+use crate::types::GuestQueryId;
+use crate::types::InlineQueryResult;
+use crate::types::SentGuestMessage;
 
 impl_payload! {
     /// Use this method to reply to a received guest message. On success, a [`SentGuestMessage`] object is returned.

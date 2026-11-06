@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatId, Recipient, True};
+use crate::types::ChatId;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to ban a channel chat in a supergroup or a channel. The owner of the chat will not be able to send messages and join live streams on behalf of the chat, unless it is unbanned first. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights.

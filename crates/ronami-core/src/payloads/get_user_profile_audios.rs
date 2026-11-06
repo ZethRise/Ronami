@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{UserId, UserProfileAudios};
+use crate::types::UserId;
+use crate::types::UserProfileAudios;
 
 impl_payload! {
     /// Use this method to get a list of profile audios for a user. Returns a [`UserProfileAudios`] object.

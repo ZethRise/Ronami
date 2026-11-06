@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{MaskPosition, True};
+use crate::types::MaskPosition;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.

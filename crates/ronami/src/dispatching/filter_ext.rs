@@ -10,7 +10,7 @@ use crate::{
 };
 
 macro_rules! define_ext {
-    ($ext_name:ident, $for_ty:ty => $( ($func:ident, $proj_fn:expr, $fn_doc:expr $(, $Allowed:ident)? ) ,)*) => {
+    ($ext_name:ident, $for_ty:ty => $( ($func:ident, $proj_fn:expr_2021, $fn_doc:expr_2021 $(, $Allowed:ident)? ) ,)*) => {
         #[doc = concat!("Filter methods for [`", stringify!($for_ty), "`].")]
         pub trait $ext_name<Out>: private::Sealed {
             $( define_ext!(@sig $func, $fn_doc); )*
@@ -24,12 +24,12 @@ macro_rules! define_ext {
         }
     };
 
-    (@sig $func:ident, $fn_doc:expr) => {
+    (@sig $func:ident, $fn_doc:expr_2021) => {
         #[doc = $fn_doc]
         fn $func() -> Handler<'static, Out, DpHandlerDescription>;
     };
 
-    (@impl $for_ty:ty, $func:ident, $proj_fn:expr, $Allowed:ident) => {
+    (@impl $for_ty:ty, $func:ident, $proj_fn:expr_2021, $Allowed:ident) => {
         fn $func() -> Handler<'static, Out, DpHandlerDescription> {
             dptree::filter_map_with_description(DpHandlerDescription::of(AllowedUpdate::$Allowed), move |input: $for_ty| {
                 $proj_fn(input)
@@ -37,7 +37,7 @@ macro_rules! define_ext {
         }
     };
 
-    (@impl $for_ty:ty, $func:ident, $proj_fn:expr) => {
+    (@impl $for_ty:ty, $func:ident, $proj_fn:expr_2021) => {
         fn $func() -> Handler<'static, Out, DpHandlerDescription> {
             dptree::filter_map(move |input: $for_ty| {
                 $proj_fn(input)

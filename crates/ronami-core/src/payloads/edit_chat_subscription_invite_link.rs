@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatInviteLink, Recipient};
+use crate::types::ChatInviteLink;
+use crate::types::Recipient;
 
 impl_payload! {
     /// Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a [`ChatInviteLink`] object.

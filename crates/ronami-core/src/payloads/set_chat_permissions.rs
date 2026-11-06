@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatPermissions, Recipient, True};
+use crate::types::ChatPermissions;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the _can_restrict_members_ admin rights. Returns _True_ on success.

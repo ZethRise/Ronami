@@ -9,6 +9,8 @@ and issue links in older entries point at the upstream repository.
 
 ## unreleased
 
+## 1.5.0 - 2026-11-06
+
 ### Added
 
 - Support for TBA 10.3 (ephemeral message parameters, rich message buttons, expandable block quotations and document blocks, disabled buttons, `force_reply` for keyboards, stoppable message drafts with `MessageGenerationStopped`, and `UniqueGiftInfo` text) [**BC**]
@@ -35,6 +37,11 @@ and issue links in older entries point at the upstream repository.
 
 ### Changed
 
+- The workspace now uses the latest stable Rust (1.99.1) and edition 2024; the `nightly` feature is still available but is no longer needed for development, formatting, code generation or documentation tests. The MSRV is still 1.85
+- `rustfmt.toml` no longer uses nightly-only options, and the code generators format with stable `rustfmt`
+- Set `RUST_MIN_STACK` for cargo-run tests in `.cargo/config.toml`, because deserializing a nested `Message` overflowed the default 2 MiB test stack in debug builds
+- Fixed the redis dialogue storage, the `handler_ext` tests and the README doctests that did not compile or run
+- Added `scripts/bot_api_audit.py` and `scripts/bot_api_changelog.py` plus the Bot API 10.4 plan in `docs/plans/bot-api-10.4.md`; Bot API 10.4 itself is not published yet
 - Rebranded the workspace from teloxide to Ronami (`ronami`, `ronami-core`, `ronami-macros`) [**BC**]
 - Environment variables are now `RONAMI_TOKEN`, `RONAMI_API_URL`, `RONAMI_PROXY`, and `RONAMI_DIALOGUE_BEHAVIOUR` [**BC**]
 - Dialogue SQL table renamed from `teloxide_dialogues` to `ronami_dialogues` [**BC**]

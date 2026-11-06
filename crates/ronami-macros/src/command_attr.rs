@@ -1,9 +1,9 @@
 use crate::{
-    attr::{fold_attrs, Attr, AttrValue},
+    Result,
+    attr::{Attr, AttrValue, fold_attrs},
     error::compile_error_at,
     fields_parse::ParserType,
     rename_rules::RenameRule,
-    Result,
 };
 
 use proc_macro2::Span;
@@ -188,7 +188,7 @@ impl CommandAttr {
                             "unexpected attribute name (expected one of `prefix`, `description`, \
                              `rename`, `parse_with`, `separator`, `hide`, `alias` and `aliases`",
                             attr.span(),
-                        ))
+                        ));
                     }
                 }
             }
@@ -197,7 +197,7 @@ impl CommandAttr {
                 return Err(compile_error_at(
                     "unexpected attribute (expected `command` or `doc`)",
                     outermost_key.span(),
-                ))
+                ));
             }
         };
 
@@ -219,13 +219,13 @@ pub(crate) fn match_separator(
             return Err(compile_error_at(
                 "`separator` can only be used with `parse_with = \"split\"`",
                 sp,
-            ))
+            ));
         }
         (ParserType::Custom(_), Some((_, sp))) => {
             return Err(compile_error_at(
                 "`separator` can only be used with `parse_with = \"split\"`",
                 sp,
-            ))
+            ));
         }
         (_, None) => {}
     }

@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{KeyboardButton, PreparedKeyboardButton, UserId};
+use crate::types::KeyboardButton;
+use crate::types::PreparedKeyboardButton;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to store a keyboard button to be used by the user of a Mini App. Returns a [`PreparedKeyboardButton`] on success.

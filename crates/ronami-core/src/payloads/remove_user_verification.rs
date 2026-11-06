@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{True, UserId};
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Removes verification from a user who is currently verified [on behalf of the organization] represented by the bot. Returns _true_ on success.

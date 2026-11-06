@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{AcceptedGiftTypes, BusinessConnectionId, True};
+use crate::types::AcceptedGiftTypes;
+use crate::types::BusinessConnectionId;
+use crate::types::True;
 
 impl_payload! {
     /// Changes the privacy settings pertaining to incoming gifts in a managed business account. Requires the _can_change_gift_settings_ business bot right. Returns _true_ on success.

@@ -46,7 +46,7 @@ async fn test_redis_cbor() {
 type Dialogue = String;
 
 macro_rules! test_dialogues {
-    ($storage:expr, $_0:expr, $_1:expr, $_2:expr) => {
+    ($storage:expr_2021, $_0:expr_2021, $_1:expr_2021, $_2:expr_2021) => {
         assert_eq!(Arc::clone(&$storage).get_dialogue(ChatId(1)).await.unwrap(), $_0);
         assert_eq!(Arc::clone(&$storage).get_dialogue(ChatId(11)).await.unwrap(), $_1);
         assert_eq!(Arc::clone(&$storage).get_dialogue(ChatId(256)).await.unwrap(), $_2);

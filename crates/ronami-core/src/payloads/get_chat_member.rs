@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatMember, Recipient, UserId};
+use crate::types::ChatMember;
+use crate::types::Recipient;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to get information about a member of a chat. Returns a [`ChatMember`] object on success.

@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, ChatId, OwnedGiftId, True};
+use crate::types::BusinessConnectionId;
+use crate::types::ChatId;
+use crate::types::OwnedGiftId;
+use crate::types::True;
 
 impl_payload! {
     /// Transfers an owned unique gift to another user. Requires the _can_transfer_and_upgrade_gifts_ business bot right. Requires _can_transfer_stars_ business bot right if the transfer is paid. Returns _true_ on success.

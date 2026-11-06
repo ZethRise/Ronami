@@ -4,7 +4,7 @@
 
 use std::{convert::Infallible, future::Future, pin::Pin, task};
 
-use futures::future::{pending, AbortHandle, Abortable, Pending};
+use futures::future::{AbortHandle, Abortable, Pending, pending};
 
 /// Create a new token/flag pair.
 #[must_use]

@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatAdministratorRights, True};
+use crate::types::ChatAdministratorRights;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are are free to modify the list before adding the bot.

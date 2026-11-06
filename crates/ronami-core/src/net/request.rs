@@ -1,12 +1,12 @@
 use std::{any::TypeId, sync::Arc, time::Duration};
 
 use reqwest::{
-    header::{HeaderValue, CONTENT_TYPE},
     Client, Response,
+    header::{CONTENT_TYPE, HeaderValue},
 };
 use serde::de::DeserializeOwned;
 
-use crate::{net::TelegramResponse, requests::ResponseResult, RequestError};
+use crate::{RequestError, net::TelegramResponse, requests::ResponseResult};
 
 const DELAY_ON_SERVER_ERROR: Duration = Duration::from_secs(10);
 
@@ -164,9 +164,9 @@ mod tests {
     use cool_asserts::assert_matches;
 
     use crate::{
+        ApiError, RequestError,
         net::request::deserialize_response,
         types::{ChatId, Seconds, True, Update, UpdateId, UpdateKind},
-        ApiError, RequestError,
     };
 
     #[test]
@@ -260,7 +260,12 @@ mod tests {
         let res = deserialize_response::<Vec<Update>>(json).unwrap();
         assert_matches!(
             res,
-            [Update { id: UpdateId(0), kind: UpdateKind::PollAnswer(_) }, Update { id: UpdateId(1), kind: UpdateKind::Error(v) } if v.is_object(), Update { id: UpdateId(2), kind: UpdateKind::PollAnswer(_) }, Update { id: UpdateId(3), kind: UpdateKind::Error(v) } if v.is_object()]
+            [
+                Update { id: UpdateId(0), kind: UpdateKind::PollAnswer(_) },
+                Update { id: UpdateId(1), kind: UpdateKind::Error(v) } if v.is_object(),
+                Update { id: UpdateId(2), kind: UpdateKind::PollAnswer(_) },
+                Update { id: UpdateId(3), kind: UpdateKind::Error(v) } if v.is_object(),
+            ]
         );
     }
 }

@@ -1,9 +1,9 @@
 use crate::{
-    command_attr::{match_separator, CommandAttrs},
+    Result,
+    command_attr::{CommandAttrs, match_separator},
     error::compile_error_at,
     fields_parse::ParserType,
     rename_rules::RenameRule,
-    Result,
 };
 
 /// Create a if block that checks if the given attribute is applied to a enum

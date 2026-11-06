@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{AllowedUpdate, Update};
+use crate::types::AllowedUpdate;
+use crate::types::Update;
 
 impl_payload! {
     @[timeout_secs = timeout]

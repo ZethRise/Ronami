@@ -13,10 +13,9 @@ env:
   RUSTUP_MAX_RETRIES: 10
 
   # When updating this, also update:
-  # - crates/ronami-core/src/codegen.rs
   # - rust-toolchain.toml
-  # - below in the test matrix
-  rust_nightly: nightly-2025-06-12
+  # - .devcontainer/Containerfile
+  rust_stable: 1.99.1
   # When updating this, also update:
   # - **/README.md
   # - **/src/lib.rs
@@ -55,10 +54,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install Rust ${{ env.rust_nightly }}
+      - name: Install Rust ${{ env.rust_stable }}
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: ${{ env.rust_nightly }}
+          toolchain: ${{ env.rust_stable }}
           components: rustfmt
 
       - name: Cache Dependencies
@@ -71,6 +70,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    # The `nightly` feature depends on unstable compiler features, so it must not block CI.
+    continue-on-error: ${{ matrix.rust == 'nightly' }}
     services:
       # Setup Postgres for testing PostgresStorage
       postgres:
@@ -101,7 +102,7 @@ jobs:
             toolchain: beta
             features: "--features full"
           - rust: nightly
-            toolchain: nightly-2025-06-12
+            toolchain: nightly
             features: "--features full nightly"
           - rust: msrv
             toolchain: 1.85.0
@@ -199,10 +200,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install Rust ${{ env.rust_nightly }}
+      - name: Install Rust ${{ env.rust_stable }}
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: ${{ env.rust_nightly }}
+          toolchain: ${{ env.rust_stable }}
           components: clippy
 
       - name: Cache Dependencies
@@ -210,7 +211,7 @@ jobs:
 
       - name: clippy
         run: |
-          cargo clippy --all-targets --features "full nightly"
+          cargo clippy --all-targets --features full
 
   doc:
     name: check docs
@@ -220,10 +221,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install Rust ${{ env.rust_nightly }}
+      - name: Install Rust ${{ env.rust_stable }}
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: ${{ env.rust_nightly }}
+          toolchain: ${{ env.rust_stable }}
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2

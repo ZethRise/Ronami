@@ -1,10 +1,9 @@
 use std::{future::IntoFuture, pin::Pin, sync::Arc};
 
 use futures::{
-    future,
-    future::{ok, Ready},
+    Future, future,
+    future::{Ready, ok},
     task::{Context, Poll},
-    Future,
 };
 use once_cell::sync::OnceCell;
 use url::Url;

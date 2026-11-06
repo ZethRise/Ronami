@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, OwnedGifts};
+use crate::types::BusinessConnectionId;
+use crate::types::OwnedGifts;
 
 impl_payload! {
     /// Returns the gifts received and owned by a managed business account. Requires the _can_view_gifts_and_stars_ business bot right. Returns [`OwnedGifts`] on success.

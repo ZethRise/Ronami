@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{InputFile, Recipient, True};
+use crate::types::InputFile;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     @[multipart = photo]

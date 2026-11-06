@@ -3,8 +3,8 @@
 
 use ronami::{
     dispatching::dialogue::{
-        serializer::{Bincode, Json},
         ErasedStorage, RedisStorage, SqliteStorage, Storage,
+        serializer::{Bincode, Json},
     },
     prelude::*,
     utils::command::BotCommands,

@@ -381,7 +381,7 @@ fn extract_fields_from_references_array(
             ));
         } else {
             continue; // Its probably an empty field like
-                      // ButtonRequest::Location
+            // ButtonRequest::Location
         }
     }
 

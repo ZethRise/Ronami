@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, ThreadId, True};
+use crate::types::Recipient;
+use crate::types::ThreadId;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the _can\_delete\_messages_ administrator rights. Returns True on success.

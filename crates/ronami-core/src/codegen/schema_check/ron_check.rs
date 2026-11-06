@@ -114,7 +114,7 @@ fn check_ron_siblings(
     for param in &method.arguments {
         let mut param_name = param.name.clone();
         escape_kw(&mut param_name); // Converts type to type_. Will think field is missing
-                                    // otherwise.
+        // otherwise.
 
         // Try to find both parameters
         let maybe_ron_param = find_ron_param_by_name(&param_name, ron_method);
@@ -514,7 +514,7 @@ mod tests {
                         .unwrap_or_else(|| {
                             panic!(
                                 "{}",
-                                format!("Sibling method of {} does not exist", &method.name)
+                                format!("Sibling method of {} does not exist", method.name)
                             )
                         });
 

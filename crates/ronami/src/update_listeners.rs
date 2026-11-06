@@ -41,7 +41,7 @@ mod stateful_listener;
 
 #[allow(deprecated)]
 pub use self::{
-    polling::{polling_default, Polling, PollingBuilder, PollingStream},
+    polling::{Polling, PollingBuilder, PollingStream, polling_default},
     stateful_listener::StatefulListener,
 };
 

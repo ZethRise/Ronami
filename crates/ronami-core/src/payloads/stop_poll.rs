@@ -2,7 +2,11 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, InlineKeyboardMarkup, MessageId, Poll, Recipient};
+use crate::types::BusinessConnectionId;
+use crate::types::InlineKeyboardMarkup;
+use crate::types::MessageId;
+use crate::types::Poll;
+use crate::types::Recipient;
 
 impl_payload! {
     /// Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned.

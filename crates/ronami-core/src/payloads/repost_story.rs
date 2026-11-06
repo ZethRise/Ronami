@@ -2,7 +2,11 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, ChatId, Seconds, Story, StoryId};
+use crate::types::BusinessConnectionId;
+use crate::types::ChatId;
+use crate::types::Seconds;
+use crate::types::Story;
+use crate::types::StoryId;
 
 impl_payload! {
     /// Reposts a story on behalf of a business account from another business account. Returns [`Story`] on success.

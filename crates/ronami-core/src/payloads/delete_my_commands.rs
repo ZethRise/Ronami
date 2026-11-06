@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BotCommandScope, True};
+use crate::types::BotCommandScope;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, [higher level commands] will be shown to affected users. Returns _True_ on success.

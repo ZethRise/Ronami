@@ -5,7 +5,7 @@ pub use crate::error_handlers::{LoggingErrorHandler, OnError};
 pub use crate::respond;
 
 pub use crate::dispatching::{
-    dialogue::Dialogue, Dispatcher, HandlerExt as _, MessageFilterExt as _, UpdateFilterExt as _,
+    Dispatcher, HandlerExt as _, MessageFilterExt as _, UpdateFilterExt as _, dialogue::Dialogue,
 };
 
 #[cfg(feature = "ctrlc_handler")]

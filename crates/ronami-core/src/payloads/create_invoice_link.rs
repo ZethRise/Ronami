@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{BusinessConnectionId, LabeledPrice, Seconds};
+use crate::types::BusinessConnectionId;
+use crate::types::LabeledPrice;
+use crate::types::Seconds;
 
 impl_payload! {
     /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.

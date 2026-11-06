@@ -2,8 +2,8 @@ use std::{
     fmt,
     future::Future,
     sync::{
-        atomic::{AtomicU8, Ordering},
         Arc,
+        atomic::{AtomicU8, Ordering},
     },
 };
 

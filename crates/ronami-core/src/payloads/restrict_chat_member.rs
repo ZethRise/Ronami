@@ -3,7 +3,10 @@
 use chrono::{DateTime, Utc};
 use serde::Serialize;
 
-use crate::types::{ChatPermissions, Recipient, True, UserId};
+use crate::types::ChatPermissions;
+use crate::types::Recipient;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate admin rights. Pass _True_ for all permissions to lift restrictions from a user. Returns _True_ on success.

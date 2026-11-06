@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True};
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method for your bot to leave a group, supergroup or channel. Returns _True_ on success.

@@ -45,89 +45,38 @@ static DOC_PATCHES: &[(Target, Patch)] = &[
         },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "text messages",
-            value: "crate::payloads::SendMessage",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "text messages", value: "crate::payloads::SendMessage" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "photos",
-            value: "crate::payloads::SendPhoto",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "photos", value: "crate::payloads::SendPhoto" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "videos",
-            value: "crate::payloads::SendVideo",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "videos", value: "crate::payloads::SendVideo" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "audio files",
-            value: "crate::payloads::SendAudio",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "audio files", value: "crate::payloads::SendAudio" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "general files",
-            value: "crate::payloads::SendDocument",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "general files", value: "crate::payloads::SendDocument" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "location data",
-            value: "crate::payloads::SendLocation",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "location data", value: "crate::payloads::SendLocation" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "video notes",
-            value: "crate::payloads::SendVideoNote",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "video notes", value: "crate::payloads::SendVideoNote" },
     ),
     (
-        Target::Field {
-            method_name: Some("sendChatAction"),
-            field_name: Some("action"),
-        },
-        Patch::ReplaceLink {
-            name: "stickers",
-            value: "crate::payloads::SendSticker",
-        },
+        Target::Field { method_name: Some("sendChatAction"), field_name: Some("action") },
+        Patch::ReplaceLink { name: "stickers", value: "crate::payloads::SendSticker" },
     ),
-    (
-        Target::Any { method_name: None },
-        Patch::Custom(intra_links),
-    ),
+    (Target::Any { method_name: None }, Patch::Custom(intra_links)),
     (
         Target::Method(Some("addStickerToSet")),
         Patch::Replace {

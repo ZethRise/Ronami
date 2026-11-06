@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{PassportElementError, True, UserId};
+use crate::types::PassportElementError;
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns _True_ on success.

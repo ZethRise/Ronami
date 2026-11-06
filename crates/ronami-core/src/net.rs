@@ -2,7 +2,7 @@
 
 use std::time::Duration;
 
-pub use self::download::{download_file, download_file_stream, Download};
+pub use self::download::{Download, download_file, download_file_stream};
 
 pub(crate) use self::{
     request::{request_json, request_multipart},
@@ -130,9 +130,9 @@ mod tests {
         );
 
         assert_eq!(
-	    url.as_str(),
-	    "https://example.com/telegram/bot535362388:AAF7-g0gYncWnm5IyfZlpPRqRRv6kNAGlao/methodName"
-	);
+            url.as_str(),
+            "https://example.com/telegram/bot535362388:AAF7-g0gYncWnm5IyfZlpPRqRRv6kNAGlao/methodName"
+        );
     }
 
     #[test]
@@ -158,8 +158,8 @@ mod tests {
         );
 
         assert_eq!(
-	    url.as_str(),
-	    "https://example.com/telegram/file/bot535362388:AAF7-g0gYncWnm5IyfZlpPRqRRv6kNAGlao/AgADAgADyqoxG2g8aEsu_KjjVsGF4-zetw8ABAEAAwIAA20AA_8QAwABFgQ"
-	);
+            url.as_str(),
+            "https://example.com/telegram/file/bot535362388:AAF7-g0gYncWnm5IyfZlpPRqRRv6kNAGlao/AgADAgADyqoxG2g8aEsu_KjjVsGF4-zetw8ABAEAAwIAA20AA_8QAwABFgQ"
+        );
     }
 }

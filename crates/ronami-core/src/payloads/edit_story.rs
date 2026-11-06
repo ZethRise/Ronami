@@ -2,9 +2,13 @@
 
 use serde::Serialize;
 
-use crate::types::{
-    BusinessConnectionId, InputStoryContent, MessageEntity, ParseMode, Story, StoryArea, StoryId,
-};
+use crate::types::BusinessConnectionId;
+use crate::types::InputStoryContent;
+use crate::types::MessageEntity;
+use crate::types::ParseMode;
+use crate::types::Story;
+use crate::types::StoryArea;
+use crate::types::StoryId;
 
 impl_payload! {
     /// Edits a story previously posted by the bot on behalf of a managed business account. Requires the _can_manage_stories_ business bot right. Returns [`Story`] on success.

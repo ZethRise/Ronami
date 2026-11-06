@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{BotAccessSettings, UserId};
+use crate::types::BotAccessSettings;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to get the access settings of a managed bot. Returns a [`BotAccessSettings`] object on success.

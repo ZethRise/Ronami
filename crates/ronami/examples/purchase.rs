@@ -13,7 +13,7 @@
 // ```
 
 use ronami::{
-    dispatching::{dialogue, dialogue::InMemStorage, UpdateHandler},
+    dispatching::{UpdateHandler, dialogue, dialogue::InMemStorage},
     prelude::*,
     types::{InlineKeyboardButton, InlineKeyboardMarkup},
     utils::command::BotCommands,

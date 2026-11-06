@@ -25,7 +25,7 @@ use serializers::MultipartSerializer;
 /// Serializes given value into [`Form`] **taking all input files out**.
 ///
 /// [`Form`]:  reqwest::multipart::Form
-pub(crate) fn to_form<T>(val: &mut T) -> Result<impl Future<Output = Form>, Error>
+pub(crate) fn to_form<T>(val: &mut T) -> Result<impl Future<Output = Form> + use<T>, Error>
 where
     T: Serialize + MultipartPayload,
 {
@@ -54,7 +54,7 @@ where
 /// Serializes given value into [`Form`].
 ///
 /// [`Form`]:  reqwest::multipart::Form
-pub(crate) fn to_form_ref<T: ?Sized>(val: &T) -> Result<impl Future<Output = Form>, Error>
+pub(crate) fn to_form_ref<T: ?Sized>(val: &T) -> Result<impl Future<Output = Form> + use<T>, Error>
 where
     T: Serialize + MultipartPayload,
 {

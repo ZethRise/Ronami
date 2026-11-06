@@ -8,7 +8,6 @@ use std::{convert::Infallible, fmt::Debug, future::Future, sync::Arc};
 /// See [the module-level documentation for the design
 /// overview](crate::dispatching).
 pub trait ErrorHandler<E> {
-    #[must_use]
     fn handle_error(self: Arc<Self>, error: E) -> BoxFuture<'static, ()>;
 }
 
@@ -52,7 +51,6 @@ where
 /// # }
 /// ```
 pub trait OnError<E> {
-    #[must_use]
     fn on_error<'a, Eh>(self, eh: Arc<Eh>) -> BoxFuture<'a, ()>
     where
         Self: 'a,
@@ -60,7 +58,6 @@ pub trait OnError<E> {
         Arc<Eh>: 'a;
 
     /// A shortcut for `.on_error(LoggingErrorHandler::new())`.
-    #[must_use]
     fn log_on_error<'a>(self) -> BoxFuture<'a, ()>
     where
         Self: Sized + 'a,

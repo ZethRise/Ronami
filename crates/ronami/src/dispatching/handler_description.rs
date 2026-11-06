@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
 use dptree::{
-    description::{EventKind, InterestSet},
     HandlerDescription,
+    description::{EventKind, InterestSet},
 };
 use ronami_core::types::AllowedUpdate;
 
@@ -105,7 +105,7 @@ mod tests {
     #[cfg(feature = "macros")]
     use crate::{
         self as ronami, // fixup for the `BotCommands` macro
-        dispatching::{handler_description::Kind, HandlerExt, UpdateFilterExt},
+        dispatching::{HandlerExt, UpdateFilterExt, handler_description::Kind},
         types::{AllowedUpdate::*, Update},
         utils::command::BotCommands,
     };

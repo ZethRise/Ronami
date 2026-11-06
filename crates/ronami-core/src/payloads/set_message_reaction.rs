@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{MessageId, ReactionType, Recipient, True};
+use crate::types::MessageId;
+use crate::types::ReactionType;
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Returns True on success.

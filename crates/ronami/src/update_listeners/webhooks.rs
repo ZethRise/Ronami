@@ -168,7 +168,7 @@ where
 /// Generates a random string consisting of 32 characters (`a-z`, `A-Z`, `0-9`,
 /// `_` and `-`).
 fn gen_secret_token() -> String {
-    use rand::{distr::Uniform, Rng};
+    use rand::{Rng, distr::Uniform};
     const CHARSET: &[u8] = b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
     const SECRET_LENGTH: usize = 32;
 
@@ -193,7 +193,9 @@ fn check_secret(bytes: &[u8]) -> Result<&[u8], &'static str> {
     let is_not_supported =
         |c: &_| !matches!(c, b'a'..=b'z' | b'A'..=b'Z' | b'0'..=b'9' | b'_' | b'-');
     if bytes.iter().any(is_not_supported) {
-        return Err("secret token must only contain of `a-z`, `A-Z`, `0-9`, `_` and `-` characters");
+        return Err(
+            "secret token must only contain of `a-z`, `A-Z`, `0-9`, `_` and `-` characters",
+        );
     }
 
     Ok(bytes)

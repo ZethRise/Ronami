@@ -2,7 +2,10 @@
 
 use serde::Serialize;
 
-use crate::types::{InlineQueryId, InlineQueryResult, InlineQueryResultsButton, True};
+use crate::types::InlineQueryId;
+use crate::types::InlineQueryResult;
+use crate::types::InlineQueryResultsButton;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to send answers to an inline query. On success, _True_ is returned. No more than **50** results per query are allowed.

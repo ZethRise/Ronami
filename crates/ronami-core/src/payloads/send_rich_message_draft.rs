@@ -2,7 +2,11 @@
 
 use serde::Serialize;
 
-use crate::types::{DraftId, InputRichMessage, Recipient, ThreadId, True};
+use crate::types::DraftId;
+use crate::types::InputRichMessage;
+use crate::types::Recipient;
+use crate::types::ThreadId;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to stream a partial rich message to a user while the message is being generated. Returns _True_ on success.

@@ -1,9 +1,9 @@
 use super::UpdateHandler;
 
 use dptree::{
+    HandlerSignature,
     di::{Asyncify, Injectable},
     prelude::DependencyMap,
-    HandlerSignature,
 };
 use std::{collections::BTreeSet, sync::Arc};
 use tracing::{Instrument, Span};

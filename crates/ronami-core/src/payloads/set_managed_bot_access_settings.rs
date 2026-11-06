@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{True, UserId};
+use crate::types::True;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to change the access settings of a managed bot. Returns _True_ on success.

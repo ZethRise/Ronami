@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, True};
+use crate::types::Recipient;
+use crate::types::True;
 
 impl_payload! {
     /// Removes verification from a chat that is currently verified [on behalf of the organization] represented by the bot. Returns _true_ on success.

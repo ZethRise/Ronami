@@ -20,35 +20,22 @@ use std::{
 };
 
 use aho_corasick::AhoCorasick;
-use xshell::{cmd, Shell};
+use xshell::{Shell, cmd};
 
 fn ensure_rustfmt(sh: &Shell) {
-    // FIXME(waffle): find a better way to set toolchain
-    let toolchain = "nightly-2025-06-12";
+    let version = cmd!(sh, "rustfmt --version").read().unwrap_or_default();
 
-    let version = cmd!(sh, "rustup run {toolchain} rustfmt --version").read().unwrap_or_default();
-
-    if !version.contains("nightly") {
-        panic!(
-            "Failed to run rustfmt from toolchain '{toolchain}'. Please run `rustup component add \
-             rustfmt --toolchain {toolchain}` to install it.",
-        );
+    if !version.contains("rustfmt") {
+        panic!("Failed to run rustfmt. Please run `rustup component add rustfmt` to install it.",);
     }
 }
 
 pub fn reformat(text: String) -> String {
-    let toolchain = "nightly-2025-06-12";
-
     let sh = Shell::new().unwrap();
     ensure_rustfmt(&sh);
     let rustfmt_toml = project_root().join("../../rustfmt.toml");
-    let mut stdout = cmd!(
-        sh,
-        "rustup run {toolchain} rustfmt --config-path {rustfmt_toml} --config fn_single_line=true"
-    )
-    .stdin(text)
-    .read()
-    .unwrap();
+    let mut stdout =
+        cmd!(sh, "rustfmt --edition 2024 --config-path {rustfmt_toml}").stdin(text).read().unwrap();
     if !stdout.ends_with('\n') {
         stdout.push('\n');
     }

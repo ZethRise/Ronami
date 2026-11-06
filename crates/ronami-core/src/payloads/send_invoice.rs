@@ -3,10 +3,15 @@
 use serde::Serialize;
 use url::Url;
 
-use crate::types::{
-    EffectId, InlineKeyboardMarkup, LabeledPrice, Message, Recipient, ReplyParameters,
-    SuggestedPostParameters, ThreadId, TopicId,
-};
+use crate::types::EffectId;
+use crate::types::InlineKeyboardMarkup;
+use crate::types::LabeledPrice;
+use crate::types::Message;
+use crate::types::Recipient;
+use crate::types::ReplyParameters;
+use crate::types::SuggestedPostParameters;
+use crate::types::ThreadId;
+use crate::types::TopicId;
 
 impl_payload! {
     /// Use this method to send invoices. On success, the sent [`Message`] is returned.

@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{ChatId, MessageId, True};
+use crate::types::ChatId;
+use crate::types::MessageId;
+use crate::types::True;
 
 impl_payload! {
     /// Use this method to decline a suggested post in a direct messages chat. The bot must have the 'can_manage_direct_messages' administrator right in the corresponding channel chat. Returns `true` on success.

@@ -2,7 +2,9 @@
 
 use serde::Serialize;
 
-use crate::types::{Recipient, UserChatBoosts, UserId};
+use crate::types::Recipient;
+use crate::types::UserChatBoosts;
+use crate::types::UserId;
 
 impl_payload! {
     /// Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a [`UserChatBoosts`] object.

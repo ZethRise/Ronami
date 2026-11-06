@@ -2,7 +2,8 @@
 
 use serde::Serialize;
 
-use crate::types::{UserId, UserProfilePhotos};
+use crate::types::UserId;
+use crate::types::UserProfilePhotos;
 
 impl_payload! {
     /// Use this method to get a list of profile pictures for a user. Returns a [`UserProfilePhotos`] object.
